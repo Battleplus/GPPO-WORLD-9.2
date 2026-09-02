@@ -8,6 +8,9 @@
 wandb/
 runs/
 artifacts/raw/
+artifacts/T01/dataset/*.jsonl
+artifacts/T01/checkpoints/*.pt
+artifacts/T01/
 __pycache__/
 .pytest_cache/
 *.egg-info/
