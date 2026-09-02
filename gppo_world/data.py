@@ -70,6 +70,7 @@ class TensorTransition:
     step: int
     graph: GraphSnapshot
     next_graph: GraphSnapshot
+    evidence: tuple[dict, ...]
     action: int
     reward: float
     costs: torch.Tensor
@@ -88,6 +89,7 @@ def transition_from_dict(value: dict) -> TensorTransition:
         step=int(value["step"]),
         graph=graph_from_dict(value["graph_t"]),
         next_graph=graph_from_dict(value["graph_tp1"]),
+        evidence=tuple(dict(item) for item in value.get("evidence_t", ())),
         action=17 if action is None else int(action),
         reward=float(value["reward"]),
         costs=torch.tensor([float(value["costs"].get(name, 0.0)) for name in COST_NAMES]),

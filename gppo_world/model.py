@@ -4,19 +4,65 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Mapping
+from typing import Any, Iterable, Mapping
 
 import torch
 from torch import nn
 
 from .contracts import GraphSnapshot, Relation
 from .data import COST_NAMES, STATE_DIM, state_vector
+from .events import (
+    EVIDENCE_EVENTS,
+    NOMINAL_SLOTS,
+    ORDINAL_CLASSES,
+    ORDINAL_SLOTS,
+    STRUCTURAL_SLOT_NAMES,
+    EventSchema,
+)
 from .registry import FEATURE_REGISTRY, SCHEMA_VERSION
 
 
 RELATIONS = tuple(FEATURE_REGISTRY.edges)
+EVIDENCE_FEATURE_DIM = 12
+EVIDENCE_SIGNAL_ORDER = ("TARGET_DISCOVERED", "UAV_DAMAGE", "REGION_VACANCY", "TARGET_DESTROYED")
+
+
 def _relation_key(relation: Relation) -> str:
     return "__".join(relation)
+
+
+def evidence_features(
+    evidence: Iterable[Mapping[str, Any]], device: torch.device | str = "cpu"
+) -> torch.Tensor:
+    """Encode only evidence already visible at the current decision."""
+
+    items = list(evidence)
+    count = len(items)
+    ids = [str(item.get("payload", {}).get("event_id", "")) for item in items]
+    unique_count = len(set(ids)) if ids else 0
+    confirmed = sum(
+        str(item.get("payload", {}).get("status", "")).upper() == "CONFIRMED" for item in items
+    )
+    signal_counts = [sum(item.get("signal_type") == name for item in items) for name in EVIDENCE_SIGNAL_ORDER]
+    unknown_signals = count - sum(signal_counts)
+    severity = [float(item.get("payload", {}).get("severity", 0.0)) for item in items]
+    affected = [
+        sum(len(item.get("payload", {}).get(key, ())) for key in ("affected_uavs", "affected_regions", "affected_targets"))
+        for item in items
+    ]
+    denominator = max(count, 1)
+    values = [
+        min(count, 10) / 10.0,
+        min(unique_count, 10) / 10.0,
+        max(count - unique_count, 0) / denominator,
+        confirmed / denominator,
+        *(value / denominator for value in signal_counts),
+        sum(severity) / denominator,
+        max(severity, default=0.0),
+        sum(affected) / (denominator * 11.0),
+        unknown_signals / denominator,
+    ]
+    return torch.tensor(values, dtype=torch.float32, device=device)
 
 
 @dataclass(frozen=True)
@@ -277,5 +323,115 @@ class FlatGRUWorldModel(nn.Module):
         if payload.get("registry_sha256") != FEATURE_REGISTRY.sha256():
             raise ValueError("flat-GRU feature registry mismatch")
         model = cls(WorldModelConfig(**payload["config"]))
+        model.load_state_dict(payload["state_dict"])
+        return model, dict(payload.get("extra", {}))
+
+
+class EventAwareGraphWorldModel(GraphWorldModel):
+    """T-03 model with modality-specific event heads on the causal latent."""
+
+    format_version = "gppo-event-aware-graph-world-model-v1"
+
+    def __init__(
+        self,
+        config: WorldModelConfig | None = None,
+        event_schema: EventSchema | None = None,
+    ):
+        if event_schema is None:
+            raise ValueError("event_schema is required")
+        super().__init__(config)
+        self.event_schema = event_schema
+        c = self.config
+        evidence_dim = 16
+        self.evidence_encoder = nn.Sequential(
+            nn.Linear(EVIDENCE_FEATURE_DIM, evidence_dim), nn.LayerNorm(evidence_dim), nn.SiLU()
+        )
+        event_input_dim = c.hidden_dim + c.stochastic_dim + evidence_dim
+        self.event_trunk = nn.Sequential(
+            nn.Linear(event_input_dim, c.hidden_dim), nn.LayerNorm(c.hidden_dim), nn.SiLU()
+        )
+        self.ordinal_event_head = nn.Linear(c.hidden_dim, len(ORDINAL_SLOTS) * len(ORDINAL_CLASSES))
+        self.nominal_event_head = nn.Linear(c.hidden_dim, len(NOMINAL_SLOTS))
+        self.structural_event_head = nn.Linear(c.hidden_dim, len(STRUCTURAL_SLOT_NAMES))
+        self.evidence_event_head = nn.Linear(c.hidden_dim, len(EVIDENCE_EVENTS))
+
+    def step(
+        self,
+        graph: GraphSnapshot,
+        action: int | None,
+        hidden: torch.Tensor | None = None,
+        *,
+        sample: bool | None = None,
+        evidence: Iterable[Mapping[str, Any]] = (),
+    ) -> tuple[dict[str, torch.Tensor], torch.Tensor]:
+        outputs, next_hidden = super().step(graph, action, hidden, sample=sample)
+        encoded_evidence = self.evidence_encoder(evidence_features(evidence, outputs["h"].device))
+        event_hidden = self.event_trunk(torch.cat([outputs["h"], outputs["z"], encoded_evidence]))
+        outputs.update(
+            {
+                "ordinal_event_logits": self.ordinal_event_head(event_hidden).reshape(
+                    len(ORDINAL_SLOTS), len(ORDINAL_CLASSES)
+                ),
+                "nominal_event_logits": self.nominal_event_head(event_hidden),
+                "structural_event_logits": self.structural_event_head(event_hidden),
+                "evidence_event_logits": self.evidence_event_head(event_hidden),
+            }
+        )
+        return outputs, next_hidden
+
+    @classmethod
+    def from_base_checkpoint(
+        cls,
+        path: str | Path,
+        event_schema: EventSchema,
+        *,
+        map_location: str | torch.device = "cpu",
+    ) -> tuple["EventAwareGraphWorldModel", dict]:
+        base, metadata = GraphWorldModel.load(path, map_location=map_location)
+        model = cls(base.config, event_schema)
+        incompatible = model.load_state_dict(base.state_dict(), strict=False)
+        unexpected = list(incompatible.unexpected_keys)
+        missing = list(incompatible.missing_keys)
+        if unexpected:
+            raise ValueError(f"unexpected base checkpoint keys: {unexpected}")
+        allowed_prefixes = (
+            "evidence_encoder.",
+            "event_trunk.",
+            "ordinal_event_head.",
+            "nominal_event_head.",
+            "structural_event_head.",
+            "evidence_event_head.",
+        )
+        if any(not key.startswith(allowed_prefixes) for key in missing):
+            raise ValueError(f"unexpected missing base checkpoint keys: {missing}")
+        return model, metadata
+
+    def save(self, path: str | Path, *, extra: Mapping | None = None) -> None:
+        payload = {
+            "format": self.format_version,
+            "config": asdict(self.config),
+            "event_schema": self.event_schema.to_dict(),
+            "event_schema_sha256": self.event_schema.sha256(),
+            "schema_version": SCHEMA_VERSION,
+            "registry_sha256": FEATURE_REGISTRY.sha256(),
+            "state_dict": self.state_dict(),
+            "extra": dict(extra or {}),
+        }
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        torch.save(payload, Path(path))
+
+    @classmethod
+    def load(cls, path: str | Path, *, map_location: str | torch.device = "cpu"):
+        payload = torch.load(Path(path), map_location=map_location, weights_only=False)
+        if payload.get("format") != cls.format_version:
+            raise ValueError("unsupported event-aware world-model checkpoint format")
+        if payload.get("schema_version") != SCHEMA_VERSION:
+            raise ValueError("event-aware world-model schema mismatch")
+        if payload.get("registry_sha256") != FEATURE_REGISTRY.sha256():
+            raise ValueError("event-aware feature registry mismatch")
+        event_schema = EventSchema.from_dict(payload["event_schema"])
+        if event_schema.sha256() != payload.get("event_schema_sha256"):
+            raise ValueError("event schema hash mismatch")
+        model = cls(WorldModelConfig(**payload["config"]), event_schema)
         model.load_state_dict(payload["state_dict"])
         return model, dict(payload.get("extra", {}))
