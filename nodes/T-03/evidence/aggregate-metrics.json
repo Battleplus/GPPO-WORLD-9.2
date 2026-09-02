@@ -1,0 +1,322 @@
+{
+  "base_metric_relative_degradation_eawm_vs_wm": {
+    "cost": {
+      "max": 0.012144373001030226,
+      "mean": 0.006682659947070633,
+      "min": -0.001401089837058477,
+      "sample_std": 0.007143262443399308,
+      "values": [
+        0.009304696677240149,
+        0.012144373001030226,
+        -0.001401089837058477
+      ]
+    },
+    "reward": {
+      "max": 0.004691802361855956,
+      "mean": -0.005569781528863775,
+      "min": -0.02488055961472161,
+      "sample_std": 0.01673460740215986,
+      "values": [
+        -0.02488055961472161,
+        0.004691802361855956,
+        0.00347941266627433
+      ]
+    },
+    "state": {
+      "max": 0.0033854477423711483,
+      "mean": 0.002058480965403516,
+      "min": 0.0008508088653295932,
+      "sample_std": 0.0012715234855101968,
+      "values": [
+        0.0033854477423711483,
+        0.0008508088653295932,
+        0.001939186288509806
+      ]
+    }
+  },
+  "code_commit": "1d02beb8cce6e90d2cf2d84abf69c9666ce73db3",
+  "created_at": "2026-09-02T04:26:56.295575+00:00",
+  "event_schema_sha256": "e359079e8bc7cb89684f50e438d423b49ff994aa2dcfb3cece5b8b66ae8407a7",
+  "gates": {
+    "all_per_seed_gates_pass": true,
+    "all_seed_event_f1_and_auprc_beat_baseline": true,
+    "all_seed_state_reward_cost_degradation_below_5_percent": true,
+    "all_three_seed_runs_pass": true,
+    "single_train_only_schema_across_seeds": true
+  },
+  "per_seed_results": {
+    "20260903": {
+      "gates": {
+        "automatic_labels_byte_identical": true,
+        "base_state_reward_cost_within_5_percent": true,
+        "checkpoints_roundtrip_exact": true,
+        "equal_fixed_epoch_budget": true,
+        "equal_parameter_count": true,
+        "event_macro_auprc_beats_frequency_baseline": true,
+        "event_macro_f1_beats_frequency_baseline": true,
+        "expiry_without_contract_marked_ineligible": true,
+        "future_targets_absent_from_model_signature": true,
+        "identical_initialization": true,
+        "main_ablation_complete": true,
+        "rare_event_recall_beats_frequency_baseline": true,
+        "strict_input_audit_passed": true,
+        "thresholds_and_balance_train_only": true
+      },
+      "metrics_sha256": "6bb974816c6ee14e4b44cc642ebc67dcf23c3fad3dd6107224558f4804c81958",
+      "result": "PASS"
+    },
+    "20260904": {
+      "gates": {
+        "automatic_labels_byte_identical": true,
+        "base_state_reward_cost_within_5_percent": true,
+        "checkpoints_roundtrip_exact": true,
+        "equal_fixed_epoch_budget": true,
+        "equal_parameter_count": true,
+        "event_macro_auprc_beats_frequency_baseline": true,
+        "event_macro_f1_beats_frequency_baseline": true,
+        "expiry_without_contract_marked_ineligible": true,
+        "future_targets_absent_from_model_signature": true,
+        "identical_initialization": true,
+        "main_ablation_complete": true,
+        "rare_event_recall_beats_frequency_baseline": true,
+        "strict_input_audit_passed": true,
+        "thresholds_and_balance_train_only": true
+      },
+      "metrics_sha256": "b7d405582c3111b25c66a7b4e92a3648d641c027dffcfb5a45c77b8e6c0a4125",
+      "result": "PASS"
+    },
+    "20260905": {
+      "gates": {
+        "automatic_labels_byte_identical": true,
+        "base_state_reward_cost_within_5_percent": true,
+        "checkpoints_roundtrip_exact": true,
+        "equal_fixed_epoch_budget": true,
+        "equal_parameter_count": true,
+        "event_macro_auprc_beats_frequency_baseline": true,
+        "event_macro_f1_beats_frequency_baseline": true,
+        "expiry_without_contract_marked_ineligible": true,
+        "future_targets_absent_from_model_signature": true,
+        "identical_initialization": true,
+        "main_ablation_complete": true,
+        "rare_event_recall_beats_frequency_baseline": true,
+        "strict_input_audit_passed": true,
+        "thresholds_and_balance_train_only": true
+      },
+      "metrics_sha256": "107fa2bd3afbedfed2fb75e8747ecaa41544e2022605ea0e27d542383955375e",
+      "result": "PASS"
+    }
+  },
+  "protocol_disclosure": "The initial test results were inspected before the backbone learning-rate multiplier was frozen. The revision was also motivated by matching validation degradation; both failed pre-freeze runs are retained. Final results are repeated over three seeds but are not represented as a pristine first-look test evaluation.",
+  "result": "PASS",
+  "seeds": [
+    20260903,
+    20260904,
+    20260905
+  ],
+  "variants": {
+    "ea_no_ges": {
+      "cost_mae": {
+        "max": 0.3322772079267385,
+        "mean": 0.33082009410078056,
+        "min": 0.3300880977621108,
+        "sample_std": 0.0012619022767225143,
+        "values": [
+          0.3322772079267385,
+          0.3300949766134923,
+          0.3300880977621108
+        ]
+      },
+      "event_macro_auprc": {
+        "max": 0.47613931217734584,
+        "mean": 0.4721946319925834,
+        "min": 0.4646261108234775,
+        "sample_std": 0.006556494411157092,
+        "values": [
+          0.4646261108234775,
+          0.47581847297692675,
+          0.47613931217734584
+        ]
+      },
+      "event_macro_f1": {
+        "max": 0.4998947421285363,
+        "mean": 0.48809518731469503,
+        "min": 0.4750011572984247,
+        "sample_std": 0.012497175319277897,
+        "values": [
+          0.4750011572984247,
+          0.4998947421285363,
+          0.48938966251712407
+        ]
+      },
+      "rare_event_recall": {
+        "max": 0.38939004954762213,
+        "mean": 0.3320610529231443,
+        "min": 0.22570709231732802,
+        "sample_std": 0.0921987686574079,
+        "values": [
+          0.38939004954762213,
+          0.3810860169044828,
+          0.22570709231732802
+        ]
+      },
+      "reward_mae": {
+        "max": 0.5050464783097256,
+        "mean": 0.502077620291355,
+        "min": 0.49970480673407053,
+        "sample_std": 0.002720260199913566,
+        "values": [
+          0.5050464783097256,
+          0.49970480673407053,
+          0.5014815758302691
+        ]
+      },
+      "state_mae": {
+        "max": 0.049494123494144004,
+        "mean": 0.04938522967127112,
+        "min": 0.04932285994191317,
+        "sample_std": 9.463704105011441e-05,
+        "values": [
+          0.04932285994191317,
+          0.04933870557775618,
+          0.049494123494144004
+        ]
+      }
+    },
+    "eawm_hard": {
+      "cost_mae": {
+        "max": 0.3330621171422714,
+        "mean": 0.3320934389201745,
+        "min": 0.3312800318642628,
+        "sample_std": 0.0009011319746907958,
+        "values": [
+          0.3330621171422714,
+          0.3312800318642628,
+          0.3319381677539893
+        ]
+      },
+      "event_macro_auprc": {
+        "max": 0.4436761915216195,
+        "mean": 0.4319820885165937,
+        "min": 0.41709953953147,
+        "sample_std": 0.013572186580554405,
+        "values": [
+          0.41709953953147,
+          0.43517053449669146,
+          0.4436761915216195
+        ]
+      },
+      "event_macro_f1": {
+        "max": 0.4697565261799548,
+        "mean": 0.46676949657323075,
+        "min": 0.46103203149997407,
+        "sample_std": 0.004970198516852561,
+        "values": [
+          0.46103203149997407,
+          0.4697565261799548,
+          0.4695199320397634
+        ]
+      },
+      "rare_event_recall": {
+        "max": 0.16920993556948757,
+        "mean": 0.1535311724203507,
+        "min": 0.12838926819588364,
+        "sample_std": 0.021994203792483687,
+        "values": [
+          0.16920993556948757,
+          0.16299431349568086,
+          0.12838926819588364
+        ]
+      },
+      "reward_mae": {
+        "max": 0.5101569361792208,
+        "mean": 0.5019045207503342,
+        "min": 0.4944375163497905,
+        "sample_std": 0.007889086943750418,
+        "values": [
+          0.4944375163497905,
+          0.5011191097219913,
+          0.5101569361792208
+        ]
+      },
+      "state_mae": {
+        "max": 0.04892430955792657,
+        "mean": 0.0488863665551511,
+        "min": 0.04886629014558793,
+        "sample_std": 3.28781753871952e-05,
+        "values": [
+          0.04892430955792657,
+          0.048868499961938774,
+          0.04886629014558793
+        ]
+      }
+    },
+    "wm": {
+      "cost_mae": {
+        "max": 0.3324038954737362,
+        "mean": 0.32990021896615235,
+        "min": 0.327305116445009,
+        "sample_std": 0.0025506187353098652,
+        "values": [
+          0.3299916449797117,
+          0.327305116445009,
+          0.3324038954737362
+        ]
+      },
+      "event_macro_auprc": {
+        "max": 0.19508915771693985,
+        "mean": 0.15111284406988204,
+        "min": 0.10669361854746824,
+        "sample_std": 0.04419943398350703,
+        "values": [
+          0.10669361854746824,
+          0.19508915771693985,
+          0.15155575594523804
+        ]
+      },
+      "event_macro_f1": {
+        "max": 0.24361046388802146,
+        "mean": 0.21489207052119474,
+        "min": 0.16389665372865228,
+        "sample_std": 0.044280607629789845,
+        "values": [
+          0.16389665372865228,
+          0.23716909394691046,
+          0.24361046388802146
+        ]
+      },
+      "rare_event_recall": {
+        "max": 0.660444843388586,
+        "mean": 0.6436145682824937,
+        "min": 0.6156437780216918,
+        "sample_std": 0.024389898993977394,
+        "values": [
+          0.6156437780216918,
+          0.660444843388586,
+          0.6547550834372035
+        ]
+      },
+      "reward_mae": {
+        "max": 0.5083880443782287,
+        "mean": 0.5047400892531592,
+        "min": 0.49877893752486807,
+        "sample_std": 0.005205467560526359,
+        "values": [
+          0.5070532858563807,
+          0.49877893752486807,
+          0.5083880443782287
+        ]
+      },
+      "state_mae": {
+        "max": 0.04882695755358511,
+        "mean": 0.04878596932311106,
+        "min": 0.048759237706712644,
+        "sample_std": 3.604070891067206e-05,
+        "values": [
+          0.048759237706712644,
+          0.04882695755358511,
+          0.04877171270903543
+        ]
+      }
+    }
+  }
+}

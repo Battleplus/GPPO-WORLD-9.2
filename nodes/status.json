@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T11:20:00+08:00",
+  "updated_at": "2026-09-02T12:27:57+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -53,8 +53,22 @@
         "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0"
       ]
     },
-    {"id": "T-03", "status": "planned", "blocked_by": [], "evidence": []},
-    {"id": "T-04", "status": "blocked", "blocked_by": ["T-03"], "evidence": []},
+    {
+      "id": "T-03",
+      "status": "passed",
+      "blocked_by": [],
+      "evidence": [
+        "nodes/T-03/evidence/aggregate-metrics.json",
+        "nodes/T-03/evidence/checkpoint-manifest.json",
+        "nodes/T-03/evidence/training-config.json",
+        "nodes/T-03/evidence/event-schema.json",
+        "nodes/T-03/evidence/input-audit.json",
+        "nodes/T-03/evidence/test-report.md",
+        "nodes/T-03/evidence/failed-runs.json",
+        "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0"
+      ]
+    },
+    {"id": "T-04", "status": "planned", "blocked_by": [], "evidence": []},
     {"id": "T-05", "status": "blocked", "blocked_by": ["T-04"], "evidence": []},
     {"id": "T-06", "status": "blocked", "blocked_by": ["T-05"], "evidence": []}
   ]

@@ -1,0 +1,15 @@
+{
+  "release_base_url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0",
+  "runs": [
+    {
+      "asset": "failed-event-weight050-seed20260905-metrics.json",
+      "reason": "event_weight=0.50; reward degradation exceeded 5%",
+      "sha256": "dd7841c22975cbda44c7b11fafc0fc36e70271f076aaed722b5414571fe7f969"
+    },
+    {
+      "asset": "failed-unscaled-backbone-seed20260904-metrics.json",
+      "reason": "event_weight=0.25 without backbone LR scaling; reward degradation exceeded 5%",
+      "sha256": "fb7c19d53fb5ec903ff1548aed762631237c550866b1d5e808753a683e47ff2a"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # T-04：Shadow、校准与风险门禁
 
-**状态：blocked by T-03**
+**状态：planned（T-03 已解锁）**
 
 ## 目标
 

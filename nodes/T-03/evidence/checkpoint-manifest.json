@@ -1,0 +1,165 @@
+{
+  "assets": {
+    "aggregate-metrics.json": {
+      "bytes": 10356,
+      "sha256": "ab6260d1239b7597caf9700f98117dff4e9865a3164c62bbb2d3435e1e3c0a50",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/aggregate-metrics.json"
+    },
+    "class-balance.json": {
+      "bytes": 22271,
+      "sha256": "a4864df481b2065777a4477864f9200c72fb73c6f8aec7d888bf3093e05655a5",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/class-balance.json"
+    },
+    "ea_no_ges-history-seed20260903.json": {
+      "bytes": 10288,
+      "sha256": "3658e6a33f5beee851ea901a24ce8ed2c40d1e74ac356271e12182be09639398",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges-history-seed20260903.json"
+    },
+    "ea_no_ges-history-seed20260904.json": {
+      "bytes": 10273,
+      "sha256": "5f8a38cb77e93880867321b2783a22881535f8b64189a27f4f043904ccf9c409",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges-history-seed20260904.json"
+    },
+    "ea_no_ges-history-seed20260905.json": {
+      "bytes": 10265,
+      "sha256": "a0d82e655fd69a5f54fd6961db4ce19a0cb5046e760d8bf5861a33e13347ac5b",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges-history-seed20260905.json"
+    },
+    "ea_no_ges_seed20260903.pt": {
+      "bytes": 1120776,
+      "sha256": "8e0c819aca8875ffda0108f3d0e3119eb726245fbe1c0af1679be68a3598bf2f",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges_seed20260903.pt"
+    },
+    "ea_no_ges_seed20260904.pt": {
+      "bytes": 1120776,
+      "sha256": "7d7b07caf92651f6a1c47be897c8d6b27005be247964f6debf19ac779d70717b",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges_seed20260904.pt"
+    },
+    "ea_no_ges_seed20260905.pt": {
+      "bytes": 1120776,
+      "sha256": "13f322194e8033f2063ac78b9eb23b7f5e787493eeec8e1e74d67251e47245c2",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/ea_no_ges_seed20260905.pt"
+    },
+    "eawm_hard-history-seed20260903.json": {
+      "bytes": 10273,
+      "sha256": "490560ddb180eb6f82fabd511ef7f972d1f4a9a1b51facb2696e1cfc25488c68",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard-history-seed20260903.json"
+    },
+    "eawm_hard-history-seed20260904.json": {
+      "bytes": 10267,
+      "sha256": "653f9354283eb9c51a0d1ba98698b9e7e10036fc25411fdd0b38489279fe922e",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard-history-seed20260904.json"
+    },
+    "eawm_hard-history-seed20260905.json": {
+      "bytes": 10275,
+      "sha256": "e9121b0e7ba4a579df4f29e7bcee0c451e4670c157ab65c772c2c557d774999a",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard-history-seed20260905.json"
+    },
+    "eawm_hard_seed20260903.pt": {
+      "bytes": 1120776,
+      "sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard_seed20260903.pt"
+    },
+    "eawm_hard_seed20260904.pt": {
+      "bytes": 1120776,
+      "sha256": "b74d88bb7572870bf95b187e5091a1e2fd132491076daec37fa828f8f10ded45",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard_seed20260904.pt"
+    },
+    "eawm_hard_seed20260905.pt": {
+      "bytes": 1120776,
+      "sha256": "42fda0c52b939b4885cf338366a291d9543fb814a3342b9a70d71f2e3a037b3c",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard_seed20260905.pt"
+    },
+    "eawm_smooth-history-seed20260903.json": {
+      "bytes": 10299,
+      "sha256": "99f1302fe5b8d43b1e3c4ea9b66be57aa243d1f8db3fcc657c3e33d908b7c0c2",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_smooth-history-seed20260903.json"
+    },
+    "eawm_smooth_seed20260903.pt": {
+      "bytes": 1120776,
+      "sha256": "c55670054a5365a3d56a595c255a6957e64df7e46321ac2519ea15b89326b86f",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_smooth_seed20260903.pt"
+    },
+    "event-schema.json": {
+      "bytes": 24867,
+      "sha256": "ed04d4b6684fa430747995c45e5cf958bc977575390ee0dae92ba1792cbcd7e9",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/event-schema.json"
+    },
+    "event-support.json": {
+      "bytes": 2572,
+      "sha256": "999dac9995e7f908efdaab9f9f75d4edcd17f580350a4a288d7bebb6a755b1dd",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/event-support.json"
+    },
+    "failed-event-weight050-seed20260905-metrics.json": {
+      "bytes": 940526,
+      "sha256": "dd7841c22975cbda44c7b11fafc0fc36e70271f076aaed722b5414571fe7f969",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/failed-event-weight050-seed20260905-metrics.json"
+    },
+    "failed-unscaled-backbone-seed20260904-metrics.json": {
+      "bytes": 941082,
+      "sha256": "fb7c19d53fb5ec903ff1548aed762631237c550866b1d5e808753a683e47ff2a",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/failed-unscaled-backbone-seed20260904-metrics.json"
+    },
+    "input-audit.json": {
+      "bytes": 1096,
+      "sha256": "49b401362dc8e375a81ed2b0508b940608e784113667753f7d08c7668c9ab44a",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/input-audit.json"
+    },
+    "metrics-seed20260903.json": {
+      "bytes": 1230847,
+      "sha256": "6bb974816c6ee14e4b44cc642ebc67dcf23c3fad3dd6107224558f4804c81958",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/metrics-seed20260903.json"
+    },
+    "metrics-seed20260904.json": {
+      "bytes": 940173,
+      "sha256": "b7d405582c3111b25c66a7b4e92a3648d641c027dffcfb5a45c77b8e6c0a4125",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/metrics-seed20260904.json"
+    },
+    "metrics-seed20260905.json": {
+      "bytes": 941275,
+      "sha256": "107fa2bd3afbedfed2fb75e8747ecaa41544e2022605ea0e27d542383955375e",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/metrics-seed20260905.json"
+    },
+    "training-config.json": {
+      "bytes": 676,
+      "sha256": "fda5cf65c5f481aab33c26c95d3711c130a1b1a39ee350201117ffa71de4d9b3",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/training-config.json"
+    },
+    "wm-history-seed20260903.json": {
+      "bytes": 10282,
+      "sha256": "c52e7fe504617e64e980e879755030f1938120abb42cc91ce575ecfa4f788f9a",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm-history-seed20260903.json"
+    },
+    "wm-history-seed20260904.json": {
+      "bytes": 10283,
+      "sha256": "f9957990a1b3d67a70cecb8beb1963ff7aa1296575e6504ce15d4f7ca5e92c90",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm-history-seed20260904.json"
+    },
+    "wm-history-seed20260905.json": {
+      "bytes": 10284,
+      "sha256": "913b61363f0462fcb0e0751279ab3ba9a7809c6fcf04681826022bef9b7d21b3",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm-history-seed20260905.json"
+    },
+    "wm_seed20260903.pt": {
+      "bytes": 1120776,
+      "sha256": "7dff0b51ac0d01ea910a33330b29771c68aa9f593a1dd2658bde46a0a2090d71",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm_seed20260903.pt"
+    },
+    "wm_seed20260904.pt": {
+      "bytes": 1120776,
+      "sha256": "ef6b7cd05c76ee52626602321db9defc3dcd47e17216c30a5219f8f55bcf5d47",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm_seed20260904.pt"
+    },
+    "wm_seed20260905.pt": {
+      "bytes": 1120776,
+      "sha256": "cd786bccb357ac5501811993c8f608cfed0f3d992014755eae8876c6fc922870",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/wm_seed20260905.pt"
+    }
+  },
+  "event_schema_sha256": "e359079e8bc7cb89684f50e438d423b49ff994aa2dcfb3cece5b8b66ae8407a7",
+  "format": "gppo-t03-checkpoint-manifest/0.1.0",
+  "parent_t02_checkpoint_sha256": "942c3cd5f99efe6e41fd889817598657e158a9db5d7c49e42cfacb7dd684c597",
+  "release_tag": "t03-eawm-v0.1.0",
+  "release_url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0",
+  "target_commit": "1d02beb8cce6e90d2cf2d84abf69c9666ce73db3"
+}

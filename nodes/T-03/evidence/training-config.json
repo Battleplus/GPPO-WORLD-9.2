@@ -1,0 +1,45 @@
+{
+  "config": {
+    "backbone_learning_rate_multiplier": 0.2,
+    "change_weight": 0.25,
+    "continuation_weight": 0.5,
+    "cost_weight": 0.25,
+    "epochs": 20,
+    "event_aware_weight": 0.5,
+    "event_weight": 0.25,
+    "focal_gamma": 4.0,
+    "grad_clip": 5.0,
+    "kl_weight": 0.001,
+    "learning_rate": 0.0005,
+    "max_base_metric_degradation": 0.05,
+    "rare_prevalence_threshold": 0.1,
+    "reward_weight": 0.5,
+    "seed": 20260903,
+    "smooth_epsilon": 0.0005,
+    "state_nll_weight": 0.05,
+    "state_weight": 5.0,
+    "weight_decay": 1e-05
+  },
+  "frozen_protocol": {
+    "main_variants": [
+      "wm",
+      "ea_no_ges",
+      "eawm_hard"
+    ],
+    "parent_t02_checkpoint_sha256": "942c3cd5f99efe6e41fd889817598657e158a9db5d7c49e42cfacb7dd684c597",
+    "seeds": [
+      20260903,
+      20260904,
+      20260905
+    ],
+    "smooth_variant_seeds": [
+      20260903
+    ]
+  },
+  "variants": [
+    "wm",
+    "ea_no_ges",
+    "eawm_hard",
+    "eawm_smooth"
+  ]
+}
