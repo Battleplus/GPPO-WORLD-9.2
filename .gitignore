@@ -1,0 +1,12 @@
+# Large model and experiment artifacts belong in versioned releases/LFS/object storage.
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.npz
+*.npy
+wandb/
+runs/
+artifacts/raw/
+__pycache__/
+.pytest_cache/

@@ -1,0 +1,24 @@
+{
+  "plan_version": "0.1.0",
+  "source_baseline": {
+    "repository": "https://github.com/Battleplus/GPPO-8.29",
+    "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
+  },
+  "updated_at": "2026-09-02T00:00:00+08:00",
+  "allowed_statuses": [
+    "blocked",
+    "planned",
+    "in_progress",
+    "passed",
+    "failed"
+  ],
+  "nodes": [
+    {"id": "T-00", "status": "planned", "blocked_by": [], "evidence": []},
+    {"id": "T-01", "status": "blocked", "blocked_by": ["T-00"], "evidence": []},
+    {"id": "T-02", "status": "blocked", "blocked_by": ["T-01"], "evidence": []},
+    {"id": "T-03", "status": "blocked", "blocked_by": ["T-02"], "evidence": []},
+    {"id": "T-04", "status": "blocked", "blocked_by": ["T-03"], "evidence": []},
+    {"id": "T-05", "status": "blocked", "blocked_by": ["T-04"], "evidence": []},
+    {"id": "T-06", "status": "blocked", "blocked_by": ["T-05"], "evidence": []}
+  ]
+}

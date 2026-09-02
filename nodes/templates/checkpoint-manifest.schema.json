@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Battleplus/GPPO-WORLD-9.2/nodes/templates/checkpoint-manifest.schema.json",
+  "title": "GPPO World Model Checkpoint Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "node_id",
+    "status",
+    "source_commit",
+    "schema_version",
+    "config_uri",
+    "config_sha256",
+    "dataset_manifest_uri",
+    "dataset_manifest_sha256",
+    "seeds",
+    "checkpoint_uri",
+    "checkpoint_sha256",
+    "metrics_uri",
+    "metrics_sha256",
+    "environment",
+    "created_at"
+  ],
+  "properties": {
+    "artifact_id": {"type": "string", "minLength": 1},
+    "node_id": {"enum": ["T-00", "T-01", "T-02", "T-03", "T-04", "T-05", "T-06"]},
+    "status": {"enum": ["absent", "training", "candidate", "accepted", "rejected"]},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "parent_artifact_id": {"type": ["string", "null"]},
+    "schema_version": {"type": "string", "minLength": 1},
+    "config_uri": {"type": "string"},
+    "config_sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+    "dataset_manifest_uri": {"type": "string"},
+    "dataset_manifest_sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+    "seeds": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "checkpoint_uri": {"type": "string"},
+    "checkpoint_sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+    "metrics_uri": {"type": "string"},
+    "metrics_sha256": {"type": "string", "pattern": "^$|^[0-9a-f]{64}$"},
+    "environment": {
+      "type": "object",
+      "required": ["python", "framework", "hardware"],
+      "properties": {
+        "python": {"type": "string"},
+        "framework": {"type": "string"},
+        "cuda": {"type": ["string", "null"]},
+        "hardware": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "notes": {"type": "string"}
+  }
+}
