@@ -91,7 +91,7 @@ T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自
 | [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用合法动作反事实证明模型使用动作 | **passed** |
 | [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | **passed** |
 | [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | **passed** |
-| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | planned / server GPU required |
+| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | in progress / local Gates passed / server GPU pending |
 | [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | optional / blocked by T-05 |
 
 ### T-00：冻结合同，而不是先写网络
@@ -170,6 +170,8 @@ T-04 已通过并封存于 [T-04 Release v0.1.0](https://github.com/Battleplus/G
 4. EAWM-GPPO。
 
 必要时增加 GPPO-History，以排除“只是多看历史”的解释。只有真实 held-out 环境、多个 seed 和安全指标共同支持，才能声称世界模型对 GPPO 有增益。
+
+T-05 的本地接口实现已完成：冻结 `[h,z]` residual adapter、post-action Shadow hook、逐 transition versioned latent sidecar、旧 checkpoint 无损回退和服务器训练/评估入口均已提交。真实基线的 12-transition smoke 与 44 项测试通过，Shadow 对环境/belief/mask/version/动作提交仍为零写入。正式四组 × 3 seed × 50k GPU 训练尚未执行；当前已配置 SSH 目标均不能完成批量登录和 GPU 探测，因此 T-05 保持 `in_progress`，不能宣称迁移完成。
 
 ### T-06：可选想象规划
 

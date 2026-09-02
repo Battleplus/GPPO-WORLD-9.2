@@ -1,0 +1,13 @@
+{
+  "format": "gppo-t05-server-probe/0.1.0",
+  "probed_at": "2026-09-02T15:34:58+08:00",
+  "method": "ssh BatchMode=yes ConnectTimeout=4 followed by read-only nvidia-smi query",
+  "configured_unique_hosts": 9,
+  "target_source_commit": "a4432a9527c73021d605f6960dfcc5b8d3e3b3c6",
+  "server_training_config_sha256": "8373cb3b8a40d6313a8a58c2560ad9985af82ea23fa0049308382862de73351c",
+  "reachable_authenticated_gpu_hosts": 0,
+  "formal_runs_started": 0,
+  "credentials_or_host_addresses_recorded": false,
+  "result": "blocked_pending_reachable_gpu_server",
+  "note": "All configured targets were unreachable, authentication-failed, or closed the SSH connection. No remote state was modified."
+}
