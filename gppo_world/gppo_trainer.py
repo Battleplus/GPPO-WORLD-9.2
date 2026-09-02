@@ -129,6 +129,7 @@ class LatentPPOTrainer(PPOTrainer):  # type: ignore[misc,valid-type]
         gate_values: dict[str, list[float]] = {}
         latent_used = 0
         stale_retries = 0
+        execution_rejections = 0
 
         collected = 0
         while collected < steps:
@@ -156,6 +157,14 @@ class LatentPPOTrainer(PPOTrainer):  # type: ignore[misc,valid-type]
                 if info.get("stale_decision", False):
                     stale_retries += 1
                     continue
+                if info.get("execution_rejected", False):
+                    execution_rejections += 1
+                    # PPO's MDP action is the sampled command proposal; an
+                    # execution-layer rejection/fail-closed NOOP is part of
+                    # the environment transition caused by that proposal.
+                    # Preserve proposal/log-prob/reward/next-state on-policy.
+                    # Shadow did not accept an executed action, so the next
+                    # context store read below fails closed to zero context.
             else:
                 next_graph, reward, terminated, truncated, info = _step_env(self.env, action)
             with torch.no_grad():
@@ -215,6 +224,7 @@ class LatentPPOTrainer(PPOTrainer):  # type: ignore[misc,valid-type]
             "pre_mask_invalid_probability": float(np.mean(invalid_probabilities)),
             "gate_means": {key: float(np.mean(values)) for key, values in sorted(gate_values.items())},
             "stale_retries": stale_retries,
+            "execution_rejections": execution_rejections,
             "latent_adapter_use_count": latent_used,
             "latent_adapter_use_rate": latent_used / max(len(buffer), 1),
         }

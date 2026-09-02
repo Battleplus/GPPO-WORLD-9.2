@@ -5,11 +5,13 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 import subprocess
 import sys
 from typing import Any
 
+import numpy as np
 import torch
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,7 +29,20 @@ def sha256(path: Path) -> str:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(json_safe(value), ensure_ascii=False, sort_keys=True, indent=2, allow_nan=False) + "\n",
+        encoding="utf-8",
+    )
+
+
+def json_safe(value: Any) -> Any:
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, dict):
+        return {str(key): json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_safe(item) for item in value]
+    return value
 
 
 def git(path: Path, *args: str) -> str:
@@ -58,6 +73,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     config = json.loads(Path(args.config).read_text(encoding="utf-8"))
+    config_path = Path(args.config).resolve()
+    frozen_config_path = (ROOT / "nodes" / "T-05" / "server-training-config.json").resolve()
+    if config_path != frozen_config_path:
+        raise SystemExit("formal T-05 only accepts the repository-frozen server config")
     baseline_root = Path(args.baseline_root).resolve()
     checkpoint = Path(args.checkpoint).resolve()
     test_manifest = Path(args.test_manifest).resolve()
@@ -73,6 +92,9 @@ def main(argv: list[str] | None = None) -> int:
         raise SystemExit("baseline commit/worktree is not frozen")
     if sha256(checkpoint) != args.expected_checkpoint_sha256:
         raise SystemExit("policy checkpoint SHA-256 mismatch")
+    calibration_path = ROOT / config["shadow_calibration"]["path"]
+    if sha256(calibration_path) != config["shadow_calibration"]["sha256"]:
+        raise SystemExit("Shadow calibration SHA-256 mismatch")
 
     sys.path.insert(0, str(baseline_root))
     import ppo_allocation.random_event.experiment as experiment  # noqa: PLC0415
@@ -143,7 +165,6 @@ def main(argv: list[str] | None = None) -> int:
             model_version=model_identity,
         )
         model.context_store = context_store
-        calibration_path = ROOT / config["shadow_calibration"]["path"]
         calibration = ShadowCalibration.from_dict(
             json.loads(calibration_path.read_text(encoding="utf-8"))
         )
@@ -160,6 +181,51 @@ def main(argv: list[str] | None = None) -> int:
             return wrapped
 
         experiment.RandomEventAllocationEnv = wrapped_env_factory
+
+    required_metadata = {
+        "t05_group": args.group,
+        "training_seed": args.seed,
+        "accepted_decision_steps": 50_000,
+        "target_commit": args.expected_target_commit,
+        "baseline_commit": config["baseline"]["commit"],
+        "t05_config_sha256": sha256(config_path),
+    }
+    for key, expected in required_metadata.items():
+        if metadata.get(key) != expected:
+            raise SystemExit(
+                f"checkpoint metadata mismatch for {key}: expected {expected!r}, got {metadata.get(key)!r}"
+            )
+    expected_ppo = {
+        "rollout_steps": config["training"]["rollout_steps"],
+        "learning_rate": config["training"]["learning_rate"],
+        "gamma": config["training"]["gamma"],
+        "gae_lambda": config["training"]["gae_lambda"],
+        "clip_coef": config["training"]["clip_coef"],
+        "value_coef": config["training"]["value_coef"],
+        "entropy_coef": config["training"]["entropy_coef"],
+        "update_epochs": config["training"]["update_epochs"],
+        "minibatch_size": config["training"]["minibatch_size"],
+        "max_grad_norm": config["training"]["max_grad_norm"],
+        "normalize_advantages": True,
+        "target_kl": None,
+        "seed": args.seed,
+        "device": "cuda",
+    }
+    observed_ppo = metadata.get("ppo_config", {})
+    if any(observed_ppo.get(key) != value for key, value in expected_ppo.items()):
+        raise SystemExit("checkpoint PPO configuration differs from the frozen T-05 protocol")
+    if args.group == "GPPO":
+        if metadata.get("world_checkpoint_sha256") is not None:
+            raise SystemExit("GPPO control checkpoint unexpectedly binds a world model")
+    else:
+        expected_world_sha = config["world_checkpoint_sha256"][world_name]
+        expected_identity = f"{world_name}:{expected_world_sha}"
+        if metadata.get("world_checkpoint_sha256") != expected_world_sha:
+            raise SystemExit("checkpoint metadata world-model SHA mismatch")
+        if not model.enabled or model.model_variant != args.group:
+            raise SystemExit("adapter checkpoint is disabled or has the wrong group identity")
+        if model.model_version != expected_identity:
+            raise SystemExit("adapter model_version does not match the frozen world checkpoint")
 
     model.to(device)
     model.eval()
@@ -202,6 +268,30 @@ def main(argv: list[str] | None = None) -> int:
         "version_mutations": sum(env.audit().real_version_mutation_count for env in created_envs),
         "action_submissions_by_shadow": 0 if world_runtime is None else world_runtime.counters["action_submission_count"],
     }
+    shadow_latencies = (
+        [] if world_runtime is None else [float(item.latency_ms) for item in world_runtime.records]
+    )
+    shadow_latency = {
+        "count": len(shadow_latencies),
+        "p50_ms": None if not shadow_latencies else float(np.quantile(shadow_latencies, 0.50)),
+        "p95_ms": None if not shadow_latencies else float(np.quantile(shadow_latencies, 0.95)),
+        "p99_ms": None if not shadow_latencies else float(np.quantile(shadow_latencies, 0.99)),
+        "max_ms": None if not shadow_latencies else float(max(shadow_latencies)),
+        "fallback_count": 0 if world_runtime is None else world_runtime.counters["fallback_count"],
+        "timeout_count": 0 if world_runtime is None else world_runtime.counters["timeout_count"],
+        "p95_budget_ms": None if world_runtime is None else world_runtime.calibration.latency_p95_budget_ms,
+        "p99_budget_ms": None if world_runtime is None else world_runtime.calibration.latency_p99_budget_ms,
+    }
+    shadow_latency["p95_within_budget"] = (
+        None
+        if world_runtime is None
+        else shadow_latency["p95_ms"] <= shadow_latency["p95_budget_ms"]
+    )
+    shadow_latency["p99_within_budget"] = (
+        None
+        if world_runtime is None
+        else shadow_latency["p99_ms"] <= shadow_latency["p99_budget_ms"]
+    )
     if any(
         safety[key]
         for key in (
@@ -219,6 +309,11 @@ def main(argv: list[str] | None = None) -> int:
         "seed": args.seed,
         "checkpoint": checkpoint.name,
         "checkpoint_sha256": sha256(checkpoint),
+        "target_commit": args.expected_target_commit,
+        "baseline_commit": config["baseline"]["commit"],
+        "config_sha256": sha256(config_path),
+        "calibration_sha256": sha256(calibration_path),
+        "world_checkpoint_sha256": metadata.get("world_checkpoint_sha256"),
         "test_manifest": str(test_manifest),
         "test_manifest_sha256": sha256(test_manifest),
         "tape_count": len(episodes),
@@ -226,7 +321,30 @@ def main(argv: list[str] | None = None) -> int:
         "episode_records": [episode.to_dict() for episode in episodes],
         "trace_index": trace_index,
         "safety": safety,
-        "checkpoint_metadata": metadata,
+        "shadow_latency": shadow_latency,
+        "parameter_counts": {
+            "policy_total": sum(parameter.numel() for parameter in model.parameters()),
+            "policy_trainable": sum(
+                parameter.numel() for parameter in model.parameters() if parameter.requires_grad
+            ),
+        },
+        "checkpoint_metadata": {
+            key: metadata.get(key)
+            for key in (
+                "t05_group",
+                "training_seed",
+                "accepted_decision_steps",
+                "target_commit",
+                "baseline_commit",
+                "world_checkpoint_sha256",
+                "t05_config_sha256",
+                "variant",
+                "total_steps",
+                "update_count",
+                "ppo_config",
+            )
+            if key in metadata
+        },
     }
     write_json(output / "evaluation.json", result)
     write_json(output / "trace-index.json", trace_index)

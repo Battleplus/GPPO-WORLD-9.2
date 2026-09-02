@@ -77,6 +77,9 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     config_path = Path(args.config).resolve()
+    frozen_config_path = (ROOT / "nodes" / "T-05" / "server-training-config.json").resolve()
+    if config_path != frozen_config_path:
+        raise SystemExit("formal T-05 only accepts the repository-frozen server config")
     config = json.loads(config_path.read_text(encoding="utf-8"))
     baseline_root = Path(args.baseline_root).resolve()
     run_dir = Path(args.run_dir).resolve()
@@ -211,6 +214,10 @@ def main(argv: list[str] | None = None) -> int:
             model=policy,
         )
         trainer._current_graph = graph
+    # Re-anchor the policy/action/minibatch RNG after every group has finished
+    # constructing its (different-sized) module tree.  This prevents adapter
+    # initialization draws from shifting the common training seed stream.
+    trainer._seed_everything(args.seed)
 
     parameter_counts = {
         "policy_total": sum(parameter.numel() for parameter in trainer.model.parameters()),
@@ -289,6 +296,7 @@ def main(argv: list[str] | None = None) -> int:
                 "target_commit": target_commit,
                 "baseline_commit": baseline_commit,
                 "world_checkpoint_sha256": world_sha,
+                "t05_config_sha256": sha256(config_path),
             },
         )
         checkpoints.append(
@@ -319,6 +327,35 @@ def main(argv: list[str] | None = None) -> int:
             "note": "GPPO control has no world-model runtime",
         }
     )
+    shadow_latencies = (
+        []
+        if shadow_runtime is None
+        else [float(item.latency_ms) for item in shadow_runtime.records]
+    )
+    latency_tensor = (
+        None if not shadow_latencies else torch.tensor(shadow_latencies, dtype=torch.float64)
+    )
+    shadow_latency = {
+        "count": len(shadow_latencies),
+        "p50_ms": None if latency_tensor is None else float(torch.quantile(latency_tensor, 0.50)),
+        "p95_ms": None if latency_tensor is None else float(torch.quantile(latency_tensor, 0.95)),
+        "p99_ms": None if latency_tensor is None else float(torch.quantile(latency_tensor, 0.99)),
+        "max_ms": None if latency_tensor is None else float(latency_tensor.max()),
+        "fallback_count": 0 if shadow_runtime is None else shadow_runtime.counters["fallback_count"],
+        "timeout_count": 0 if shadow_runtime is None else shadow_runtime.counters["timeout_count"],
+        "p95_budget_ms": None if shadow_runtime is None else shadow_runtime.calibration.latency_p95_budget_ms,
+        "p99_budget_ms": None if shadow_runtime is None else shadow_runtime.calibration.latency_p99_budget_ms,
+    }
+    shadow_latency["p95_within_budget"] = (
+        None
+        if shadow_runtime is None
+        else shadow_latency["p95_ms"] <= shadow_latency["p95_budget_ms"]
+    )
+    shadow_latency["p99_within_budget"] = (
+        None
+        if shadow_runtime is None
+        else shadow_latency["p99_ms"] <= shadow_latency["p99_budget_ms"]
+    )
     if sum(
         int(safety.get(key, 0))
         for key in (
@@ -341,6 +378,7 @@ def main(argv: list[str] | None = None) -> int:
             "checkpoints": checkpoints,
             "latent_context_counters": None if context_store is None else context_store.counters,
             "safety": safety,
+            "shadow_latency": shadow_latency,
         },
     )
     write_json(

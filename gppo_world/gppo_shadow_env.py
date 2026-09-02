@@ -196,7 +196,16 @@ class PostActionShadowEnv:
             self._episode_step += 1
             self._pending_context = None
             self._pending_evidence = ()
-            return result
+            rejected_info = dict(info)
+            rejected_info.update(
+                {
+                    "execution_accepted": False,
+                    "execution_rejected": True,
+                    "executed_action": None,
+                    "execution_status": "command_rejected_fail_closed_noop",
+                }
+            )
+            return (*result[:-1], rejected_info)
         post_graph_version, post_action_version = self._versions()
         request = ShadowRequest(
             episode_id=f"rollout-{self._episode_index:06d}",
@@ -246,7 +255,16 @@ class PostActionShadowEnv:
         self._episode_step += 1
         self._pending_context = None
         self._pending_evidence = ()
-        return result
+        accepted_info = dict(info)
+        accepted_info.update(
+            {
+                "execution_accepted": True,
+                "execution_rejected": False,
+                "executed_action": executed,
+                "execution_status": "accepted",
+            }
+        )
+        return (*result[:-1], accepted_info)
 
     def step(self, action: Any):
         # Legacy calls retain baseline semantics.  T-05 PPO must use the

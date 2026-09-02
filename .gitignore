@@ -15,6 +15,7 @@ artifacts/T02/
 artifacts/T02-run*/
 artifacts/T03*/
 artifacts/T04*/
+artifacts/T05*/
 __pycache__/
 .pytest_cache/
 *.egg-info/

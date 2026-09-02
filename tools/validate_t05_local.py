@@ -10,6 +10,7 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+from types import MethodType
 
 import torch
 
@@ -180,6 +181,7 @@ def main(argv: list[str] | None = None) -> int:
             "shadow_inference_count": local_runtime.counters["inference_count"],
             "stale_decision": bool(info.get("stale_decision", False)),
             "execution_rejection_count": local_env.audit().execution_rejection_count,
+            "execution_rejected": bool(info.get("execution_rejected", False)),
             "context_valid_after": local_store.read(
                 local_raw.graph_version, local_raw.decision_version
             ).valid,
@@ -187,6 +189,87 @@ def main(argv: list[str] | None = None) -> int:
 
     execution_rejection = rejection_case(False)
     stale_rejection = rejection_case(True)
+
+    # Prove proposal/action semantics stay on-policy: the proposal and its
+    # log-prob remain in PPO while rejected execution never enters Shadow.
+    reject_raw = RandomEventAllocationEnv(
+        initial_seed=92, event_seed=9201, events_per_episode=2, max_decisions=8
+    )
+    reject_store = LatentContextStore(
+        adapter_config, model_variant="EAWM-GPPO", model_version="buffer-injection"
+    )
+    reject_runtime = ShadowRuntime(
+        world_model, calibration, model_version="buffer-injection"
+    )
+    reject_env = PostActionShadowEnv(
+        reject_raw, reject_runtime, reject_store, model_variant="EAWM-GPPO"
+    )
+    reject_graph, _ = reject_env.reset(seed=92)
+    reject_policy = LatentAugmentedActorCritic(
+        GraphActorCritic.from_graph(reject_graph),
+        adapter_config,
+        context_store=reject_store,
+        enabled=True,
+        model_variant="EAWM-GPPO",
+    )
+    original_issue = reject_raw.runtime_bridge.issue_assignment_command
+    issue_calls = 0
+
+    def reject_once(*call_args, **call_kwargs):
+        nonlocal issue_calls
+        issue_calls += 1
+        if issue_calls == 1:
+            return None
+        return original_issue(*call_args, **call_kwargs)
+
+    reject_raw.runtime_bridge.issue_assignment_command = reject_once
+
+    @torch.no_grad()
+    def forced_legal_act(self, policy_graph, deterministic=False, context=None, action_version=None):
+        distribution, predicted_value, diagnostics = self.distribution(
+            policy_graph, context=context, action_version=action_version
+        )
+        legal_edges = torch.nonzero(policy_graph.action_mask[:-1], as_tuple=False).flatten()
+        selected = (
+            legal_edges[0]
+            if legal_edges.numel()
+            else torch.tensor(policy_graph.noop_action, device=predicted_value.device)
+        )
+        return (
+            int(selected.item()),
+            float(distribution.log_prob(selected).item()),
+            float(predicted_value.item()),
+            {
+                "pre_mask_invalid_probability": float(
+                    diagnostics["pre_mask_invalid_probability"].detach().cpu()
+                ),
+                "gate_mean": {},
+                "latent_adapter_used": bool(diagnostics.get("latent_adapter_used", False)),
+            },
+        )
+
+    reject_policy.act = MethodType(forced_legal_act, reject_policy)
+    reject_trainer = LatentPPOTrainer(
+        env=reject_env,
+        variant="GPPO-Adaptive",
+        config=PPOConfig(
+            rollout_steps=1, update_epochs=1, minibatch_size=1, seed=92, device="cpu"
+        ),
+        model=reject_policy,
+    )
+    reject_trainer._current_graph = reject_graph
+    reject_buffer, reject_rollout = reject_trainer.collect_rollout(1)
+    rejection_buffer_case = {
+        "external_decision_version": reject_raw.decision_version,
+        "accepted_buffer_transitions": len(reject_buffer),
+        "accepted_budget_steps": reject_trainer.total_steps,
+        "execution_rejections": reject_rollout["execution_rejections"],
+        "shadow_inference_count": reject_runtime.counters["inference_count"],
+        "buffered_action_is_policy_proposal": reject_buffer.actions[0] != reject_graph.noop_action,
+        "next_context_valid": reject_store.read(
+            reject_raw.graph_version, reject_raw.decision_version
+        ).valid,
+    }
     sidecars_aligned = all(
         int(graph_item.graph_version) == graph_version
         and (
@@ -235,6 +318,15 @@ def main(argv: list[str] | None = None) -> int:
             and execution_rejection["execution_rejection_count"] == 1
             and not execution_rejection["context_valid_after"]
         ),
+        "execution_rejection_preserves_on_policy_proposal_transition": (
+            rejection_buffer_case["external_decision_version"] == 1
+            and rejection_buffer_case["accepted_buffer_transitions"] == 1
+            and rejection_buffer_case["accepted_budget_steps"] == 1
+            and rejection_buffer_case["execution_rejections"] == 1
+            and rejection_buffer_case["shadow_inference_count"] == 0
+            and rejection_buffer_case["buffered_action_is_policy_proposal"]
+            and not rejection_buffer_case["next_context_valid"]
+        ),
         "stale_rejection_does_not_reach_shadow": (
             stale_rejection["shadow_inference_count"] == 0
             and stale_rejection["stale_decision"]
@@ -258,6 +350,7 @@ def main(argv: list[str] | None = None) -> int:
         "audit": asdict(audit),
         "execution_rejection": execution_rejection,
         "stale_rejection": stale_rejection,
+        "rejection_buffer_case": rejection_buffer_case,
         "legacy_metadata": legacy_metadata,
         "gates": gates,
         "all_local_gates_pass": all(gates.values()),
