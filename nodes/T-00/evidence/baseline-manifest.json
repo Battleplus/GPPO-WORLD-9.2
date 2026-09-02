@@ -1,0 +1,47 @@
+{
+  "manifest_version": "gppo-world-baseline/0.1.0",
+  "status": "candidate",
+  "captured_at": "2026-09-02T10:17:03+08:00",
+  "source": {
+    "repository": "https://github.com/Battleplus/GPPO-8.29",
+    "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "tree": "4394c104e42b63f917dbaa53a3d86edd4d1235f5",
+    "checkout_mode": "detached"
+  },
+  "source_file_sha256": {
+    "ppo_allocation/random_event/graph.py": "0ddcb42bac054babe54533a2824bc9ded6754c32e199d70457b47ce0a98a8d44",
+    "ppo_allocation/random_event/models.py": "29d38b6b21e19c786b75eaae974e66bea7cc2787e8f01ae58860a4fbaca9ac0b",
+    "ppo_allocation/random_event/environment.py": "9894ced34a2e71959bb046e87fddeed7b516c8b6ce8b8eebbc2f9570e31c25df",
+    "ppo_allocation/random_event/runtime_bridge.py": "f7c3a9a7aa01c18e41ebbcc0d65509c186fbc8f4a303cff6d3802da6d19d8d2a"
+  },
+  "runtime": {
+    "os": "Windows",
+    "python": "3.14.4",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.5.0",
+    "pytest": "9.0.3",
+    "device": "cpu"
+  },
+  "gppo_contract": {
+    "node_dimensions": {"uav": 12, "region": 12, "target": 16},
+    "candidate_edges": 16,
+    "actions": 17,
+    "noop_action": 16,
+    "version_fields": ["graph_version", "action_version"],
+    "execution_guards": ["action_mask", "ACK", "lease", "fencing"]
+  },
+  "historical_checkpoint_inventory": {
+    "manifest_entries": 12,
+    "tracked_binary_files": 0,
+    "load_verified_in_this_node": false,
+    "note": "The source repository contains SHA-256 inventory metadata but no checkpoint binaries."
+  },
+  "baseline_tests": {
+    "command": "$env:PYTHONPATH=(Get-Location).Path; python -m unittest tests_random_event.test_random_event_core tests_random_event.test_random_event_training tests_random_event.test_concurrency_invariants tests_random_event.test_event_runtime_integration",
+    "working_directory": "ppo_allocation",
+    "tests_run": 50,
+    "failures": 0,
+    "errors": 0,
+    "result": "PASS"
+  }
+}
