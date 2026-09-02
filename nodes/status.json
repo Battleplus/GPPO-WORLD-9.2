@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T00:00:00+08:00",
+  "updated_at": "2026-09-02T10:17:03+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -13,8 +13,19 @@
     "failed"
   ],
   "nodes": [
-    {"id": "T-00", "status": "planned", "blocked_by": [], "evidence": []},
-    {"id": "T-01", "status": "blocked", "blocked_by": ["T-00"], "evidence": []},
+    {
+      "id": "T-00",
+      "status": "passed",
+      "blocked_by": [],
+      "evidence": [
+        "nodes/T-00/evidence/baseline-manifest.json",
+        "nodes/T-00/evidence/baseline-test-report.md",
+        "nodes/T-00/evidence/contract-test-report.md",
+        "nodes/T-00/evidence/gppo-adapter-validation.json",
+        "nodes/T-00/evidence/checkpoint-manifest.json"
+      ]
+    },
+    {"id": "T-01", "status": "planned", "blocked_by": [], "evidence": []},
     {"id": "T-02", "status": "blocked", "blocked_by": ["T-01"], "evidence": []},
     {"id": "T-03", "status": "blocked", "blocked_by": ["T-02"], "evidence": []},
     {"id": "T-04", "status": "blocked", "blocked_by": ["T-03"], "evidence": []},

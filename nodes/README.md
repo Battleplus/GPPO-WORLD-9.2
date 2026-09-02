@@ -4,8 +4,8 @@
 
 | 节点 | 页面 | 状态 | 产物类型 |
 |---|---|---|---|
-| T-00 | [基线与数据合同冻结](T-00/README.md) | planned | baseline/schema manifests |
-| T-01 | [覆盖性轨迹采集](T-01/README.md) | blocked_by_T-00 | dataset/coverage/split manifests |
+| T-00 | [基线与数据合同冻结](T-00/README.md) | passed | baseline/schema manifests |
+| T-01 | [覆盖性轨迹采集](T-01/README.md) | planned | dataset/coverage/split manifests |
 | T-02 | [Graph World Model 基线](T-02/README.md) | blocked_by_T-01 | base WM checkpoints/reports |
 | T-03 | [自动事件与 GES](T-03/README.md) | blocked_by_T-02 | event/EAWM checkpoints/ablations |
 | T-04 | [Shadow 与校准](T-04/README.md) | blocked_by_T-03 | shadow/calibration/safety evidence |

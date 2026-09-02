@@ -1,0 +1,18 @@
+{
+  "source_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "contract_commit": "22487f93740ddd1ef428bf0bd7c4f45f7cee27f7",
+  "node_shapes": {
+    "uav": [4, 12],
+    "region": [4, 12],
+    "target": [3, 16]
+  },
+  "candidate_edges": 16,
+  "actions": 17,
+  "noop_action": 16,
+  "legal_action_count": 3,
+  "deterministic_action": 3,
+  "deterministic_action_is_legal": true,
+  "critic_value_is_finite": true,
+  "registry_sha256": "987b5cc4ac4142663902794e36566c40b7bb4695c2e53480be7db11b7748213d",
+  "result": "PASS"
+}
