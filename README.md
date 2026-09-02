@@ -1,18 +1,219 @@
 # GPPO-WORLD-9.2
 
-GPPO 世界模型迁移的设计、执行节点与证据索引。
+本仓库用于把“事件感知世界模型”迁移到 GPPO 动态任务分配系统，并保存从设计、数据、模型、联调到实验验收的完整证据。
 
-本仓库以 GPPO-8.29 的 [`2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 设计基线为准，目标是在**不替代 GPPO、不修改真实 belief/action mask、不绕过 ACK/lease/fencing**的前提下，构建动作条件、事件感知的异构图世界模型。
+一句话概括最终目标：
 
-## 当前结论
+> 让世界模型学习“在当前 belief 图中实际执行某个动作后，系统可能怎样变化”，再把经过验证的预测 latent 提供给 GPPO；GPPO 仍然是唯一动作选择器，真实 action mask 和执行安全链始终拥有最终权威。
 
-- 动作空间由系统定义，具体合法动作仍由 GPPO 自主选择。
-- 世界模型输入历史可见 belief 图、实际执行动作和已到达证据，预测动作后果。
-- 自动事件、Event Predictor 与 GES 用于训练更有效的 latent；默认不把 event logits 直接送入 actor。
-- 首阶段只允许冻结的世界模型 latent 作为可关闭的 GPPO 上下文。
-- 只有单步预测、校准和安全门禁通过后，才允许研究 1～3 步 imagined rollout。
+本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
 
-## 设计入口
+## 为什么需要世界模型
+
+当前 GPPO 能读取实时 belief 图，在 16 条 UAV–Region 候选边和一个 NOOP 中自主选择合法动作，并通过 graph/action version、ACK、lease 和 fencing 保证执行安全。
+
+它的主要局限是：决策以当前图为主，没有一个经过训练的内部模型显式表示“这个动作执行以后可能发生什么”。世界模型要补充的正是这一层能力：
+
+- 从多步可见历史中保留系统变化信息；
+- 区分不同 executed action 导致的不同后果；
+- 预测下一图/状态差分、reward、cost、continuation 和不确定度；
+- 通过自动事件监督，让 latent 更关注关键状态变化；
+- 在确认安全、校准和兼容性后，把冻结 latent 提供给 GPPO。
+
+世界模型不是新的动作控制器，也不直接向环境下达命令。
+
+## 最终系统是什么
+
+```text
+历史可见 belief 异构图 G_t
++ decision_time 前已到达的 evidence/message
++ 实际确认执行的动作 a_t
++ 时间、版本和有效性 mask
+                 │
+                 ▼
+       动作条件异构图世界模型
+  Graph encoder + action encoder + dynamics
+                 │
+        temporal latent [h_t, z_t]
+      ┌──────────┼──────────┬──────────┬──────────┐
+      ▼          ▼          ▼          ▼          ▼
+ 下一图/差分  自动事件   reward/cost continuation uncertainty
+                 │
+                 ▼
+         可关闭的 frozen latent adapter
+                 │
+                 ▼
+               GPPO
+                 │
+                 ▼
+  真实 action mask + version + ACK/lease/fencing
+```
+
+### 世界模型输入
+
+- 决策时刻可见的 UAV、Region、Target 异构图；
+- `decision_time` 前已经收到的证据和消息；
+- 实际执行并确认的 UAV–Region 动作或 NOOP；
+- graph/action version、时间差和有效性/padding mask。
+
+### 世界模型输出
+
+- 时序 latent `[h_t, z_t]`；
+- 下一图或节点/边状态差分；
+- ordinal、nominal、structural、evidence 自动事件概率；
+- reward、cost vector 和 continuation 预测；
+- epistemic/aleatoric uncertainty；
+- model/input version 和 `valid` 状态。
+
+### GPPO 如何使用输出
+
+T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自动事件 logits 默认不直接进入 actor。模型异常、超时、版本不一致或不确定度过高时，系统使用 zero context，恢复原始 no-WM GPPO 路径。
+
+## GPPO 与世界模型的职责边界
+
+| 能力 | GPPO/现有安全链 | 世界模型 |
+|---|---|---|
+| 在合法候选动作中选择具体动作 | 唯一负责 | 禁止直接选择或提交 |
+| 定义 16 条候选边和 NOOP | 权威合同 | 只读取 |
+| 维护真实 action mask | 权威状态 | 禁止写入 |
+| 维护 belief 和 graph/action version | 权威状态 | 禁止写入 |
+| ACK、lease、fencing 和 stale 拦截 | 权威执行链 | 禁止绕过 |
+| 预测动作后的状态、事件和成本 | 不负责 | 负责 |
+| 输出预测 latent 和不确定度 | 不负责 | 负责 |
+| 模型故障时继续运行 | 原 GPPO 路径 | 必须允许无损关闭 |
+
+## T-00～T-06 每一步的意义
+
+| 节点 | 要解决的问题 | 主要实现/产物 | 通过以后意味着什么 | 当前状态 |
+|---|---|---|---|---|
+| [T-00](nodes/T-00/README.md) | 模型到底能读取什么，怎样保证不偷看未来 | 因果 Transition schema、字段注册表、future/truth denylist、统一 recorder、基线测试 | 输入输出和安全边界已经冻结，可以可信采集数据 | **passed** |
+| [T-01](nodes/T-01/README.md) | 世界模型用什么真实轨迹训练，怎样防止 train/test 泄漏 | random legal、greedy、GPPO 三类轨迹；完整 episode/tape/seed split；数据/策略 checkpoint 和 SHA-256 | 已有可复现、可审计的数据，可以开始训练世界模型 | **passed** |
+| [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用 action-shuffle 证明模型确实使用动作 | planned |
+| [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | blocked by T-02 |
+| [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | blocked by T-03 |
+| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | blocked by T-04 |
+| [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | optional / blocked by T-05 |
+
+### T-00：冻结合同，而不是先写网络
+
+意义是防止后面训练出一个“指标很好但偷看未来”的模型。本节点把在线可见字段、未来 target、proposal 与 executed action、版本语义和统一记录方式明确分开。
+
+已验证：原 GPPO 核心/训练/并发/事件桥接 50 项测试通过；本仓库因果合同、动作合法性、版本和 recorder 测试通过。证据见 [T-00 节点](nodes/T-00/README.md)。
+
+### T-01：建立可训练、不可泄漏的数据
+
+意义是让世界模型同时看到不同策略和不同压力场景，而不是只学习单一 GPPO 的窄分布。数据按完整 `scenario/tape/seed` 分组切分，同一个事件带绝不能跨 train/validation/test。
+
+当前已封存：
+
+- 126 个 episode、502 条 transition；
+- random legal、greedy、GPPO 三类行为策略；
+- normal、single、sequential、overlap、burst、long gap、weak communication；
+- 17 个动作全部覆盖；
+- split overlap 为 0；
+- 在线 truth-only 字段为 0。
+
+数据和采集用 checkpoint 位于 [T-01 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0)。其中 512-step GPPO 只用于扩大数据覆盖，不是历史 50k 正式模型，也不是世界模型。
+
+### T-02：先证明基础世界模型真的理解动作
+
+第一版只训练动作条件 Graph-WM，不加入 Event Predictor/GES，也不修改 GPPO。核心验证不是单纯看 loss，而是进行：
+
+- 正确 action；
+- action shuffle；
+- no-action；
+- last-value/frequency；
+- summary-vector GRU；
+- Graph World Model。
+
+如果打乱动作后预测没有明显变差，就说明模型没有真正使用动作条件，T-02 不得通过。
+
+### T-03：迁移 EAWM 的事件感知思想
+
+自动事件来自相邻可见图变化，而不是人工指定“发生 UAV_DAMAGE 就选某动作”。事件分为：
+
+- ordinal：连续量 DOWN/SAME/UP；
+- nominal：类别 SAME/CHANGED；
+- structural：节点、关系、候选边和合法 support 变化；
+- evidence：新证据、重复、冲突、确认和过期。
+
+Event Predictor 是世界模型辅助头，GES 用于调节高事件密度边界对训练的影响。它们服务于 latent 表示学习，不替代 GPPO，也不等同于人类偏好学习。
+
+### T-04：先 Shadow，再允许策略读取
+
+世界模型在线维护 latent、记录预测和实际结果，但不修改动作。只有以下门禁全部通过才进入 T-05：
+
+- belief/action mask/version 写入次数为 0；
+- stale hidden state 不提交；
+- 异常、超时、OOD 高风险能够回退；
+- ECE、Brier、risk-coverage 达到冻结标准；
+- P50/P95/P99 延迟满足预算。
+
+### T-05：冻结 latent 接入 GPPO
+
+保持动作空间、mask、奖励、PPO 预算、场景和 seed 一致，至少比较：
+
+1. GPPO；
+2. WM-GPPO；
+3. EA-noGES-GPPO；
+4. EAWM-GPPO。
+
+必要时增加 GPPO-History，以排除“只是多看历史”的解释。只有真实 held-out 环境、多个 seed 和安全指标共同支持，才能声称世界模型对 GPPO 有增益。
+
+### T-06：可选想象规划
+
+T-06 不属于当前基础迁移完成条件。它只允许对 GPPO 提出的合法候选动作做 1～3 步短期 rollout，并根据不确定度截断。若只改善 predicted return、没有改善真实 held-out 结果，本节点应标记失败并回退 T-05。
+
+## 最终会交付什么
+
+完成 T-00～T-05 后，仓库应当包含：
+
+1. **可运行的世界模型代码**：图编码器、动作编码器、时序 dynamics、预测 heads、loss、训练和评估入口；
+2. **真实 checkpoint**：基础 Graph-WM、EA-noGES、EAWM+GES，附带不可变下载链接和 SHA-256；
+3. **自动事件系统**：事件生成、模态注册、Event Predictor、GES 和相应测试；
+4. **只读 Shadow runtime**：校准、OOD、延迟、版本一致性和故障回退；
+5. **GPPO latent adapter**：可配置关闭、zero-context parity、旧 GPPO checkpoint 兼容；
+6. **公平实验报告**：逐 seed 结果、置信区间、失败 run、业务指标、安全指标和资源成本；
+7. **完整证据链**：代码 commit、配置、数据 manifest、split hash、seed、checkpoint、日志、指标和节点结论。
+
+## 什么才算“迁移完成”
+
+以下条件必须全部满足：
+
+- 动作条件异构图世界模型与严格数据切分真实实现；
+- state/event/reward-cost/continuation/calibration 均有独立评估；
+- GPPO 可以读取冻结 latent，并能无损关闭世界模型；
+- belief、action mask、version、ACK/lease/fencing 不受污染；
+- 至少完成 GPPO、WM-GPPO、EA-noGES-GPPO、EAWM-GPPO 四组公平消融；
+- 每项结论都能追溯到真实 checkpoint、配置、seed、日志和源码提交。
+
+计划文件、未保存的本地模型、单个最佳 seed 或模型内部 predicted return 都不能作为“完成”的依据。
+
+## 明确不做什么
+
+- 不让世界模型取代 GPPO；
+- 不让预测图覆盖真实 belief；
+- 不绕过 action mask、版本、ACK、lease 或 fencing；
+- 不把 event logits 默认直接输入 actor；
+- 不声称能准确预测不可观测的外生随机事件；
+- 不在单步预测和校准未通过前开展长时域规划；
+- 不把自动事件监督包装成人类偏好学习；
+- 不在没有实际测量时声称降低延迟或计算量。
+
+## 仓库结构
+
+```text
+GPPO-WORLD-9.2/
+├── gppo_world/            # 合同、数据、世界模型与后续运行模块
+├── tools/                 # 采集、审计、训练和评估入口
+├── tests/                 # 因果性、模型、安全和兼容性测试
+├── docs/                  # 总体设计、架构、执行与验收规范
+├── nodes/T-00...T-06/    # 每个节点的状态、Gate 和真实证据
+├── nodes/status.json      # 机器可读的权威节点状态
+└── README.md              # 项目总入口
+```
+
+## 文档阅读顺序
 
 1. [范围、分工与安全边界](docs/00-scope-and-boundaries.md)
 2. [架构与数据合同](docs/01-architecture-and-contracts.md)
@@ -21,26 +222,27 @@ GPPO 世界模型迁移的设计、执行节点与证据索引。
 5. [实验矩阵与验收定义](docs/04-experiment-and-acceptance.md)
 6. [节点总索引](nodes/README.md)
 
-## 保存节点
+节点的权威当前状态以 [`nodes/status.json`](nodes/status.json) 为准。README 负责解释路线，节点证据负责证明结果；文档中的计划不能替代真实实验。
 
-| 节点 | 名称 | 当前状态 | 进入下一节点的门禁 |
-|---|---|---|---|
-| [T-00](nodes/T-00/README.md) | 基线与数据合同冻结 | passed | schema、白名单、基线清单可复现 |
-| [T-01](nodes/T-01/README.md) | 覆盖性轨迹采集 | passed | 严格切分、覆盖报告、数据哈希齐全 |
-| [T-02](nodes/T-02/README.md) | Graph World Model 基线 | planned | 独立保存/加载与一步预测通过 |
-| [T-03](nodes/T-03/README.md) | 自动事件、Event Head 与 GES | blocked_by_T-02 | WM/EA-noGES/EAWM 公平消融完成 |
-| [T-04](nodes/T-04/README.md) | Shadow 与校准 | blocked_by_T-03 | 不改决策、安全回退与校准门禁通过 |
-| [T-05](nodes/T-05/README.md) | 冻结 latent 接入 GPPO | blocked_by_T-04 | 可关闭、旧 checkpoint 兼容、无安全退化 |
-| [T-06](nodes/T-06/README.md) | 1～3 步 imagined rollout | blocked_by_T-05 | 独立测试增益且安全不变量保持 |
+## 快速验证
 
-机器可读状态见 [`nodes/status.json`](nodes/status.json)。状态只能在节点证据齐全后由 `planned/blocked` 更新为 `in_progress/passed/failed`；不得用计划文件冒充训练结果或 checkpoint。
+在安装 PyTorch、NumPy 和 pytest 的 Python 环境中运行：
 
-## 来源
+```powershell
+python -m pytest -q
+```
 
-- [世界模型任务目标与改进目标](https://github.com/Battleplus/GPPO-8.29/blob/2a9bb9f87b9d543df144f4d108ba970c924151f9/docs/world-model/current/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%94%B9%E8%BF%9B%E7%9B%AE%E6%A0%87.md)
+T-01 数据、采集用 GPPO checkpoint 和原始 manifest：
+
+- [Release 页面](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0)
+- [T-01 节点证据](nodes/T-01/README.md)
+
+## 方法来源
+
 - [GPPO-8.29](https://github.com/Battleplus/GPPO-8.29)
+- [世界模型任务目标与改进目标](https://github.com/Battleplus/GPPO-8.29/blob/2a9bb9f87b9d543df144f4d108ba970c924151f9/docs/world-model/current/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%94%B9%E8%BF%9B%E7%9B%AE%E6%A0%87.md)
 - [EAWM 官方实现](https://github.com/MarquisDarwin/EAWM)
 
-## 能力声明
+## 当前能力声明
 
-当前仓库保存的是设计规划、节点模板和验收合同，**尚不代表世界模型代码、训练、checkpoint 或实验结论已经完成**。真实产物必须按证据规范登记 SHA-256、来源提交、配置、seed、数据切分和指标。
+T-00 和 T-01 已有封存证据；T-02 及之后只有在对应节点状态变为 `passed` 且 checkpoint、配置、数据、日志和指标链接齐全后，才视为真实完成。仓库会保留失败实验和负结果，不以修改表述或事后调整阈值替代验收。
