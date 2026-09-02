@@ -31,6 +31,7 @@
 | 原 GPPO 核心、最小 PPO、并发、事件桥接 | 50/50 PASS | [基线测试报告](evidence/baseline-test-report.md) |
 | 16 候选边 + NOOP、三类节点、合法动作前向 | PASS | [真实适配输出](evidence/gppo-adapter-validation.json) |
 | 因果输入、future/truth denylist、executed-action 合同 | 15/15 PASS | [合同测试报告](evidence/contract-test-report.md) |
+| 动作后未来时间差从在线输入移除 | PASS | [因果输入修正报告](evidence/causal-correction-report.md) |
 | random/greedy/GPPO 统一 recorder 与确定性序列化 | PASS | [合同测试报告](evidence/contract-test-report.md) |
 
 ## 保存点

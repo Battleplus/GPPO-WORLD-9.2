@@ -1,0 +1,13 @@
+{
+  "asset_uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/failed-pre-calibration-metrics.json",
+  "created_at": "2026-09-02T02:56:01.431820+00:00",
+  "failed_gates": [
+    "graph_beats_last_value_state_mae",
+    "no_action_degrades_with_positive_ci"
+  ],
+  "graph_state_mae": 0.05215764299686427,
+  "last_value_state_mae": 0.04903007336723167,
+  "local_sha256": "44aaa2dda145b560628af7f990c8afff1bbc015d7454d7fb21e4c4c942f1e2ba",
+  "reason": "Pre-calibration sparse threshold run retained as a negative result.",
+  "result": "FAIL"
+}

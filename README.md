@@ -54,7 +54,7 @@
 - 决策时刻可见的 UAV、Region、Target 异构图；
 - `decision_time` 前已经收到的证据和消息；
 - 实际执行并确认的 UAV–Region 动作或 NOOP；
-- graph/action version、时间差和有效性/padding mask。
+- graph/action version、当前 `decision_time` 和有效性/padding mask；动作后才知道的下一决策时间差禁止作为输入。
 
 ### 世界模型输出
 
@@ -88,8 +88,8 @@ T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自
 |---|---|---|---|---|
 | [T-00](nodes/T-00/README.md) | 模型到底能读取什么，怎样保证不偷看未来 | 因果 Transition schema、字段注册表、future/truth denylist、统一 recorder、基线测试 | 输入输出和安全边界已经冻结，可以可信采集数据 | **passed** |
 | [T-01](nodes/T-01/README.md) | 世界模型用什么真实轨迹训练，怎样防止 train/test 泄漏 | random legal、greedy、GPPO 三类轨迹；完整 episode/tape/seed split；数据/策略 checkpoint 和 SHA-256 | 已有可复现、可审计的数据，可以开始训练世界模型 | **passed** |
-| [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用 action-shuffle 证明模型确实使用动作 | planned |
-| [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | blocked by T-02 |
+| [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用合法动作反事实证明模型使用动作 | **passed** |
+| [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | planned |
 | [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | blocked by T-03 |
 | [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | blocked by T-04 |
 | [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | optional / blocked by T-05 |
@@ -126,7 +126,9 @@ T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自
 - summary-vector GRU；
 - Graph World Model。
 
-如果打乱动作后预测没有明显变差，就说明模型没有真正使用动作条件，T-02 不得通过。
+当前 T-02 已通过并封存于 [Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0)。
+合法动作反事实的 state/reward/cost 均显著退化，checkpoint 可独立恢复；同时透明保留了 Flat-GRU
+状态误差更低、no-action state CI 跨 0 的负结果。T-02 只证明基础模型链路成立，不声称下游 GPPO 增益。
 
 ### T-03：迁移 EAWM 的事件感知思想
 
@@ -237,6 +239,11 @@ T-01 数据、采集用 GPPO checkpoint 和原始 manifest：
 - [Release 页面](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0)
 - [T-01 节点证据](nodes/T-01/README.md)
 
+T-02 基础世界模型 checkpoint、训练日志与指标：
+
+- [T-02 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0)
+- [T-02 节点证据](nodes/T-02/README.md)
+
 ## 方法来源
 
 - [GPPO-8.29](https://github.com/Battleplus/GPPO-8.29)
@@ -245,4 +252,4 @@ T-01 数据、采集用 GPPO checkpoint 和原始 manifest：
 
 ## 当前能力声明
 
-T-00 和 T-01 已有封存证据；T-02 及之后只有在对应节点状态变为 `passed` 且 checkpoint、配置、数据、日志和指标链接齐全后，才视为真实完成。仓库会保留失败实验和负结果，不以修改表述或事后调整阈值替代验收。
+T-00～T-02 已有封存证据；T-03 及之后只有在对应节点状态变为 `passed` 且 checkpoint、配置、数据、日志和指标链接齐全后，才视为真实完成。仓库会保留失败实验和负结果，不以修改表述或使用 test split 调参替代验收。

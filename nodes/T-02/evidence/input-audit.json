@@ -1,0 +1,43 @@
+{
+  "actual_split_overlap_count": 0,
+  "actual_split_overlaps": {},
+  "errors": [],
+  "gppo_checkpoint_sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+  "gppo_checkpoint_verified": true,
+  "graph_version_mismatch_count": 0,
+  "illegal_execution_count": 0,
+  "manifest_audit": {
+    "behavior_policies": [
+      "gppo",
+      "greedy",
+      "random_legal"
+    ],
+    "episode_count": 126,
+    "errors": [],
+    "group_count": 42,
+    "passed": true,
+    "profiles": [
+      "burst",
+      "long_gap",
+      "normal",
+      "overlap",
+      "sequential",
+      "single",
+      "weak_comm"
+    ],
+    "split_overlap_count": 0,
+    "split_overlaps": {},
+    "transition_count": 502
+  },
+  "manifest_path": "https://github.com/Battleplus/GPPO-WORLD-9.2/blob/main/nodes/T-01/evidence/dataset-manifest.json",
+  "manifest_sha256": "291d81aa01d0ec8057da126a24bfc546c410e219fc08bd9cf7043cc5bf7d043a",
+  "observed_transitions": {
+    "test": 163,
+    "train": 173,
+    "validation": 166
+  },
+  "passed": true,
+  "source_baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "source_commit": "68d55db239a9992b40f0b485d4e7fec26aa2b136",
+  "truth_only_online_field_count": 0
+}

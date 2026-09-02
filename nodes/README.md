@@ -6,8 +6,8 @@
 |---|---|---|---|
 | T-00 | [基线与数据合同冻结](T-00/README.md) | passed | baseline/schema manifests |
 | T-01 | [覆盖性轨迹采集](T-01/README.md) | passed | dataset/coverage/split manifests |
-| T-02 | [Graph World Model 基线](T-02/README.md) | planned | base WM checkpoints/reports |
-| T-03 | [自动事件与 GES](T-03/README.md) | blocked_by_T-02 | event/EAWM checkpoints/ablations |
+| T-02 | [Graph World Model 基线](T-02/README.md) | passed | base WM checkpoints/reports |
+| T-03 | [自动事件与 GES](T-03/README.md) | planned | event/EAWM checkpoints/ablations |
 | T-04 | [Shadow 与校准](T-04/README.md) | blocked_by_T-03 | shadow/calibration/safety evidence |
 | T-05 | [冻结 latent 接入 GPPO](T-05/README.md) | blocked_by_T-04 | policy checkpoints/ablations |
 | T-06 | [短期 imagined rollout](T-06/README.md) | blocked_by_T-05 | rollout checkpoints/held-out results |

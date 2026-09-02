@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T10:40:00+08:00",
+  "updated_at": "2026-09-02T11:20:00+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -21,6 +21,7 @@
         "nodes/T-00/evidence/baseline-manifest.json",
         "nodes/T-00/evidence/baseline-test-report.md",
         "nodes/T-00/evidence/contract-test-report.md",
+        "nodes/T-00/evidence/causal-correction-report.md",
         "nodes/T-00/evidence/gppo-adapter-validation.json",
         "nodes/T-00/evidence/checkpoint-manifest.json"
       ]
@@ -37,8 +38,22 @@
         "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0"
       ]
     },
-    {"id": "T-02", "status": "planned", "blocked_by": [], "evidence": []},
-    {"id": "T-03", "status": "blocked", "blocked_by": ["T-02"], "evidence": []},
+    {
+      "id": "T-02",
+      "status": "passed",
+      "blocked_by": [],
+      "evidence": [
+        "nodes/T-02/evidence/checkpoint-manifest.json",
+        "nodes/T-02/evidence/metrics.json",
+        "nodes/T-02/evidence/training-config.json",
+        "nodes/T-02/evidence/input-audit.json",
+        "nodes/T-02/evidence/training-log-manifest.json",
+        "nodes/T-02/evidence/test-report.md",
+        "nodes/T-02/evidence/failed-run.json",
+        "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0"
+      ]
+    },
+    {"id": "T-03", "status": "planned", "blocked_by": [], "evidence": []},
     {"id": "T-04", "status": "blocked", "blocked_by": ["T-03"], "evidence": []},
     {"id": "T-05", "status": "blocked", "blocked_by": ["T-04"], "evidence": []},
     {"id": "T-06", "status": "blocked", "blocked_by": ["T-05"], "evidence": []}

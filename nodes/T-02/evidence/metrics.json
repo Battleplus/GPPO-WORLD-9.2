@@ -1,0 +1,531 @@
+{
+  "action_shuffle": {
+    "ablated_state_mae": 0.05395888543914979,
+    "bootstrap_ci95_high": 0.002194347035715166,
+    "bootstrap_ci95_low": 0.0007601359052512722,
+    "bootstrap_samples": 5000,
+    "bootstrap_unit": "episode",
+    "correct_state_mae": 0.052593604487133974,
+    "evaluated_episodes": 36,
+    "evaluated_transitions": 129,
+    "illegal_alternative_count": 0,
+    "mean_degradation": 0.0014611238024256651,
+    "metrics": {
+      "cost": {
+        "ablated_mae": 0.4438871099043262,
+        "bootstrap_ci95_high": 0.10631848170353028,
+        "bootstrap_ci95_low": 0.042469641398121094,
+        "correct_mae": 0.371680666367675,
+        "mean_degradation": 0.07286398100528728,
+        "relative_degradation": 0.19603920138587075
+      },
+      "reward": {
+        "ablated_mae": 1.004682912756228,
+        "bootstrap_ci95_high": 0.7476815815132191,
+        "bootstrap_ci95_low": 0.3537323560704141,
+        "correct_mae": 0.5142891410753705,
+        "mean_degradation": 0.5394725989616814,
+        "relative_degradation": 1.048967508498532
+      },
+      "state": {
+        "ablated_mae": 0.05395888543914979,
+        "bootstrap_ci95_high": 0.002194347035715166,
+        "bootstrap_ci95_low": 0.0007601359052512722,
+        "correct_mae": 0.052593604487133974,
+        "mean_degradation": 0.0014611238024256651,
+        "relative_degradation": 0.02778139693359677
+      }
+    },
+    "mode": "legal_counterfactual",
+    "relative_degradation": 0.02778139693359677,
+    "skipped_without_legal_alternative": 34,
+    "unique_legal_alternatives": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "checkpoint_metadata_keys": [
+    "selection",
+    "source_baseline_commit",
+    "test_metrics",
+    "training_config"
+  ],
+  "checkpoint_roundtrip_max_abs": 0.0,
+  "checkpoints": {
+    "flat_gru": {
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/flat_gru_seed20260902.pt",
+      "sha256": "ec778fe65e0a2bfd00e99d519976dc2463237586776f74d15b65b2dc609b3710"
+    },
+    "graph_wm": {
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/graph_wm_seed20260902.pt",
+      "sha256": "942c3cd5f99efe6e41fd889817598657e158a9db5d7c49e42cfacb7dd684c597"
+    }
+  },
+  "created_at": "2026-09-02T03:13:55.501411+00:00",
+  "dataset": {
+    "test": {
+      "episodes": 42,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/test.jsonl",
+      "sha256": "49b497a689d77fa5adce2e511a1f0e254aa46ca758d231ddbd3c086c75db4adb",
+      "transitions": 163
+    },
+    "train": {
+      "episodes": 42,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/train.jsonl",
+      "sha256": "8fb8bee383c4c98debf0a655193d6c3c4969cd4187fea43ab5f2e90e29dddfa3",
+      "transitions": 173
+    },
+    "validation": {
+      "episodes": 42,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/validation.jsonl",
+      "sha256": "dd1f657b707cef789a94e167622d5949c155ba2505062b3e1b8b2d6a640de8bd",
+      "transitions": 166
+    }
+  },
+  "flat_checkpoint_metadata_keys": [
+    "selection",
+    "source_baseline_commit",
+    "test_metrics",
+    "training_config"
+  ],
+  "flat_checkpoint_roundtrip_max_abs": 0.0,
+  "gates": {
+    "all_registered_relations_predicted": true,
+    "checkpoint_roundtrip_exact": true,
+    "flat_checkpoint_roundtrip_exact": true,
+    "flat_parameter_budget_within_5_percent": true,
+    "future_interval_input_absent": true,
+    "graph_beats_last_value_state_mae": true,
+    "legal_action_counterfactual_degrades_state_reward_cost": true,
+    "no_action_ablation_reported": true,
+    "one_three_five_step_reported": true,
+    "strict_split_manifest_revalidated": true,
+    "uncertainty_ranks_error_risk": true
+  },
+  "input_audit": {
+    "actual_split_overlap_count": 0,
+    "actual_split_overlaps": {},
+    "errors": [],
+    "gppo_checkpoint_sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+    "gppo_checkpoint_verified": true,
+    "graph_version_mismatch_count": 0,
+    "illegal_execution_count": 0,
+    "manifest_audit": {
+      "behavior_policies": [
+        "gppo",
+        "greedy",
+        "random_legal"
+      ],
+      "episode_count": 126,
+      "errors": [],
+      "group_count": 42,
+      "passed": true,
+      "profiles": [
+        "burst",
+        "long_gap",
+        "normal",
+        "overlap",
+        "sequential",
+        "single",
+        "weak_comm"
+      ],
+      "split_overlap_count": 0,
+      "split_overlaps": {},
+      "transition_count": 502
+    },
+    "manifest_path": "https://github.com/Battleplus/GPPO-WORLD-9.2/blob/main/nodes/T-01/evidence/dataset-manifest.json",
+    "manifest_sha256": "291d81aa01d0ec8057da126a24bfc546c410e219fc08bd9cf7043cc5bf7d043a",
+    "observed_transitions": {
+      "test": 163,
+      "train": 173,
+      "validation": 166
+    },
+    "passed": true,
+    "truth_only_online_field_count": 0
+  },
+  "model_config": {
+    "flat_gru": {
+      "action_dim": 24,
+      "graph_dim": 64,
+      "hidden_dim": 92,
+      "message_layers": 1,
+      "num_actions_with_reject": 18,
+      "stochastic_dim": 24
+    },
+    "graph_wm": {
+      "action_dim": 24,
+      "graph_dim": 64,
+      "hidden_dim": 64,
+      "message_layers": 1,
+      "num_actions_with_reject": 18,
+      "stochastic_dim": 24
+    }
+  },
+  "multi_step": {
+    "1": {
+      "state_mae": 0.048437565369958475,
+      "windows": 163
+    },
+    "3": {
+      "state_mae": 0.11179709364386166,
+      "windows": 85
+    },
+    "5": {
+      "state_mae": 0.17614360239643317,
+      "windows": 26
+    }
+  },
+  "no_action": {
+    "ablated_state_mae": 0.049057925762975345,
+    "bootstrap_ci95_high": 0.0009452722530323219,
+    "bootstrap_ci95_low": -0.00015174400572793694,
+    "bootstrap_samples": 5000,
+    "bootstrap_unit": "episode",
+    "correct_state_mae": 0.04870383028263653,
+    "evaluated_episodes": 42,
+    "evaluated_transitions": 163,
+    "illegal_alternative_count": 0,
+    "mean_degradation": 0.0003861946830915663,
+    "metrics": {
+      "cost": {
+        "ablated_mae": 0.41654085701594323,
+        "bootstrap_ci95_high": 0.1214623770598204,
+        "bootstrap_ci95_low": 0.07499937368615987,
+        "correct_mae": 0.33473527760593436,
+        "mean_degradation": 0.09828949842682265,
+        "relative_degradation": 0.29363352177816626
+      },
+      "reward": {
+        "ablated_mae": 1.7351337512708132,
+        "bootstrap_ci95_high": 1.5571190102851127,
+        "bootstrap_ci95_low": 1.1863904307004611,
+        "correct_mae": 0.5055893339287826,
+        "mean_degradation": 1.3655002116932187,
+        "relative_degradation": 2.700808976887086
+      },
+      "state": {
+        "ablated_mae": 0.049057925762975345,
+        "bootstrap_ci95_high": 0.0009452722530323219,
+        "bootstrap_ci95_low": -0.00015174400572793694,
+        "correct_mae": 0.04870383028263653,
+        "mean_degradation": 0.0003861946830915663,
+        "relative_degradation": 0.007929451972266114
+      }
+    },
+    "mode": "no_action",
+    "relative_degradation": 0.007929451972266114,
+    "skipped_without_legal_alternative": 0,
+    "unique_legal_alternatives": []
+  },
+  "parameters": {
+    "flat_gru": 194913,
+    "gap_ratio": 0.003028055548451446,
+    "graph_wm": 195505
+  },
+  "predicted_relations": [
+    "uav/can_serve/region",
+    "region/served_by/uav",
+    "region/adjacent/region",
+    "target/located_in/region",
+    "region/contains/target",
+    "uav/tracks/target",
+    "target/tracked_by/uav",
+    "uav/communicates/uav"
+  ],
+  "registry_sha256": "987b5cc4ac4142663902794e36566c40b7bb4695c2e53480be7db11b7748213d",
+  "release": {
+    "tag": "t02-base-wm-v0.1.0",
+    "target_source_commit": "68d55db239a9992b40f0b485d4e7fec26aa2b136",
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0"
+  },
+  "result": "PASS",
+  "runtime": {
+    "device": "cpu",
+    "numpy": "2.0.2",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "python": "3.11.5 | packaged by Anaconda, Inc. | (main, Sep 11 2023, 13:26:23) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "2.5.0+cpu"
+  },
+  "schema_version": "gppo-world-transition/0.1.0",
+  "selection": {
+    "flat_gru": {
+      "best_epoch": 46,
+      "best_validation_score": 0.08059318446934871,
+      "change_threshold_calibration": {
+        "candidate_count": 91,
+        "curve": {
+          "0.05": 0.08304286748170853,
+          "0.06": 0.08034361153841019,
+          "0.07": 0.07816976308822632,
+          "0.08": 0.07626679539680481,
+          "0.09": 0.07459180802106857,
+          "0.10": 0.07302365452051163,
+          "0.11": 0.07179340720176697,
+          "0.12": 0.07054997235536575,
+          "0.13": 0.0694364383816719,
+          "0.14": 0.06838589906692505,
+          "0.15": 0.06753402203321457,
+          "0.16": 0.0666997879743576,
+          "0.17": 0.06580294668674469,
+          "0.18": 0.06509418040513992,
+          "0.19": 0.06427361816167831,
+          "0.20": 0.06347969174385071,
+          "0.21": 0.06274878233671188,
+          "0.22": 0.061957746744155884,
+          "0.23": 0.061188265681266785,
+          "0.24": 0.06046471372246742,
+          "0.25": 0.05973396822810173,
+          "0.26": 0.05901692435145378,
+          "0.27": 0.05834110081195831,
+          "0.28": 0.05770495533943176,
+          "0.29": 0.05709297955036163,
+          "0.30": 0.05656309053301811,
+          "0.31": 0.05611004680395126,
+          "0.32": 0.05559077113866806,
+          "0.33": 0.05513061583042145,
+          "0.34": 0.05463029816746712,
+          "0.35": 0.054114919155836105,
+          "0.36": 0.05370625853538513,
+          "0.37": 0.05325551703572273,
+          "0.38": 0.05281993746757507,
+          "0.39": 0.05235522240400314,
+          "0.40": 0.05202096700668335,
+          "0.41": 0.051629383116960526,
+          "0.42": 0.05124779790639877,
+          "0.43": 0.050945114344358444,
+          "0.44": 0.05065475404262543,
+          "0.45": 0.05034254491329193,
+          "0.46": 0.050117745995521545,
+          "0.47": 0.049876026809215546,
+          "0.48": 0.049647025763988495,
+          "0.49": 0.04945795238018036,
+          "0.50": 0.04926343634724617,
+          "0.51": 0.0490923672914505,
+          "0.52": 0.04882185161113739,
+          "0.53": 0.04855422303080559,
+          "0.54": 0.04831432178616524,
+          "0.55": 0.04814857244491577,
+          "0.56": 0.04798835888504982,
+          "0.57": 0.047805871814489365,
+          "0.58": 0.047691259533166885,
+          "0.59": 0.047594938427209854,
+          "0.60": 0.0474245585501194,
+          "0.61": 0.04720566049218178,
+          "0.62": 0.04705897346138954,
+          "0.63": 0.04690656065940857,
+          "0.64": 0.04669702425599098,
+          "0.65": 0.04656236246228218,
+          "0.66": 0.04640974476933479,
+          "0.67": 0.04628496244549751,
+          "0.68": 0.04617621377110481,
+          "0.69": 0.04610196501016617,
+          "0.70": 0.04605650529265404,
+          "0.71": 0.04588256776332855,
+          "0.72": 0.04574736952781677,
+          "0.73": 0.0457746759057045,
+          "0.74": 0.04568054899573326,
+          "0.75": 0.045670319348573685,
+          "0.76": 0.04577163979411125,
+          "0.77": 0.04578431695699692,
+          "0.78": 0.04577937349677086,
+          "0.79": 0.04565240070223808,
+          "0.80": 0.04557208716869354,
+          "0.81": 0.04558926448225975,
+          "0.82": 0.045456238090991974,
+          "0.83": 0.04552372917532921,
+          "0.84": 0.045464739203453064,
+          "0.85": 0.04557804763317108,
+          "0.86": 0.04559527710080147,
+          "0.87": 0.04564103111624718,
+          "0.88": 0.0457986518740654,
+          "0.89": 0.046055782586336136,
+          "0.90": 0.04660772532224655,
+          "0.91": 0.04710252955555916,
+          "0.92": 0.04750273376703262,
+          "0.93": 0.04785428196191788,
+          "0.94": 0.04824153333902359,
+          "0.95": 0.04845068231225014
+        },
+        "selected_state_mae": 0.045456238090991974,
+        "selected_threshold": 0.82,
+        "selection_split": "validation"
+      }
+    },
+    "graph_wm": {
+      "best_epoch": 35,
+      "best_validation_score": 0.07901155947081047,
+      "change_threshold_calibration": {
+        "candidate_count": 91,
+        "curve": {
+          "0.05": 0.08484908938407898,
+          "0.06": 0.08230414241552353,
+          "0.07": 0.07998593151569366,
+          "0.08": 0.0780816450715065,
+          "0.09": 0.07653609663248062,
+          "0.10": 0.07527602463960648,
+          "0.11": 0.07412777841091156,
+          "0.12": 0.07309577614068985,
+          "0.13": 0.07213830202817917,
+          "0.14": 0.07133083790540695,
+          "0.15": 0.07046132534742355,
+          "0.16": 0.06952294707298279,
+          "0.17": 0.06873491406440735,
+          "0.18": 0.06784161925315857,
+          "0.19": 0.06710514426231384,
+          "0.20": 0.0662946105003357,
+          "0.21": 0.06549907475709915,
+          "0.22": 0.06479138880968094,
+          "0.23": 0.06415113806724548,
+          "0.24": 0.06353706866502762,
+          "0.25": 0.06285879015922546,
+          "0.26": 0.06240079179406166,
+          "0.27": 0.06188979372382164,
+          "0.28": 0.061408910900354385,
+          "0.29": 0.06091654673218727,
+          "0.30": 0.060408905148506165,
+          "0.31": 0.05988451838493347,
+          "0.32": 0.05954620614647865,
+          "0.33": 0.059015076607465744,
+          "0.34": 0.05847182497382164,
+          "0.35": 0.058063115924596786,
+          "0.36": 0.05768875405192375,
+          "0.37": 0.0573064424097538,
+          "0.38": 0.0568716824054718,
+          "0.39": 0.05657451972365379,
+          "0.40": 0.05622858554124832,
+          "0.41": 0.0558936707675457,
+          "0.42": 0.05553077906370163,
+          "0.43": 0.05524207279086113,
+          "0.44": 0.05494257062673569,
+          "0.45": 0.05468568205833435,
+          "0.46": 0.05441905930638313,
+          "0.47": 0.05417296662926674,
+          "0.48": 0.05389448627829552,
+          "0.49": 0.053566958755254745,
+          "0.50": 0.05331096798181534,
+          "0.51": 0.053054098039865494,
+          "0.52": 0.05283057689666748,
+          "0.53": 0.05262713506817818,
+          "0.54": 0.05243909731507301,
+          "0.55": 0.05223122611641884,
+          "0.56": 0.05204223096370697,
+          "0.57": 0.05180554464459419,
+          "0.58": 0.05159648135304451,
+          "0.59": 0.05142207816243172,
+          "0.60": 0.05127652734518051,
+          "0.61": 0.05113717168569565,
+          "0.62": 0.05099250748753548,
+          "0.63": 0.05087004229426384,
+          "0.64": 0.05068548396229744,
+          "0.65": 0.05048113688826561,
+          "0.66": 0.050283972173929214,
+          "0.67": 0.05013411492109299,
+          "0.68": 0.05007278919219971,
+          "0.69": 0.04991576448082924,
+          "0.70": 0.049784496426582336,
+          "0.71": 0.04963306710124016,
+          "0.72": 0.049553971737623215,
+          "0.73": 0.04947464540600777,
+          "0.74": 0.04942065104842186,
+          "0.75": 0.04932210594415665,
+          "0.76": 0.04927444085478783,
+          "0.77": 0.04925697296857834,
+          "0.78": 0.04929957166314125,
+          "0.79": 0.049346473067998886,
+          "0.80": 0.049400728195905685,
+          "0.81": 0.04946931079030037,
+          "0.82": 0.049559205770492554,
+          "0.83": 0.04970930516719818,
+          "0.84": 0.04983902722597122,
+          "0.85": 0.0499102957546711,
+          "0.86": 0.050022922456264496,
+          "0.87": 0.050023891031742096,
+          "0.88": 0.050028759986162186,
+          "0.89": 0.05002806335687637,
+          "0.90": 0.050042808055877686,
+          "0.91": 0.050085242837667465,
+          "0.92": 0.0501062236726284,
+          "0.93": 0.050119102001190186,
+          "0.94": 0.05016809329390526,
+          "0.95": 0.05023021623492241
+        },
+        "selected_state_mae": 0.04925697296857834,
+        "selected_threshold": 0.77,
+        "selection_split": "validation"
+      }
+    }
+  },
+  "source_baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "source_commit": "68d55db239a9992b40f0b485d4e7fec26aa2b136",
+  "state_dimension": 384,
+  "test": {
+    "flat_gru": {
+      "continuation_accuracy": 0.8159509202453987,
+      "continuation_brier": 0.16404286134184268,
+      "cost_mae": 0.4984524190722982,
+      "reward_mae": 0.7065177763340202,
+      "state_mae": 0.04605050380070311,
+      "transition_count": 163
+    },
+    "graph_wm": {
+      "continuation_accuracy": 0.8711656441717791,
+      "continuation_brier": 0.10730067875236557,
+      "cost_mae": 0.33473527760593436,
+      "reward_mae": 0.5055893339287826,
+      "state_mae": 0.04870383028263653,
+      "transition_count": 163
+    },
+    "last_value": {
+      "continuation_accuracy": 0.7423312883435583,
+      "continuation_brier": 0.19149738225046722,
+      "cost_mae": 0.8146624894229912,
+      "reward_mae": 1.1593955356488934,
+      "state_mae": 0.04903007336723167,
+      "transition_count": 163
+    }
+  },
+  "training_config": {
+    "change_weight": 0.25,
+    "continuation_weight": 0.5,
+    "cost_weight": 0.25,
+    "epochs": 80,
+    "grad_clip": 5.0,
+    "kl_weight": 0.001,
+    "learning_rate": 0.001,
+    "patience": 15,
+    "reward_weight": 0.5,
+    "seed": 20260902,
+    "state_nll_weight": 0.05,
+    "state_weight": 5.0,
+    "weight_decay": 1e-05
+  },
+  "training_seconds": {
+    "flat_gru": 62.62688219999836,
+    "graph_wm": 144.41448910000327
+  },
+  "uncertainty": {
+    "high_vs_low_risk_ratio": 4.22650751898744,
+    "spearman_rank_correlation": 0.6325308549609014,
+    "transition_count": 163,
+    "uncertainty_quartile_state_mae": [
+      0.017916231893184708,
+      0.031075140347749722,
+      0.07075986638665199,
+      0.07572308880846776
+    ]
+  }
+}

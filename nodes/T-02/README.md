@@ -1,6 +1,6 @@
 # T-02：Graph World Model 基线
 
-**状态：planned（T-01 已通过）**
+**状态：passed（2026-09-02）**
 
 ## 目标
 
@@ -37,8 +37,35 @@
 
 ## 保存点
 
-每个 seed 保存 base-WM candidate manifest；节点通过时再指定 accepted checkpoint 和回退版本。
+- 实现提交：[`68d55db`](https://github.com/Battleplus/GPPO-WORLD-9.2/commit/68d55db239a9992b40f0b485d4e7fec26aa2b136)
+- checkpoint 与训练资产：[T-02 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0)
+- [checkpoint manifest](evidence/checkpoint-manifest.json)
+- [完整指标与 Gate](evidence/metrics.json)
+- [训练配置、seed 与 validation-only 校准](evidence/training-config.json)
+- [严格输入审计](evidence/input-audit.json)
+- [训练日志资产清单](evidence/training-log-manifest.json)
+- [测试与限制报告](evidence/test-report.md)
+- [保留的失败 run](evidence/failed-run.json)
+
+## Gate 结果
+
+| Gate | 结果 |
+|---|---:|
+| 无 post-action future interval 输入 | PASS |
+| T-01 hashes/groups/truth/checkpoint 重新验证 | PASS |
+| 全部 8 类关系、384 维状态目标 | PASS |
+| Graph-WM MAE `0.0487038303` < last-value `0.0490300734` | PASS |
+| 合法反事实 state/reward/cost 的 episode-bootstrap CI 下界均大于 0 | PASS |
+| 非法反事实动作数 | 0 |
+| uncertainty/error Spearman `0.632530855`，高/低风险比 `4.2265` | PASS |
+| Graph/Flat checkpoint roundtrip 最大绝对差 | 0 / 0 |
+| Graph/Flat 参数差 `0.3028%` | PASS |
+| 1/3/5-step MAE | `0.04844 / 0.11180 / 0.17614` |
+
+等预算 Flat-GRU 的 state MAE (`0.04605`) 优于当前 Graph-WM，no-action state CI 也跨 0；两项负结果均已
+保留。T-02 通过只表示基础因果 Graph-WM 的保存、恢复、预测与动作使用 Gate 成立，不表示图结构已优于
+所有基线，也不表示 GPPO 下游收益成立。
 
 ## 解锁
 
-通过后解锁 [T-03](../T-03/README.md)。
+[T-03](../T-03/README.md) 已解锁。

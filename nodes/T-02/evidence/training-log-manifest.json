@@ -1,0 +1,28 @@
+{
+  "assets": {
+    "failed_run": {
+      "sha256": "44aaa2dda145b560628af7f990c8afff1bbc015d7454d7fb21e4c4c942f1e2ba",
+      "uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/failed-pre-calibration-metrics.json"
+    },
+    "flat_history": {
+      "sha256": "6124c39b295a560a90bdbcf3d9a30f9d3213d84f05d56411cda5afb272772400",
+      "uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/flat-training-history.json"
+    },
+    "graph_history": {
+      "sha256": "5e9d97f193de59271e5db98565abf2a45e8cf8d39fc71710da155cef495ca9ac",
+      "uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/graph-training-history.json"
+    },
+    "input_audit": {
+      "sha256": "49b401362dc8e375a81ed2b0508b940608e784113667753f7d08c7668c9ab44a",
+      "uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/input-audit.json"
+    },
+    "metrics": {
+      "sha256": "69b9ce6afe76061600442839617aac108384dcbe14d06a5ddb77e05257f54bbd",
+      "uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t02-base-wm-v0.1.0/metrics.json"
+    }
+  },
+  "final_exit_code": 0,
+  "final_result": "PASS",
+  "seed": 20260902,
+  "source_commit": "68d55db239a9992b40f0b485d4e7fec26aa2b136"
+}
