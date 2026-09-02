@@ -1,0 +1,81 @@
+{
+  "format": "gppo-t05-server-ablation/0.1.0",
+  "status": "prepared_not_executed",
+  "baseline": {
+    "repository": "https://github.com/Battleplus/GPPO-8.29",
+    "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "protocol_sha256": "b289d2a2722828f77dc5dd45db58ea3be4d6966218fc90661d54264acef48097",
+    "seed_manifest_sha256": "ee59d2aa62f4385c8b6d17c5251aa060da37425009bc97b03220d4cb22b64f64"
+  },
+  "runtime": {
+    "allowed_python": ["3.10", "3.11"],
+    "require_cuda": true,
+    "policy_device": "cuda",
+    "shadow_device": "cpu",
+    "deterministic_torch": true,
+    "formal_runs_must_not_execute_on_local_machine": true
+  },
+  "training": {
+    "seeds": [1101, 2202, 3303],
+    "accepted_decision_steps_per_run": 50000,
+    "checkpoint_steps": [25000, 50000],
+    "events_per_tape": 5,
+    "mode_cycle": ["sequential", "overlap", "burst"],
+    "rollout_steps": 512,
+    "learning_rate": 0.0002,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_coef": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef": 0.01,
+    "update_epochs": 4,
+    "minibatch_size": 64,
+    "max_grad_norm": 0.5
+  },
+  "groups": {
+    "GPPO": {"world_model": null, "adapter_enabled": false},
+    "WM-GPPO": {"world_model_pattern": "wm_seed{world_seed}.pt", "adapter_enabled": true},
+    "EA-noGES-GPPO": {"world_model_pattern": "ea_no_ges_seed{world_seed}.pt", "adapter_enabled": true},
+    "EAWM-GPPO": {"world_model_pattern": "eawm_hard_seed{world_seed}.pt", "adapter_enabled": true}
+  },
+  "world_seed_by_training_seed": {
+    "1101": 20260903,
+    "2202": 20260904,
+    "3303": 20260905
+  },
+  "world_checkpoint_sha256": {
+    "wm_seed20260903.pt": "7dff0b51ac0d01ea910a33330b29771c68aa9f593a1dd2658bde46a0a2090d71",
+    "wm_seed20260904.pt": "ef6b7cd05c76ee52626602321db9defc3dcd47e17216c30a5219f8f55bcf5d47",
+    "wm_seed20260905.pt": "cd786bccb357ac5501811993c8f608cfed0f3d992014755eae8876c6fc922870",
+    "ea_no_ges_seed20260903.pt": "8e0c819aca8875ffda0108f3d0e3119eb726245fbe1c0af1679be68a3598bf2f",
+    "ea_no_ges_seed20260904.pt": "7d7b07caf92651f6a1c47be897c8d6b27005be247964f6debf19ac779d70717b",
+    "ea_no_ges_seed20260905.pt": "13f322194e8033f2063ac78b9eb23b7f5e787493eeec8e1e74d67251e47245c2",
+    "eawm_hard_seed20260903.pt": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+    "eawm_hard_seed20260904.pt": "b74d88bb7572870bf95b187e5091a1e2fd132491076daec37fa828f8f10ded45",
+    "eawm_hard_seed20260905.pt": "42fda0c52b939b4885cf338366a291d9543fb814a3342b9a70d71f2e3a037b3c"
+  },
+  "shadow_calibration": {
+    "path": "nodes/T-04/evidence/calibration.json",
+    "sha256": "5ab3164ca639faf2572f54d2be94eb89a89ea1020d8be88d65aad26b2ce88072",
+    "note": "A shared frozen T-04 gate is used for all world-model groups; this is disclosed and its per-group fallback rate is reported."
+  },
+  "evaluation": {
+    "checkpoint_selection": false,
+    "fixed_checkpoint_step": 50000,
+    "held_out_test_tapes": 100,
+    "sets": ["Test-Single", "Test-Sequential", "Test-Overlap", "Test-Burst", "Test-Unseen"],
+    "tapes_per_set": 20,
+    "bootstrap_resamples": 2000
+  },
+  "required_outputs": [
+    "run-manifest.json",
+    "environment.json",
+    "progress/live_progress.json",
+    "history.jsonl",
+    "models/*step25000.pt",
+    "models/*step50000.pt",
+    "run-summary.json",
+    "safety-audit.json",
+    "sha256-inventory.json"
+  ]
+}
