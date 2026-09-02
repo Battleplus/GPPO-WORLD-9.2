@@ -75,6 +75,9 @@ class TensorTransition:
     reward: float
     costs: torch.Tensor
     continuation: float
+    scenario_id: str = ""
+    decision_time: float = 0.0
+    action_version: int = 0
 
     @property
     def target_delta(self) -> torch.Tensor:
@@ -94,6 +97,9 @@ def transition_from_dict(value: dict) -> TensorTransition:
         reward=float(value["reward"]),
         costs=torch.tensor([float(value["costs"].get(name, 0.0)) for name in COST_NAMES]),
         continuation=float(bool(value["continuation"])),
+        scenario_id=str(value.get("scenario_id", "")),
+        decision_time=float(value.get("decision_time", 0.0)),
+        action_version=int(execution.get("action_version", 0)),
     )
 
 
