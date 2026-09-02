@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from dataclasses import replace
+
+import pytest
 import torch
 
 from gppo_world.calibration import ShadowCalibration, fit_shadow_calibration
@@ -40,14 +43,18 @@ def _runtime(calibration=None):
 
 
 def _request(step=0, graph=None):
+    graph = graph or make_graph(7 + step)
     return ShadowRequest(
         episode_id="episode-1",
         step=step,
-        graph=graph or make_graph(7 + step),
+        graph=graph,
         executed_action=3,
         evidence=(),
         action_version=step,
         decision_time=float(step),
+        execution_accepted=True,
+        expected_post_graph_version=graph.graph_version + 1,
+        expected_post_action_version=step + 1,
     )
 
 
@@ -77,7 +84,12 @@ def test_stale_before_and_after_never_commit_latent():
     request = _request()
     stale_before = runtime.observe(request, version_reader=lambda: (999, 0))
     assert not stale_before.valid and stale_before.fallback_reason == "stale_before"
-    calls = iter(((7, 0), (8, 0)))
+    calls = iter(
+        (
+            (request.expected_post_graph_version, request.expected_post_action_version),
+            (request.expected_post_graph_version + 1, request.expected_post_action_version),
+        )
+    )
     stale_after = runtime.observe(request, version_reader=lambda: next(calls))
     assert not stale_after.valid and stale_after.fallback_reason == "stale_after"
     assert stale_after.latent == (0.0,) * 88
@@ -94,6 +106,19 @@ def test_timeout_exception_and_ood_use_zero_context():
     ood = _runtime(_calibration(ood_score_threshold=0.1)).observe(_request(graph=graph))
     assert not ood.valid and ood.fallback_reason == "ood"
     assert ood.latent == (0.0,) * 88
+
+
+def test_rejected_execution_is_skipped_and_future_evidence_is_rejected():
+    runtime = _runtime()
+    rejected = replace(_request(), executed_action=None, execution_accepted=False)
+    result = runtime.observe(rejected)
+    assert not result.valid and result.fallback_reason == "rejected_execution"
+    with pytest.raises(ValueError, match="future evidence"):
+        replace(
+            _request(),
+            evidence=({"received_at": 1.0, "payload": {}},),
+            decision_time=0.0,
+        )
 
 
 def test_failed_step_forces_history_reset_on_recovery():

@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 import hashlib
 import json
+import math
 from time import perf_counter_ns
 from typing import Any, Callable, Mapping
 
@@ -23,6 +24,8 @@ def graph_snapshot_sha256(graph: GraphSnapshot) -> str:
     for group in (graph.nodes, graph.edge_index, graph.edge_attr):
         for name, value in sorted(group.items(), key=lambda item: str(item[0])):
             digest.update(str(name).encode("utf-8"))
+            digest.update(str(value.dtype).encode("ascii"))
+            digest.update(str(tuple(value.shape)).encode("ascii"))
             digest.update(value.detach().cpu().contiguous().numpy().tobytes())
     digest.update(graph.candidate_edges.numpy().tobytes())
     digest.update(graph.action_mask.numpy().tobytes())
@@ -35,15 +38,52 @@ def _evidence_sha256(evidence: tuple[Mapping[str, Any], ...]) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+def _request_sha256(request: "ShadowRequest", graph_hash: str, evidence_hash: str) -> str:
+    value = {
+        "episode_id": request.episode_id,
+        "step": request.step,
+        "graph_sha256": graph_hash,
+        "evidence_sha256": evidence_hash,
+        "executed_action": request.executed_action,
+        "execution_accepted": request.execution_accepted,
+        "input_graph_version": request.graph.graph_version,
+        "input_action_version": request.action_version,
+        "expected_post_graph_version": request.expected_post_graph_version,
+        "expected_post_action_version": request.expected_post_action_version,
+        "decision_time": request.decision_time,
+    }
+    payload = json.dumps(value, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
 @dataclass(frozen=True)
 class ShadowRequest:
     episode_id: str
     step: int
     graph: GraphSnapshot
-    executed_action: int
+    executed_action: int | None
     evidence: tuple[Mapping[str, Any], ...]
     action_version: int
     decision_time: float
+    execution_accepted: bool
+    expected_post_graph_version: int
+    expected_post_action_version: int
+
+    def __post_init__(self) -> None:
+        if not self.episode_id or self.step < 0 or not math.isfinite(self.decision_time):
+            raise ValueError("shadow request identity/time is invalid")
+        if self.execution_accepted:
+            if self.executed_action is None:
+                raise ValueError("accepted shadow transition requires executed_action")
+            if not 0 <= self.executed_action < self.graph.num_actions:
+                raise ValueError("executed_action is outside the input graph action space")
+            if not bool(self.graph.action_mask[self.executed_action]):
+                raise ValueError("executed_action is illegal in the input action mask")
+        elif self.executed_action is not None:
+            raise ValueError("rejected execution cannot carry executed_action")
+        for item in self.evidence:
+            if float(item.get("received_at", self.decision_time)) > self.decision_time:
+                raise ValueError("future evidence is forbidden in Shadow input")
 
 
 @dataclass(frozen=True)
@@ -54,6 +94,8 @@ class ShadowResult:
     step: int
     graph_version: int
     action_version: int
+    post_graph_version: int
+    post_action_version: int
     model_version: str
     latency_ms: float
     ood_score: float
@@ -61,6 +103,7 @@ class ShadowResult:
     latent: tuple[float, ...]
     input_graph_sha256: str
     input_evidence_sha256: str
+    input_request_sha256: str
     history_reset: bool
     state_delta_sha256: str | None
 
@@ -142,6 +185,8 @@ class ShadowRuntime:
             step=request.step,
             graph_version=request.graph.graph_version,
             action_version=request.action_version,
+            post_graph_version=request.expected_post_graph_version,
+            post_action_version=request.expected_post_action_version,
             model_version=self.model_version,
             latency_ms=(perf_counter_ns() - started_ns) / 1e6 + latency_injection_ms,
             ood_score=ood_score,
@@ -149,6 +194,7 @@ class ShadowRuntime:
             latent=(0.0,) * (self.model.config.hidden_dim + self.model.config.stochastic_dim),
             input_graph_sha256=graph_hash,
             input_evidence_sha256=evidence_hash,
+            input_request_sha256=_request_sha256(request, graph_hash, evidence_hash),
             history_reset=history_reset,
             state_delta_sha256=None,
         )
@@ -168,13 +214,23 @@ class ShadowRuntime:
         self._counters["inference_count"] += 1
         graph_hash = graph_snapshot_sha256(request.graph)
         evidence_hash = _evidence_sha256(request.evidence)
+        if not request.execution_accepted:
+            return self._fallback(
+                request,
+                "rejected_execution",
+                started,
+                graph_hash,
+                evidence_hash,
+                -1.0,
+                latency_injection_ms=latency_injection_ms,
+            )
         read_versions = version_reader or (
-            lambda: (request.graph.graph_version, request.action_version)
+            lambda: (request.expected_post_graph_version, request.expected_post_action_version)
         )
         before_graph_version, before_action_version = read_versions()
         if (
-            before_graph_version != request.graph.graph_version
-            or before_action_version != request.action_version
+            before_graph_version != request.expected_post_graph_version
+            or before_action_version != request.expected_post_action_version
         ):
             return self._fallback(
                 request,
@@ -225,8 +281,8 @@ class ShadowRuntime:
             )
         after_graph_version, after_action_version = read_versions()
         if (
-            after_graph_version != request.graph.graph_version
-            or after_action_version != request.action_version
+            after_graph_version != request.expected_post_graph_version
+            or after_action_version != request.expected_post_action_version
         ):
             return self._fallback(
                 request,
@@ -289,6 +345,8 @@ class ShadowRuntime:
             step=request.step,
             graph_version=request.graph.graph_version,
             action_version=request.action_version,
+            post_graph_version=request.expected_post_graph_version,
+            post_action_version=request.expected_post_action_version,
             model_version=self.model_version,
             latency_ms=latency_ms,
             ood_score=ood_score,
@@ -296,6 +354,7 @@ class ShadowRuntime:
             latent=tuple(float(item) for item in latent_tensor),
             input_graph_sha256=graph_hash,
             input_evidence_sha256=evidence_hash,
+            input_request_sha256=_request_sha256(request, graph_hash, evidence_hash),
             history_reset=history_reset,
             state_delta_sha256=hashlib.sha256(state_delta_bytes).hexdigest(),
         )

@@ -54,14 +54,18 @@ def _auroc(negative_scores, positive_scores) -> float:
 
 
 def _request(item) -> ShadowRequest:
+    executed_action = item.action if item.execution_accepted else None
     return ShadowRequest(
         episode_id=item.episode_id,
         step=item.step,
         graph=item.graph,
-        executed_action=item.action,
+        executed_action=executed_action,
         evidence=item.evidence,
         action_version=item.action_version,
         decision_time=item.decision_time,
+        execution_accepted=item.execution_accepted,
+        expected_post_graph_version=item.next_graph.graph_version,
+        expected_post_action_version=item.action_version + 1,
     )
 
 
@@ -135,12 +139,16 @@ def main() -> int:
     sample = flat_test[0]
     request = _request(sample)
     stale_before = ShadowRuntime(model, calibration, model_version=args.model_version).observe(
-        request, version_reader=lambda: (request.graph.graph_version + 1, request.action_version)
+        request,
+        version_reader=lambda: (
+            request.expected_post_graph_version + 1,
+            request.expected_post_action_version,
+        ),
     )
     versions = iter(
         (
-            (request.graph.graph_version, request.action_version),
-            (request.graph.graph_version + 1, request.action_version),
+            (request.expected_post_graph_version, request.expected_post_action_version),
+            (request.expected_post_graph_version + 1, request.expected_post_action_version),
         )
     )
     stale_after = ShadowRuntime(model, calibration, model_version=args.model_version).observe(

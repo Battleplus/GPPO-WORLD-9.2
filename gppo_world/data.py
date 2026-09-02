@@ -78,6 +78,8 @@ class TensorTransition:
     scenario_id: str = ""
     decision_time: float = 0.0
     action_version: int = 0
+    execution_accepted: bool = True
+    execution_status: str = "committed"
 
     @property
     def target_delta(self) -> torch.Tensor:
@@ -100,6 +102,8 @@ def transition_from_dict(value: dict) -> TensorTransition:
         scenario_id=str(value.get("scenario_id", "")),
         decision_time=float(value.get("decision_time", 0.0)),
         action_version=int(execution.get("action_version", 0)),
+        execution_accepted=bool(execution.get("accepted", False)),
+        execution_status=str(execution.get("status", "")),
     )
 
 
