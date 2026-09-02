@@ -163,7 +163,6 @@ class WorldModelInput:
     evidence: tuple[EvidenceItem, ...]
     executed_action: int | None
     execution_accepted: bool
-    delta_time: float
     decision_time: float
     schema_version: str
 
@@ -222,7 +221,6 @@ class Transition:
             evidence=self.evidence_t,
             executed_action=self.execution.executed_action,
             execution_accepted=self.execution.accepted,
-            delta_time=float(self.next_decision_time - self.decision_time),
             decision_time=float(self.decision_time),
             schema_version=self.schema_version,
         )

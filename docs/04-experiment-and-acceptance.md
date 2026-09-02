@@ -49,7 +49,9 @@
 阈值由 T-00 基线测量和业务预算冻结；当前设计不捏造数值。下列关系型条件不可删除：
 
 - T-01：episode/scenario/seed split 交叉数为 0；truth-only 在线字段数为 0。
-- T-02：action shuffle 后下一状态/reward/cost 预测显著变差；模型独立保存加载一致。
+- T-02：从同一历史状态分叉到合法 counterfactual action 后，下一状态/reward/cost 预测显著变差；
+  no-action 必须完整报告；模型独立保存加载一致。禁止用当前 mask 下的非法动作或改变历史 hidden
+  state 来制造 action-shuffle 退化。
 - T-03：事件指标超过频率/多数类基线；加入事件后基础预测不出现预先定义的不可接受退化。
 - T-04：shadow 对 belief、mask、version 的写入次数为 0；异常/超时/OOD 全部进入安全回退。
 - T-05：非法动作和 stale 漏拦截不高于原 GPPO；关闭 WM 后恢复原路径；旧 checkpoint 可加载。

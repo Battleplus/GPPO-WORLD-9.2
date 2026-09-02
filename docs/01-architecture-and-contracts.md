@@ -22,7 +22,7 @@ Transition(
     feature_valid_mask,
     event_eligible_mask,
     sequence_padding_mask,
-    delta_time,
+    decision_time,             # 当前决策时刻已知；next_decision_time 只作离线目标
     state_version,
     graph_version,
     action_version,
@@ -38,7 +38,7 @@ Transition(
 
 - 当时可见的 UAV、Region、Target 节点和关系；
 - 决策前已经收到的 evidence/message；
-- 实际执行动作、执行结果、时间差和版本；
+- 实际执行动作、执行结果、当前 `decision_time` 和版本；
 - 实体/字段有效性与 padding mask；
 - 由训练 split 或物理合同冻结的归一化范围。
 
@@ -46,6 +46,7 @@ Transition(
 
 - 未到达报文和未来确认结果；
 - `graph_tp1`、未来 action mask 或未来动作；
+- 动作执行后才能知道的 `next_decision_time - decision_time`；
 - 仿真器 truth-only 事件发生时间；
 - 最优规划器答案；
 - validation/test 的统计量；
@@ -67,7 +68,7 @@ Transition(
 ```text
 typed graph encoder E_g(G_t)
 action encoder E_a(a_t)
-evidence/time encoder E_e(m_t, Δt)
+evidence encoder E_e(m_t)
                │
                ▼
 action-conditioned temporal dynamics

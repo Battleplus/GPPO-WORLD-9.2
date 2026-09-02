@@ -146,6 +146,7 @@ def test_model_input_contains_no_future_targets():
     assert not hasattr(model_input, "graph_tp1")
     assert not hasattr(model_input, "reward")
     assert not hasattr(model_input, "continuation")
+    assert not hasattr(model_input, "delta_time")
     assert model_input.executed_action == 3
 
 

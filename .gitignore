@@ -11,6 +11,8 @@ artifacts/raw/
 artifacts/T01/dataset/*.jsonl
 artifacts/T01/checkpoints/*.pt
 artifacts/T01/
+artifacts/T02/
+artifacts/T02-run*/
 __pycache__/
 .pytest_cache/
 *.egg-info/
