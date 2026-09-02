@@ -26,8 +26,8 @@ GPPO 世界模型迁移的设计、执行节点与证据索引。
 | 节点 | 名称 | 当前状态 | 进入下一节点的门禁 |
 |---|---|---|---|
 | [T-00](nodes/T-00/README.md) | 基线与数据合同冻结 | passed | schema、白名单、基线清单可复现 |
-| [T-01](nodes/T-01/README.md) | 覆盖性轨迹采集 | planned | 严格切分、覆盖报告、数据哈希齐全 |
-| [T-02](nodes/T-02/README.md) | Graph World Model 基线 | blocked_by_T-01 | 独立保存/加载与一步预测通过 |
+| [T-01](nodes/T-01/README.md) | 覆盖性轨迹采集 | passed | 严格切分、覆盖报告、数据哈希齐全 |
+| [T-02](nodes/T-02/README.md) | Graph World Model 基线 | planned | 独立保存/加载与一步预测通过 |
 | [T-03](nodes/T-03/README.md) | 自动事件、Event Head 与 GES | blocked_by_T-02 | WM/EA-noGES/EAWM 公平消融完成 |
 | [T-04](nodes/T-04/README.md) | Shadow 与校准 | blocked_by_T-03 | 不改决策、安全回退与校准门禁通过 |
 | [T-05](nodes/T-05/README.md) | 冻结 latent 接入 GPPO | blocked_by_T-04 | 可关闭、旧 checkpoint 兼容、无安全退化 |

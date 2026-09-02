@@ -1,0 +1,32 @@
+{
+  "purpose": "T-01 behavior coverage only",
+  "variant": "GPPO-Adaptive",
+  "source_repository": "https://github.com/Battleplus/GPPO-8.29",
+  "source_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "training_seed": 1101,
+  "decision_steps": 512,
+  "python": "3.11.5",
+  "device": "cpu",
+  "ppo": {
+    "learning_rate": 0.0002,
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_coef": 0.2,
+    "value_coef": 0.5,
+    "entropy_coef": 0.01,
+    "max_grad_norm": 0.5,
+    "rollout_steps": 64,
+    "minibatch_size": 32,
+    "update_epochs": 2,
+    "normalize_advantages": true,
+    "target_kl": null
+  },
+  "environment": {
+    "mode": "sequential",
+    "events_per_episode": 5,
+    "initial_seed": 1101,
+    "event_seed": 1110809,
+    "max_decisions": 100
+  },
+  "historical_50k_checkpoint": false
+}

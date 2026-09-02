@@ -1,0 +1,66 @@
+{
+  "action_coverage": {
+    "0": 6,
+    "1": 49,
+    "10": 19,
+    "11": 35,
+    "12": 24,
+    "13": 33,
+    "14": 20,
+    "15": 13,
+    "16": 46,
+    "2": 46,
+    "3": 33,
+    "4": 40,
+    "5": 19,
+    "6": 28,
+    "7": 28,
+    "8": 31,
+    "9": 32
+  },
+  "behavior_policies": [
+    "gppo",
+    "greedy",
+    "random_legal"
+  ],
+  "checkpoint": {
+    "critic_value_is_finite": true,
+    "forward_action_is_legal": true,
+    "historical_50k_checkpoint": false,
+    "roundtrip_total_steps": 512,
+    "roundtrip_variant": "GPPO-Adaptive",
+    "sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3"
+  },
+  "dataset_manifest_sha256": "9aaa9add78d8c05f5d446891dfdedabd5d185134d3ae201349adf00600daa72c",
+  "episode_count": 126,
+  "event_distribution": {
+    "REGION_VACANCY": 44,
+    "TARGET_DESTROYED": 14,
+    "TARGET_DISCOVERED": 46,
+    "UAV_DAMAGE": 40
+  },
+  "group_count": 42,
+  "max_observation_delay_seconds": 14.0,
+  "profiles": [
+    "burst",
+    "long_gap",
+    "normal",
+    "overlap",
+    "sequential",
+    "single",
+    "weak_comm"
+  ],
+  "raw_dataset_sha256": {
+    "test": "49b497a689d77fa5adce2e511a1f0e254aa46ca758d231ddbd3c086c75db4adb",
+    "train": "8fb8bee383c4c98debf0a655193d6c3c4969cd4187fea43ab5f2e90e29dddfa3",
+    "validation": "dd1f657b707cef789a94e167622d5949c155ba2505062b3e1b8b2d6a640de8bd"
+  },
+  "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0",
+  "result": "PASS",
+  "source_commit": "682ea6e9be777be9db9a48a0777eabcb2d1cf826",
+  "split_overlap_count": 0,
+  "transition_count": 502,
+  "truth_only_online_field_count": 0,
+  "weak_comm_episode_count": 18,
+  "weak_comm_observation_count": 147
+}

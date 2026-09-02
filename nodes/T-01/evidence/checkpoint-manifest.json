@@ -1,0 +1,30 @@
+{
+  "artifact_id": "gppo-world/T-01/coverage-gppo/v0.1.0/1101",
+  "checkpoint_sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+  "checkpoint_uri": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/gppo_adaptive_seed1101_step512.pt",
+  "config_sha256": "9c74351d8bbb2268467035eb35ee5715b07da6b20f62b78f7d2d822e82ccc3f7",
+  "config_uri": "behavior-policy-config.json",
+  "created_at": "2026-09-02T02:28:00.113149+00:00",
+  "dataset_manifest_sha256": "9aaa9add78d8c05f5d446891dfdedabd5d185134d3ae201349adf00600daa72c",
+  "dataset_manifest_uri": "dataset-manifest.json",
+  "environment": {
+    "cuda": null,
+    "framework": "torch 2.5.0+cpu",
+    "hardware": "CPU",
+    "python": "3.11.5"
+  },
+  "metrics_sha256": "5957cfe4a9a3a2b9063beb0202910b7e6c4d1355e2df8de757fdf1eb56783406",
+  "metrics_uri": "audit-report.json",
+  "node_id": "T-01",
+  "notes": "Coverage behavior checkpoint only; not the missing historical 50k GPPO checkpoint.",
+  "parent_artifact_id": "gppo-world/T-00/baseline-contract/v0.1.0/none",
+  "schema_version": "gppo-world-transition/0.1.0",
+  "seeds": [
+    1101,
+    91001,
+    92001,
+    93001
+  ],
+  "source_commit": "682ea6e9be777be9db9a48a0777eabcb2d1cf826",
+  "status": "accepted"
+}

@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T10:17:03+08:00",
+  "updated_at": "2026-09-02T10:40:00+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -25,8 +25,19 @@
         "nodes/T-00/evidence/checkpoint-manifest.json"
       ]
     },
-    {"id": "T-01", "status": "planned", "blocked_by": [], "evidence": []},
-    {"id": "T-02", "status": "blocked", "blocked_by": ["T-01"], "evidence": []},
+    {
+      "id": "T-01",
+      "status": "passed",
+      "blocked_by": [],
+      "evidence": [
+        "nodes/T-01/evidence/dataset-manifest.json",
+        "nodes/T-01/evidence/audit-report.json",
+        "nodes/T-01/evidence/behavior-policy-config.json",
+        "nodes/T-01/evidence/checkpoint-manifest.json",
+        "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0"
+      ]
+    },
+    {"id": "T-02", "status": "planned", "blocked_by": [], "evidence": []},
     {"id": "T-03", "status": "blocked", "blocked_by": ["T-02"], "evidence": []},
     {"id": "T-04", "status": "blocked", "blocked_by": ["T-03"], "evidence": []},
     {"id": "T-05", "status": "blocked", "blocked_by": ["T-04"], "evidence": []},

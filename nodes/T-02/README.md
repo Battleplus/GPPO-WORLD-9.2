@@ -1,6 +1,6 @@
 # T-02：Graph World Model 基线
 
-**状态：blocked by T-01**
+**状态：planned（T-01 已通过）**
 
 ## 目标
 

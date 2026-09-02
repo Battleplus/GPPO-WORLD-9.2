@@ -1,0 +1,4496 @@
+{
+  "action_coverage": {
+    "0": 6,
+    "1": 49,
+    "10": 19,
+    "11": 35,
+    "12": 24,
+    "13": 33,
+    "14": 20,
+    "15": 13,
+    "16": 46,
+    "2": 46,
+    "3": 33,
+    "4": 40,
+    "5": 19,
+    "6": 28,
+    "7": 28,
+    "8": 31,
+    "9": 32
+  },
+  "audit": {
+    "behavior_policies": [
+      "gppo",
+      "greedy",
+      "random_legal"
+    ],
+    "episode_count": 126,
+    "errors": [],
+    "group_count": 42,
+    "passed": true,
+    "profiles": [
+      "burst",
+      "long_gap",
+      "normal",
+      "overlap",
+      "sequential",
+      "single",
+      "weak_comm"
+    ],
+    "split_overlap_count": 0,
+    "split_overlaps": {},
+    "transition_count": 502
+  },
+  "behavior_policies": [
+    "random_legal",
+    "greedy",
+    "gppo"
+  ],
+  "created_at": "2026-09-02T02:28:00.113149+00:00",
+  "episodes": [
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/random_legal/train-normal-00-bf1d24c2c679",
+      "event_seed": 601759626656998914,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 122766378,
+      "split": "train",
+      "tape_id": "train-normal-00-bf1d24c2c679",
+      "tape_sha256": "bf1d24c2c679cd68c15d967f662359d70bad2199619a34fc7f94ae0cdd8fe84b",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/greedy/train-normal-00-bf1d24c2c679",
+      "event_seed": 601759626656998914,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 122766378,
+      "split": "train",
+      "tape_id": "train-normal-00-bf1d24c2c679",
+      "tape_sha256": "bf1d24c2c679cd68c15d967f662359d70bad2199619a34fc7f94ae0cdd8fe84b",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/gppo/train-normal-00-bf1d24c2c679",
+      "event_seed": 601759626656998914,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 122766378,
+      "split": "train",
+      "tape_id": "train-normal-00-bf1d24c2c679",
+      "tape_sha256": "bf1d24c2c679cd68c15d967f662359d70bad2199619a34fc7f94ae0cdd8fe84b",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/random_legal/train-normal-01-ebb589140faf",
+      "event_seed": 1718506376937549830,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 395255390,
+      "split": "train",
+      "tape_id": "train-normal-01-ebb589140faf",
+      "tape_sha256": "ebb589140faf794450b35c0969d5d1f066b1269bc0845b3aaecebb4fcc0c4bc0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/greedy/train-normal-01-ebb589140faf",
+      "event_seed": 1718506376937549830,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 395255390,
+      "split": "train",
+      "tape_id": "train-normal-01-ebb589140faf",
+      "tape_sha256": "ebb589140faf794450b35c0969d5d1f066b1269bc0845b3aaecebb4fcc0c4bc0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "train/gppo/train-normal-01-ebb589140faf",
+      "event_seed": 1718506376937549830,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 395255390,
+      "split": "train",
+      "tape_id": "train-normal-01-ebb589140faf",
+      "tape_sha256": "ebb589140faf794450b35c0969d5d1f066b1269bc0845b3aaecebb4fcc0c4bc0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "13": 1,
+        "2": 1,
+        "3": 2,
+        "6": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2217,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-single-00-37790f9b34a0",
+      "event_seed": 3009343482975022303,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "single",
+      "seed": 993702343,
+      "split": "train",
+      "tape_id": "train-single-00-37790f9b34a0",
+      "tape_sha256": "37790f9b34a0da0db6fdaa51bfb22db23bc6fbee5bb3864de900d53678b08723",
+      "terminated": true,
+      "total_reward": 29.02381553646891,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "13": 1,
+        "2": 1,
+        "3": 2
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2217,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-single-00-37790f9b34a0",
+      "event_seed": 3009343482975022303,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "single",
+      "seed": 993702343,
+      "split": "train",
+      "tape_id": "train-single-00-37790f9b34a0",
+      "tape_sha256": "37790f9b34a0da0db6fdaa51bfb22db23bc6fbee5bb3864de900d53678b08723",
+      "terminated": true,
+      "total_reward": 24.924111652351684,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 2
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2217,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-single-00-37790f9b34a0",
+      "event_seed": 3009343482975022303,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "single",
+      "seed": 993702343,
+      "split": "train",
+      "tape_id": "train-single-00-37790f9b34a0",
+      "tape_sha256": "37790f9b34a0da0db6fdaa51bfb22db23bc6fbee5bb3864de900d53678b08723",
+      "terminated": true,
+      "total_reward": 17.224703884117226,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "15": 1,
+        "16": 1,
+        "3": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2197,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-single-01-ed3a6dfef2ae",
+      "event_seed": 6814010626437036565,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "single",
+      "seed": 2144455634,
+      "split": "train",
+      "tape_id": "train-single-01-ed3a6dfef2ae",
+      "tape_sha256": "ed3a6dfef2ae61c359c23a0a543669534742c95971af62049982667f6bdaabf9",
+      "terminated": true,
+      "total_reward": 21.295833333333334,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2197,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-single-01-ed3a6dfef2ae",
+      "event_seed": 6814010626437036565,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "single",
+      "seed": 2144455634,
+      "split": "train",
+      "tape_id": "train-single-01-ed3a6dfef2ae",
+      "tape_sha256": "ed3a6dfef2ae61c359c23a0a543669534742c95971af62049982667f6bdaabf9",
+      "terminated": true,
+      "total_reward": 21.35685275391947,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "16": 1,
+        "3": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2197,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-single-01-ed3a6dfef2ae",
+      "event_seed": 6814010626437036565,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "single",
+      "seed": 2144455634,
+      "split": "train",
+      "tape_id": "train-single-01-ed3a6dfef2ae",
+      "tape_sha256": "ed3a6dfef2ae61c359c23a0a543669534742c95971af62049982667f6bdaabf9",
+      "terminated": true,
+      "total_reward": 19.27263107293782,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 2,
+        "13": 1,
+        "3": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-sequential-00-c8b0e60844f2",
+      "event_seed": 8315875305644444154,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 736229387,
+      "split": "train",
+      "tape_id": "train-sequential-00-c8b0e60844f2",
+      "tape_sha256": "c8b0e60844f2292a3cd25408f7f3994f48e4e0b82fd167522bbb60a983f43186",
+      "terminated": true,
+      "total_reward": 34.11668771097452,
+      "transition_count": 7,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 2,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-sequential-00-c8b0e60844f2",
+      "event_seed": 8315875305644444154,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 736229387,
+      "split": "train",
+      "tape_id": "train-sequential-00-c8b0e60844f2",
+      "tape_sha256": "c8b0e60844f2292a3cd25408f7f3994f48e4e0b82fd167522bbb60a983f43186",
+      "terminated": true,
+      "total_reward": 25.427093855487257,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "3": 2,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-sequential-00-c8b0e60844f2",
+      "event_seed": 8315875305644444154,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 736229387,
+      "split": "train",
+      "tape_id": "train-sequential-00-c8b0e60844f2",
+      "tape_sha256": "c8b0e60844f2292a3cd25408f7f3994f48e4e0b82fd167522bbb60a983f43186",
+      "terminated": true,
+      "total_reward": 26.935427188820597,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "12": 2,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2074,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-sequential-01-41f366fa30ab",
+      "event_seed": 6649913808888265383,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1419368560,
+      "split": "train",
+      "tape_id": "train-sequential-01-41f366fa30ab",
+      "tape_sha256": "41f366fa30abd8ed4ac55e1b8882401bd05a8231159c1850e36790545afd99ec",
+      "terminated": true,
+      "total_reward": 27.96488997137003,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "4": 2,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2074,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-sequential-01-41f366fa30ab",
+      "event_seed": 6649913808888265383,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1419368560,
+      "split": "train",
+      "tape_id": "train-sequential-01-41f366fa30ab",
+      "tape_sha256": "41f366fa30abd8ed4ac55e1b8882401bd05a8231159c1850e36790545afd99ec",
+      "terminated": true,
+      "total_reward": 23.397631072937816,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "4": 2,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2074,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-sequential-01-41f366fa30ab",
+      "event_seed": 6649913808888265383,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1419368560,
+      "split": "train",
+      "tape_id": "train-sequential-01-41f366fa30ab",
+      "tape_sha256": "41f366fa30abd8ed4ac55e1b8882401bd05a8231159c1850e36790545afd99ec",
+      "terminated": true,
+      "total_reward": 16.20238997137003,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "6": 1,
+        "8": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2112,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-overlap-00-77764f4c3d28",
+      "event_seed": 4809330935773378425,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 1195152212,
+      "split": "train",
+      "tape_id": "train-overlap-00-77764f4c3d28",
+      "tape_sha256": "77764f4c3d28c481b882fe4d011814cd01741270314f955dd6c201948dbc21a2",
+      "terminated": true,
+      "total_reward": 7.286611652351682,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "16": 1,
+        "4": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2112,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-overlap-00-77764f4c3d28",
+      "event_seed": 4809330935773378425,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 1195152212,
+      "split": "train",
+      "tape_id": "train-overlap-00-77764f4c3d28",
+      "tape_sha256": "77764f4c3d28c481b882fe4d011814cd01741270314f955dd6c201948dbc21a2",
+      "terminated": true,
+      "total_reward": 9.441074434901122,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "4": 1,
+        "6": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2112,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-overlap-00-77764f4c3d28",
+      "event_seed": 4809330935773378425,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 1195152212,
+      "split": "train",
+      "tape_id": "train-overlap-00-77764f4c3d28",
+      "tape_sha256": "77764f4c3d28c481b882fe4d011814cd01741270314f955dd6c201948dbc21a2",
+      "terminated": true,
+      "total_reward": 7.316074434901122,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "13": 1,
+        "4": 1,
+        "6": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-overlap-01-977b829c8676",
+      "event_seed": 915226291803137751,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "overlap",
+      "seed": 838123496,
+      "split": "train",
+      "tape_id": "train-overlap-01-977b829c8676",
+      "tape_sha256": "977b829c8676e870b9831696eb42e4f621b0d2172df5c2fb2adc73c7e87bd37e",
+      "terminated": true,
+      "total_reward": 21.32738997137003,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "13": 1,
+        "4": 1,
+        "6": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-overlap-01-977b829c8676",
+      "event_seed": 915226291803137751,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "overlap",
+      "seed": 838123496,
+      "split": "train",
+      "tape_id": "train-overlap-01-977b829c8676",
+      "tape_sha256": "977b829c8676e870b9831696eb42e4f621b0d2172df5c2fb2adc73c7e87bd37e",
+      "terminated": true,
+      "total_reward": 21.327389971370028,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "2": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2086,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-overlap-01-977b829c8676",
+      "event_seed": 915226291803137751,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "overlap",
+      "seed": 838123496,
+      "split": "train",
+      "tape_id": "train-overlap-01-977b829c8676",
+      "tape_sha256": "977b829c8676e870b9831696eb42e4f621b0d2172df5c2fb2adc73c7e87bd37e",
+      "terminated": true,
+      "total_reward": 15.11400162372171,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 1996,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-burst-00-df6f8d08c0e1",
+      "event_seed": 1836930174521756860,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "burst",
+      "seed": 552854030,
+      "split": "train",
+      "tape_id": "train-burst-00-df6f8d08c0e1",
+      "tape_sha256": "df6f8d08c0e1ddb8d1d88c730d2bfb1bf448161ebc55d63a1b07ba347d7e5df7",
+      "terminated": true,
+      "total_reward": 11.948223304703363,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "12": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 1996,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-burst-00-df6f8d08c0e1",
+      "event_seed": 1836930174521756860,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "burst",
+      "seed": 552854030,
+      "split": "train",
+      "tape_id": "train-burst-00-df6f8d08c0e1",
+      "tape_sha256": "df6f8d08c0e1ddb8d1d88c730d2bfb1bf448161ebc55d63a1b07ba347d7e5df7",
+      "terminated": true,
+      "total_reward": 19.261315536468906,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 1996,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-burst-00-df6f8d08c0e1",
+      "event_seed": 1836930174521756860,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "burst",
+      "seed": 552854030,
+      "split": "train",
+      "tape_id": "train-burst-00-df6f8d08c0e1",
+      "tape_sha256": "df6f8d08c0e1ddb8d1d88c730d2bfb1bf448161ebc55d63a1b07ba347d7e5df7",
+      "terminated": true,
+      "total_reward": 11.948223304703365,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "13": 1,
+        "15": 1,
+        "4": 1,
+        "7": 1,
+        "8": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2164,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-burst-01-96d25cf1a617",
+      "event_seed": 7263899491263713532,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1791432947,
+      "split": "train",
+      "tape_id": "train-burst-01-96d25cf1a617",
+      "tape_sha256": "96d25cf1a6173a1464f463d366f96a69f0d5f1d3e485346f8e6da07a466f8bc9",
+      "terminated": true,
+      "total_reward": 23.90894660940673,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2164,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-burst-01-96d25cf1a617",
+      "event_seed": 7263899491263713532,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1791432947,
+      "split": "train",
+      "tape_id": "train-burst-01-96d25cf1a617",
+      "tape_sha256": "96d25cf1a6173a1464f463d366f96a69f0d5f1d3e485346f8e6da07a466f8bc9",
+      "terminated": true,
+      "total_reward": 19.74316829038838,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "4": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2164,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-burst-01-96d25cf1a617",
+      "event_seed": 7263899491263713532,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1791432947,
+      "split": "train",
+      "tape_id": "train-burst-01-96d25cf1a617",
+      "tape_sha256": "96d25cf1a6173a1464f463d366f96a69f0d5f1d3e485346f8e6da07a466f8bc9",
+      "terminated": true,
+      "total_reward": 19.78394660940673,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "14": 1,
+        "4": 2,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2158,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-long_gap-00-9dfd6a43da14",
+      "event_seed": 4592722737958176000,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "long_gap",
+      "seed": 952136030,
+      "split": "train",
+      "tape_id": "train-long_gap-00-9dfd6a43da14",
+      "tape_sha256": "9dfd6a43da145eb141e2bf61f3db5f770d98a23dbc8b2e1e00ab1b7c026b4e8d",
+      "terminated": true,
+      "total_reward": 28.013705507838942,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "14": 1,
+        "2": 1,
+        "4": 2,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2158,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-long_gap-00-9dfd6a43da14",
+      "event_seed": 4592722737958176000,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "long_gap",
+      "seed": 952136030,
+      "split": "train",
+      "tape_id": "train-long_gap-00-9dfd6a43da14",
+      "tape_sha256": "9dfd6a43da145eb141e2bf61f3db5f770d98a23dbc8b2e1e00ab1b7c026b4e8d",
+      "terminated": true,
+      "total_reward": 29.613409391956168,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 2,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2158,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-long_gap-00-9dfd6a43da14",
+      "event_seed": 4592722737958176000,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 3
+      },
+      "evidence_count": 10,
+      "observation_count": 16,
+      "scenario_id": "long_gap",
+      "seed": 952136030,
+      "split": "train",
+      "tape_id": "train-long_gap-00-9dfd6a43da14",
+      "tape_sha256": "9dfd6a43da145eb141e2bf61f3db5f770d98a23dbc8b2e1e00ab1b7c026b4e8d",
+      "terminated": true,
+      "total_reward": 21.422038841172274,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "5": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2029,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-long_gap-01-ed776258b3dd",
+      "event_seed": 1489515889698853998,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 466947875,
+      "split": "train",
+      "tape_id": "train-long_gap-01-ed776258b3dd",
+      "tape_sha256": "ed776258b3ddb341e0dca633005017cde7563d9f0a70e4ca0e6748448f91be7e",
+      "terminated": true,
+      "total_reward": 21.955668290388378,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "14": 1,
+        "4": 1,
+        "5": 2
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2029,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-long_gap-01-ed776258b3dd",
+      "event_seed": 1489515889698853998,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 466947875,
+      "split": "train",
+      "tape_id": "train-long_gap-01-ed776258b3dd",
+      "tape_sha256": "ed776258b3ddb341e0dca633005017cde7563d9f0a70e4ca0e6748448f91be7e",
+      "terminated": true,
+      "total_reward": 19.26846440627115,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "8": 1,
+        "9": 2
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2029,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-long_gap-01-ed776258b3dd",
+      "event_seed": 1489515889698853998,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 466947875,
+      "split": "train",
+      "tape_id": "train-long_gap-01-ed776258b3dd",
+      "tape_sha256": "ed776258b3ddb341e0dca633005017cde7563d9f0a70e4ca0e6748448f91be7e",
+      "terminated": true,
+      "total_reward": 30.088409391956162,
+      "transition_count": 7,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2079,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-weak_comm-00-4e02f18da07a",
+      "event_seed": 6196009133362649323,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 277274645,
+      "split": "train",
+      "tape_id": "train-weak_comm-00-4e02f18da07a",
+      "tape_sha256": "4e02f18da07a390e9e10347c35157a21d7bb8a8622e3ebf867c9cf230eb3f706",
+      "terminated": true,
+      "total_reward": 13.078278319018349,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "2": 1,
+        "5": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2079,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-weak_comm-00-4e02f18da07a",
+      "event_seed": 6196009133362649323,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 277274645,
+      "split": "train",
+      "tape_id": "train-weak_comm-00-4e02f18da07a",
+      "tape_sha256": "4e02f18da07a390e9e10347c35157a21d7bb8a8622e3ebf867c9cf230eb3f706",
+      "terminated": true,
+      "total_reward": 21.35685275391947,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "16": 1,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2079,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-weak_comm-00-4e02f18da07a",
+      "event_seed": 6196009133362649323,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 277274645,
+      "split": "train",
+      "tape_id": "train-weak_comm-00-4e02f18da07a",
+      "tape_sha256": "4e02f18da07a390e9e10347c35157a21d7bb8a8622e3ebf867c9cf230eb3f706",
+      "terminated": true,
+      "total_reward": 11.036611652351683,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "3": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2095,
+      "communication_trigger_count": 4,
+      "episode_id": "train/random_legal/train-weak_comm-01-5e11efe26f41",
+      "event_seed": 3692963135254788530,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1477493226,
+      "split": "train",
+      "tape_id": "train-weak_comm-01-5e11efe26f41",
+      "tape_sha256": "5e11efe26f41b82fbf81882d486d38838b3ebc0539195c02901cb91f74c0b8d1",
+      "terminated": true,
+      "total_reward": 19.2440566380367,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2095,
+      "communication_trigger_count": 4,
+      "episode_id": "train/greedy/train-weak_comm-01-5e11efe26f41",
+      "event_seed": 3692963135254788530,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1477493226,
+      "split": "train",
+      "tape_id": "train-weak_comm-01-5e11efe26f41",
+      "tape_sha256": "5e11efe26f41b82fbf81882d486d38838b3ebc0539195c02901cb91f74c0b8d1",
+      "terminated": true,
+      "total_reward": 19.23185275391947,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2095,
+      "communication_trigger_count": 4,
+      "episode_id": "train/gppo/train-weak_comm-01-5e11efe26f41",
+      "event_seed": 3692963135254788530,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1477493226,
+      "split": "train",
+      "tape_id": "train-weak_comm-01-5e11efe26f41",
+      "tape_sha256": "5e11efe26f41b82fbf81882d486d38838b3ebc0539195c02901cb91f74c0b8d1",
+      "terminated": true,
+      "total_reward": 22.27263107293782,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/random_legal/validation-normal-00-4ab689e9379a",
+      "event_seed": 7994198240389600444,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1362253517,
+      "split": "validation",
+      "tape_id": "validation-normal-00-4ab689e9379a",
+      "tape_sha256": "4ab689e9379aeddef8fbb6c4e8d70f3d56eced249b064275ab65a820a6f844b0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/greedy/validation-normal-00-4ab689e9379a",
+      "event_seed": 7994198240389600444,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1362253517,
+      "split": "validation",
+      "tape_id": "validation-normal-00-4ab689e9379a",
+      "tape_sha256": "4ab689e9379aeddef8fbb6c4e8d70f3d56eced249b064275ab65a820a6f844b0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/gppo/validation-normal-00-4ab689e9379a",
+      "event_seed": 7994198240389600444,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1362253517,
+      "split": "validation",
+      "tape_id": "validation-normal-00-4ab689e9379a",
+      "tape_sha256": "4ab689e9379aeddef8fbb6c4e8d70f3d56eced249b064275ab65a820a6f844b0",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/random_legal/validation-normal-01-d3192f37c7bd",
+      "event_seed": 7763408114966107473,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1912656398,
+      "split": "validation",
+      "tape_id": "validation-normal-01-d3192f37c7bd",
+      "tape_sha256": "d3192f37c7bd467b7e22e8cf654e5dd9dedb1a98ed455ca6a98a69689c00ebfb",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/greedy/validation-normal-01-d3192f37c7bd",
+      "event_seed": 7763408114966107473,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1912656398,
+      "split": "validation",
+      "tape_id": "validation-normal-01-d3192f37c7bd",
+      "tape_sha256": "d3192f37c7bd467b7e22e8cf654e5dd9dedb1a98ed455ca6a98a69689c00ebfb",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "validation/gppo/validation-normal-01-d3192f37c7bd",
+      "event_seed": 7763408114966107473,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1912656398,
+      "split": "validation",
+      "tape_id": "validation-normal-01-d3192f37c7bd",
+      "tape_sha256": "d3192f37c7bd467b7e22e8cf654e5dd9dedb1a98ed455ca6a98a69689c00ebfb",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "15": 1,
+        "2": 1,
+        "5": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2006,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-single-00-a3a490760557",
+      "event_seed": 5136234979310658368,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "single",
+      "seed": 1981109268,
+      "split": "validation",
+      "tape_id": "validation-single-00-a3a490760557",
+      "tape_sha256": "a3a49076055789da497b65fbdec4ba2fcc57fad378e05d1f2696717dc8f7f6ad",
+      "terminated": true,
+      "total_reward": 21.47470388411723,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "15": 1,
+        "2": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2006,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-single-00-a3a490760557",
+      "event_seed": 5136234979310658368,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "single",
+      "seed": 1981109268,
+      "split": "validation",
+      "tape_id": "validation-single-00-a3a490760557",
+      "tape_sha256": "a3a49076055789da497b65fbdec4ba2fcc57fad378e05d1f2696717dc8f7f6ad",
+      "terminated": true,
+      "total_reward": 21.47470388411723,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "16": 1,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2006,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-single-00-a3a490760557",
+      "event_seed": 5136234979310658368,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "single",
+      "seed": 1981109268,
+      "split": "validation",
+      "tape_id": "validation-single-00-a3a490760557",
+      "tape_sha256": "a3a49076055789da497b65fbdec4ba2fcc57fad378e05d1f2696717dc8f7f6ad",
+      "terminated": true,
+      "total_reward": 11.036611652351683,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-single-01-2010c927f283",
+      "event_seed": 4064484388053901943,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 658002954,
+      "split": "validation",
+      "tape_id": "validation-single-01-2010c927f283",
+      "tape_sha256": "2010c927f2834ba353748155b2583616735d84d7363f31303335c418dd3f5f39",
+      "terminated": true,
+      "total_reward": 25.486019420586135,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "5": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-single-01-2010c927f283",
+      "event_seed": 4064484388053901943,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 658002954,
+      "split": "validation",
+      "tape_id": "validation-single-01-2010c927f283",
+      "tape_sha256": "2010c927f2834ba353748155b2583616735d84d7363f31303335c418dd3f5f39",
+      "terminated": true,
+      "total_reward": 25.48601942058614,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "16": 1,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-single-01-2010c927f283",
+      "event_seed": 4064484388053901943,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 658002954,
+      "split": "validation",
+      "tape_id": "validation-single-01-2010c927f283",
+      "tape_sha256": "2010c927f2834ba353748155b2583616735d84d7363f31303335c418dd3f5f39",
+      "terminated": true,
+      "total_reward": 11.04881553646891,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "16": 1,
+        "3": 1,
+        "6": 1,
+        "8": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2121,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-sequential-00-782c45efd52b",
+      "event_seed": 632498017886827997,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 577050054,
+      "split": "validation",
+      "tape_id": "validation-sequential-00-782c45efd52b",
+      "tape_sha256": "782c45efd52bb0b09f244acf7faf09296f1d18f346014d7451d93a4d2c8e90b1",
+      "terminated": true,
+      "total_reward": 21.295833333333334,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "16": 1,
+        "2": 1,
+        "7": 1,
+        "8": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2121,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-sequential-00-782c45efd52b",
+      "event_seed": 632498017886827997,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 577050054,
+      "split": "validation",
+      "tape_id": "validation-sequential-00-782c45efd52b",
+      "tape_sha256": "782c45efd52bb0b09f244acf7faf09296f1d18f346014d7451d93a4d2c8e90b1",
+      "terminated": true,
+      "total_reward": 21.35685275391947,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2121,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-sequential-00-782c45efd52b",
+      "event_seed": 632498017886827997,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 577050054,
+      "split": "validation",
+      "tape_id": "validation-sequential-00-782c45efd52b",
+      "tape_sha256": "782c45efd52bb0b09f244acf7faf09296f1d18f346014d7451d93a4d2c8e90b1",
+      "terminated": true,
+      "total_reward": 19.284834957055047,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "12": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2115,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-sequential-01-53e2cb442e1e",
+      "event_seed": 4674905012793016107,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 1023704646,
+      "split": "validation",
+      "tape_id": "validation-sequential-01-53e2cb442e1e",
+      "tape_sha256": "53e2cb442e1eb7f4d309f46bbe5e1c976b9b06aa0f13cc606c6037b3555083f6",
+      "terminated": true,
+      "total_reward": 12.916666666666668,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "13": 1,
+        "8": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2115,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-sequential-01-53e2cb442e1e",
+      "event_seed": 4674905012793016107,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 1023704646,
+      "split": "validation",
+      "tape_id": "validation-sequential-01-53e2cb442e1e",
+      "tape_sha256": "53e2cb442e1eb7f4d309f46bbe5e1c976b9b06aa0f13cc606c6037b3555083f6",
+      "terminated": true,
+      "total_reward": 19.26846440627115,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "2": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2115,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-sequential-01-53e2cb442e1e",
+      "event_seed": 4674905012793016107,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "sequential",
+      "seed": 1023704646,
+      "split": "validation",
+      "tape_id": "validation-sequential-01-53e2cb442e1e",
+      "tape_sha256": "53e2cb442e1eb7f4d309f46bbe5e1c976b9b06aa0f13cc606c6037b3555083f6",
+      "terminated": true,
+      "total_reward": 19.3092427252895,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "13": 2,
+        "8": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2184,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-overlap-00-639b67db96a3",
+      "event_seed": 6133793692666313221,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "overlap",
+      "seed": 990366817,
+      "split": "validation",
+      "tape_id": "validation-overlap-00-639b67db96a3",
+      "tape_sha256": "639b67db96a334fd0302d2e1b8466094c1583f1460415daa0d8515faca737242",
+      "terminated": true,
+      "total_reward": 13.54792718882059,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "1": 2,
+        "4": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2184,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-overlap-00-639b67db96a3",
+      "event_seed": 6133793692666313221,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "overlap",
+      "seed": 990366817,
+      "split": "validation",
+      "tape_id": "validation-overlap-00-639b67db96a3",
+      "tape_sha256": "639b67db96a334fd0302d2e1b8466094c1583f1460415daa0d8515faca737242",
+      "terminated": true,
+      "total_reward": 18.247334957055045,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "4": 1,
+        "8": 1,
+        "9": 2
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2184,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-overlap-00-639b67db96a3",
+      "event_seed": 6133793692666313221,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "overlap",
+      "seed": 990366817,
+      "split": "validation",
+      "tape_id": "validation-overlap-00-639b67db96a3",
+      "tape_sha256": "639b67db96a334fd0302d2e1b8466094c1583f1460415daa0d8515faca737242",
+      "terminated": true,
+      "total_reward": 16.115186087252805,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "13": 1,
+        "16": 1,
+        "2": 1,
+        "6": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2118,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-overlap-01-4b6649da3e8b",
+      "event_seed": 4942948928859921462,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 228425185,
+      "split": "validation",
+      "tape_id": "validation-overlap-01-4b6649da3e8b",
+      "tape_sha256": "4b6649da3e8b0966167a24f1f328298899b8c8790aa6b49d06204954b6adb8e7",
+      "terminated": true,
+      "total_reward": 12.481852753919469,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "16": 1,
+        "2": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2118,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-overlap-01-4b6649da3e8b",
+      "event_seed": 4942948928859921462,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 228425185,
+      "split": "validation",
+      "tape_id": "validation-overlap-01-4b6649da3e8b",
+      "tape_sha256": "4b6649da3e8b0966167a24f1f328298899b8c8790aa6b49d06204954b6adb8e7",
+      "terminated": true,
+      "total_reward": 15.665778319018347,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "16": 1,
+        "2": 2
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2118,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-overlap-01-4b6649da3e8b",
+      "event_seed": 4942948928859921462,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 228425185,
+      "split": "validation",
+      "tape_id": "validation-overlap-01-4b6649da3e8b",
+      "tape_sha256": "4b6649da3e8b0966167a24f1f328298899b8c8790aa6b49d06204954b6adb8e7",
+      "terminated": true,
+      "total_reward": 11.518464406271152,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "13": 1,
+        "16": 1,
+        "3": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2050,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-burst-00-dd02ed953fb8",
+      "event_seed": 8772920059653838717,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 648613389,
+      "split": "validation",
+      "tape_id": "validation-burst-00-dd02ed953fb8",
+      "tape_sha256": "dd02ed953fb8a9f5b83a6b5f6385b2f6162db8fab54c728cb9938aae57821c2b",
+      "terminated": true,
+      "total_reward": 13.125,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "1": 1,
+        "15": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2050,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-burst-00-dd02ed953fb8",
+      "event_seed": 8772920059653838717,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 648613389,
+      "split": "validation",
+      "tape_id": "validation-burst-00-dd02ed953fb8",
+      "tape_sha256": "dd02ed953fb8a9f5b83a6b5f6385b2f6162db8fab54c728cb9938aae57821c2b",
+      "terminated": true,
+      "total_reward": 19.919944985685014,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "16": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2050,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-burst-00-dd02ed953fb8",
+      "event_seed": 8772920059653838717,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 648613389,
+      "split": "validation",
+      "tape_id": "validation-burst-00-dd02ed953fb8",
+      "tape_sha256": "dd02ed953fb8a9f5b83a6b5f6385b2f6162db8fab54c728cb9938aae57821c2b",
+      "terminated": true,
+      "total_reward": 10.948223304703363,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2160,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-burst-01-846ae6938d4b",
+      "event_seed": 6922980549424116184,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1004131873,
+      "split": "validation",
+      "tape_id": "validation-burst-01-846ae6938d4b",
+      "tape_sha256": "846ae6938d4b7201a968ef3a3b0babb89b6a13017cfa7ae820ac1a682a8cb7f8",
+      "terminated": true,
+      "total_reward": 11.01935275391947,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "12": 1,
+        "13": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2160,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-burst-01-846ae6938d4b",
+      "event_seed": 6922980549424116184,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1004131873,
+      "split": "validation",
+      "tape_id": "validation-burst-01-846ae6938d4b",
+      "tape_sha256": "846ae6938d4b7201a968ef3a3b0babb89b6a13017cfa7ae820ac1a682a8cb7f8",
+      "terminated": true,
+      "total_reward": 15.102686087252803,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "3": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2160,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-burst-01-846ae6938d4b",
+      "event_seed": 6922980549424116184,
+      "event_types": {
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 13,
+      "scenario_id": "burst",
+      "seed": 1004131873,
+      "split": "validation",
+      "tape_id": "validation-burst-01-846ae6938d4b",
+      "tape_sha256": "846ae6938d4b7201a968ef3a3b0babb89b6a13017cfa7ae820ac1a682a8cb7f8",
+      "terminated": true,
+      "total_reward": 19.74733495705505,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "4": 1,
+        "6": 2,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2093,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-long_gap-00-d52fa291f201",
+      "event_seed": 4814562307175650640,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "long_gap",
+      "seed": 972181602,
+      "split": "validation",
+      "tape_id": "validation-long_gap-00-d52fa291f201",
+      "tape_sha256": "d52fa291f2018bc960acf2f474d91cb9ff78e3cd16e4ea2d183105e36d402b5f",
+      "terminated": true,
+      "total_reward": 20.865186087252802,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "14": 1,
+        "15": 1,
+        "2": 2,
+        "4": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2093,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-long_gap-00-d52fa291f201",
+      "event_seed": 4814562307175650640,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "long_gap",
+      "seed": 972181602,
+      "split": "validation",
+      "tape_id": "validation-long_gap-00-d52fa291f201",
+      "tape_sha256": "d52fa291f2018bc960acf2f474d91cb9ff78e3cd16e4ea2d183105e36d402b5f",
+      "terminated": true,
+      "total_reward": 23.938409391956167,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 2,
+        "3": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2093,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-long_gap-00-d52fa291f201",
+      "event_seed": 4814562307175650640,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "long_gap",
+      "seed": 972181602,
+      "split": "validation",
+      "tape_id": "validation-long_gap-00-d52fa291f201",
+      "tape_sha256": "d52fa291f2018bc960acf2f474d91cb9ff78e3cd16e4ea2d183105e36d402b5f",
+      "terminated": true,
+      "total_reward": 23.942576058622834,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "8": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2025,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-long_gap-01-5a9f0f7eda75",
+      "event_seed": 944349058955225570,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 785954069,
+      "split": "validation",
+      "tape_id": "validation-long_gap-01-5a9f0f7eda75",
+      "tape_sha256": "5a9f0f7eda7570c3c141e2fa03f97c3b2606f3394f4cdeaa2de179f1d1b6da86",
+      "terminated": true,
+      "total_reward": 33.700909391956166,
+      "transition_count": 7,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "4": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2025,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-long_gap-01-5a9f0f7eda75",
+      "event_seed": 944349058955225570,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 785954069,
+      "split": "validation",
+      "tape_id": "validation-long_gap-01-5a9f0f7eda75",
+      "tape_sha256": "5a9f0f7eda7570c3c141e2fa03f97c3b2606f3394f4cdeaa2de179f1d1b6da86",
+      "terminated": true,
+      "total_reward": 23.39763107293782,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2025,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-long_gap-01-5a9f0f7eda75",
+      "event_seed": 944349058955225570,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 785954069,
+      "split": "validation",
+      "tape_id": "validation-long_gap-01-5a9f0f7eda75",
+      "tape_sha256": "5a9f0f7eda7570c3c141e2fa03f97c3b2606f3394f4cdeaa2de179f1d1b6da86",
+      "terminated": true,
+      "total_reward": 26.475021044307844,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "13": 1,
+        "14": 1,
+        "2": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2178,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-weak_comm-00-0742b2646264",
+      "event_seed": 4451178882431296745,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 7,
+      "observation_count": 12,
+      "scenario_id": "weak_comm",
+      "seed": 1244485947,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-00-0742b2646264",
+      "tape_sha256": "0742b264626443eb6b25c35b1ef11e7c60f9ac88bbf68eb6a04c9955a327ea70",
+      "terminated": true,
+      "total_reward": 18.151797739604486,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "14": 2
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2178,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-weak_comm-00-0742b2646264",
+      "event_seed": 4451178882431296745,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 7,
+      "observation_count": 12,
+      "scenario_id": "weak_comm",
+      "seed": 1244485947,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-00-0742b2646264",
+      "tape_sha256": "0742b264626443eb6b25c35b1ef11e7c60f9ac88bbf68eb6a04c9955a327ea70",
+      "terminated": true,
+      "total_reward": 15.54792718882059,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "2": 2
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2178,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-weak_comm-00-0742b2646264",
+      "event_seed": 4451178882431296745,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 7,
+      "observation_count": 12,
+      "scenario_id": "weak_comm",
+      "seed": 1244485947,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-00-0742b2646264",
+      "tape_sha256": "0742b264626443eb6b25c35b1ef11e7c60f9ac88bbf68eb6a04c9955a327ea70",
+      "terminated": true,
+      "total_reward": 11.54792718882059,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "16": 1,
+        "3": 1,
+        "7": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/random_legal/validation-weak_comm-01-aa662e192166",
+      "event_seed": 6431453287520589008,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1268637638,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-01-aa662e192166",
+      "tape_sha256": "aa662e192166313664b5bb0353b34a4d3c80471220e5ed882c99faf98bebe9c0",
+      "terminated": true,
+      "total_reward": 19.165778319018347,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "1": 1,
+        "11": 1,
+        "15": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/greedy/validation-weak_comm-01-aa662e192166",
+      "event_seed": 6431453287520589008,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1268637638,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-01-aa662e192166",
+      "tape_sha256": "aa662e192166313664b5bb0353b34a4d3c80471220e5ed882c99faf98bebe9c0",
+      "terminated": true,
+      "total_reward": 25.997334957055045,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "16": 1,
+        "4": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2084,
+      "communication_trigger_count": 4,
+      "episode_id": "validation/gppo/validation-weak_comm-01-aa662e192166",
+      "event_seed": 6431453287520589008,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "weak_comm",
+      "seed": 1268637638,
+      "split": "validation",
+      "tape_id": "validation-weak_comm-01-aa662e192166",
+      "tape_sha256": "aa662e192166313664b5bb0353b34a4d3c80471220e5ed882c99faf98bebe9c0",
+      "terminated": true,
+      "total_reward": 19.3092427252895,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/random_legal/test-normal-00-4a8f8e73cf70",
+      "event_seed": 1544467265992580180,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1822405039,
+      "split": "test",
+      "tape_id": "test-normal-00-4a8f8e73cf70",
+      "tape_sha256": "4a8f8e73cf70fccf9a31b277a04e00c09ac58ccf8800bd8f55c522e1507f8879",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/greedy/test-normal-00-4a8f8e73cf70",
+      "event_seed": 1544467265992580180,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1822405039,
+      "split": "test",
+      "tape_id": "test-normal-00-4a8f8e73cf70",
+      "tape_sha256": "4a8f8e73cf70fccf9a31b277a04e00c09ac58ccf8800bd8f55c522e1507f8879",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/gppo/test-normal-00-4a8f8e73cf70",
+      "event_seed": 1544467265992580180,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 1822405039,
+      "split": "test",
+      "tape_id": "test-normal-00-4a8f8e73cf70",
+      "tape_sha256": "4a8f8e73cf70fccf9a31b277a04e00c09ac58ccf8800bd8f55c522e1507f8879",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/random_legal/test-normal-01-32a1804dad9f",
+      "event_seed": 8089086314595008592,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 2038335225,
+      "split": "test",
+      "tape_id": "test-normal-01-32a1804dad9f",
+      "tape_sha256": "32a1804dad9f287aee3bb93c0dc51cc4d2bd6a4eba06264044d2d23c363b1305",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/greedy/test-normal-01-32a1804dad9f",
+      "event_seed": 8089086314595008592,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 2038335225,
+      "split": "test",
+      "tape_id": "test-normal-01-32a1804dad9f",
+      "tape_sha256": "32a1804dad9f287aee3bb93c0dc51cc4d2bd6a4eba06264044d2d23c363b1305",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 0,
+      "communication_trigger_count": 0,
+      "episode_id": "test/gppo/test-normal-01-32a1804dad9f",
+      "event_seed": 8089086314595008592,
+      "event_types": {},
+      "evidence_count": 0,
+      "observation_count": 0,
+      "scenario_id": "normal",
+      "seed": 2038335225,
+      "split": "test",
+      "tape_id": "test-normal-01-32a1804dad9f",
+      "tape_sha256": "32a1804dad9f287aee3bb93c0dc51cc4d2bd6a4eba06264044d2d23c363b1305",
+      "terminated": true,
+      "total_reward": 0.0,
+      "transition_count": 1,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "12": 1,
+        "16": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2229,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-single-00-dcdba29ffbcb",
+      "event_seed": 8524919441929347207,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "single",
+      "seed": 1897012678,
+      "split": "test",
+      "tape_id": "test-single-00-dcdba29ffbcb",
+      "tape_sha256": "dcdba29ffbcb87186666d5ca189982757def7d426ebcb1236bc9c39c3a6eb772",
+      "terminated": true,
+      "total_reward": 9.441074434901122,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "12": 1,
+        "16": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2229,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-single-00-dcdba29ffbcb",
+      "event_seed": 8524919441929347207,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "single",
+      "seed": 1897012678,
+      "split": "test",
+      "tape_id": "test-single-00-dcdba29ffbcb",
+      "tape_sha256": "dcdba29ffbcb87186666d5ca189982757def7d426ebcb1236bc9c39c3a6eb772",
+      "terminated": true,
+      "total_reward": 9.441074434901122,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "3": 1,
+        "4": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2229,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-single-00-dcdba29ffbcb",
+      "event_seed": 8524919441929347207,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "single",
+      "seed": 1897012678,
+      "split": "test",
+      "tape_id": "test-single-00-dcdba29ffbcb",
+      "tape_sha256": "dcdba29ffbcb87186666d5ca189982757def7d426ebcb1236bc9c39c3a6eb772",
+      "terminated": true,
+      "total_reward": 11.45238997137003,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2098,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-single-01-42459c343f30",
+      "event_seed": 3577840443550074427,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 1456798021,
+      "split": "test",
+      "tape_id": "test-single-01-42459c343f30",
+      "tape_sha256": "42459c343f30bd9c5dc20c18ec6035db513d1ccd20852c642cef4fb5ad640bde",
+      "terminated": true,
+      "total_reward": 27.41727994274006,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "13": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2098,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-single-01-42459c343f30",
+      "event_seed": 3577840443550074427,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 1456798021,
+      "split": "test",
+      "tape_id": "test-single-01-42459c343f30",
+      "tape_sha256": "42459c343f30bd9c5dc20c18ec6035db513d1ccd20852c642cef4fb5ad640bde",
+      "terminated": true,
+      "total_reward": 23.872334957055045,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2098,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-single-01-42459c343f30",
+      "event_seed": 3577840443550074427,
+      "event_types": {
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "single",
+      "seed": 1456798021,
+      "split": "test",
+      "tape_id": "test-single-01-42459c343f30",
+      "tape_sha256": "42459c343f30bd9c5dc20c18ec6035db513d1ccd20852c642cef4fb5ad640bde",
+      "terminated": true,
+      "total_reward": 16.185131072937818,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "14": 1,
+        "2": 1,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2077,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-sequential-00-85b47f1f3183",
+      "event_seed": 3298828894140590773,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1396911762,
+      "split": "test",
+      "tape_id": "test-sequential-00-85b47f1f3183",
+      "tape_sha256": "85b47f1f31838956ef7de55ca3a11966f9d335e11983dbd367d6c9c52044cad0",
+      "terminated": true,
+      "total_reward": 19.855076058622835,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "14": 1,
+        "15": 1,
+        "2": 2,
+        "4": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2077,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-sequential-00-85b47f1f3183",
+      "event_seed": 3298828894140590773,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1396911762,
+      "split": "test",
+      "tape_id": "test-sequential-00-85b47f1f3183",
+      "tape_sha256": "85b47f1f31838956ef7de55ca3a11966f9d335e11983dbd367d6c9c52044cad0",
+      "terminated": true,
+      "total_reward": 23.850021044307848,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 2,
+        "4": 1,
+        "6": 1,
+        "7": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2077,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-sequential-00-85b47f1f3183",
+      "event_seed": 3298828894140590773,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "sequential",
+      "seed": 1396911762,
+      "split": "test",
+      "tape_id": "test-sequential-00-85b47f1f3183",
+      "tape_sha256": "85b47f1f31838956ef7de55ca3a11966f9d335e11983dbd367d6c9c52044cad0",
+      "terminated": true,
+      "total_reward": 19.855076058622835,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2022,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-sequential-01-2f0e74b51317",
+      "event_seed": 3106714104919716735,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "sequential",
+      "seed": 1036127054,
+      "split": "test",
+      "tape_id": "test-sequential-01-2f0e74b51317",
+      "tape_sha256": "2f0e74b513170ae44f28338902faba9beb37bf3e6f9149428c6fd190eaafff83",
+      "terminated": true,
+      "total_reward": 20.917872174505604,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "11": 1,
+        "13": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2022,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-sequential-01-2f0e74b51317",
+      "event_seed": 3106714104919716735,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "sequential",
+      "seed": 1036127054,
+      "split": "test",
+      "tape_id": "test-sequential-01-2f0e74b51317",
+      "tape_sha256": "2f0e74b513170ae44f28338902faba9beb37bf3e6f9149428c6fd190eaafff83",
+      "terminated": true,
+      "total_reward": 28.605076058622835,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "11": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2022,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-sequential-01-2f0e74b51317",
+      "event_seed": 3106714104919716735,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "UAV_DAMAGE": 3
+      },
+      "evidence_count": 4,
+      "observation_count": 4,
+      "scenario_id": "sequential",
+      "seed": 1036127054,
+      "split": "test",
+      "tape_id": "test-sequential-01-2f0e74b51317",
+      "tape_sha256": "2f0e74b513170ae44f28338902faba9beb37bf3e6f9149428c6fd190eaafff83",
+      "terminated": true,
+      "total_reward": 20.917872174505604,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2108,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-overlap-00-73b784322604",
+      "event_seed": 6599896863571485611,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 922957611,
+      "split": "test",
+      "tape_id": "test-overlap-00-73b784322604",
+      "tape_sha256": "73b78432260464c60ef8a965c991b7b41958250a756087dd52d6a3740af0569d",
+      "terminated": true,
+      "total_reward": 7.286611652351682,
+      "transition_count": 2,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "4": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2108,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-overlap-00-73b784322604",
+      "event_seed": 6599896863571485611,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 922957611,
+      "split": "test",
+      "tape_id": "test-overlap-00-73b784322604",
+      "tape_sha256": "73b78432260464c60ef8a965c991b7b41958250a756087dd52d6a3740af0569d",
+      "terminated": true,
+      "total_reward": 16.754166666666666,
+      "transition_count": 3,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "0": 1,
+        "1": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2108,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-overlap-00-73b784322604",
+      "event_seed": 6599896863571485611,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DESTROYED": 1,
+        "TARGET_DISCOVERED": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 9,
+      "scenario_id": "overlap",
+      "seed": 922957611,
+      "split": "test",
+      "tape_id": "test-overlap-00-73b784322604",
+      "tape_sha256": "73b78432260464c60ef8a965c991b7b41958250a756087dd52d6a3740af0569d",
+      "terminated": true,
+      "total_reward": 7.3232233047033635,
+      "transition_count": 2,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2155,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-overlap-01-11724aacfa04",
+      "event_seed": 5259548500124665667,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "overlap",
+      "seed": 1141298065,
+      "split": "test",
+      "tape_id": "test-overlap-01-11724aacfa04",
+      "tape_sha256": "11724aacfa0475c3731957bd1886240df59901aef92ec0a46139ab2ab1992577",
+      "terminated": true,
+      "total_reward": 22.864001623721713,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2155,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-overlap-01-11724aacfa04",
+      "event_seed": 5259548500124665667,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "overlap",
+      "seed": 1141298065,
+      "split": "test",
+      "tape_id": "test-overlap-01-11724aacfa04",
+      "tape_sha256": "11724aacfa0475c3731957bd1886240df59901aef92ec0a46139ab2ab1992577",
+      "terminated": true,
+      "total_reward": 22.86400162372171,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2155,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-overlap-01-11724aacfa04",
+      "event_seed": 5259548500124665667,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 8,
+      "observation_count": 12,
+      "scenario_id": "overlap",
+      "seed": 1141298065,
+      "split": "test",
+      "tape_id": "test-overlap-01-11724aacfa04",
+      "tape_sha256": "11724aacfa0475c3731957bd1886240df59901aef92ec0a46139ab2ab1992577",
+      "terminated": true,
+      "total_reward": 22.86400162372171,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "13": 1,
+        "2": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2192,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-burst-00-b036f535cb72",
+      "event_seed": 7916682288283746745,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "burst",
+      "seed": 1800709404,
+      "split": "test",
+      "tape_id": "test-burst-00-b036f535cb72",
+      "tape_sha256": "b036f535cb72559ff060c1e7f8c60ab452c0126322e4a04493754dbe90bfdae8",
+      "terminated": true,
+      "total_reward": 8.323223304703363,
+      "transition_count": 2,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "2": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2192,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-burst-00-b036f535cb72",
+      "event_seed": 7916682288283746745,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "burst",
+      "seed": 1800709404,
+      "split": "test",
+      "tape_id": "test-burst-00-b036f535cb72",
+      "tape_sha256": "b036f535cb72559ff060c1e7f8c60ab452c0126322e4a04493754dbe90bfdae8",
+      "terminated": true,
+      "total_reward": 9.41161165235168,
+      "transition_count": 2,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "2": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2192,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-burst-00-b036f535cb72",
+      "event_seed": 7916682288283746745,
+      "event_types": {
+        "TARGET_DESTROYED": 2,
+        "TARGET_DISCOVERED": 2
+      },
+      "evidence_count": 8,
+      "observation_count": 14,
+      "scenario_id": "burst",
+      "seed": 1800709404,
+      "split": "test",
+      "tape_id": "test-burst-00-b036f535cb72",
+      "tape_sha256": "b036f535cb72559ff060c1e7f8c60ab452c0126322e4a04493754dbe90bfdae8",
+      "terminated": true,
+      "total_reward": 7.3232233047033635,
+      "transition_count": 2,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "13": 1,
+        "4": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2051,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-burst-01-7b962b1787d4",
+      "event_seed": 5232102911869548676,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 337484852,
+      "split": "test",
+      "tape_id": "test-burst-01-7b962b1787d4",
+      "tape_sha256": "7b962b1787d447a9228c8d0cedb3c423caa3f4a971490fb85d0a7fe52248b087",
+      "terminated": true,
+      "total_reward": 18.824407768234458,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "13": 1,
+        "4": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2051,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-burst-01-7b962b1787d4",
+      "event_seed": 5232102911869548676,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 337484852,
+      "split": "test",
+      "tape_id": "test-burst-01-7b962b1787d4",
+      "tape_sha256": "7b962b1787d447a9228c8d0cedb3c423caa3f4a971490fb85d0a7fe52248b087",
+      "terminated": true,
+      "total_reward": 20.86101942058614,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "11": 1,
+        "16": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2051,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-burst-01-7b962b1787d4",
+      "event_seed": 5232102911869548676,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "burst",
+      "seed": 337484852,
+      "split": "test",
+      "tape_id": "test-burst-01-7b962b1787d4",
+      "tape_sha256": "7b962b1787d447a9228c8d0cedb3c423caa3f4a971490fb85d0a7fe52248b087",
+      "terminated": true,
+      "total_reward": 10.948223304703363,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "12": 1,
+        "13": 1,
+        "15": 1,
+        "3": 1,
+        "6": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-long_gap-00-7448fb526e25",
+      "event_seed": 9123254914157376742,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1681493833,
+      "split": "test",
+      "tape_id": "test-long_gap-00-7448fb526e25",
+      "tape_sha256": "7448fb526e25c6a8cf24f1cab255081aa3ecea9ec9df1e3bf554784949a78211",
+      "terminated": true,
+      "total_reward": 27.248223304703362,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "13": 1,
+        "15": 1,
+        "8": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-long_gap-00-7448fb526e25",
+      "event_seed": 9123254914157376742,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1681493833,
+      "split": "test",
+      "tape_id": "test-long_gap-00-7448fb526e25",
+      "tape_sha256": "7448fb526e25c6a8cf24f1cab255081aa3ecea9ec9df1e3bf554784949a78211",
+      "terminated": true,
+      "total_reward": 24.989001623721713,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "11": 1,
+        "2": 1,
+        "3": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-long_gap-00-7448fb526e25",
+      "event_seed": 9123254914157376742,
+      "event_types": {
+        "REGION_VACANCY": 2,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1681493833,
+      "split": "test",
+      "tape_id": "test-long_gap-00-7448fb526e25",
+      "tape_sha256": "7448fb526e25c6a8cf24f1cab255081aa3ecea9ec9df1e3bf554784949a78211",
+      "terminated": true,
+      "total_reward": 27.25953884117228,
+      "transition_count": 7,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "14": 1,
+        "2": 1,
+        "3": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-long_gap-01-b2c191b67e42",
+      "event_seed": 1055471935136157951,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1460665003,
+      "split": "test",
+      "tape_id": "test-long_gap-01-b2c191b67e42",
+      "tape_sha256": "b2c191b67e42e936f06e5f14590ad7c2139bfd5bbda0f0ad97e7df218bb28847",
+      "terminated": true,
+      "total_reward": 30.66013107293782,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "10": 1,
+        "11": 1,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-long_gap-01-b2c191b67e42",
+      "event_seed": 1055471935136157951,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1460665003,
+      "split": "test",
+      "tape_id": "test-long_gap-01-b2c191b67e42",
+      "tape_sha256": "b2c191b67e42e936f06e5f14590ad7c2139bfd5bbda0f0ad97e7df218bb28847",
+      "terminated": true,
+      "total_reward": 25.48601942058614,
+      "transition_count": 5,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 1,
+        "16": 1,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2036,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-long_gap-01-b2c191b67e42",
+      "event_seed": 1055471935136157951,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 1,
+        "UAV_DAMAGE": 2
+      },
+      "evidence_count": 6,
+      "observation_count": 8,
+      "scenario_id": "long_gap",
+      "seed": 1460665003,
+      "split": "test",
+      "tape_id": "test-long_gap-01-b2c191b67e42",
+      "tape_sha256": "b2c191b67e42e936f06e5f14590ad7c2139bfd5bbda0f0ad97e7df218bb28847",
+      "terminated": true,
+      "total_reward": 11.036611652351683,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "6": 1,
+        "8": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 1507,
+      "communication_trigger_count": 3,
+      "episode_id": "test/random_legal/test-weak_comm-00-ac3ae2bb67b7",
+      "event_seed": 2222118357774445904,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 3,
+      "observation_count": 3,
+      "scenario_id": "weak_comm",
+      "seed": 1017789231,
+      "split": "test",
+      "tape_id": "test-weak_comm-00-ac3ae2bb67b7",
+      "tape_sha256": "ac3ae2bb67b770345ee8b2e68932495a095972cb163f8ef75fa4a42096ce2e03",
+      "terminated": true,
+      "total_reward": 10.948223304703363,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "10": 1,
+        "16": 1,
+        "4": 1,
+        "5": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 1507,
+      "communication_trigger_count": 3,
+      "episode_id": "test/greedy/test-weak_comm-00-ac3ae2bb67b7",
+      "event_seed": 2222118357774445904,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 3,
+      "observation_count": 3,
+      "scenario_id": "weak_comm",
+      "seed": 1017789231,
+      "split": "test",
+      "tape_id": "test-weak_comm-00-ac3ae2bb67b7",
+      "tape_sha256": "ac3ae2bb67b770345ee8b2e68932495a095972cb163f8ef75fa4a42096ce2e03",
+      "terminated": true,
+      "total_reward": 13.102686087252803,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "16": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 1507,
+      "communication_trigger_count": 3,
+      "episode_id": "test/gppo/test-weak_comm-00-ac3ae2bb67b7",
+      "event_seed": 2222118357774445904,
+      "event_types": {
+        "REGION_VACANCY": 3,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 3,
+      "observation_count": 3,
+      "scenario_id": "weak_comm",
+      "seed": 1017789231,
+      "split": "test",
+      "tape_id": "test-weak_comm-00-ac3ae2bb67b7",
+      "tape_sha256": "ac3ae2bb67b770345ee8b2e68932495a095972cb163f8ef75fa4a42096ce2e03",
+      "terminated": true,
+      "total_reward": 11.007148869802243,
+      "transition_count": 4,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 2,
+        "11": 1,
+        "2": 1,
+        "3": 1,
+        "9": 1
+      },
+      "behavior_policy": "random_legal",
+      "communication_bytes": 2147,
+      "communication_trigger_count": 4,
+      "episode_id": "test/random_legal/test-weak_comm-01-20e3459880fa",
+      "event_seed": 7270837606283171409,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 10,
+      "scenario_id": "weak_comm",
+      "seed": 385046553,
+      "split": "test",
+      "tape_id": "test-weak_comm-01-20e3459880fa",
+      "tape_sha256": "20e3459880fae4c59c4156d1e41165100eb13e456d6d32dc4b82bb04287b8bc1",
+      "terminated": true,
+      "total_reward": 28.013705507838942,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 2,
+        "11": 1,
+        "2": 1,
+        "3": 1,
+        "7": 1
+      },
+      "behavior_policy": "greedy",
+      "communication_bytes": 2147,
+      "communication_trigger_count": 4,
+      "episode_id": "test/greedy/test-weak_comm-01-20e3459880fa",
+      "event_seed": 7270837606283171409,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 10,
+      "scenario_id": "weak_comm",
+      "seed": 385046553,
+      "split": "test",
+      "tape_id": "test-weak_comm-01-20e3459880fa",
+      "tape_sha256": "20e3459880fae4c59c4156d1e41165100eb13e456d6d32dc4b82bb04287b8bc1",
+      "terminated": true,
+      "total_reward": 29.613409391956168,
+      "transition_count": 6,
+      "truncated": false
+    },
+    {
+      "action_counts": {
+        "1": 2,
+        "2": 1,
+        "3": 1
+      },
+      "behavior_policy": "gppo",
+      "communication_bytes": 2147,
+      "communication_trigger_count": 4,
+      "episode_id": "test/gppo/test-weak_comm-01-20e3459880fa",
+      "event_seed": 7270837606283171409,
+      "event_types": {
+        "REGION_VACANCY": 1,
+        "TARGET_DISCOVERED": 2,
+        "UAV_DAMAGE": 1
+      },
+      "evidence_count": 6,
+      "observation_count": 10,
+      "scenario_id": "weak_comm",
+      "seed": 385046553,
+      "split": "test",
+      "tape_id": "test-weak_comm-01-20e3459880fa",
+      "tape_sha256": "20e3459880fae4c59c4156d1e41165100eb13e456d6d32dc4b82bb04287b8bc1",
+      "terminated": true,
+      "total_reward": 17.29792718882059,
+      "transition_count": 4,
+      "truncated": false
+    }
+  ],
+  "event_distribution": {
+    "REGION_VACANCY": 44,
+    "TARGET_DESTROYED": 14,
+    "TARGET_DISCOVERED": 46,
+    "UAV_DAMAGE": 40
+  },
+  "files": {
+    "test": {
+      "bytes": 1325388,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/test.jsonl",
+      "sha256": "49b497a689d77fa5adce2e511a1f0e254aa46ca758d231ddbd3c086c75db4adb",
+      "transitions": 163
+    },
+    "train": {
+      "bytes": 1441607,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/train.jsonl",
+      "sha256": "8fb8bee383c4c98debf0a655193d6c3c4969cd4187fea43ab5f2e90e29dddfa3",
+      "transitions": 173
+    },
+    "validation": {
+      "bytes": 1360184,
+      "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/validation.jsonl",
+      "sha256": "dd1f657b707cef789a94e167622d5949c155ba2505062b3e1b8b2d6a640de8bd",
+      "transitions": 166
+    }
+  },
+  "gppo_behavior_checkpoint": {
+    "decision_steps": 512,
+    "historical_50k_checkpoint": false,
+    "history_path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/gppo_adaptive_seed1101_step512.history.json",
+    "history_sha256": "5131da58966b400973b32d80889acfdfb489df3010eb09d0fbc89f2c1494262b",
+    "path": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t01-data-v0.1.0/gppo_adaptive_seed1101_step512.pt",
+    "sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+    "training_seed": 1101
+  },
+  "local_manifest_sha256": "291d81aa01d0ec8057da126a24bfc546c410e219fc08bd9cf7043cc5bf7d043a",
+  "manifest_version": "gppo-world-dataset/0.1.0",
+  "profiles": [
+    "normal",
+    "single",
+    "sequential",
+    "overlap",
+    "burst",
+    "long_gap",
+    "weak_comm"
+  ],
+  "registry_sha256": "987b5cc4ac4142663902794e36566c40b7bb4695c2e53480be7db11b7748213d",
+  "release": {
+    "tag": "t01-data-v0.1.0",
+    "target_source_commit": "682ea6e9be777be9db9a48a0777eabcb2d1cf826",
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0"
+  },
+  "runtime": {
+    "numpy": "2.0.2",
+    "platform": "Windows-10-10.0.26100-SP0",
+    "python": "3.11.5 | packaged by Anaconda, Inc. | (main, Sep 11 2023, 13:26:23) [MSC v.1916 64 bit (AMD64)]",
+    "torch": "2.5.0+cpu"
+  },
+  "schema_version": "gppo-world-transition/0.1.0",
+  "source_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "source_repository": "https://github.com/Battleplus/GPPO-8.29",
+  "split_master_seeds": {
+    "test": 93001,
+    "train": 91001,
+    "validation": 92001
+  },
+  "tapes": [
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 601759626656998914,
+      "event_types": [],
+      "initial_seed": 122766378,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "bf1d24c2c679cd68c15d967f662359d70bad2199619a34fc7f94ae0cdd8fe84b",
+      "split": "train",
+      "tape_id": "train-normal-00-bf1d24c2c679"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 1718506376937549830,
+      "event_types": [],
+      "initial_seed": 395255390,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "ebb589140faf794450b35c0969d5d1f066b1269bc0845b3aaecebb4fcc0c4bc0",
+      "split": "train",
+      "tape_id": "train-normal-01-ebb589140faf"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 3009343482975022303,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 993702343,
+      "max_observation_delay": 0.32686903823668345,
+      "profile": "single",
+      "sha256": "37790f9b34a0da0db6fdaa51bfb22db23bc6fbee5bb3864de900d53678b08723",
+      "split": "train",
+      "tape_id": "train-single-00-37790f9b34a0"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6814010626437036565,
+      "event_types": [
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 2144455634,
+      "max_observation_delay": 0.4611559023686347,
+      "profile": "single",
+      "sha256": "ed3a6dfef2ae61c359c23a0a543669534742c95971af62049982667f6bdaabf9",
+      "split": "train",
+      "tape_id": "train-single-01-ed3a6dfef2ae"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 8315875305644444154,
+      "event_types": [
+        "UAV_DAMAGE",
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 736229387,
+      "max_observation_delay": 0.5331909088629079,
+      "profile": "sequential",
+      "sha256": "c8b0e60844f2292a3cd25408f7f3994f48e4e0b82fd167522bbb60a983f43186",
+      "split": "train",
+      "tape_id": "train-sequential-00-c8b0e60844f2"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6649913808888265383,
+      "event_types": [
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 1419368560,
+      "max_observation_delay": 0.78785994692481,
+      "profile": "sequential",
+      "sha256": "41f366fa30abd8ed4ac55e1b8882401bd05a8231159c1850e36790545afd99ec",
+      "split": "train",
+      "tape_id": "train-sequential-01-41f366fa30ab"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4809330935773378425,
+      "event_types": [
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 1195152212,
+      "max_observation_delay": 2.8804605020490754,
+      "profile": "overlap",
+      "sha256": "77764f4c3d28c481b882fe4d011814cd01741270314f955dd6c201948dbc21a2",
+      "split": "train",
+      "tape_id": "train-overlap-00-77764f4c3d28"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 915226291803137751,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 838123496,
+      "max_observation_delay": 2.4084985836894193,
+      "profile": "overlap",
+      "sha256": "977b829c8676e870b9831696eb42e4f621b0d2172df5c2fb2adc73c7e87bd37e",
+      "split": "train",
+      "tape_id": "train-overlap-01-977b829c8676"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 1836930174521756860,
+      "event_types": [
+        "UAV_DAMAGE",
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 552854030,
+      "max_observation_delay": 1.7531400759682898,
+      "profile": "burst",
+      "sha256": "df6f8d08c0e1ddb8d1d88c730d2bfb1bf448161ebc55d63a1b07ba347d7e5df7",
+      "split": "train",
+      "tape_id": "train-burst-00-df6f8d08c0e1"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 7263899491263713532,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE",
+        "TARGET_DESTROYED",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 1791432947,
+      "max_observation_delay": 1.4292622565024273,
+      "profile": "burst",
+      "sha256": "96d25cf1a6173a1464f463d366f96a69f0d5f1d3e485346f8e6da07a466f8bc9",
+      "split": "train",
+      "tape_id": "train-burst-01-96d25cf1a617"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4592722737958176000,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 952136030,
+      "max_observation_delay": 14.0,
+      "profile": "long_gap",
+      "sha256": "9dfd6a43da145eb141e2bf61f3db5f770d98a23dbc8b2e1e00ab1b7c026b4e8d",
+      "split": "train",
+      "tape_id": "train-long_gap-00-9dfd6a43da14"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 1489515889698853998,
+      "event_types": [
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 466947875,
+      "max_observation_delay": 13.999999999999996,
+      "profile": "long_gap",
+      "sha256": "ed776258b3ddb341e0dca633005017cde7563d9f0a70e4ca0e6748448f91be7e",
+      "split": "train",
+      "tape_id": "train-long_gap-01-ed776258b3dd"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6196009133362649323,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 277274645,
+      "max_observation_delay": 0.802229494815216,
+      "profile": "weak_comm",
+      "sha256": "4e02f18da07a390e9e10347c35157a21d7bb8a8622e3ebf867c9cf230eb3f706",
+      "split": "train",
+      "tape_id": "train-weak_comm-00-4e02f18da07a"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 3692963135254788530,
+      "event_types": [
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 1477493226,
+      "max_observation_delay": 0.7817847754981873,
+      "profile": "weak_comm",
+      "sha256": "5e11efe26f41b82fbf81882d486d38838b3ebc0539195c02901cb91f74c0b8d1",
+      "split": "train",
+      "tape_id": "train-weak_comm-01-5e11efe26f41"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 7994198240389600444,
+      "event_types": [],
+      "initial_seed": 1362253517,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "4ab689e9379aeddef8fbb6c4e8d70f3d56eced249b064275ab65a820a6f844b0",
+      "split": "validation",
+      "tape_id": "validation-normal-00-4ab689e9379a"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 7763408114966107473,
+      "event_types": [],
+      "initial_seed": 1912656398,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "d3192f37c7bd467b7e22e8cf654e5dd9dedb1a98ed455ca6a98a69689c00ebfb",
+      "split": "validation",
+      "tape_id": "validation-normal-01-d3192f37c7bd"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 5136234979310658368,
+      "event_types": [
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 1981109268,
+      "max_observation_delay": 0.4919346159127187,
+      "profile": "single",
+      "sha256": "a3a49076055789da497b65fbdec4ba2fcc57fad378e05d1f2696717dc8f7f6ad",
+      "split": "validation",
+      "tape_id": "validation-single-00-a3a490760557"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4064484388053901943,
+      "event_types": [
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 658002954,
+      "max_observation_delay": 0.4873487509624237,
+      "profile": "single",
+      "sha256": "2010c927f2834ba353748155b2583616735d84d7363f31303335c418dd3f5f39",
+      "split": "validation",
+      "tape_id": "validation-single-01-2010c927f283"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 632498017886827997,
+      "event_types": [
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 577050054,
+      "max_observation_delay": 0.917848073205179,
+      "profile": "sequential",
+      "sha256": "782c45efd52bb0b09f244acf7faf09296f1d18f346014d7451d93a4d2c8e90b1",
+      "split": "validation",
+      "tape_id": "validation-sequential-00-782c45efd52b"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4674905012793016107,
+      "event_types": [
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 1023704646,
+      "max_observation_delay": 0.9389904813545955,
+      "profile": "sequential",
+      "sha256": "53e2cb442e1eb7f4d309f46bbe5e1c976b9b06aa0f13cc606c6037b3555083f6",
+      "split": "validation",
+      "tape_id": "validation-sequential-01-53e2cb442e1e"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6133793692666313221,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 990366817,
+      "max_observation_delay": 2.818990116444679,
+      "profile": "overlap",
+      "sha256": "639b67db96a334fd0302d2e1b8466094c1583f1460415daa0d8515faca737242",
+      "split": "validation",
+      "tape_id": "validation-overlap-00-639b67db96a3"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4942948928859921462,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "TARGET_DESTROYED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 228425185,
+      "max_observation_delay": 2.94911156100229,
+      "profile": "overlap",
+      "sha256": "4b6649da3e8b0966167a24f1f328298899b8c8790aa6b49d06204954b6adb8e7",
+      "split": "validation",
+      "tape_id": "validation-overlap-01-4b6649da3e8b"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 8772920059653838717,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 648613389,
+      "max_observation_delay": 1.7481882358095429,
+      "profile": "burst",
+      "sha256": "dd02ed953fb8a9f5b83a6b5f6385b2f6162db8fab54c728cb9938aae57821c2b",
+      "split": "validation",
+      "tape_id": "validation-burst-00-dd02ed953fb8"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6922980549424116184,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 1004131873,
+      "max_observation_delay": 1.9373084491786123,
+      "profile": "burst",
+      "sha256": "846ae6938d4b7201a968ef3a3b0babb89b6a13017cfa7ae820ac1a682a8cb7f8",
+      "split": "validation",
+      "tape_id": "validation-burst-01-846ae6938d4b"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4814562307175650640,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 972181602,
+      "max_observation_delay": 13.999999999999996,
+      "profile": "long_gap",
+      "sha256": "d52fa291f2018bc960acf2f474d91cb9ff78e3cd16e4ea2d183105e36d402b5f",
+      "split": "validation",
+      "tape_id": "validation-long_gap-00-d52fa291f201"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 944349058955225570,
+      "event_types": [
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 785954069,
+      "max_observation_delay": 14.0,
+      "profile": "long_gap",
+      "sha256": "5a9f0f7eda7570c3c141e2fa03f97c3b2606f3394f4cdeaa2de179f1d1b6da86",
+      "split": "validation",
+      "tape_id": "validation-long_gap-01-5a9f0f7eda75"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 4451178882431296745,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 1244485947,
+      "max_observation_delay": 0.6207995939857749,
+      "profile": "weak_comm",
+      "sha256": "0742b264626443eb6b25c35b1ef11e7c60f9ac88bbf68eb6a04c9955a327ea70",
+      "split": "validation",
+      "tape_id": "validation-weak_comm-00-0742b2646264"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6431453287520589008,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 1268637638,
+      "max_observation_delay": 0.5645966246145271,
+      "profile": "weak_comm",
+      "sha256": "aa662e192166313664b5bb0353b34a4d3c80471220e5ed882c99faf98bebe9c0",
+      "split": "validation",
+      "tape_id": "validation-weak_comm-01-aa662e192166"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 1544467265992580180,
+      "event_types": [],
+      "initial_seed": 1822405039,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "4a8f8e73cf70fccf9a31b277a04e00c09ac58ccf8800bd8f55c522e1507f8879",
+      "split": "test",
+      "tape_id": "test-normal-00-4a8f8e73cf70"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 0,
+      "event_seed": 8089086314595008592,
+      "event_types": [],
+      "initial_seed": 2038335225,
+      "max_observation_delay": 0.0,
+      "profile": "normal",
+      "sha256": "32a1804dad9f287aee3bb93c0dc51cc4d2bd6a4eba06264044d2d23c363b1305",
+      "split": "test",
+      "tape_id": "test-normal-01-32a1804dad9f"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 8524919441929347207,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 1897012678,
+      "max_observation_delay": 0.40846599849728094,
+      "profile": "single",
+      "sha256": "dcdba29ffbcb87186666d5ca189982757def7d426ebcb1236bc9c39c3a6eb772",
+      "split": "test",
+      "tape_id": "test-single-00-dcdba29ffbcb"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 3577840443550074427,
+      "event_types": [
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 1456798021,
+      "max_observation_delay": 0.34604745122813796,
+      "profile": "single",
+      "sha256": "42459c343f30bd9c5dc20c18ec6035db513d1ccd20852c642cef4fb5ad640bde",
+      "split": "test",
+      "tape_id": "test-single-01-42459c343f30"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 3298828894140590773,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 1396911762,
+      "max_observation_delay": 0.7406829094275906,
+      "profile": "sequential",
+      "sha256": "85b47f1f31838956ef7de55ca3a11966f9d335e11983dbd367d6c9c52044cad0",
+      "split": "test",
+      "tape_id": "test-sequential-00-85b47f1f3183"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 3106714104919716735,
+      "event_types": [
+        "UAV_DAMAGE",
+        "UAV_DAMAGE",
+        "UAV_DAMAGE",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 1036127054,
+      "max_observation_delay": 0.9228769886675234,
+      "profile": "sequential",
+      "sha256": "2f0e74b513170ae44f28338902faba9beb37bf3e6f9149428c6fd190eaafff83",
+      "split": "test",
+      "tape_id": "test-sequential-01-2f0e74b51317"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 6599896863571485611,
+      "event_types": [
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 922957611,
+      "max_observation_delay": 2.144189922932425,
+      "profile": "overlap",
+      "sha256": "73b78432260464c60ef8a965c991b7b41958250a756087dd52d6a3740af0569d",
+      "split": "test",
+      "tape_id": "test-overlap-00-73b784322604"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 5259548500124665667,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 1141298065,
+      "max_observation_delay": 2.6559418812098983,
+      "profile": "overlap",
+      "sha256": "11724aacfa0475c3731957bd1886240df59901aef92ec0a46139ab2ab1992577",
+      "split": "test",
+      "tape_id": "test-overlap-01-11724aacfa04"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 7916682288283746745,
+      "event_types": [
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "TARGET_DESTROYED",
+        "TARGET_DESTROYED"
+      ],
+      "initial_seed": 1800709404,
+      "max_observation_delay": 1.4923588478494887,
+      "profile": "burst",
+      "sha256": "b036f535cb72559ff060c1e7f8c60ab452c0126322e4a04493754dbe90bfdae8",
+      "split": "test",
+      "tape_id": "test-burst-00-b036f535cb72"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 5232102911869548676,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 337484852,
+      "max_observation_delay": 1.9424975346973388,
+      "profile": "burst",
+      "sha256": "7b962b1787d447a9228c8d0cedb3c423caa3f4a971490fb85d0a7fe52248b087",
+      "split": "test",
+      "tape_id": "test-burst-01-7b962b1787d4"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 9123254914157376742,
+      "event_types": [
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "TARGET_DISCOVERED",
+        "UAV_DAMAGE"
+      ],
+      "initial_seed": 1681493833,
+      "max_observation_delay": 14.0,
+      "profile": "long_gap",
+      "sha256": "7448fb526e25c6a8cf24f1cab255081aa3ecea9ec9df1e3bf554784949a78211",
+      "split": "test",
+      "tape_id": "test-long_gap-00-7448fb526e25"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.0,
+        "loss_rate": 0.0,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 1055471935136157951,
+      "event_types": [
+        "REGION_VACANCY",
+        "UAV_DAMAGE",
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED"
+      ],
+      "initial_seed": 1460665003,
+      "max_observation_delay": 14.0,
+      "profile": "long_gap",
+      "sha256": "b2c191b67e42e936f06e5f14590ad7c2139bfd5bbda0f0ad97e7df218bb28847",
+      "split": "test",
+      "tape_id": "test-long_gap-01-b2c191b67e42"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 2222118357774445904,
+      "event_types": [
+        "UAV_DAMAGE",
+        "REGION_VACANCY",
+        "REGION_VACANCY",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 1017789231,
+      "max_observation_delay": 0.8612330444517935,
+      "profile": "weak_comm",
+      "sha256": "ac3ae2bb67b770345ee8b2e68932495a095972cb163f8ef75fa4a42096ce2e03",
+      "split": "test",
+      "tape_id": "test-weak_comm-00-ac3ae2bb67b7"
+    },
+    {
+      "communication_profile": {
+        "duplicate_rate": 0.2,
+        "loss_rate": 0.15,
+        "out_of_order_max_delay": 0.0
+      },
+      "event_count": 4,
+      "event_seed": 7270837606283171409,
+      "event_types": [
+        "UAV_DAMAGE",
+        "TARGET_DISCOVERED",
+        "TARGET_DISCOVERED",
+        "REGION_VACANCY"
+      ],
+      "initial_seed": 385046553,
+      "max_observation_delay": 0.8946263863798123,
+      "profile": "weak_comm",
+      "sha256": "20e3459880fae4c59c4156d1e41165100eb13e456d6d32dc4b82bb04287b8bc1",
+      "split": "test",
+      "tape_id": "test-weak_comm-01-20e3459880fa"
+    }
+  ],
+  "tapes_per_profile": 2,
+  "truth_only_online_field_count": 0
+}
