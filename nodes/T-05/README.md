@@ -1,6 +1,6 @@
 # T-05：冻结 latent 接入 GPPO
 
-**状态：blocked by T-04**
+**状态：planned（T-04 已解锁；正式训练须使用服务器/GPU）**
 
 ## 目标
 

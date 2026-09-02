@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T12:27:57+08:00",
+  "updated_at": "2026-09-02T13:04:00+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -68,8 +68,23 @@
         "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0"
       ]
     },
-    {"id": "T-04", "status": "planned", "blocked_by": [], "evidence": []},
-    {"id": "T-05", "status": "blocked", "blocked_by": ["T-04"], "evidence": []},
+    {
+      "id": "T-04",
+      "status": "passed",
+      "blocked_by": [],
+      "evidence": [
+        "nodes/T-04/evidence/metrics.json",
+        "nodes/T-04/evidence/accepted-shadow-bundle.json",
+        "nodes/T-04/evidence/calibration.json",
+        "nodes/T-04/evidence/baseline-read-only-audit.json",
+        "nodes/T-04/evidence/fallback-injections.json",
+        "nodes/T-04/evidence/checkpoint-manifest.json",
+        "nodes/T-04/evidence/test-report.md",
+        "nodes/T-04/evidence/failed-runs.json",
+        "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0"
+      ]
+    },
+    {"id": "T-05", "status": "planned", "blocked_by": [], "evidence": []},
     {"id": "T-06", "status": "blocked", "blocked_by": ["T-05"], "evidence": []}
   ]
 }

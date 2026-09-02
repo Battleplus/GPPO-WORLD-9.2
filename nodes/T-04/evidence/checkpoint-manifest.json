@@ -1,0 +1,49 @@
+{
+  "assets": {
+    "accepted-shadow-bundle.json": {
+      "bytes": 20325,
+      "sha256": "7ffa503469100fdd20cd4ba4e1cfe23e24876442a7db3c6fdb321e61096ff096",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/accepted-shadow-bundle.json"
+    },
+    "baseline-read-only-audit.json": {
+      "bytes": 7341,
+      "sha256": "201c7dbbb1e69510b8484bbef096a1cc389e54c3fe470e38af5b17b16aa149f6",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/baseline-read-only-audit.json"
+    },
+    "calibration.json": {
+      "bytes": 17607,
+      "sha256": "5ab3164ca639faf2572f54d2be94eb89a89ea1020d8be88d65aad26b2ce88072",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/calibration.json"
+    },
+    "fallback-injections.json": {
+      "bytes": 11197,
+      "sha256": "5757459c2ffab63134a23915efbd1a4a9966e73a2fb4ee12e0e19733a5ad15e6",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/fallback-injections.json"
+    },
+    "input-audit.json": {
+      "bytes": 1096,
+      "sha256": "49b401362dc8e375a81ed2b0508b940608e784113667753f7d08c7668c9ab44a",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/input-audit.json"
+    },
+    "metrics.json": {
+      "bytes": 5240,
+      "sha256": "3de879bb5c46d11329d34bcef25852eb39211f8678ae7891c9bba21b023f8f97",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/metrics.json"
+    },
+    "shadow-records.json": {
+      "bytes": 513295,
+      "sha256": "6cd12cbc2725dc4a9da8887dbead3a88a7e09eafd3fe900539e9437f64e795ad",
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t04-shadow-v0.1.0/shadow-records.json"
+    }
+  },
+  "calibration_sha256": "6cb763e150c34c4093905cb318abb8b95e848510e8f510d5f6f82caa403852a5",
+  "format": "gppo-t04-shadow-manifest/0.1.0",
+  "parent_model": {
+    "bytes": 1120776,
+    "sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/t03-eawm-v0.1.0/eawm_hard_seed20260903.pt"
+  },
+  "release_tag": "t04-shadow-v0.1.0",
+  "release_url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0",
+  "target_commit": "65d7a16240484797b7596c32811762f2cdfff7e9"
+}

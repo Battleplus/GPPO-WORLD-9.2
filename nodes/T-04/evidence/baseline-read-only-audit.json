@@ -1,0 +1,323 @@
+{
+  "baseline_commit_expected": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "baseline_dir": "E:\\Z\u535a\u58eb\\9.2\u65e5\\GPPO-8.29-baseline",
+  "gates": {
+    "action_mask_unchanged": true,
+    "at_least_one_valid_shadow_result": true,
+    "environment_snapshot_unchanged": true,
+    "graph_and_action_versions_unchanged": true,
+    "no_forbidden_baseline_calls": true,
+    "real_baseline_environment_used": true,
+    "runtime_belief_unchanged": true,
+    "shadow_write_and_submission_counters_zero": true
+  },
+  "records": [
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 0,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        1,
+        0
+      ],
+      "post_versions": [
+        3,
+        1
+      ],
+      "shadow_valid": true,
+      "step": 0,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 0,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        3,
+        1
+      ],
+      "post_versions": [
+        5,
+        2
+      ],
+      "shadow_valid": true,
+      "step": 1,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 0,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        5,
+        2
+      ],
+      "post_versions": [
+        7,
+        3
+      ],
+      "shadow_valid": true,
+      "step": 2,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 0,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        7,
+        3
+      ],
+      "post_versions": [
+        9,
+        4
+      ],
+      "shadow_valid": true,
+      "step": 3,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 0,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        9,
+        4
+      ],
+      "post_versions": [
+        10,
+        5
+      ],
+      "shadow_valid": true,
+      "step": 4,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        1,
+        0
+      ],
+      "post_versions": [
+        3,
+        1
+      ],
+      "shadow_valid": true,
+      "step": 0,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        3,
+        1
+      ],
+      "post_versions": [
+        5,
+        2
+      ],
+      "shadow_valid": true,
+      "step": 1,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        5,
+        2
+      ],
+      "post_versions": [
+        7,
+        3
+      ],
+      "shadow_valid": true,
+      "step": 2,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": "ood",
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        7,
+        3
+      ],
+      "post_versions": [
+        8,
+        4
+      ],
+      "shadow_valid": false,
+      "step": 3,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": "ood",
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        8,
+        4
+      ],
+      "post_versions": [
+        10,
+        5
+      ],
+      "shadow_valid": false,
+      "step": 4,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 1,
+      "fallback_reason": "ood",
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        10,
+        5
+      ],
+      "post_versions": [
+        11,
+        6
+      ],
+      "shadow_valid": false,
+      "step": 5,
+      "versions_unchanged": true
+    },
+    {
+      "action_mask_unchanged": true,
+      "belief_unchanged": true,
+      "env_snapshot_unchanged": true,
+      "episode": 2,
+      "fallback_reason": null,
+      "forbidden_spy_calls": {
+        "belief_mutation": 0,
+        "command": 0,
+        "step": 0,
+        "submit_action": 0
+      },
+      "input_versions": [
+        1,
+        0
+      ],
+      "post_versions": [
+        3,
+        1
+      ],
+      "shadow_valid": true,
+      "step": 0,
+      "versions_unchanged": true
+    }
+  ],
+  "result": "PASS",
+  "shadow_counters": {
+    "action_mask_write_count": 0,
+    "action_submission_count": 0,
+    "action_version_write_count": 0,
+    "belief_write_count": 0,
+    "exception_count": 0,
+    "fallback_count": 3,
+    "graph_version_write_count": 0,
+    "high_uncertainty_count": 0,
+    "inference_count": 12,
+    "input_mutation_count": 0,
+    "ood_count": 3,
+    "stale_after_count": 0,
+    "stale_before_count": 0,
+    "timeout_count": 0,
+    "valid_count": 9
+  },
+  "steps": 12
+}

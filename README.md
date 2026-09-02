@@ -90,8 +90,8 @@ T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自
 | [T-01](nodes/T-01/README.md) | 世界模型用什么真实轨迹训练，怎样防止 train/test 泄漏 | random legal、greedy、GPPO 三类轨迹；完整 episode/tape/seed split；数据/策略 checkpoint 和 SHA-256 | 已有可复现、可审计的数据，可以开始训练世界模型 | **passed** |
 | [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用合法动作反事实证明模型使用动作 | **passed** |
 | [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | **passed** |
-| [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | planned |
-| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | blocked by T-04 |
+| [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | **passed** |
+| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | planned / server GPU required |
 | [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | optional / blocked by T-05 |
 
 ### T-00：冻结合同，而不是先写网络
@@ -155,6 +155,10 @@ EAWM-hard 的 macro-F1 为 `0.4668±0.0050`、macro-AUPRC 为 `0.4320±0.0136`�
 - 异常、超时、OOD 高风险能够回退；
 - ECE、Brier、risk-coverage 达到冻结标准；
 - P50/P95/P99 延迟满足预算。
+
+T-04 已通过并封存于 [T-04 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0)。
+真实基线环境的 belief、action mask、graph/action versions 及动作提交接口均保持零写入；完整 observe 的 P95/P99
+为 `6.99/8.05 ms`。合成 OOD 的范围和 8.59% ID 假阳性率已透明记录，不作生产级 OOD 泛化声明。
 
 ### T-05：冻结 latent 接入 GPPO
 
@@ -254,6 +258,11 @@ T-03 事件感知模型、逐 seed 消融、失败 run 与指标：
 - [T-03 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0)
 - [T-03 节点证据](nodes/T-03/README.md)
 
+T-04 Shadow、校准、真实基线零写入审计与回退记录：
+
+- [T-04 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0)
+- [T-04 节点证据](nodes/T-04/README.md)
+
 ## 方法来源
 
 - [GPPO-8.29](https://github.com/Battleplus/GPPO-8.29)
@@ -262,4 +271,4 @@ T-03 事件感知模型、逐 seed 消融、失败 run 与指标：
 
 ## 当前能力声明
 
-T-00～T-03 已有封存证据；T-04 及之后只有在对应节点状态变为 `passed` 且 checkpoint、配置、数据、日志和指标链接齐全后，才视为真实完成。仓库会保留失败实验和负结果，并披露 test split 已被查看后的协议限制。
+T-00～T-04 已有封存证据；T-05 只有在服务器/GPU 四组多 seed 正式消融、回传 checkpoint/日志/指标并通过兼容与安全 Gate 后才视为完成。仓库会保留失败实验和负结果，并披露 test split 已被查看后的协议限制。

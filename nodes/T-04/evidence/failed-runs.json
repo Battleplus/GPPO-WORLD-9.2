@@ -1,0 +1,15 @@
+{
+  "claim": "toolchain failures occurred before model Gate conclusions and were retained",
+  "runs": [
+    {
+      "error": "non-finite Infinity sentinel was not JSON compliant",
+      "resolution": "use -1.0 for not-computed OOD score",
+      "stage": "fallback injection serialization"
+    },
+    {
+      "error": "torch.flatnonzero unavailable in installed PyTorch",
+      "resolution": "use torch.nonzero(...).flatten()",
+      "stage": "real baseline audit startup"
+    }
+  ]
+}
