@@ -24,3 +24,7 @@ def test_t05_baseline_hashes_match_clean_linux_checkout() -> None:
             "fc11024f06113bee25e528edc1c174edc3f59119ab3ed55d81514a9a9a1db01c"
         ),
     }
+
+    assert config["shadow_calibration"]["sha256"] == (
+        "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d"
+    )

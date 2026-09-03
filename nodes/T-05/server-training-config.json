@@ -56,7 +56,7 @@
   },
   "shadow_calibration": {
     "path": "nodes/T-04/evidence/calibration.json",
-    "sha256": "5ab3164ca639faf2572f54d2be94eb89a89ea1020d8be88d65aad26b2ce88072",
+    "sha256": "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d",
     "note": "A shared frozen T-04 gate is used for all world-model groups; this is disclosed and its per-group fallback rate is reported."
   },
   "evaluation": {
