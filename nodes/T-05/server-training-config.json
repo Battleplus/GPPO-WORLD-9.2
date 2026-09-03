@@ -4,8 +4,8 @@
   "baseline": {
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
-    "protocol_sha256": "b289d2a2722828f77dc5dd45db58ea3be4d6966218fc90661d54264acef48097",
-    "seed_manifest_sha256": "ee59d2aa62f4385c8b6d17c5251aa060da37425009bc97b03220d4cb22b64f64"
+    "protocol_sha256": "f9e476724e9cfeeb5053fcefa4ddd2d900c78bb7666e3fe62b3b8d342fcb0778",
+    "seed_manifest_sha256": "fc11024f06113bee25e528edc1c174edc3f59119ab3ed55d81514a9a9a1db01c"
   },
   "runtime": {
     "allowed_python": ["3.10", "3.11"],
