@@ -1,12 +1,12 @@
 # T-05 正式服务器 Campaign 实时接力存档
 
-> 快照时间：2026-09-03 19:32:21 +08:00。本文记录的是正在运行的正式 campaign，不是最终实验结论。机器可读快照见 [`server-campaign-live-snapshot.json`](../nodes/T-05/evidence/server-campaign-live-snapshot.json)。
+> 快照时间：2026-09-03 19:38:31 +08:00。本文记录的是正在运行的正式 campaign，不是最终实验结论。机器可读快照见 [`server-campaign-live-snapshot.json`](../nodes/T-05/evidence/server-campaign-live-snapshot.json)。
 
 ## 1. 当前结论
 
-正式 T-05 campaign 已经部署并启动。两张 RTX 2080 Ti 正在并行运行首批 GPPO 对照组，后台双 GPU worker 已接管剩余训练、固定 50k 评估和最终聚合。
+正式 T-05 campaign 已经部署并启动。首批两个 GPPO 对照 run 已完成；两张 RTX 2080 Ti 正在并行运行下一批任务，后台双 GPU worker 已接管剩余训练、固定 50k 评估和最终聚合。
 
-- 正式训练完成：`0/12`；
+- 正式训练完成：`2/12`；
 - 正式训练运行中：`2/12`；
 - 固定 held-out 评估完成：`0/12`；
 - 聚合：`pending`；
@@ -16,10 +16,10 @@
 
 | GPU | Group | Seed | PID/PGID | Accepted decisions | 速度 |
 |---|---|---:|---:|---:|---:|
-| 0 | GPPO | 1101 | 793716 | 44,456 / 50,000 | 21.32 steps/s |
-| 1 | GPPO | 2202 | 794106 | 42,920 / 50,000 | 21.64 steps/s |
+| 0 | GPPO | 3303 | 801696 | 2,048 / 50,000 | 20.94 steps/s |
+| 1 | WM-GPPO | 1101 | 801963 | 1,024 / 50,000 | 18.92 steps/s |
 
-两张卡在快照时分别使用约 240 MiB 和 255 MiB 显存，GPU 利用率约 26% 和 19%。不要把这个纯 GPPO 对照组的显存/速度直接当成三个世界模型组的最终资源结论。
+两张卡在快照时分别使用约 240 MiB 和 255 MiB 显存，GPU 利用率约 23% 和 24%。GPPO seed 1101（正式目录为 `seed1101-attempt-2`）和 seed 2202 已由 worker 验证完成 50,000 decisions。不要只凭早期 GPPO 对照组的显存/速度推断三个世界模型组的最终资源需求。
 
 ## 2. 服务器与 Campaign 身份
 
@@ -109,8 +109,8 @@ $CAMPAIGN_ROOT/orchestration/gpu1-events.jsonl
 
 | GPU | Worker PID | 当前接管 PID | 状态文件 |
 |---|---:|---:|---|
-| 0 | 795129 | 793716 | `orchestration/gpu0-state.json` |
-| 1 | 795130 | 794106 | `orchestration/gpu1-state.json` |
+| 0 | 795129 | 801696 | `orchestration/gpu0-state.json` |
+| 1 | 795130 | 801963 | `orchestration/gpu1-state.json` |
 
 worker 脚本：
 

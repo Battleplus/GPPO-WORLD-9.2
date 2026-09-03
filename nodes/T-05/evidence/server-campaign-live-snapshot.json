@@ -1,12 +1,28 @@
 {
   "campaign_id": "gppo-t05-20260903-135255-hanzhangyang-cdcb23",
-  "captured_at": "2026-09-03T19:32:21+08:00",
+  "captured_at": "2026-09-03T19:38:31+08:00",
   "status": "running",
   "formal_training": {
-    "completed": 0,
+    "completed": 2,
     "running": 2,
     "target": 12
   },
+  "completed_runs": [
+    {
+      "group": "GPPO",
+      "seed": 1101,
+      "run_directory": "runs/GPPO/seed1101-attempt-2",
+      "accepted_decision_steps": 50000,
+      "completed_at": "2026-09-03T19:36:30+08:00"
+    },
+    {
+      "group": "GPPO",
+      "seed": 2202,
+      "run_directory": "runs/GPPO/seed2202",
+      "accepted_decision_steps": 50000,
+      "completed_at": "2026-09-03T19:37:30+08:00"
+    }
+  ],
   "formal_evaluation": {
     "completed": 0,
     "target": 12
@@ -61,15 +77,15 @@
       "event_ledger": "orchestration/gpu0-events.jsonl",
       "current": {
         "group": "GPPO",
-        "seed": 1101,
-        "pid": 793716,
-        "pgid": 793716,
-        "run_directory": "runs/GPPO/seed1101-attempt-2",
-        "accepted_decision_steps": 44456,
+        "seed": 3303,
+        "pid": 801696,
+        "pgid": 801696,
+        "run_directory": "runs/GPPO/seed3303",
+        "accepted_decision_steps": 2048,
         "target_decision_steps": 50000,
-        "steps_per_second": 21.318827974727817,
+        "steps_per_second": 20.942878232224803,
         "gpu_memory_mib": 240,
-        "gpu_utilization_percent": 26
+        "gpu_utilization_percent": 23
       }
     },
     {
@@ -78,16 +94,16 @@
       "status_path": "orchestration/gpu1-state.json",
       "event_ledger": "orchestration/gpu1-events.jsonl",
       "current": {
-        "group": "GPPO",
-        "seed": 2202,
-        "pid": 794106,
-        "pgid": 794106,
-        "run_directory": "runs/GPPO/seed2202",
-        "accepted_decision_steps": 42920,
+        "group": "WM-GPPO",
+        "seed": 1101,
+        "pid": 801963,
+        "pgid": 801963,
+        "run_directory": "runs/WM-GPPO/seed1101",
+        "accepted_decision_steps": 1024,
         "target_decision_steps": 50000,
-        "steps_per_second": 21.64262695864514,
+        "steps_per_second": 18.91778959391078,
         "gpu_memory_mib": 255,
-        "gpu_utilization_percent": 19
+        "gpu_utilization_percent": 24
       }
     }
   ],
