@@ -2,6 +2,8 @@
 
 This runbook is executable only on a reachable CUDA server. Local execution is limited to `tools/validate_t05_local.py`.
 
+For an end-to-end handoff to another AI/operator, including isolated checkouts, environment setup, failure handling, Release assets and PR requirements, start with [`docs/06-server-ai-handoff.md`](../../docs/06-server-ai-handoff.md), then use this file as the concise execution reference.
+
 ## 1. Freeze inputs
 
 Clone both repositories, check out the exact target commit recorded at launch and baseline `2a9bb9f87b9d543df144f4d108ba970c924151f9`, require both worktrees clean, and use Python 3.10 or 3.11. The run scripts repeat these checks and refuse drift.

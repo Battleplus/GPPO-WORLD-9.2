@@ -1,6 +1,6 @@
 # GPPO 世界模型迁移当前进度
 
-更新时间：2026-09-02（Asia/Shanghai）
+更新时间：2026-09-03（Asia/Shanghai）
 
 ## 一页结论
 
@@ -62,7 +62,7 @@ GPPO 世界模型基础迁移已经完成 T-00～T-04，并完成 T-05 的代码
 
 所有 run 还必须产生 25k/50k checkpoints、环境清单、history/progress、safety audit 和 SHA-256 inventory；固定 50k checkpoint 必须在同一 100 条 held-out Test tapes 上评估，最后输出逐 seed、配对效应、离散度与 bootstrap 区间。Test 结果不得用于挑选 checkpoint。
 
-执行协议见 [`nodes/T-05/SERVER_RUNBOOK.md`](../nodes/T-05/SERVER_RUNBOOK.md)，冻结配置见 [`server-training-config.json`](../nodes/T-05/server-training-config.json)。
+执行协议见 [`nodes/T-05/SERVER_RUNBOOK.md`](../nodes/T-05/SERVER_RUNBOOK.md)，冻结配置见 [`server-training-config.json`](../nodes/T-05/server-training-config.json)。如果由另一名 AI/工程师连接服务器接力执行，应从 [T-05 服务器训练 AI 接力说明](06-server-ai-handoff.md) 开始，其中包含隔离 checkout、环境准备、12-run 矩阵、评估、聚合、Release 与 PR 的完整步骤。
 
 ## 当前阻塞与恢复条件
 
