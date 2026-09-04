@@ -1,0 +1,41 @@
+{
+  "actual_split_overlap_count": 0,
+  "actual_split_overlaps": {},
+  "errors": [],
+  "gppo_checkpoint_sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+  "gppo_checkpoint_verified": true,
+  "graph_version_mismatch_count": 0,
+  "illegal_execution_count": 0,
+  "manifest_audit": {
+    "behavior_policies": [
+      "gppo",
+      "greedy",
+      "random_legal"
+    ],
+    "episode_count": 336,
+    "errors": [],
+    "group_count": 112,
+    "passed": true,
+    "profiles": [
+      "burst",
+      "long_gap",
+      "normal",
+      "overlap",
+      "sequential",
+      "single",
+      "weak_comm"
+    ],
+    "split_overlap_count": 0,
+    "split_overlaps": {},
+    "transition_count": 1325
+  },
+  "manifest_path": "E:\\Z博士\\9.2日\\J01-data-attempt1-20260904\\dataset-manifest.json",
+  "manifest_sha256": "3434ab3119443975c82da0251307cf3fec5dd5517542f6b5112a695b09e3e7df",
+  "observed_transitions": {
+    "test": 337,
+    "train": 664,
+    "validation": 324
+  },
+  "passed": true,
+  "truth_only_online_field_count": 0
+}

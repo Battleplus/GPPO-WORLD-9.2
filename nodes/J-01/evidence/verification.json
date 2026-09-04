@@ -1,0 +1,57 @@
+{
+  "action_intervals": {
+    "action_jepa-4101": [
+      0.004296686721820482,
+      0.04023637823487513
+    ],
+    "action_jepa-4202": [
+      0.03671960611523822,
+      0.07971968606407291
+    ],
+    "action_jepa-4303": [
+      0.042936850883527715,
+      0.09568594170936949
+    ],
+    "no_action_jepa-4101": [
+      0.0,
+      0.0
+    ],
+    "no_action_jepa-4202": [
+      0.0,
+      0.0
+    ],
+    "no_action_jepa-4303": [
+      0.0,
+      0.0
+    ],
+    "random_untrained-4101": [
+      -0.0018566044364519698,
+      0.004581996741250237
+    ],
+    "random_untrained-4202": [
+      -0.0059896838915434675,
+      0.0027608784053766242
+    ],
+    "random_untrained-4303": [
+      -0.001189367250777215,
+      0.005144665832147041
+    ]
+  },
+  "data_manifest_sha256": "3434ab3119443975c82da0251307cf3fec5dd5517542f6b5112a695b09e3e7df",
+  "equal_budget_per_seed_verified": true,
+  "limitations": [
+    "Read-only metric and artifact verification; not an independent training reproduction",
+    "Representation geometry values come from frozen-run export; no new model selection"
+  ],
+  "max_independent_metric_error": 3.3306690738754696e-15,
+  "models": 12,
+  "no_action_perturbation_effect_exactly_zero": true,
+  "passed": true,
+  "per_transition_metric_rows": 4044,
+  "random_controls": 3,
+  "real_graph_batch_scalar_agreement": true,
+  "results_sha256": "72a3f4ac638abcd2e98eb354263e6c403b33856df72b40dea8f08fe0e1380354",
+  "sealed_checkpoint_and_probe_hashes_verified": 24,
+  "test_selection_frozen_before_evaluation": true,
+  "trained_models": 9
+}

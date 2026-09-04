@@ -1,0 +1,12 @@
+{
+  "data_manifest_sha256": "3434ab3119443975c82da0251307cf3fec5dd5517542f6b5112a695b09e3e7df",
+  "device": "cpu",
+  "formal_t05_reproduction": false,
+  "numpy": "2.5.0",
+  "platform": "Windows-11-10.0.26100-SP0",
+  "protocol_sha256": "ae1c667907863475f59d0404e7a5ce7a79d25ada99820047f95ec67c67e48a24",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "source_commit": "4b202e55128d5bcdda88fd71ea53a2436150861e",
+  "started_at": "2026-09-04T14:55:46.480210+00:00",
+  "torch": "2.13.0+cpu"
+}
