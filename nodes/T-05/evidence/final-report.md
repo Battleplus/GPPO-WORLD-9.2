@@ -25,14 +25,14 @@ T-05 的接口、兼容、安全和正式实验 Gate 均已通过：冻结世界
 
 ## 四组 held-out 均值
 
-| 组 | Episode return ↑ | Fixed J ↑ | Event success ↑ | Final infeasible ↓ | Uncovered time ↓ | Recovery delay ↓ | Inference latency ms ↓ |
+| 组 | Episode return ↑ | Fixed J ↓ | Event success ↑ | Final infeasible ↓ | Uncovered time ↓ | Recovery delay ↓ | Inference latency ms ↓ |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | GPPO | 25.617799 | 96.005833 | 0.954000 | 0.046000 | 8.623073 | 1.705619 | 3.753611 |
 | WM-GPPO | 25.138844 | 95.980514 | 0.954667 | 0.045333 | 8.643420 | 1.687605 | 4.151101 |
 | EA-noGES-GPPO | 25.666769 | 96.350701 | 0.953333 | 0.046667 | 8.653553 | 1.708943 | 4.224379 |
 | EAWM-GPPO | 24.709788 | 96.361733 | 0.954667 | 0.045333 | 8.597057 | 1.671878 | 4.143277 |
 
-EAWM-GPPO 的 `fixed_j` 和 recovery delay 均值略优，但 episode return 的逐 seed 配对结果不稳定：
+EAWM-GPPO 的 recovery delay 均值略低，但 `fixed_j` 是越低越好的成本，均值从 GPPO 的 96.005833 上升到 96.361733，并非改善。指标方向以固定基线的 `ppo_allocation/random_event/phase_j.py` 中 `lowest_fixed_j` 和成本定义为准。episode return 的逐 seed 配对结果如下：
 
 | Seed | EAWM − GPPO episode return | 95% paired bootstrap CI |
 |---:|---:|---:|
