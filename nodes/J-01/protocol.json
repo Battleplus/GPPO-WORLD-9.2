@@ -1,0 +1,21 @@
+{
+  "version": "j01-graph-jepa/1.0.0",
+  "purpose": "Exploratory offline prerequisite experiment, not GPPO benefit or V-JEPA reproduction",
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "groups": ["action_jepa", "no_action_jepa", "supervised_graph"],
+  "seeds": [4101, 4202, 4303],
+  "data": {
+    "master_seeds": {"train": 94010401, "validation": 94010402, "test": 94010403},
+    "tapes_per_profile": {"train": 8, "validation": 4, "test": 4},
+    "profiles": ["normal", "single", "sequential", "overlap", "burst", "long_gap", "weak_comm"],
+    "behavior_policies": ["random_legal", "greedy", "gppo"],
+    "behavior_gppo_steps": 512,
+    "old_data_usage": "Only frozen T01 behavior checkpoint; no old transition training or metric selection"
+  },
+  "model": {"hidden_dim": 64, "latent_dim": 32, "action_dim": 18, "evidence_dim": 12, "ema": 0.99},
+  "training": {"epochs": 60, "batch_size": 64, "learning_rate": 0.001, "weight_decay": 0.00001, "grad_clip": 5.0, "variance_weight": 1.0, "covariance_weight": 0.04, "std_target": 1.0, "device": "cpu", "threads": 1},
+  "checkpoint_selection": "Terminal epoch only; same transition order and optimizer update count within seed; no early stopping",
+  "probe": {"input": "predicted future latent only, identical linear ridge readout recipe", "ridge_grid": [0.001, 0.01, 0.1, 1.0, 10.0], "fit": "train", "select": "validation", "evaluate": "test once after every terminal checkpoint and probe selection is frozen", "target_scale_floor": 0.05, "tasks": ["state_delta_active_training_dimensions", "reward", "costs", "continuation"]},
+  "gates": {"every_seed_latent_mean_std_min": 0.1, "every_seed_effective_rank_min": 4.0, "every_seed_latent_persistence_improvement_min": 0.05, "every_seed_action_degradation_cluster_ci_lower_gt": 0.0, "mean_probe_improvement_vs_no_action_min": 0.05, "probe_better_than_no_action_seed_count_min": 2, "mean_probe_ratio_to_supervised_max": 1.1, "bootstrap_samples": 2000, "bootstrap_seed": 94010404},
+  "boundaries": ["One-step graph migration; no video masking or recurrent history claim", "EMA target never optimized and never policy input", "Future graph used only as training target", "VICReg-inspired variance/covariance addition is our design, not claimed as standard JEPA", "Legal alternative action scored against factual future is sensitivity, not causal counterfactual ground truth", "Pure JEPA cannot reuse EAWM decoder uncertainty calibration", "All gates required for considering a separately calibrated GPPO integration experiment; failure stops policy training", "No EAWM/GPPO production edits, no T06, no policy reward improvement claim", "CPU exploratory protocol is independent of previous T05 formal runtime"]
+}

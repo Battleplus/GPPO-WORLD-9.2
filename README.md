@@ -12,6 +12,8 @@
 
 ## 为什么需要世界模型
 
+新增独立路线：[J-01 Graph-JEPA 实验](nodes/J-01/README.md)已完成三组 × 三 seed 离线训练，接入门槛未通过，未启动 JEPA-GPPO 训练。它与原 EAWM 并列，不替换 GPPO。[完整结果](nodes/J-01/evidence/final-report.md) / [下一版草案](nodes/J-02/README.md)。
+
 当前 GPPO 能读取实时 belief 图，在 16 条 UAV–Region 候选边和一个 NOOP 中自主选择合法动作，并通过 graph/action version、ACK、lease 和 fencing 保证执行安全。
 
 它的主要局限是：决策以当前图为主，没有一个经过训练的内部模型显式表示“这个动作执行以后可能发生什么”。世界模型要补充的正是这一层能力：

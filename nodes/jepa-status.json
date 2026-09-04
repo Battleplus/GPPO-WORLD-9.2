@@ -1,0 +1,10 @@
+{
+  "updated_on": "2026-09-04",
+  "route": "independent_graph_jepa_not_eawm_rename",
+  "nodes": [
+    {"id": "J-01", "status": "experiment_completed_gate_failed", "evidence": "nodes/J-01/evidence/final-report.md", "trained_runs": 9, "random_controls": 3, "gppo_training_launched": false},
+    {"id": "J-02", "status": "design_draft_not_executed", "evidence": "nodes/J-02/README.md"}
+  ],
+  "original_t_node_status_unchanged": true,
+  "server_training_launched": false
+}

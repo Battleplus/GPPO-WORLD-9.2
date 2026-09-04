@@ -1,0 +1,709 @@
+{
+  "active_state_dimensions": 289,
+  "all_gates_passed": false,
+  "comparison": {
+    "mean_probe_improvement_vs_no_action": 0.04653357585409353,
+    "mean_probe_ratio_to_supervised": 1.8733167347377948,
+    "probe_improvement_vs_no_action_by_seed": [
+      0.037381038047352266,
+      0.055772450245128224,
+      0.0464472392698001
+    ],
+    "probe_ratio_to_supervised_by_seed": [
+      1.9019494580113745,
+      1.8679621394261237,
+      1.8500386067758858
+    ]
+  },
+  "finished_at": "2026-09-04T14:57:02.589824+00:00",
+  "models": [
+    {
+      "action_degradation": {
+        "ci95": [
+          0.004296686721820482,
+          0.04023637823487513
+        ],
+        "mean": 0.022900681091231,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "action_jepa",
+      "latent_persistence_improvement": -0.24837297601315633,
+      "latent_persistence_mse": 0.3229688116506956,
+      "latent_prediction_mse": 0.4031855365598114,
+      "probe_macro_normalized_mse": 0.8633584864440367,
+      "raw_mae": {
+        "continuation": 0.33190874231748324,
+        "costs": [
+          0.4592888891296879,
+          0.04860231882788674,
+          0.8232254441056245,
+          0.1497033891252842,
+          0.7833760712976052,
+          0.0,
+          2.7524029614171446
+        ],
+        "reward": 0.9927875394933627,
+        "state_delta_active": 0.12089691492496496,
+        "state_delta_all": 0.09128116681570776
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 17.375465664127912,
+          "finite": true,
+          "mean_std": 0.9046812660906656,
+          "min_std": 0.40021955881019167
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 15.490500693663263,
+          "finite": true,
+          "mean_std": 0.8332416845670746,
+          "min_std": 0.5286524192293414
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 17.198372638942097,
+          "finite": true,
+          "mean_std": 0.8906430800174743,
+          "min_std": 0.47508211118970106
+        }
+      },
+      "seed": 4101,
+      "task_normalized_mse": {
+        "continuation": 0.8650612496532887,
+        "costs": 0.6884166624039303,
+        "reward": 0.7793092987645072,
+        "state_delta_active_training_dimensions": 1.1206467349544198
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "no_action_jepa",
+      "latent_persistence_improvement": -0.21043029614427144,
+      "latent_persistence_mse": 0.33281712299543076,
+      "latent_prediction_mse": 0.4028519287492437,
+      "probe_macro_normalized_mse": 0.8968849779280643,
+      "raw_mae": {
+        "continuation": 0.35847009190255313,
+        "costs": [
+          0.44120048629164654,
+          0.04985014262515754,
+          0.7820146393490229,
+          0.1532971788313295,
+          0.7470026506145145,
+          0.0,
+          2.680187517812061
+        ],
+        "reward": 1.0320012873363493,
+        "state_delta_active": 0.1209820039626894,
+        "state_delta_all": 0.09134520518003686
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 17.62765498902047,
+          "finite": true,
+          "mean_std": 0.9110406767021123,
+          "min_std": 0.37053547513005247
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 14.99732106114218,
+          "finite": true,
+          "mean_std": 0.8183836460849385,
+          "min_std": 0.4700101960916749
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 17.27769618873242,
+          "finite": true,
+          "mean_std": 0.8907559880834441,
+          "min_std": 0.4160786521535382
+        }
+      },
+      "seed": 4101,
+      "task_normalized_mse": {
+        "continuation": 0.9035619036783438,
+        "costs": 0.6820746445329935,
+        "reward": 0.8822835579221789,
+        "state_delta_active_training_dimensions": 1.1196198055787405
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "probe_macro_normalized_mse": 0.4539334538083574,
+      "raw_mae": {
+        "continuation": 0.16874278001106752,
+        "costs": [
+          0.08149614435103679,
+          0.022561897906523933,
+          0.41602559087448887,
+          0.0479710820884696,
+          0.31979277053589916,
+          0.0,
+          0.6804965794285976
+        ],
+        "reward": 0.5315706852767378,
+        "state_delta_active": 0.12437273832773109,
+        "state_delta_all": 0.09389708599122708
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 5.97522110287847,
+          "finite": true,
+          "mean_std": 0.30508196413736915,
+          "min_std": 0.027013956587330624
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 7.1215855150871565,
+          "finite": true,
+          "mean_std": 0.6282664460174152,
+          "min_std": 0.39877152187450354
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 7.428751212698726,
+          "finite": true,
+          "mean_std": 0.21909082664503532,
+          "min_std": 0.012579252510483491
+        }
+      },
+      "seed": 4101,
+      "task_normalized_mse": {
+        "continuation": 0.4694561718416664,
+        "costs": 0.11752988576051296,
+        "reward": 0.2124496983807409,
+        "state_delta_active_training_dimensions": 1.0162980592505098
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          -0.0018566044364519698,
+          0.004581996741250237
+        ],
+        "mean": 0.0013242397947185343,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "random_untrained",
+      "latent_persistence_improvement": -14.12302405686647,
+      "latent_persistence_mse": 0.03245768360786739,
+      "latent_prediction_mse": 0.490858330031939,
+      "probe_macro_normalized_mse": 0.6387516803650514,
+      "raw_mae": {
+        "continuation": 0.2757738358147356,
+        "costs": [
+          0.25564686394758884,
+          0.040018772463940734,
+          0.7499408822458097,
+          0.13584386884321964,
+          0.5196070699823648,
+          0.0,
+          1.7749160192691724
+        ],
+        "reward": 0.9023656475463205,
+        "state_delta_active": 0.12230419987413123,
+        "state_delta_all": 0.09234029533213761
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 7.299465351352089,
+          "finite": true,
+          "mean_std": 0.20073671387394013,
+          "min_std": 0.012296482500025834
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 11.14059893555453,
+          "finite": true,
+          "mean_std": 0.1440641545546391,
+          "min_std": 0.09005048320368335
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 7.428751212698726,
+          "finite": true,
+          "mean_std": 0.21909082664503532,
+          "min_std": 0.012579252510483491
+        }
+      },
+      "seed": 4101,
+      "task_normalized_mse": {
+        "continuation": 0.6323399952171475,
+        "costs": 0.37443168591290193,
+        "reward": 0.546717502508174,
+        "state_delta_active_training_dimensions": 1.0015175378219827
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          0.03671960611523822,
+          0.07971968606407291
+        ],
+        "mean": 0.05769784322245417,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "action_jepa",
+      "latent_persistence_improvement": -0.14613717601425025,
+      "latent_persistence_mse": 0.40563033158583295,
+      "latent_prediction_mse": 0.46490800274951055,
+      "probe_macro_normalized_mse": 0.8376728649978386,
+      "raw_mae": {
+        "continuation": 0.31661385075942994,
+        "costs": [
+          0.3951281258198888,
+          0.0456289289459306,
+          0.8303707207877971,
+          0.13785082095756282,
+          0.716409812219176,
+          0.0,
+          2.3335615968295578
+        ],
+        "reward": 1.0127561867016779,
+        "state_delta_active": 0.13075021181721172,
+        "state_delta_all": 0.09869679911221642
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 17.866392719001887,
+          "finite": true,
+          "mean_std": 0.9209584966559977,
+          "min_std": 0.5799173338881406
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 15.969209654363928,
+          "finite": true,
+          "mean_std": 0.8425385760831391,
+          "min_std": 0.5983732710032753
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 16.844641524841155,
+          "finite": true,
+          "mean_std": 0.904612837664749,
+          "min_std": 0.4962715116209429
+        }
+      },
+      "seed": 4202,
+      "task_normalized_mse": {
+        "continuation": 0.7800562375738312,
+        "costs": 0.6376916425255155,
+        "reward": 0.8023962374509892,
+        "state_delta_active_training_dimensions": 1.130547342441019
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "no_action_jepa",
+      "latent_persistence_improvement": -0.23368285473634254,
+      "latent_persistence_mse": 0.33736164885797404,
+      "latent_prediction_mse": 0.416197282041665,
+      "probe_macro_normalized_mse": 0.887151476585601,
+      "raw_mae": {
+        "continuation": 0.3489414574031446,
+        "costs": [
+          0.4163359813495798,
+          0.044206789588773374,
+          0.8877058109493035,
+          0.1660893379885561,
+          0.7374350696201869,
+          0.0,
+          2.511287425802363
+        ],
+        "reward": 1.0297387442089043,
+        "state_delta_active": 0.12722955707063963,
+        "state_delta_all": 0.09604713968055145
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 17.43725915963913,
+          "finite": true,
+          "mean_std": 0.9258747407873263,
+          "min_std": 0.5484538077965413
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 15.181604789594754,
+          "finite": true,
+          "mean_std": 0.8349464958226153,
+          "min_std": 0.6422376315189965
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 16.778667881883877,
+          "finite": true,
+          "mean_std": 0.9027527859858395,
+          "min_std": 0.47204598534738246
+        }
+      },
+      "seed": 4202,
+      "task_normalized_mse": {
+        "continuation": 0.8876652151859356,
+        "costs": 0.66636581493562,
+        "reward": 0.8557577596873297,
+        "state_delta_active_training_dimensions": 1.1388171165335188
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "probe_macro_normalized_mse": 0.4484421002532679,
+      "raw_mae": {
+        "continuation": 0.16731586806680526,
+        "costs": [
+          0.07874130131368652,
+          0.026186125773242273,
+          0.44925476271708037,
+          0.052586360662418195,
+          0.34663591117537756,
+          0.0,
+          0.7087576220924525
+        ],
+        "reward": 0.5503362304897321,
+        "state_delta_active": 0.12216081485467764,
+        "state_delta_all": 0.09223238316905925
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 5.437569338071124,
+          "finite": true,
+          "mean_std": 0.3084324867621216,
+          "min_std": 0.058093650436074354
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 6.787792206217653,
+          "finite": true,
+          "mean_std": 0.6376558963966301,
+          "min_std": 0.3193825236670782
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 6.817218530483808,
+          "finite": true,
+          "mean_std": 0.12726574011168038,
+          "min_std": 0.006568207842862604
+        }
+      },
+      "seed": 4202,
+      "task_normalized_mse": {
+        "continuation": 0.4190197485946,
+        "costs": 0.13592610986492812,
+        "reward": 0.22759906953910955,
+        "state_delta_active_training_dimensions": 1.0112234730144338
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          -0.0059896838915434675,
+          0.0027608784053766242
+        ],
+        "mean": -0.0015995578809388875,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "random_untrained",
+      "latent_persistence_improvement": -42.287932647768265,
+      "latent_persistence_mse": 0.010888592833763089,
+      "latent_prediction_mse": 0.4713446732169088,
+      "probe_macro_normalized_mse": 0.6176956270712107,
+      "raw_mae": {
+        "continuation": 0.28512477311395623,
+        "costs": [
+          0.288184294257559,
+          0.03404580110181173,
+          0.7228300612266155,
+          0.06757406446721358,
+          0.5816818724949905,
+          0.0,
+          1.8375012839753362
+        ],
+        "reward": 0.8109821610841936,
+        "state_delta_active": 0.12335923811220834,
+        "state_delta_all": 0.0931343215061071
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 6.33621658383874,
+          "finite": true,
+          "mean_std": 0.12289210813134323,
+          "min_std": 0.006971307185443288
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 9.843567879768543,
+          "finite": true,
+          "mean_std": 0.11222653476067035,
+          "min_std": 0.06671490186647218
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 6.817218530483808,
+          "finite": true,
+          "mean_std": 0.12726574011168038,
+          "min_std": 0.006568207842862604
+        }
+      },
+      "seed": 4202,
+      "task_normalized_mse": {
+        "continuation": 0.6864621098176424,
+        "costs": 0.3548345148927066,
+        "reward": 0.43835249908581264,
+        "state_delta_active_training_dimensions": 0.9911333844886814
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          0.042936850883527715,
+          0.09568594170936949
+        ],
+        "mean": 0.0684132251255774,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "action_jepa",
+      "latent_persistence_improvement": -0.1285184959962684,
+      "latent_persistence_mse": 0.4121263805543588,
+      "latent_prediction_mse": 0.46509224314359077,
+      "probe_macro_normalized_mse": 0.8337542089666564,
+      "raw_mae": {
+        "continuation": 0.3230731786225509,
+        "costs": [
+          0.37547495966676786,
+          0.039055208935267746,
+          0.8178003587304052,
+          0.16571713104565944,
+          0.6682816144913648,
+          0.0,
+          2.257940752567889
+        ],
+        "reward": 1.0282977028076372,
+        "state_delta_active": 0.13027038508036418,
+        "state_delta_all": 0.09833567951078688
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 16.74567516071421,
+          "finite": true,
+          "mean_std": 0.9148822210590972,
+          "min_std": 0.5657009769737344
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 15.030727962929499,
+          "finite": true,
+          "mean_std": 0.8411062342324149,
+          "min_std": 0.5296772593167359
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 15.895015857088998,
+          "finite": true,
+          "mean_std": 0.8944945793779985,
+          "min_std": 0.5207431236427801
+        }
+      },
+      "seed": 4303,
+      "task_normalized_mse": {
+        "continuation": 0.8325395219624817,
+        "costs": 0.5871192366015685,
+        "reward": 0.7912187251881152,
+        "state_delta_active_training_dimensions": 1.1241393521144607
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          0.0,
+          0.0
+        ],
+        "mean": 0.0,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "no_action_jepa",
+      "latent_persistence_improvement": -0.13557782962866405,
+      "latent_persistence_mse": 0.41146615224158695,
+      "latent_prediction_mse": 0.4672518401281588,
+      "probe_macro_normalized_mse": 0.8743661004433508,
+      "raw_mae": {
+        "continuation": 0.3263302571377287,
+        "costs": [
+          0.38951454277364306,
+          0.042546101344737415,
+          0.8281538410444659,
+          0.16939941980695075,
+          0.6962518566796164,
+          0.0,
+          2.375612124090971
+        ],
+        "reward": 1.0327881279731093,
+        "state_delta_active": 0.1319250952372796,
+        "state_delta_all": 0.09958102126950709
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 16.715402506680707,
+          "finite": true,
+          "mean_std": 0.9172361582002021,
+          "min_std": 0.46037280427729077
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 15.014697874784659,
+          "finite": true,
+          "mean_std": 0.8267590708965328,
+          "min_std": 0.4704807021956343
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 16.306723345114612,
+          "finite": true,
+          "mean_std": 0.9007405626189502,
+          "min_std": 0.44278338609778206
+        }
+      },
+      "seed": 4303,
+      "task_normalized_mse": {
+        "continuation": 0.8473819487310643,
+        "costs": 0.6356096199135741,
+        "reward": 0.8672607429153091,
+        "state_delta_active_training_dimensions": 1.1472120902134557
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "probe_macro_normalized_mse": 0.45066854600383893,
+      "raw_mae": {
+        "continuation": 0.1801469464913049,
+        "costs": [
+          0.08657585115981085,
+          0.024148811504176155,
+          0.46222513041596847,
+          0.04368083881573295,
+          0.3230288807157017,
+          0.0,
+          0.7158045518492272
+        ],
+        "reward": 0.5450093698506033,
+        "state_delta_active": 0.12210599384963566,
+        "state_delta_all": 0.09219112465224381
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 6.735684030161687,
+          "finite": true,
+          "mean_std": 0.2953178711389421,
+          "min_std": 0.03968836122834164
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 7.402118192663743,
+          "finite": true,
+          "mean_std": 0.6124848785486857,
+          "min_std": 0.3360978444587287
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 7.46977353764223,
+          "finite": true,
+          "mean_std": 0.17917324488245634,
+          "min_std": 0.014784341901849454
+        }
+      },
+      "seed": 4303,
+      "task_normalized_mse": {
+        "continuation": 0.4629487313046621,
+        "costs": 0.12550222218772886,
+        "reward": 0.2096650181042639,
+        "state_delta_active_training_dimensions": 1.0045582124187007
+      }
+    },
+    {
+      "action_degradation": {
+        "ci95": [
+          -0.001189367250777215,
+          0.005144665832147041
+        ],
+        "mean": 0.001967722701596744,
+        "tapes": 24
+      },
+      "action_eligible_transitions": 262,
+      "group": "random_untrained",
+      "latent_persistence_improvement": -16.371116434981225,
+      "latent_persistence_mse": 0.021848788522589584,
+      "latent_prediction_mse": 0.3795378493891851,
+      "probe_macro_normalized_mse": 0.5935543190444975,
+      "raw_mae": {
+        "continuation": 0.28664069335983944,
+        "costs": [
+          0.2088661701163416,
+          0.0402996692314331,
+          0.7499736026138217,
+          0.07697205472711412,
+          0.48073428051254175,
+          0.0,
+          1.351494562264137
+        ],
+        "reward": 0.7988416142158257,
+        "state_delta_active": 0.12120048495886965,
+        "state_delta_all": 0.09150963488809959
+      },
+      "representation": {
+        "online": {
+          "effective_rank_covariance_entropy": 7.365803200565286,
+          "finite": true,
+          "mean_std": 0.16286428807721903,
+          "min_std": 0.011255500384848943
+        },
+        "prediction": {
+          "effective_rank_covariance_entropy": 8.71241192265384,
+          "finite": true,
+          "mean_std": 0.14220184933321414,
+          "min_std": 0.07558509339525224
+        },
+        "target": {
+          "effective_rank_covariance_entropy": 7.46977353764223,
+          "finite": true,
+          "mean_std": 0.17917324488245634,
+          "min_std": 0.014784341901849454
+        }
+      },
+      "seed": 4303,
+      "task_normalized_mse": {
+        "continuation": 0.6682070682272635,
+        "costs": 0.2997365370616611,
+        "reward": 0.4117220217955105,
+        "state_delta_active_training_dimensions": 0.9945516490935548
+      }
+    }
+  ],
+  "next_action": "stop_before_gppo_training_preserve_negative_results",
+  "no_gppo_benefit_claim": true,
+  "no_policy_training": true,
+  "per_seed_gates": [
+    {
+      "action_sensitive": true,
+      "beats_persistence": false,
+      "latent_rank": true,
+      "latent_std": true,
+      "seed": 4101
+    },
+    {
+      "action_sensitive": true,
+      "beats_persistence": false,
+      "latent_rank": true,
+      "latent_std": true,
+      "seed": 4202
+    },
+    {
+      "action_sensitive": true,
+      "beats_persistence": false,
+      "latent_rank": true,
+      "latent_std": true,
+      "seed": 4303
+    }
+  ],
+  "test_tapes": 28,
+  "test_transitions": 337
+}
