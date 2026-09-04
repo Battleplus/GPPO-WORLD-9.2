@@ -1,0 +1,18 @@
+{
+  "verified_on": "2026-09-04",
+  "release_url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/j01-graph-jepa-v0.1.0",
+  "release_target_commit": "f18e4ccb8341650f3ddd5810eea6d5138ebeb0f2",
+  "pull_request": "https://github.com/Battleplus/GPPO-WORLD-9.2/pull/6",
+  "main_merge_commit": "56edc72dbebe2dcd8b32c50b845870e4b720fa69",
+  "verification": "All five assets downloaded from GitHub into a separate directory; each SHA-256 matched the original upload and GitHub asset digest",
+  "all_assets_verified": true,
+  "assets": [
+    {"name": "j01-dataset.tar.gz", "bytes": 2518036, "sha256": "45336bd3880ffdc27f63335229e7f02ac31749307aae67aa7861fc093d37337c"},
+    {"name": "j01-models-and-results.tar.gz", "bytes": 12942894, "sha256": "9f202a43ede548dbcbce05cc929b61ef0932cc73040228dceb3aa5148ed1de6a"},
+    {"name": "j01-release-inventory.json", "bytes": 36899, "sha256": "842c40a8c7b7c45f296cbe022fa4099e0057c89eed14b92ac5c3bf4f13a7d42f"},
+    {"name": "j01-results.json", "bytes": 21918, "sha256": "72a3f4ac638abcd2e98eb354263e6c403b33856df72b40dea8f08fe0e1380354"},
+    {"name": "SHA256SUMS.txt", "bytes": 357, "sha256": "246b20f1aafcd99941f2ff1cdacca8173fe4d2b7070bb524178e8989f4f111ee"}
+  ],
+  "source_checks": {"pytest_passed": 72, "git_diff_check_passed": true, "new_local_markdown_links_checked": true},
+  "publication_retry": "Initial release creation rejected abbreviated target commit with HTTP 422; confirmed absent, then created successfully using full commit SHA. No experiment rerun or asset replacement."
+}

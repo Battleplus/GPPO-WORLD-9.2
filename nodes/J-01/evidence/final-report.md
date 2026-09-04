@@ -50,3 +50,5 @@
 下一版优先验证“变化表示 + 动作作用位置”是否比预测整个全局表示更合适，并补充历史窗口与事件分层诊断；这是基于本轮结果提出的新假设，不是已证明的原因。详见 [J-02 设计草案](../../J-02/README.md)。不得在 J-01 Test 上调好再称独立验证。
 
 完整图数据、事件带、12 个模型、12 个探针与逐转移结果：[J-01 Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/j01-graph-jepa-v0.1.0)。机器结果：[results.json](results.json)，核验：[verification.json](verification.json)，逐文件清单：[release-inventory.json](release-inventory.json)。
+
+五个 Release 附件均已从 GitHub 下载到独立目录并通过 SHA-256 对照，见 [发布核验记录](publication-verification.json)。
