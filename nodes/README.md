@@ -9,7 +9,7 @@
 | T-02 | [Graph World Model 基线](T-02/README.md) | passed | base WM checkpoints/reports |
 | T-03 | [自动事件与 GES](T-03/README.md) | passed | event/EAWM checkpoints/ablations |
 | T-04 | [Shadow 与校准](T-04/README.md) | passed | shadow/calibration/safety evidence |
-| T-05 | [冻结 latent 接入 GPPO](T-05/README.md) | in_progress（local Gates passed / server GPU pending） | policy checkpoints/ablations |
-| T-06 | [短期 imagined rollout](T-06/README.md) | blocked_by_T-05 | rollout checkpoints/held-out results |
+| T-05 | [冻结 latent 接入 GPPO](T-05/README.md) | passed | policy checkpoints/ablations |
+| T-06 | [短期 imagined rollout](T-06/README.md) | planned / optional | rollout checkpoints/held-out results |
 
 更新节点时：复制[节点记录模板](templates/NODE_RECORD_TEMPLATE.md)的证据结构，在对应目录保存 manifest；同步更新 [`status.json`](status.json)；最后把节点页中的证据链接固定到 Git commit 或 versioned Release。

@@ -1,0 +1,93 @@
+{
+  "aggregate_path": "four-group-ablation.json",
+  "aggregate_sha256": "0f64696b6706e1cb711d5ab0987361172c2cdad3b0fe7ef78d6906ec8303f794",
+  "calculation_complete": true,
+  "campaign_id": "gppo-t05-20260903-135255-hanzhangyang-cdcb23",
+  "claim": "The interface and safety migration passed, but the ablation does not support a stable general GPPO benefit claim across seeds.",
+  "formal_evaluation": {
+    "completed": 12,
+    "tapes_each": 100,
+    "target": 12
+  },
+  "formal_server_ablation_complete": true,
+  "formal_training": {
+    "accepted_decision_steps_each": 50000,
+    "completed": 12,
+    "target": 12
+  },
+  "format": "gppo-t05-final-summary/0.1.0",
+  "group_means": {
+    "EA-noGES-GPPO": {
+      "cumulative_uncovered_time": 8.653553333333333,
+      "episode_return": 25.666768601958513,
+      "event_success_rate": 0.9533333333333331,
+      "final_infeasible_rate": 0.04666666666666667,
+      "fixed_j": 96.35070138628704,
+      "inference_latency_ms": 4.224378518850476,
+      "recovery_delay": 1.7089431719195431
+    },
+    "EAWM-GPPO": {
+      "cumulative_uncovered_time": 8.597056666666665,
+      "episode_return": 24.709788386103025,
+      "event_success_rate": 0.9546666666666667,
+      "final_infeasible_rate": 0.04533333333333334,
+      "fixed_j": 96.36173321749959,
+      "inference_latency_ms": 4.143276891458167,
+      "recovery_delay": 1.671877756061814
+    },
+    "GPPO": {
+      "cumulative_uncovered_time": 8.623073333333332,
+      "episode_return": 25.617798580308886,
+      "event_success_rate": 0.9540000000000001,
+      "final_infeasible_rate": 0.046000000000000006,
+      "fixed_j": 96.00583261488585,
+      "inference_latency_ms": 3.753611202479321,
+      "recovery_delay": 1.705618648621036
+    },
+    "WM-GPPO": {
+      "cumulative_uncovered_time": 8.643419999999999,
+      "episode_return": 25.13884389857292,
+      "event_success_rate": 0.9546666666666667,
+      "final_infeasible_rate": 0.04533333333333334,
+      "fixed_j": 95.9805142397119,
+      "inference_latency_ms": 4.15110080109485,
+      "recovery_delay": 1.6876048233971819
+    }
+  },
+  "groups": [
+    "GPPO",
+    "WM-GPPO",
+    "EA-noGES-GPPO",
+    "EAWM-GPPO"
+  ],
+  "protocol_provenance": {
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "calibration_sha256": "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d",
+    "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+    "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72"
+  },
+  "release_status": "prepared_not_published",
+  "safety": {
+    "all_shadow_writes_zero": true
+  },
+  "seeds": [
+    1101,
+    2202,
+    3303
+  ],
+  "shadow_latency_gates": {
+    "all_pass": true,
+    "per_run": {
+      "EA-noGES-GPPO/seed1101": true,
+      "EA-noGES-GPPO/seed2202": true,
+      "EA-noGES-GPPO/seed3303": true,
+      "EAWM-GPPO/seed1101": true,
+      "EAWM-GPPO/seed2202": true,
+      "EAWM-GPPO/seed3303": true,
+      "WM-GPPO/seed1101": true,
+      "WM-GPPO/seed2202": true,
+      "WM-GPPO/seed3303": true
+    }
+  },
+  "test_manifest_sha256": "f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5"
+}

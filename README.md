@@ -8,7 +8,7 @@
 
 本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
 
-> 当前进度总览：请查看 [GPPO 世界模型迁移当前进度](docs/05-current-progress.md)。正式 T-05 服务器 campaign 已启动；实时运行身份、双 GPU worker 和接力步骤见 [T-05 实时服务器接力存档](docs/07-t05-live-server-campaign-handoff.md)。在 12/12 训练、12/12 评估和聚合完成前，T-05 仍为 `in_progress`。
+> 当前进度总览：请查看 [GPPO 世界模型迁移当前进度](docs/05-current-progress.md)。T-00～T-05 已全部通过，正式四组 × 三 seeds 消融及证据已封存；结果不支持“世界模型稳定提升 GPPO”的普遍声明。详见 [T-05 最终报告](nodes/T-05/evidence/final-report.md) 和 [Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0)。
 
 ## 为什么需要世界模型
 
@@ -93,8 +93,8 @@ T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自
 | [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用合法动作反事实证明模型使用动作 | **passed** |
 | [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | **passed** |
 | [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | **passed** |
-| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组以上公平实验 | 完成世界模型基础迁移，可以严谨判断它是否改善真实 GPPO | in progress / local Gates passed / server GPU pending |
-| [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | optional / blocked by T-05 |
+| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组公平实验 | 完成世界模型基础迁移，并以负结果严谨判断当前版本未带来稳定增益 | **passed** |
+| [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | planned / optional |
 
 ### T-00：冻结合同，而不是先写网络
 
@@ -173,7 +173,7 @@ T-04 已通过并封存于 [T-04 Release v0.1.0](https://github.com/Battleplus/G
 
 必要时增加 GPPO-History，以排除“只是多看历史”的解释。只有真实 held-out 环境、多个 seed 和安全指标共同支持，才能声称世界模型对 GPPO 有增益。
 
-T-05 的本地接口实现已完成：冻结 `[h,z]` residual adapter、post-action Shadow hook、逐 transition versioned latent sidecar、旧 checkpoint 无损回退和服务器训练/评估入口均已提交。真实基线的 12-transition smoke 与 44 项测试通过，Shadow 对环境/belief/mask/version/动作提交仍为零写入。正式四组 × 3 seed × 50k GPU 训练尚未执行；当前已配置 SSH 目标均不能完成批量登录和 GPU 探测，因此 T-05 保持 `in_progress`，不能宣称迁移完成。
+T-05 已完成：冻结 `[h,z]` residual adapter、post-action Shadow hook、逐 transition versioned latent sidecar、旧 checkpoint 无损回退，以及四组 × 3 seeds × 50k 的正式 GPU 训练。固定 50k checkpoints 全部在同一有序 100-tape Test bank 上评估；12/12 runs、24 checkpoints、12/12 evaluations 和 1,200 traces 均完成哈希复核。真实环境/belief/mask/version/动作提交写入为 0，世界模型冻结且延迟 Gate 全部通过。结果没有证明稳定性能增益，详见 [最终报告](nodes/T-05/evidence/final-report.md)。
 
 ### T-06：可选想象规划
 
@@ -278,4 +278,4 @@ T-04 Shadow、校准、真实基线零写入审计与回退记录：
 
 ## 当前能力声明
 
-T-00～T-04 已有封存证据；T-05 只有在服务器/GPU 四组多 seed 正式消融、回传 checkpoint/日志/指标并通过兼容与安全 Gate 后才视为完成。仓库会保留失败实验和负结果，并披露 test split 已被查看后的协议限制。
+T-00～T-05 已有封存证据，世界模型基础迁移完成。T-05 正式消融、checkpoint/日志/指标、兼容与安全 Gate 均已通过；仓库保留失败尝试和负结果。当前不支持“世界模型稳定提升 GPPO”的声明，T-06 仍是未开始的可选研究项。

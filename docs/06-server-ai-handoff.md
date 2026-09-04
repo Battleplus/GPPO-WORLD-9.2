@@ -1,5 +1,7 @@
 # T-05 服务器训练：AI 接力执行说明
 
+> **已完成／历史文档：** 本文保存启动前执行协议。正式 campaign 已于 2026-09-04 完成，最终证据见 [`nodes/T-05/evidence/final-report.md`](../nodes/T-05/evidence/final-report.md)，请勿依据本文重新启动 runs。
+
 > **实时 campaign 已启动：** 2026-09-03 的正式服务器进度、修复 commit、worker PID、登记信息和继续执行步骤见 [`07-t05-live-server-campaign-handoff.md`](07-t05-live-server-campaign-handoff.md)。接手者应先读取实时存档，避免重复启动训练。
 
 本文档供另一名 AI/工程师在 CUDA 服务器上直接接管 T-05。执行者应先完整阅读本文档，再阅读 [`SERVER_RUNBOOK.md`](../nodes/T-05/SERVER_RUNBOOK.md) 和冻结配置 [`server-training-config.json`](../nodes/T-05/server-training-config.json)。

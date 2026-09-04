@@ -1,5 +1,7 @@
 # T-05 正式服务器 Campaign 实时接力存档
 
+> **已完成／历史快照：** 下文忠实保留 2026-09-03 运行中的 2/12 快照，不代表当前状态。正式 campaign 已完成 12/12 训练和 12/12 评估；最终结论与证据见 [`nodes/T-05/evidence/final-report.md`](../nodes/T-05/evidence/final-report.md)。请勿依据本快照重复启动 worker。
+
 > 快照时间：2026-09-03 19:38:31 +08:00。本文记录的是正在运行的正式 campaign，不是最终实验结论。机器可读快照见 [`server-campaign-live-snapshot.json`](../nodes/T-05/evidence/server-campaign-live-snapshot.json)。
 
 ## 1. 当前结论

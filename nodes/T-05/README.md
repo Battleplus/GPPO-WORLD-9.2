@@ -1,8 +1,8 @@
 # T-05：冻结 latent 接入 GPPO
 
-> **实时服务器 campaign：** 已启动的正式训练、修复身份和接手步骤见 [`docs/07-t05-live-server-campaign-handoff.md`](../../docs/07-t05-live-server-campaign-handoff.md)。不要依据下方启动前阻塞描述重复创建训练进程。
+> **历史 campaign 存档：** 启动和运行中快照见 [`docs/07-t05-live-server-campaign-handoff.md`](../../docs/07-t05-live-server-campaign-handoff.md)。正式运行已经结束，不要依据历史快照重复创建训练进程。
 
-**状态：in_progress（本地接口 Gate 已通过；正式服务器/GPU 消融尚未执行）**
+**状态：passed（本地接口、安全 Gate 与正式四组多 seed 消融全部完成）**
 
 ## 目标
 
@@ -36,7 +36,7 @@
 - adapter checkpoint 和旧 `random-event-gppo-v1` checkpoint 均有专用恢复路径；恢复时永不恢复跨 episode hidden/context；
 - 固定基线的 command-rejection 分支缺少 `env.noop_action`，T-05 只安装 `action_space.n-1` 常量兼容垫片，不改基线提交或运行态 belief/mask/version。
 
-本地 12-transition smoke 使用真实 EAWM Release checkpoint。21 项接口 Gate 全部通过：zero/off 与旧 GPPO bit-exact，12 次 Shadow 有效，23 条 decision-time 已确认 evidence 被读取，真实环境/belief/mask/version 变化和 Shadow action submission 均为 0，stale 与执行拒绝均未进入 Shadow。执行拒绝时，GPPO 仍保存 sampled proposal、原 log-prob、reward 和 next state，把执行层拒绝视为环境动力学结果；世界模型不接收未确认 executed action，下一步 zero-context 回退。详见 [local-interface-validation.json](evidence/local-interface-validation.json)。这不是性能实验，也不能把 T-05 标记为 passed。
+本地 12-transition smoke 使用真实 EAWM Release checkpoint。21 项接口 Gate 全部通过：zero/off 与旧 GPPO bit-exact，12 次 Shadow 有效，23 条 decision-time 已确认 evidence 被读取，真实环境/belief/mask/version 变化和 Shadow action submission 均为 0，stale 与执行拒绝均未进入 Shadow。执行拒绝时，GPPO 仍保存 sampled proposal、原 log-prob、reward 和 next state，把执行层拒绝视为环境动力学结果；世界模型不接收未确认 executed action，下一步 zero-context 回退。详见 [local-interface-validation.json](evidence/local-interface-validation.json)。
 
 ## 冻结服务器协议
 
@@ -51,7 +51,9 @@
 冻结配置见 [server-training-config.json](server-training-config.json)，单 run 训练、held-out 评估和聚合入口分别是 `tools/run_t05_server_training.py`、`tools/evaluate_t05_server_checkpoint.py` 和 `tools/aggregate_t05_server_results.py`。
 服务器准备、12-run 命令、固定 50k 评估和 Release 回传步骤见 [SERVER_RUNBOOK.md](SERVER_RUNBOOK.md)。
 
-当前机器已只读探测 9 个既有 SSH 配置目标，没有可批量登录且能返回 GPU 信息的主机，因此正式 12 个 run 尚未启动。这个外部算力阻塞不影响本地接口代码，但阻止 T-05 通过。
+正式 campaign 已完成 12/12 个 50k run、24 个 checkpoints、12/12 次固定 50k held-out 评估和 1,200 条 trace。所有运行共享同一有序 100-tape Test bank，未按 Test 结果选择 checkpoint。完整结果、完整性与负结果解释见 [最终报告](evidence/final-report.md)，大文件见 [T-05 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0)。
+
+所有安全零写入和 Shadow 延迟 Gate 通过，世界模型保持冻结。四组结果不支持“世界模型稳定提升 GPPO”的普遍性能声明；这项负结果被保留，不影响基础迁移接口、安全和实验完整性验收。
 
 ## Gate
 
@@ -68,4 +70,4 @@ T-00～T-05 和总体验收定义全部通过，即可声明“世界模型基�
 
 ## 解锁
 
-通过后才可选解锁 [T-06](../T-06/README.md)。
+[T-06](../T-06/README.md) 已解锁为可选研究项，但尚未开始，也不属于本次 T-00～T-05 完成范围。
