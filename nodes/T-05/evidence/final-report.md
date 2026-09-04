@@ -25,6 +25,8 @@ T-05 的接口、兼容、安全和正式实验 Gate 均已通过：冻结世界
 
 ## 四组 held-out 均值
 
+口径说明：以下 `episode_return` 沿用固定基线的活跃事件归因累计奖励，不等于全部决策奖励总和。两种量的事后对照见 [后续诊断](../../../docs/08-post-t05-diagnostics-and-next-plan.md)，不得以补充口径替换本次正式指标。
+
 | 组 | Episode return ↑ | Fixed J ↓ | Event success ↑ | Final infeasible ↓ | Uncovered time ↓ | Recovery delay ↓ | Inference latency ms ↓ |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | GPPO | 25.617799 | 96.005833 | 0.954000 | 0.046000 | 8.623073 | 1.705619 | 3.753611 |
