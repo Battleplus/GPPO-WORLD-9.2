@@ -1,0 +1,319 @@
+{
+  "campaign_id": "gppo-t05-20260903-135255-hanzhangyang-cdcb23",
+  "format": "gppo-t05-run-manifest/0.1.0",
+  "run_count": 12,
+  "runs": [
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/ea_noges_gppo_seed1101_step25000.pt",
+          "sha256": "387d02d220d3f08a09329d03617e9760b735c25319f4e2dd1b1eefb11c174b5d",
+          "step": 25000
+        },
+        {
+          "path": "models/ea_noges_gppo_seed1101_step50000.pt",
+          "sha256": "1f446a78814d9c82880eaaa91536f22405aa6d592315bab9cd58271ebccf86d8",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EA-noGES-GPPO",
+      "inventory_sha256": "79957900764340b0fc27a8c8f62f1f09f97973668ba5b48e6a90a4fac9e9ba2a",
+      "run_directory": "runs/EA-noGES-GPPO/seed1101",
+      "run_summary_sha256": "ed51130796829676e9f3de612b9fc1e480e23ff78e85e4b6c0a39d734678f4b7",
+      "safety_audit_sha256": "fbc43f2d99e3dbc48922f247134f28bb709938e5f7068a8ed8196cd560b6894e",
+      "seed": 1101,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "8e0c819aca8875ffda0108f3d0e3119eb726245fbe1c0af1679be68a3598bf2f"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/ea_noges_gppo_seed2202_step25000.pt",
+          "sha256": "7a8b1598f61ff7706919c4711cdd64a7166cb495713438a3a05181fcb5fe87f9",
+          "step": 25000
+        },
+        {
+          "path": "models/ea_noges_gppo_seed2202_step50000.pt",
+          "sha256": "a25003c42ec6756c776dc57b1f1b9cfc1cd99e5a3820cd96953c59222ae13057",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EA-noGES-GPPO",
+      "inventory_sha256": "effa32ccd06c0a53793483c7520f261b4d6b8de5567953c4198661b3859604f5",
+      "run_directory": "runs/EA-noGES-GPPO/seed2202",
+      "run_summary_sha256": "84e49fe946f98d369571db5f5685253b97340a64bcedb7473f9b6c67e4af8c96",
+      "safety_audit_sha256": "b6e025944f85f0104e8acd2e3774d180a2126cf8d3d56032c2296d69e80b03bf",
+      "seed": 2202,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "7d7b07caf92651f6a1c47be897c8d6b27005be247964f6debf19ac779d70717b"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/ea_noges_gppo_seed3303_step25000.pt",
+          "sha256": "92176235f07bfde2a537f36cb233f6717f9f8de6bdf266fa61383eb3fe23eedf",
+          "step": 25000
+        },
+        {
+          "path": "models/ea_noges_gppo_seed3303_step50000.pt",
+          "sha256": "8a8710c5929a063f082e60f81fdb9ec01924dbeb3285003ce283a854869e3bfb",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EA-noGES-GPPO",
+      "inventory_sha256": "648d8b182fbceee2ebc03936befdb686a7cd7d0aa36847ac23b904067434558c",
+      "run_directory": "runs/EA-noGES-GPPO/seed3303",
+      "run_summary_sha256": "c8b331c8cc5bd12fc70a0edd740550699764f0b94688da26175ca9392c121eb9",
+      "safety_audit_sha256": "8b54ee00281e75ffe4ceae5b682dab557fb9bd6abf4059a29a011349a6b6ca07",
+      "seed": 3303,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "13f322194e8033f2063ac78b9eb23b7f5e787493eeec8e1e74d67251e47245c2"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/eawm_gppo_seed1101_step25000.pt",
+          "sha256": "5d017c847dac9c27dfcc297da961523ebaf6a85b2f98367957aef269ae8e273b",
+          "step": 25000
+        },
+        {
+          "path": "models/eawm_gppo_seed1101_step50000.pt",
+          "sha256": "bc4e5e9cc1741892ced68f6166845d6c0c5e63452d852c928354669156e1a1bd",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EAWM-GPPO",
+      "inventory_sha256": "5df5cf01292eee00ece92ab2eab0dfdedf1f2df58abea8d6781e8e1d886a783b",
+      "run_directory": "runs/EAWM-GPPO/seed1101",
+      "run_summary_sha256": "ed9f28430eb38a6ad70d9306a3929e5bdaa9353547cbb0409577c943b9a7aa46",
+      "safety_audit_sha256": "7620a8d4678cbe7a2eedc2d0a84baa66d30cc95e1312d3764a391bdba6ceb2dc",
+      "seed": 1101,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/eawm_gppo_seed2202_step25000.pt",
+          "sha256": "65a79c51b7fabc84743ffdb5d49df0d15d2243d7fcf241b2f243656d622a61bb",
+          "step": 25000
+        },
+        {
+          "path": "models/eawm_gppo_seed2202_step50000.pt",
+          "sha256": "53c819e3eeae54532c19f714ed0603a9ae842e03bc48043e7ddefa99b30b9aed",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EAWM-GPPO",
+      "inventory_sha256": "d2d203e7e77cfaf121b5a5b0aa2ae63f4b88a699261cc8635c4cdf51c3ab10e9",
+      "run_directory": "runs/EAWM-GPPO/seed2202",
+      "run_summary_sha256": "3cd89da61b34b7b5c7219341f23d2a36d0d11c88e4ffc6a7bb2b82a4f8ad0d97",
+      "safety_audit_sha256": "958155228b81dc886f21f3ea5fba2571a1baa47ee8ee47f318314b672bda45a7",
+      "seed": 2202,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "b74d88bb7572870bf95b187e5091a1e2fd132491076daec37fa828f8f10ded45"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/eawm_gppo_seed3303_step25000.pt",
+          "sha256": "726d16a7923d80f7f6ed0fc795bbfbda8161bd8a475b196b9ff293808df722f1",
+          "step": 25000
+        },
+        {
+          "path": "models/eawm_gppo_seed3303_step50000.pt",
+          "sha256": "2a25a804e898cbe445f227e7bf1b2845c9fe24d223fe4ac233af974c6a5903a7",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "EAWM-GPPO",
+      "inventory_sha256": "7181cf1c19f8b6a49c53eb0a9e94e6f1a69ec176800bc6c8f86dc5f3cd7f2152",
+      "run_directory": "runs/EAWM-GPPO/seed3303",
+      "run_summary_sha256": "d5435195375e37c95513224e3eb0678eac883a155bdc69aad714c6fe5c8c3e67",
+      "safety_audit_sha256": "5cc81025aefc0a4d27066c9c9af3bf98ecc553df565d981640e7aa8f582456af",
+      "seed": 3303,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "42fda0c52b939b4885cf338366a291d9543fb814a3342b9a70d71f2e3a037b3c"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/gppo_seed1101_step25000.pt",
+          "sha256": "ce90d9603f80f4a5d87f7367e5751cdab1d6a1c1ec8adc75cb0ff3f965ccaf25",
+          "step": 25000
+        },
+        {
+          "path": "models/gppo_seed1101_step50000.pt",
+          "sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "GPPO",
+      "inventory_sha256": "a17ca84e5fec42f384982d9015f2ecf85e207b7d51c8804d4b3cec6f8941aaf9",
+      "run_directory": "runs/GPPO/seed1101-attempt-2",
+      "run_summary_sha256": "18d606a2833d98e2d0a6b19af36271447e3180ba77d1569dbe7d3b0729950cf5",
+      "safety_audit_sha256": "2a2b0e968ec42e11cb8414bec075eee33e5053d73430ff17d3ba1865f2cc57e0",
+      "seed": 1101,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": null
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/gppo_seed2202_step25000.pt",
+          "sha256": "ad36643a20ab3de4544e45b74a293d2017cc94fa88745c22adf227d553b5f438",
+          "step": 25000
+        },
+        {
+          "path": "models/gppo_seed2202_step50000.pt",
+          "sha256": "c874c847cf2179ebfefd2d04be01d584d93913112ca5d1eadbb37ddbcc87b20e",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "GPPO",
+      "inventory_sha256": "874e13d73f1d7904079236d032cfa72f11acd2bd50055032b09b72a021a56656",
+      "run_directory": "runs/GPPO/seed2202",
+      "run_summary_sha256": "7115f0873dc180c90bf83595a62a41ac6374ff648b98973ea5e7be189d69e61c",
+      "safety_audit_sha256": "2a2b0e968ec42e11cb8414bec075eee33e5053d73430ff17d3ba1865f2cc57e0",
+      "seed": 2202,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": null
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/gppo_seed3303_step25000.pt",
+          "sha256": "f6d5f19789cc9d30b4d25e703aa2852685d17dc626c151b1efb37ea9563c1ca9",
+          "step": 25000
+        },
+        {
+          "path": "models/gppo_seed3303_step50000.pt",
+          "sha256": "5d0e268f8f66e3f8b8da2f05da4e319778ed68d0dbf854227834493c9d0ff87a",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "GPPO",
+      "inventory_sha256": "740aa32c7992bbf7f2fb599625bdfd7cc0c518f799c66e0470bb0d6051d83dec",
+      "run_directory": "runs/GPPO/seed3303",
+      "run_summary_sha256": "8a47f6f6db2aa16f3a3ada558e2681033ebf7ad7b7e523d70743f515a8b73f2d",
+      "safety_audit_sha256": "2a2b0e968ec42e11cb8414bec075eee33e5053d73430ff17d3ba1865f2cc57e0",
+      "seed": 3303,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": null
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/wm_gppo_seed1101_step25000.pt",
+          "sha256": "137f63b9352a02bcff8ee31101c3a7de16af352dbde2235a442da8aeeab26888",
+          "step": 25000
+        },
+        {
+          "path": "models/wm_gppo_seed1101_step50000.pt",
+          "sha256": "0f2621bc1e4603f9346af715a0322760eb091fd501886e3970554c87f74775e7",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "WM-GPPO",
+      "inventory_sha256": "7b44a2a2084119d7b6602f286aaff7808ffbcc38c3cb63a36759fb4b46828f0d",
+      "run_directory": "runs/WM-GPPO/seed1101",
+      "run_summary_sha256": "5f336e6f8e3d7a3dbbf9f27122feb5addf421da1ea86a03978a3a2d7161fa314",
+      "safety_audit_sha256": "d1abf929ce71274fc523b7a08a953f2b82fe1a058b5b746ce023e7ef148c49c2",
+      "seed": 1101,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "7dff0b51ac0d01ea910a33330b29771c68aa9f593a1dd2658bde46a0a2090d71"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/wm_gppo_seed2202_step25000.pt",
+          "sha256": "f846d95f7ea99d3c60bc016f8725dc35bfc980b86b97e940a3ee353be4de8d15",
+          "step": 25000
+        },
+        {
+          "path": "models/wm_gppo_seed2202_step50000.pt",
+          "sha256": "b872be78cac0f61e2fde1ad36d124c79e8b9b84e4532b9c76174edb6e5dac7e1",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "WM-GPPO",
+      "inventory_sha256": "85a112f5d9fc472e70d0573ed1300d115af94b292054b66ee142941cf3dce507",
+      "run_directory": "runs/WM-GPPO/seed2202",
+      "run_summary_sha256": "a32239bb7b9eabbcf965aef59cda3c0b6a1e42cf86d4775c612d5c78ad8de105",
+      "safety_audit_sha256": "c61ba166406f452b704c01397bbe849cfc0014f06927c80fdb8cadcff12bbeb5",
+      "seed": 2202,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "ef6b7cd05c76ee52626602321db9defc3dcd47e17216c30a5219f8f55bcf5d47"
+    },
+    {
+      "accepted_decision_steps": 50000,
+      "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "checkpoints": [
+        {
+          "path": "models/wm_gppo_seed3303_step25000.pt",
+          "sha256": "03001b9b3112753175fcfcc50a12e581f512956ee790cdb6516ab459b8484081",
+          "step": 25000
+        },
+        {
+          "path": "models/wm_gppo_seed3303_step50000.pt",
+          "sha256": "56738ec5b9c85ed3b49f00fe56c57ddfc9a139879b433d45030920dc3b73445e",
+          "step": 50000
+        }
+      ],
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "group": "WM-GPPO",
+      "inventory_sha256": "58e4f3f818190b6ede7bf4701cb1a5145b7526e71954dbde99ded2fcfe8988e4",
+      "run_directory": "runs/WM-GPPO/seed3303",
+      "run_summary_sha256": "257529691b749227eeceec8a6fc3a2d7699db3560efd8e58b914035ae39e0c92",
+      "safety_audit_sha256": "9aa852e29a38b78514e1eeaff554aa417bb0322733b1d5d04d88835cb31977e8",
+      "seed": 3303,
+      "status": "done",
+      "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+      "world_checkpoint_sha256": "cd786bccb357ac5501811993c8f608cfed0f3d992014755eae8876c6fc922870"
+    }
+  ]
+}

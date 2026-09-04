@@ -4,7 +4,7 @@
     "repository": "https://github.com/Battleplus/GPPO-8.29",
     "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
   },
-  "updated_at": "2026-09-02T16:08:44+08:00",
+  "updated_at": "2026-09-04T21:06:53+08:00",
   "allowed_statuses": [
     "blocked",
     "planned",
@@ -86,16 +86,27 @@
     },
     {
       "id": "T-05",
-      "status": "in_progress",
+      "status": "passed",
       "blocked_by": [],
       "evidence": [
         "nodes/T-05/evidence/local-interface-validation.json",
         "nodes/T-05/evidence/local-test-report.md",
         "nodes/T-05/evidence/luna-worker-audit-resolution.md",
         "nodes/T-05/evidence/server-probe.json",
-        "nodes/T-05/server-training-config.json"
+        "nodes/T-05/server-training-config.json",
+        "nodes/T-05/evidence/final-report.md",
+        "nodes/T-05/evidence/independent-release-audit.md",
+        "nodes/T-05/evidence/server-run-manifest.json",
+        "nodes/T-05/evidence/server-evaluation-manifest.json",
+        "nodes/T-05/evidence/server-final-summary.json",
+        "nodes/T-05/evidence/server-failed-runs.json",
+        "nodes/T-05/evidence/four-group-ablation.json",
+        "nodes/T-05/evidence/server-test-bank-manifest.json",
+        "nodes/T-05/evidence/server-top-level-inventory.json",
+        "nodes/T-05/evidence/release-assets-sha256.txt",
+        "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0"
       ]
     },
-    {"id": "T-06", "status": "blocked", "blocked_by": ["T-05"], "evidence": []}
+    {"id": "T-06", "status": "planned", "blocked_by": [], "evidence": []}
   ]
 }

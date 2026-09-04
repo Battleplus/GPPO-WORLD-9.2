@@ -1,0 +1,15 @@
+{
+  "failures": [
+    {
+      "accepted_decision_steps": 0,
+      "attempt": 1,
+      "group": "GPPO",
+      "launcher_log": "launcher-logs/train-gppo-s1101.log",
+      "preserved": true,
+      "reason": "Shadow calibration SHA-256 mismatch caused by CRLF/LF frozen hash portability",
+      "run_directory": "runs/GPPO/seed1101",
+      "seed": 1101
+    }
+  ],
+  "format": "gppo-t05-failed-runs/0.1.0"
+}

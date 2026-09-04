@@ -1,6 +1,6 @@
 # T-06：1～3 步 imagined rollout
 
-**状态：blocked by T-05**
+**状态：planned / optional（T-05 已通过，本节点尚未开始）**
 
 ## 目标
 
