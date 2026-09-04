@@ -65,4 +65,6 @@ EAWM-GPPO 相对 GPPO 的逐 seed episode-return 配对差值与 95% bootstrap C
 
 ## 下一步
 
+已完成一轮基于封存 Release 的只读诊断，核对了 1,200 条 trace 的奖励分项、事件归因/全部决策两种 return 口径和逐场景差异。结果与后续 D-02～D-04 计划见 [T-05 封存后的诊断与下一步](08-post-t05-diagnostics-and-next-plan.md)。没有更换正式指标或重训模型。
+
 T-06 现已从阻塞转为可选计划。若推进，必须建立新的冻结协议和独立 Test bank，再研究 1～3 步 imagined rollout；不能用本次 Test 结果反向调参或挑 checkpoint。T-06 的失败不应回滚已经通过的 T-00～T-05 基础迁移。

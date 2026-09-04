@@ -239,6 +239,7 @@ GPPO-WORLD-9.2/
 7. [T-05 服务器训练 AI 接力说明](docs/06-server-ai-handoff.md)
 8. [T-05 正式服务器 Campaign 实时接力存档](docs/07-t05-live-server-campaign-handoff.md)
 9. [节点总索引](nodes/README.md)
+10. [T-05 封存后的诊断与下一步](docs/08-post-t05-diagnostics-and-next-plan.md)
 
 节点的权威当前状态以 [`nodes/status.json`](nodes/status.json) 为准。README 负责解释路线，节点证据负责证明结果；文档中的计划不能替代真实实验。
 
