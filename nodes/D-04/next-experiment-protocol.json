@@ -1,0 +1,52 @@
+{
+  "format": "gppo-followup-protocol-design/0.1.0",
+  "status": "design_saved_not_executed",
+  "execution_gate": "No launch until separate manifests, code hash, approved resource budget and acceptance protocol are frozen",
+  "old_t05_results": "immutable; never replace retrospective metrics or select old Test checkpoints",
+  "stage_a": {
+    "purpose": "development-only within-checkpoint intervention before any retraining",
+    "groups": ["WM-GPPO", "EA-noGES-GPPO", "EAWM-GPPO"],
+    "seeds": [1101, 2202, 3303],
+    "checkpoint_step": 50000,
+    "arms": ["same-trained-policy-adapter-on", "same-trained-policy-adapter-off"],
+    "development_tapes": "D-02 bank, explicitly already viewed development data",
+    "expected_episode_count": 216,
+    "weights_update": false,
+    "interpretation": "Effect of disabling an existing trained adapter in simulation; NOT a separately trained no-WM baseline"
+  },
+  "stage_b_proposed": {
+    "status": "not_authorized_to_launch_by_this_protocol_file",
+    "groups": ["GPPO", "GPPO-History", "WM-GPPO", "EA-noGES-GPPO", "EAWM-GPPO"],
+    "training_seeds": [1101, 2202, 3303, 4404, 5505],
+    "accepted_decisions_per_run": 50000,
+    "total_accepted_decisions": 1250000,
+    "checkpoints": [25000, 50000],
+    "evaluated_checkpoint": 50000,
+    "checkpoint_selection_by_test": false,
+    "train_validation_test": {
+      "train": "fresh recorded reset/instance/event namespaces, full manifests frozen before launch",
+      "validation_tapes": 100,
+      "test_tapes": 1000,
+      "test_sets": ["single", "sequential", "overlap", "burst", "unseen"],
+      "test_tapes_per_set": 200,
+      "required_overlap": 0,
+      "overlap_keys": ["tape_hash", "initial_seed", "event_seed", "episode_group"],
+      "excluded_test_sources": ["original T-05 Test", "D-02 development", "any previously inspected training/validation set"],
+      "test_seal": "generated and hash-sealed before training; no result inspection until all fixed runs finish"
+    },
+    "primary_metric": "all_decision_return: sum of actual accepted-decision rewards, aligned to PPO training reward",
+    "mandatory_secondary_metrics": ["original_event_attributed_episode_return", "fixed_j_lower_is_better", "final_infeasible_rate", "event_success_rate", "recovery_delay", "cumulative_uncovered_time"],
+    "rationale": "Prospective dual reporting after discovering baseline aggregation semantics; does not change T-05 conclusion",
+    "proposed_acceptance": {
+      "return": "EAWM vs independent GPPO paired hierarchical bootstrap lower 95% bound > 0, and positive mean difference in at least 4 of 5 seeds",
+      "bootstrap": "resample training seeds and paired tape identities hierarchically; 10000 draws; never treat all episodes as independent seeds",
+      "fixed_j": "upper 95% bound of paired cost difference <= 0",
+      "final_infeasible_rate": "upper 95% bound of absolute rate difference <= 0.005 (0.5 percentage point)",
+      "safety_mutations": 0,
+      "fallback": "legacy/disabled/zero-context parity remains bit-exact",
+      "failure_policy": "publish all results and reject improvement claim; no test-driven checkpoint or seed selection"
+    },
+    "unresolved_before_launch": ["GPPO-History architecture and parameter budget", "resource allocation and maximum runtime", "exact seed namespaces and dataset manifests", "validation-only tuning allowance and its cap"]
+  },
+  "t06": "not started; consider only after independent evidence justifies additional model-based planning"
+}

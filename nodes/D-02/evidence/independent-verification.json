@@ -1,0 +1,13 @@
+{
+  "checks": "full non-diagnostic decision fields plus final snapshot, reward sums, safety and file hashes",
+  "failures": [],
+  "inventory_files_checked": 270,
+  "pairs_checked": 108,
+  "probe_records_checked": 623,
+  "return_semantics_checked": [
+    "event_attributed",
+    "all_decisions"
+  ],
+  "status": "PASS",
+  "traces_checked": 216
+}

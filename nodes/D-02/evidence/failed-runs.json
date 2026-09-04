@@ -1,0 +1,6 @@
+{
+  "format": "d02-failed-runs/0.1.0",
+  "attempts_executed": 1,
+  "failed_attempts": [],
+  "note": "The frozen 108-pair attempt passed on its first execution. No experiment was overwritten or silently retried."
+}

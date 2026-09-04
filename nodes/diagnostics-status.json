@@ -1,0 +1,10 @@
+{
+  "updated_on": "2026-09-04",
+  "source": "T-05 posthoc follow-up; does not change T-node acceptance",
+  "nodes": [
+    {"id": "D-01", "status": "passed", "evidence": "nodes/T-05/evidence/posthoc-diagnostics.json"},
+    {"id": "D-02", "status": "passed", "evidence": "nodes/D-02/evidence/final-report.md"},
+    {"id": "D-03", "status": "hypotheses_assessed_not_causally_resolved", "evidence": "nodes/D-02/evidence/final-report.md"},
+    {"id": "D-04", "status": "protocol_design_saved_not_executed", "evidence": "nodes/D-04/next-experiment-protocol.json"}
+  ]
+}
