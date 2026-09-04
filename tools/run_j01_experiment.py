@@ -37,7 +37,8 @@ def batches(count, size, generator=None):
     indices = torch.randperm(count, generator=generator) if generator is not None else torch.arange(count)
     pieces = list(indices.split(size))
     if len(pieces) > 1 and len(pieces[-1]) == 1:
-        pieces[-2] = torch.cat([pieces[-2], pieces.pop()])
+        last = pieces.pop()
+        pieces[-1] = torch.cat([pieces[-1], last])
     return pieces
 
 
