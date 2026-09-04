@@ -1,5 +1,7 @@
 # T-05：冻结 latent 接入 GPPO
 
+> **实时服务器 campaign：** 已启动的正式训练、修复身份和接手步骤见 [`docs/07-t05-live-server-campaign-handoff.md`](../../docs/07-t05-live-server-campaign-handoff.md)。不要依据下方启动前阻塞描述重复创建训练进程。
+
 **状态：in_progress（本地接口 Gate 已通过；正式服务器/GPU 消融尚未执行）**
 
 ## 目标

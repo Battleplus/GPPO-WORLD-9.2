@@ -8,7 +8,7 @@
 
 本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
 
-> 当前进度总览：请查看 [GPPO 世界模型迁移当前进度](docs/05-current-progress.md)。截至 2026-09-03，T-00～T-04 已通过，T-05 本地 Gates 已通过但正式四组 × 三 seed GPU 消融仍为 `0/12`。
+> 当前进度总览：请查看 [GPPO 世界模型迁移当前进度](docs/05-current-progress.md)。正式 T-05 服务器 campaign 已启动；实时运行身份、双 GPU worker 和接力步骤见 [T-05 实时服务器接力存档](docs/07-t05-live-server-campaign-handoff.md)。在 12/12 训练、12/12 评估和聚合完成前，T-05 仍为 `in_progress`。
 
 ## 为什么需要世界模型
 
@@ -237,7 +237,8 @@ GPPO-WORLD-9.2/
 5. [实验矩阵与验收定义](docs/04-experiment-and-acceptance.md)
 6. [当前任务进度](docs/05-current-progress.md)
 7. [T-05 服务器训练 AI 接力说明](docs/06-server-ai-handoff.md)
-8. [节点总索引](nodes/README.md)
+8. [T-05 正式服务器 Campaign 实时接力存档](docs/07-t05-live-server-campaign-handoff.md)
+9. [节点总索引](nodes/README.md)
 
 节点的权威当前状态以 [`nodes/status.json`](nodes/status.json) 为准。README 负责解释路线，节点证据负责证明结果；文档中的计划不能替代真实实验。
 

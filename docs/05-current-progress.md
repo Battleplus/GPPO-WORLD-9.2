@@ -1,5 +1,7 @@
 # GPPO 世界模型迁移当前进度
 
+> **服务器实时状态补充：** 正式 T-05 campaign 已于 2026-09-03 启动。当前运行身份、双 GPU worker 和接力说明见 [`07-t05-live-server-campaign-handoff.md`](07-t05-live-server-campaign-handoff.md)。本文件其余统计仍是启动前基线，最终状态须等待 12/12 训练、12/12 评估和聚合完成后统一更新。
+
 更新时间：2026-09-03（Asia/Shanghai）
 
 ## 一页结论
