@@ -1,0 +1,11 @@
+{
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "device": "cpu",
+  "formal_gpu_result_reproduction": false,
+  "platform": "Windows-11-10.0.26100-SP0",
+  "protocol_sha256": "883ea181557448dc8db2d32f2ea786fff7f3ccc91220b68acf38d471bd9ef1f2",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "run_archive_sha256": "a26f68fed5e3005a9d1808d62ab01a3492a0964dc2811f7bf23d3f2768697a7b",
+  "source_commit": "70f5763b122de077c79d6304abd4632cccf7139f",
+  "torch": "2.13.0+cpu"
+}

@@ -1,0 +1,40 @@
+{
+  "format": "gppo-adapter-diagnostics/0.1.0",
+  "scope": "development-only observation, not a new formal T-05 result or training run",
+  "source_release": "t05-gppo-ablation-v0.1.0",
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "groups": ["WM-GPPO", "EA-noGES-GPPO", "EAWM-GPPO"],
+  "seeds": [1101, 2202, 3303],
+  "checkpoint_step": 50000,
+  "development_bank": {
+    "master_seed": 202609041,
+    "modes": ["single", "sequential", "overlap", "burst"],
+    "tapes_per_mode": 3,
+    "events_per_tape": 5,
+    "shared_across_groups_and_seeds": true,
+    "must_be_disjoint_from_original_test": ["canonical_tape_sha256", "initial_seed", "event_seed"]
+  },
+  "execution": {
+    "device": "cpu",
+    "torch_num_threads": 1,
+    "deterministic_actions": true,
+    "diagnosed_episodes": 108,
+    "matched_probe_off_episodes": 108,
+    "max_decisions_per_episode": 100,
+    "retrain": false,
+    "timeout_gate": "original frozen Shadow calibration, no relaxation"
+  },
+  "comparators": {
+    "within_decision": "same checkpoint co-trained embedded base logits vs augmented logits; not standalone GPPO",
+    "noninterference": "probe-on vs probe-off same full policy, seed and event tape"
+  },
+  "gates": [
+    "all 108 paired action/reward/version and terminal snapshots identical",
+    "all real environment/belief/mask/version and Shadow action submission mutation counts zero",
+    "all original policy/world checkpoint hashes unchanged",
+    "all tests pass",
+    "zero original Test tape/seed overlap",
+    "save failures without overwriting attempts"
+  ],
+  "not_claimed": ["causal benefit of GES", "formal performance improvement", "production latency", "T-06 implemented"]
+}

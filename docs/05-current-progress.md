@@ -67,4 +67,6 @@ EAWM-GPPO 相对 GPPO 的逐 seed episode-return 配对差值与 95% bootstrap C
 
 已完成一轮基于封存 Release 的只读诊断，核对了 1,200 条 trace 的奖励分项、事件归因/全部决策两种 return 口径和逐场景差异。结果与后续 D-02～D-04 计划见 [T-05 封存后的诊断与下一步](08-post-t05-diagnostics-and-next-plan.md)。没有更换正式指标或重训模型。
 
+D-02 也已在新开发集完成：108 对探针开/关复放，216 episodes、623 条决策记录全部通过非干扰与安全检查。EAWM 的 170 次 latent 使用中有 17 次改变同一 checkpoint 内 base 分支的首选动作，但这不是相对独立 GPPO 的收益证明。详见 [D-02 报告](../nodes/D-02/evidence/final-report.md) 和 [D-04 新验证设计](../nodes/D-04/README.md)。
+
 T-06 现已从阻塞转为可选计划。若推进，必须建立新的冻结协议和独立 Test bank，再研究 1～3 步 imagined rollout；不能用本次 Test 结果反向调参或挑 checkpoint。T-06 的失败不应回滚已经通过的 T-00～T-05 基础迁移。

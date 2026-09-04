@@ -13,3 +13,11 @@
 | T-06 | [短期 imagined rollout](T-06/README.md) | planned / optional | rollout checkpoints/held-out results |
 
 更新节点时：复制[节点记录模板](templates/NODE_RECORD_TEMPLATE.md)的证据结构，在对应目录保存 manifest；同步更新 [`status.json`](status.json)；最后把节点页中的证据链接固定到 Git commit 或 versioned Release。
+
+## 基础迁移后的诊断
+
+诊断状态单独保存在 [diagnostics-status.json](diagnostics-status.json)，不改写 T-05 原实验。
+
+- [D-02 冻结 adapter 只读诊断](D-02/README.md)：已通过 108 对非干扰验证。
+- [D-03 假设判定](D-02/evidence/final-report.md)：记录已支持与未确定的解释，不作因果提升声明。
+- [D-04 后续验证协议设计](D-04/README.md)：已保存设计，未启动新训练或 T-06。
