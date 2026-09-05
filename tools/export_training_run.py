@@ -3,6 +3,21 @@ import argparse,hashlib,json,zipfile
 from pathlib import Path
 
 
+def completion_state(run):
+    """A result filename alone is not proof that the frozen matrix finished."""
+    if (run/'failure.json').exists():return False
+    if not (run/'results.json').is_file() or not (run/'run-manifest.json').is_file():return False
+    results=json.loads((run/'results.json').read_text(encoding='utf-8'))
+    manifest=json.loads((run/'run-manifest.json').read_text(encoding='utf-8'))
+    protocol=manifest.get('protocol',{})
+    expected={(g,s) for g in protocol.get('groups',[]) for s in protocol.get('seeds',[])}
+    actual=[(r['group'],r['seed']) for r in results.get('results',[])]
+    return bool(expected and len(actual)==len(expected) and set(actual)==expected
+        and results.get('status')=='development_matrix_completed'
+        and results.get('updates')==protocol.get('training',{}).get('unique_updates_total')
+        and all((run/f'{g}-{s}'/'terminal.pt').is_file() for g,s in expected))
+
+
 def export(run,destination):
     run=run.resolve();destination=destination.resolve()
     if destination.is_relative_to(run):raise ValueError('Export must be outside the run directory')
@@ -14,7 +29,7 @@ def export(run,destination):
         members.append({'path':p.relative_to(run).as_posix(),'bytes':p.stat().st_size,
                         'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
     manifest={'format':'gppo-training-export/1.0.0','source_directory':str(run),
-        'completed':(run/'results.json').is_file(),'contains_failure':(run/'failure.json').is_file(),
+        'completed':completion_state(run),'contains_failure':(run/'failure.json').is_file(),
         'checkpoint_count':sum(p.suffix=='.pt' for p in files),'files':members}
     with zipfile.ZipFile(destination,'x',compression=zipfile.ZIP_DEFLATED) as archive:
         for p,member in zip(files,members):archive.write(p,member['path'])
