@@ -151,3 +151,30 @@ def validate_record(record):
     for phase in (pre, commit, nxt):
         graph_from_dict(phase['graph'])
     return True
+
+
+def history_inputs(records, window=4):
+    """Causal graph histories ending at each decision, padded with valid bits.
+
+    Past actions are attached only to past frames; the action under evaluation
+    remains separate. All branch alternatives share the same factual history.
+    """
+    if window < 1:
+        raise ValueError('History window must be positive')
+    episodes = {}
+    result = []
+    for record in records:
+        episode = episodes.setdefault(record['episode_id'], [])
+        if record['step'] != len(episode):
+            raise ValueError('History requires contiguous factual episode steps')
+        current = model_input(record)
+        past = episode[-(window - 1):] if window > 1 else []
+        frames = [{'graph': r['pre']['graph'], 'time': r['pre']['time'], 'past_executed_action': r['action']}
+                  for r in past]
+        frames.append({'graph': current['graph'], 'time': current['time'], 'past_executed_action': None})
+        valid = [False] * (window - len(frames)) + [True] * len(frames)
+        padded = [None] * (window - len(frames)) + frames
+        result.append({'current': current, 'history': padded, 'valid': valid,
+                       'episode_id': record['episode_id'], 'step': record['step']})
+        episode.append(record)
+    return result

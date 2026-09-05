@@ -1,0 +1,82 @@
+{
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "behavior_checkpoint_sha256": "2353018f433e6c114f292f4b489a6d7da50f5ae2d659f530fcea0949ac67ffd3",
+  "protocol": {
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "branch_ground_truth": "Commit consequences only. Next graph can consume action-dependent amounts of detector randomness and is NOT claimed common-random-number causal evidence.",
+    "branch_origins_per_episode": 4,
+    "commit_time": "decision_time + known fixed decision_duration; no new observation ingested",
+    "development": {
+      "master_seeds": {
+        "train": 95020501,
+        "validation": 95020502
+      },
+      "tapes_per_profile": {
+        "train": 8,
+        "validation": 4
+      }
+    },
+    "failure_policy": "Preserve failed attempt; no overwrites or result-dependent extra tapes",
+    "format": "gppo-three-phase/1.0.0",
+    "gates": [
+      "zero native-vs-observed full state and return mismatches",
+      "zero factual branch replay mismatches",
+      "zero randomness consumed during commit",
+      "all branches legal at replayed pre state",
+      "no split or referenced historical seed overlap",
+      "no future data in model_input"
+    ],
+    "history_window": 4,
+    "input_allowlist": [
+      "pre.graph",
+      "pre.time",
+      "pre.action_version",
+      "pre.evidence",
+      "pre.decision_duration",
+      "action",
+      "past_pre_graphs_and_executed_actions"
+    ],
+    "max_wall_seconds": 3600,
+    "observer": "Native first event-ingestion boundary after fixed clock increment; graph and cost computation unchanged",
+    "offline_audit_only": [
+      "RNG fingerprints",
+      "native state fingerprints",
+      "tape",
+      "history replay actions",
+      "event cursor"
+    ],
+    "profiles": [
+      "normal",
+      "single",
+      "sequential",
+      "overlap",
+      "burst",
+      "long_gap",
+      "weak_comm"
+    ],
+    "scope": "Development contract and bounded offline candidate preparation; no fresh Test or policy training yet",
+    "targets_only": [
+      "commit",
+      "next",
+      "reward",
+      "costs",
+      "terminated",
+      "truncated"
+    ]
+  },
+  "references": [
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-data-attempt1-20260904\\dataset-manifest.json",
+      "sha256": "3434ab3119443975c82da0251307cf3fec5dd5517542f6b5112a695b09e3e7df"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\GPPO-WORLD-9.2-r02\\nodes\\T-05\\evidence\\server-test-bank-manifest.json",
+      "sha256": "f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\GPPO-WORLD-9.2-r02\\nodes\\D-02\\evidence\\development-bank.json",
+      "sha256": "bd89e8ac9f1c6771916123d8f0014cdbd28d09b1449de428ac81a761443411f2"
+    }
+  ],
+  "source_commit": "0a4e6bee133763f15f51f84e749d8c0e366ff570"
+}

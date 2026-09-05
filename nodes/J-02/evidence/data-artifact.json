@@ -1,0 +1,9 @@
+{
+  "path": "E:\\Z博士\\9.2日\\J02-phase-data-sealed-20260905.tar.gz",
+  "sha256": "84aedfaeaa23d4550f5885a0c4ef5959897d631729c3ac196317a923f01b1b2b",
+  "bytes": 1188611,
+  "verified_members": 91,
+  "publication_status": "local_only",
+  "collector_commit": "0a4e6be",
+  "runtime_note": "Collector loaded frozen phase_data at startup; history_inputs helper appended during collection was not used by collector. Git HEAD remained 0a4e6be for entire collection."
+}

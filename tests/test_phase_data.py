@@ -5,6 +5,7 @@ import sys
 import pytest
 from gppo_world.phase_data import model_input, validate_record, native_fingerprint, observed_environment, digest, canonical
 from tools.collect_j02_phases import capture
+from gppo_world.phase_data import history_inputs
 
 
 @pytest.fixture
@@ -55,3 +56,18 @@ def test_fingerprint_catches_hidden_rng_and_queue_changes(baseline):
     assert native_fingerprint(env)!=old
     old=native_fingerprint(env);env.next_event_index+=1
     assert native_fingerprint(env)!=old
+
+
+def test_history_padding_and_current_action_separation(baseline):
+    Base,_=baseline;env=observed_environment(Base)(initial_seed=8171,event_seed=982181);env.reset()
+    action=int(env.begin_decision().graph.action_mask.nonzero()[0])
+    row,_=capture(env,action,{'episode_id':'one','step':0})
+    second=deepcopy(row);second['step']=1
+    other=deepcopy(row);other['episode_id']='two'
+    values=history_inputs([row,second,other])
+    assert values[0]['valid']==[False,False,False,True]
+    assert values[1]['valid']==[False,False,True,True]
+    assert values[1]['history'][-2]['past_executed_action']==action
+    assert values[1]['history'][-1]['past_executed_action'] is None
+    assert values[2]['valid']==values[0]['valid']
+    with pytest.raises(ValueError,match='contiguous'):history_inputs([second])

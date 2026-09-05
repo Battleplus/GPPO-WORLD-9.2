@@ -1,0 +1,671 @@
+{
+  "commit_rng_changes": 0,
+  "counts": {
+    "branches": 2237,
+    "commit_next_different": 528,
+    "episodes": 252,
+    "factual_replays": 837,
+    "history_four_available": 309,
+    "multi_action_origins": 759,
+    "transitions": 978
+  },
+  "elapsed_seconds": 97.78138949999993,
+  "factual_replay_mismatches": 0,
+  "native_observer_mismatches": 0,
+  "next_branch_coupling_claim": false,
+  "protocol": {
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "branch_ground_truth": "Commit consequences only. Next graph can consume action-dependent amounts of detector randomness and is NOT claimed common-random-number causal evidence.",
+    "branch_origins_per_episode": 4,
+    "commit_time": "decision_time + known fixed decision_duration; no new observation ingested",
+    "development": {
+      "master_seeds": {
+        "train": 95020501,
+        "validation": 95020502
+      },
+      "tapes_per_profile": {
+        "train": 8,
+        "validation": 4
+      }
+    },
+    "failure_policy": "Preserve failed attempt; no overwrites or result-dependent extra tapes",
+    "format": "gppo-three-phase/1.0.0",
+    "gates": [
+      "zero native-vs-observed full state and return mismatches",
+      "zero factual branch replay mismatches",
+      "zero randomness consumed during commit",
+      "all branches legal at replayed pre state",
+      "no split or referenced historical seed overlap",
+      "no future data in model_input"
+    ],
+    "history_window": 4,
+    "input_allowlist": [
+      "pre.graph",
+      "pre.time",
+      "pre.action_version",
+      "pre.evidence",
+      "pre.decision_duration",
+      "action",
+      "past_pre_graphs_and_executed_actions"
+    ],
+    "max_wall_seconds": 3600,
+    "observer": "Native first event-ingestion boundary after fixed clock increment; graph and cost computation unchanged",
+    "offline_audit_only": [
+      "RNG fingerprints",
+      "native state fingerprints",
+      "tape",
+      "history replay actions",
+      "event cursor"
+    ],
+    "profiles": [
+      "normal",
+      "single",
+      "sequential",
+      "overlap",
+      "burst",
+      "long_gap",
+      "weak_comm"
+    ],
+    "scope": "Development contract and bounded offline candidate preparation; no fresh Test or policy training yet",
+    "targets_only": [
+      "commit",
+      "next",
+      "reward",
+      "costs",
+      "terminated",
+      "truncated"
+    ]
+  },
+  "source_commit": "0a4e6bee133763f15f51f84e749d8c0e366ff570",
+  "status": "collected_development_only",
+  "tapes": [
+    {
+      "event_seed": 8352152273395878322,
+      "initial_seed": 1852473478,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-0-75e7bf762d10"
+    },
+    {
+      "event_seed": 7874846404448221263,
+      "initial_seed": 2011350778,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-1-bad18f607fb4"
+    },
+    {
+      "event_seed": 1550635770966369300,
+      "initial_seed": 732644895,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-2-e34e1c98234e"
+    },
+    {
+      "event_seed": 7480876054920964489,
+      "initial_seed": 64346478,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-3-8f3234ee76b2"
+    },
+    {
+      "event_seed": 4060432767070540142,
+      "initial_seed": 1282063367,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-4-a3c8cae76907"
+    },
+    {
+      "event_seed": 8680212476755629021,
+      "initial_seed": 1861879310,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-5-974a07d0ce28"
+    },
+    {
+      "event_seed": 5720760185524969013,
+      "initial_seed": 757283842,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-6-fe0b4db8a9a0"
+    },
+    {
+      "event_seed": 8312790904992428698,
+      "initial_seed": 2021176040,
+      "profile": "normal",
+      "split": "train",
+      "tape_id": "j02-train-normal-7-287b08845766"
+    },
+    {
+      "event_seed": 3934875840288491896,
+      "initial_seed": 192937824,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-0-58a068784dd6"
+    },
+    {
+      "event_seed": 6513219882090785952,
+      "initial_seed": 1901512704,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-1-4e33f9926830"
+    },
+    {
+      "event_seed": 2074135668647862193,
+      "initial_seed": 1887770952,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-2-c97af61a7f8d"
+    },
+    {
+      "event_seed": 5089395106962550295,
+      "initial_seed": 1707979236,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-3-cbc721f486b9"
+    },
+    {
+      "event_seed": 4699093828754945495,
+      "initial_seed": 1408157237,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-4-63e4171f7889"
+    },
+    {
+      "event_seed": 7912461638551532438,
+      "initial_seed": 72222018,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-5-f17e9bf78f00"
+    },
+    {
+      "event_seed": 8334730259620388975,
+      "initial_seed": 1474621489,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-6-60a0d8b200f6"
+    },
+    {
+      "event_seed": 1876634389876372773,
+      "initial_seed": 876533473,
+      "profile": "single",
+      "split": "train",
+      "tape_id": "j02-train-single-7-c6744d54b39b"
+    },
+    {
+      "event_seed": 7626615631735863487,
+      "initial_seed": 594211241,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-0-298271a69a74"
+    },
+    {
+      "event_seed": 6876373435265870820,
+      "initial_seed": 1708012520,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-1-0c5820b52b96"
+    },
+    {
+      "event_seed": 7822158477673982343,
+      "initial_seed": 879892203,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-2-ffc445ddda34"
+    },
+    {
+      "event_seed": 1503624924921142840,
+      "initial_seed": 1414414351,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-3-afa9bb750828"
+    },
+    {
+      "event_seed": 7633177611699991982,
+      "initial_seed": 892473903,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-4-99435477e673"
+    },
+    {
+      "event_seed": 6626083171245961061,
+      "initial_seed": 942486341,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-5-fa620bb413fb"
+    },
+    {
+      "event_seed": 1870350600414214517,
+      "initial_seed": 633309932,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-6-b80c355b3627"
+    },
+    {
+      "event_seed": 1856784234333424154,
+      "initial_seed": 2023083031,
+      "profile": "sequential",
+      "split": "train",
+      "tape_id": "j02-train-sequential-7-ffb9b55fb97b"
+    },
+    {
+      "event_seed": 7963405520014461464,
+      "initial_seed": 1391182043,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-0-46b04d725cc8"
+    },
+    {
+      "event_seed": 410624134505938699,
+      "initial_seed": 385288218,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-1-17cf40d8dd84"
+    },
+    {
+      "event_seed": 2219554314272503353,
+      "initial_seed": 1230637122,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-2-7b6e4a23acf8"
+    },
+    {
+      "event_seed": 1365341370582450466,
+      "initial_seed": 589236906,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-3-2c778db4dcd2"
+    },
+    {
+      "event_seed": 658400378375951064,
+      "initial_seed": 647423810,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-4-bd4e2535118e"
+    },
+    {
+      "event_seed": 3405672844179416451,
+      "initial_seed": 1566726611,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-5-03dd4e3a5d8c"
+    },
+    {
+      "event_seed": 2464274117769260153,
+      "initial_seed": 15277356,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-6-2d210cdcbed6"
+    },
+    {
+      "event_seed": 4875814183801623044,
+      "initial_seed": 1007694017,
+      "profile": "overlap",
+      "split": "train",
+      "tape_id": "j02-train-overlap-7-b30931095824"
+    },
+    {
+      "event_seed": 7340251924066905618,
+      "initial_seed": 1249452125,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-0-0fecb6b4eda6"
+    },
+    {
+      "event_seed": 7381860303306720644,
+      "initial_seed": 1288237472,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-1-571c0064ec2d"
+    },
+    {
+      "event_seed": 6480550736698981487,
+      "initial_seed": 1887266221,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-2-b2fd34f37af2"
+    },
+    {
+      "event_seed": 4109573584071035491,
+      "initial_seed": 2093926761,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-3-f494db4f34e7"
+    },
+    {
+      "event_seed": 7720396944889638342,
+      "initial_seed": 477540355,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-4-623e1e847414"
+    },
+    {
+      "event_seed": 7663049453950290368,
+      "initial_seed": 803577274,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-5-7104c3a319a8"
+    },
+    {
+      "event_seed": 8088031593050715451,
+      "initial_seed": 1134509919,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-6-c6b37a0bfc9e"
+    },
+    {
+      "event_seed": 6954617308715585611,
+      "initial_seed": 439078660,
+      "profile": "burst",
+      "split": "train",
+      "tape_id": "j02-train-burst-7-da585d4539d1"
+    },
+    {
+      "event_seed": 6775743027816724351,
+      "initial_seed": 1266854557,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-0-634c7210a8ac"
+    },
+    {
+      "event_seed": 554196455063630062,
+      "initial_seed": 131795984,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-1-509d6b477a87"
+    },
+    {
+      "event_seed": 7027709639024329151,
+      "initial_seed": 151932225,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-2-5a27dca93f8e"
+    },
+    {
+      "event_seed": 454809938250472054,
+      "initial_seed": 1127342585,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-3-5667814cf4d3"
+    },
+    {
+      "event_seed": 2118427464651470148,
+      "initial_seed": 375044998,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-4-b1a0cc2eabb1"
+    },
+    {
+      "event_seed": 5217725410322213145,
+      "initial_seed": 80369703,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-5-fd97592c247f"
+    },
+    {
+      "event_seed": 2254113670345167614,
+      "initial_seed": 132746287,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-6-31a82a8cea54"
+    },
+    {
+      "event_seed": 3280302502177414854,
+      "initial_seed": 202214117,
+      "profile": "long_gap",
+      "split": "train",
+      "tape_id": "j02-train-long_gap-7-b934d8e2e890"
+    },
+    {
+      "event_seed": 2051922785385776384,
+      "initial_seed": 2033043036,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-0-34e632662372"
+    },
+    {
+      "event_seed": 3780181940136224118,
+      "initial_seed": 1270602734,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-1-19b4c62edf1d"
+    },
+    {
+      "event_seed": 3559343418929274477,
+      "initial_seed": 1612321071,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-2-e1ad6c464d63"
+    },
+    {
+      "event_seed": 9175659869750395205,
+      "initial_seed": 333696697,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-3-bfacf95eff55"
+    },
+    {
+      "event_seed": 1728106606933686579,
+      "initial_seed": 1884078082,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-4-c3e449a4e368"
+    },
+    {
+      "event_seed": 8582350698130682290,
+      "initial_seed": 1038773796,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-5-68067b7226c4"
+    },
+    {
+      "event_seed": 6940476660474959308,
+      "initial_seed": 1981652305,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-6-8fa1b57bd83d"
+    },
+    {
+      "event_seed": 414785764232009967,
+      "initial_seed": 66017049,
+      "profile": "weak_comm",
+      "split": "train",
+      "tape_id": "j02-train-weak_comm-7-a4f38c62de8c"
+    },
+    {
+      "event_seed": 4756515593848349537,
+      "initial_seed": 1981422207,
+      "profile": "normal",
+      "split": "validation",
+      "tape_id": "j02-validation-normal-0-d2b2422d7283"
+    },
+    {
+      "event_seed": 2677775434763270019,
+      "initial_seed": 1552284610,
+      "profile": "normal",
+      "split": "validation",
+      "tape_id": "j02-validation-normal-1-f2029a0f75e9"
+    },
+    {
+      "event_seed": 8771863123683090398,
+      "initial_seed": 1719356269,
+      "profile": "normal",
+      "split": "validation",
+      "tape_id": "j02-validation-normal-2-d60a500bdcff"
+    },
+    {
+      "event_seed": 7500711203594185692,
+      "initial_seed": 871013044,
+      "profile": "normal",
+      "split": "validation",
+      "tape_id": "j02-validation-normal-3-ff507f415c72"
+    },
+    {
+      "event_seed": 5689077566552381660,
+      "initial_seed": 104058428,
+      "profile": "single",
+      "split": "validation",
+      "tape_id": "j02-validation-single-0-fed5b72f9a14"
+    },
+    {
+      "event_seed": 3781446497435638743,
+      "initial_seed": 1206010198,
+      "profile": "single",
+      "split": "validation",
+      "tape_id": "j02-validation-single-1-bc0bf28e49d2"
+    },
+    {
+      "event_seed": 8027886627934205222,
+      "initial_seed": 1014892925,
+      "profile": "single",
+      "split": "validation",
+      "tape_id": "j02-validation-single-2-8d8c4dfd720e"
+    },
+    {
+      "event_seed": 5060137174739936512,
+      "initial_seed": 1403321751,
+      "profile": "single",
+      "split": "validation",
+      "tape_id": "j02-validation-single-3-b2fcebb516c5"
+    },
+    {
+      "event_seed": 165289150290443419,
+      "initial_seed": 1368595102,
+      "profile": "sequential",
+      "split": "validation",
+      "tape_id": "j02-validation-sequential-0-2222e91f8eb7"
+    },
+    {
+      "event_seed": 3159813872257141150,
+      "initial_seed": 1724485514,
+      "profile": "sequential",
+      "split": "validation",
+      "tape_id": "j02-validation-sequential-1-b35162962527"
+    },
+    {
+      "event_seed": 8747202812401916227,
+      "initial_seed": 1072775622,
+      "profile": "sequential",
+      "split": "validation",
+      "tape_id": "j02-validation-sequential-2-7ae50861d588"
+    },
+    {
+      "event_seed": 2461603439635210782,
+      "initial_seed": 283685081,
+      "profile": "sequential",
+      "split": "validation",
+      "tape_id": "j02-validation-sequential-3-91f4af057d68"
+    },
+    {
+      "event_seed": 2136169504096437763,
+      "initial_seed": 1616759174,
+      "profile": "overlap",
+      "split": "validation",
+      "tape_id": "j02-validation-overlap-0-5250e56d6726"
+    },
+    {
+      "event_seed": 6771764818607432726,
+      "initial_seed": 500311628,
+      "profile": "overlap",
+      "split": "validation",
+      "tape_id": "j02-validation-overlap-1-098073cccf34"
+    },
+    {
+      "event_seed": 8803856551160077233,
+      "initial_seed": 37252483,
+      "profile": "overlap",
+      "split": "validation",
+      "tape_id": "j02-validation-overlap-2-4cc6920df888"
+    },
+    {
+      "event_seed": 1038064821275684087,
+      "initial_seed": 1895970062,
+      "profile": "overlap",
+      "split": "validation",
+      "tape_id": "j02-validation-overlap-3-eaa72960fff4"
+    },
+    {
+      "event_seed": 2553349976996355058,
+      "initial_seed": 1828761085,
+      "profile": "burst",
+      "split": "validation",
+      "tape_id": "j02-validation-burst-0-bdc6de951665"
+    },
+    {
+      "event_seed": 681713291284547325,
+      "initial_seed": 1113297711,
+      "profile": "burst",
+      "split": "validation",
+      "tape_id": "j02-validation-burst-1-1d5af7e78eea"
+    },
+    {
+      "event_seed": 9169799689678488622,
+      "initial_seed": 2018219573,
+      "profile": "burst",
+      "split": "validation",
+      "tape_id": "j02-validation-burst-2-425e75038f1a"
+    },
+    {
+      "event_seed": 4512693634114861340,
+      "initial_seed": 147641338,
+      "profile": "burst",
+      "split": "validation",
+      "tape_id": "j02-validation-burst-3-69a08e4af8d7"
+    },
+    {
+      "event_seed": 6667094713455823825,
+      "initial_seed": 437945457,
+      "profile": "long_gap",
+      "split": "validation",
+      "tape_id": "j02-validation-long_gap-0-f958d8de780d"
+    },
+    {
+      "event_seed": 216828189467665992,
+      "initial_seed": 1626988938,
+      "profile": "long_gap",
+      "split": "validation",
+      "tape_id": "j02-validation-long_gap-1-9db08581eb7b"
+    },
+    {
+      "event_seed": 2660613458524018395,
+      "initial_seed": 1678022021,
+      "profile": "long_gap",
+      "split": "validation",
+      "tape_id": "j02-validation-long_gap-2-2edd7ff80350"
+    },
+    {
+      "event_seed": 3966929224642588572,
+      "initial_seed": 196450277,
+      "profile": "long_gap",
+      "split": "validation",
+      "tape_id": "j02-validation-long_gap-3-eae926bb9f0d"
+    },
+    {
+      "event_seed": 4319155612580230225,
+      "initial_seed": 1635205377,
+      "profile": "weak_comm",
+      "split": "validation",
+      "tape_id": "j02-validation-weak_comm-0-b1da20f0c1f8"
+    },
+    {
+      "event_seed": 1070963140097619561,
+      "initial_seed": 1867315069,
+      "profile": "weak_comm",
+      "split": "validation",
+      "tape_id": "j02-validation-weak_comm-1-353a5091dc64"
+    },
+    {
+      "event_seed": 8062428754716847313,
+      "initial_seed": 1573085567,
+      "profile": "weak_comm",
+      "split": "validation",
+      "tape_id": "j02-validation-weak_comm-2-ded5400ee516"
+    },
+    {
+      "event_seed": 7748775250216528017,
+      "initial_seed": 1665271941,
+      "profile": "weak_comm",
+      "split": "validation",
+      "tape_id": "j02-validation-weak_comm-3-ae9661c19df9"
+    }
+  ]
+}
