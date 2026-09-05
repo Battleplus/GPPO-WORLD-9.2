@@ -1,0 +1,68 @@
+{
+  "checks": [
+    "archive member hashes",
+    "split isolation",
+    "all legal branch coverage in declared first-four origins",
+    "factual branch equality",
+    "full history identity",
+    "causal input allowlist",
+    "commit timing and versions",
+    "commit RNG unchanged"
+  ],
+  "limitation": "Next-phase branches are not claimed to share external random draws; commit-only causal comparison",
+  "splits": {
+    "train": {
+      "branch_origins": 567,
+      "branches": 1492,
+      "commit_next_graph_differences": 357,
+      "constraint_violation_positives": 0,
+      "episodes": 168,
+      "history_valid_lengths": {
+        "1": 168,
+        "2": 144,
+        "3": 138,
+        "4": 205
+      },
+      "origins_with_reward_difference": 461,
+      "profile_rows": {
+        "burst": 83,
+        "long_gap": 114,
+        "normal": 24,
+        "overlap": 94,
+        "sequential": 117,
+        "single": 107,
+        "weak_comm": 116
+      },
+      "rows": 655,
+      "tapes": 56,
+      "truncated_rows": 0
+    },
+    "validation": {
+      "branch_origins": 270,
+      "branches": 745,
+      "commit_next_graph_differences": 171,
+      "constraint_violation_positives": 0,
+      "episodes": 84,
+      "history_valid_lengths": {
+        "1": 84,
+        "2": 72,
+        "3": 63,
+        "4": 104
+      },
+      "origins_with_reward_difference": 232,
+      "profile_rows": {
+        "burst": 34,
+        "long_gap": 64,
+        "normal": 12,
+        "overlap": 36,
+        "sequential": 58,
+        "single": 63,
+        "weak_comm": 56
+      },
+      "rows": 323,
+      "tapes": 28,
+      "truncated_rows": 0
+    }
+  },
+  "status": "passed"
+}

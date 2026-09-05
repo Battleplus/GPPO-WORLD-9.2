@@ -1,0 +1,54 @@
+S seed 5101: 500/2000 updates
+S seed 5101: 1000/2000 updates
+S seed 5101: 1500/2000 updates
+S seed 5101: 2000/2000 updates
+{"finished": "S", "seed": 5101, "latent_improvement": -3.141266016441576, "reward_nmse": 0.03811918143819854, "regret": 0.04924266352196119}
+J-joint seed 5101: 500/2000 updates
+J-joint seed 5101: 1000/2000 updates
+J-joint seed 5101: 1500/2000 updates
+J-joint seed 5101: 2000/2000 updates
+{"finished": "J-joint", "seed": 5101, "latent_improvement": 0.8770078660918033, "reward_nmse": 0.39271669091623657, "regret": 0.09822699920388744}
+J-fixed-noaction seed 5101: 500/1500 updates
+J-fixed-noaction seed 5101: 1000/1500 updates
+J-fixed-noaction seed 5101: 1500/1500 updates
+{"finished": "J-fixed-noaction", "seed": 5101, "latent_improvement": 0.722932148866885, "reward_nmse": 0.46932741993408894, "regret": 0.7422459948788284}
+J-fixed-action seed 5101: 500/1500 updates
+J-fixed-action seed 5101: 1000/1500 updates
+J-fixed-action seed 5101: 1500/1500 updates
+{"finished": "J-fixed-action", "seed": 5101, "latent_improvement": 0.9243226554911608, "reward_nmse": 0.5054212207515, "regret": 0.183271676500342}
+S seed 5202: 500/2000 updates
+S seed 5202: 1000/2000 updates
+S seed 5202: 1500/2000 updates
+S seed 5202: 2000/2000 updates
+{"finished": "S", "seed": 5202, "latent_improvement": -3.464383903225394, "reward_nmse": 0.036897603163600246, "regret": 0.05567215785401151}
+J-joint seed 5202: 500/2000 updates
+J-joint seed 5202: 1000/2000 updates
+J-joint seed 5202: 1500/2000 updates
+J-joint seed 5202: 2000/2000 updates
+{"finished": "J-joint", "seed": 5202, "latent_improvement": 0.8638103049869719, "reward_nmse": 0.5319147701208298, "regret": 0.09438864175057203}
+J-fixed-noaction seed 5202: 500/1500 updates
+J-fixed-noaction seed 5202: 1000/1500 updates
+J-fixed-noaction seed 5202: 1500/1500 updates
+{"finished": "J-fixed-noaction", "seed": 5202, "latent_improvement": 0.649258847054135, "reward_nmse": 0.7678828185027656, "regret": 0.7422459948788284}
+J-fixed-action seed 5202: 500/1500 updates
+J-fixed-action seed 5202: 1000/1500 updates
+J-fixed-action seed 5202: 1500/1500 updates
+{"finished": "J-fixed-action", "seed": 5202, "latent_improvement": 0.8807836464179958, "reward_nmse": 0.46526789062365487, "regret": 0.21164060119385142}
+S seed 5303: 500/2000 updates
+S seed 5303: 1000/2000 updates
+S seed 5303: 1500/2000 updates
+S seed 5303: 2000/2000 updates
+{"finished": "S", "seed": 5303, "latent_improvement": -3.0695176083780202, "reward_nmse": 0.03469993267403497, "regret": 0.05308147786515884}
+J-joint seed 5303: 500/2000 updates
+J-joint seed 5303: 1000/2000 updates
+J-joint seed 5303: 1500/2000 updates
+J-joint seed 5303: 2000/2000 updates
+{"finished": "J-joint", "seed": 5303, "latent_improvement": 0.8886072797120779, "reward_nmse": 0.6129001563637431, "regret": 0.10106375624692003}
+J-fixed-noaction seed 5303: 500/1500 updates
+J-fixed-noaction seed 5303: 1000/1500 updates
+J-fixed-noaction seed 5303: 1500/1500 updates
+{"finished": "J-fixed-noaction", "seed": 5303, "latent_improvement": 0.610647977313111, "reward_nmse": 0.6017340004337765, "regret": 0.7422459948788284}
+J-fixed-action seed 5303: 500/1500 updates
+J-fixed-action seed 5303: 1000/1500 updates
+J-fixed-action seed 5303: 1500/1500 updates
+{"finished": "J-fixed-action", "seed": 5303, "latent_improvement": 0.8818750603068524, "reward_nmse": 0.4563598036185897, "regret": 0.10039164949115675}

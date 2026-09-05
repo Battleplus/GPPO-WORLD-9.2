@@ -1,0 +1,25 @@
+{
+  "verified_at": "2026-09-05",
+  "export_path": "E:/Z博士/9.2日/J02-server-run1-20260905/training-export.zip",
+  "export_bytes": 128991566,
+  "local_sha256": "2bf2cb58d4cf52c22f013ef18ddba2407b8c752a17e63ebe072f6bee5b7bcabb",
+  "declared_sha256": "2bf2cb58d4cf52c22f013ef18ddba2407b8c752a17e63ebe072f6bee5b7bcabb",
+  "sha256_matches": true,
+  "zip_crc_bad_member": null,
+  "zip_members": 150,
+  "manifest_protected_members": 149,
+  "manifest_member_hash_errors": [],
+  "terminal_checkpoints": 15,
+  "all_checkpoint_files": 85,
+  "matrix_rows": 12,
+  "matrix_updates": 22500,
+  "timing_pilot_updates": 100,
+  "test_loaded": false,
+  "policy_training_started": false,
+  "gate_recalculation": {
+    "decision_matches": true,
+    "failed_gate_set_matches": true,
+    "check_pass_flags_match": true,
+    "numeric_note": "One recomputed ratio differs by one final decimal digit (13.006667993958171 versus 13.00666799395817) because of JSON floating-point round-trip; its failed decision is unchanged."
+  }
+}

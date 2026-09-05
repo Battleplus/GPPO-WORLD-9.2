@@ -1,0 +1,754 @@
+{
+  "format": "gppo-training-export/1.0.0",
+  "source_directory": "/home/user1/gppo-j02-server-20260905-run1/run",
+  "completed": true,
+  "contains_failure": false,
+  "checkpoint_count": 85,
+  "files": [
+    {
+      "path": "J-fixed-action-5101/branch-regrets.json",
+      "bytes": 50120,
+      "sha256": "920614c608054adbad1f0fc7eb4bd9fb59aed18e61260cc982c0fad7429af447"
+    },
+    {
+      "path": "J-fixed-action-5101/history.jsonl",
+      "bytes": 69850,
+      "sha256": "a4c3dfd9e24c0c2a325ba668dd14b56cf0e1e292cbeaa54b89bd79caa2b9f7f2"
+    },
+    {
+      "path": "J-fixed-action-5101/metrics.json",
+      "bytes": 1396,
+      "sha256": "86666568b0448233c68c804b0e56045b013b1a73933b2fac54633b6e9a7e1980"
+    },
+    {
+      "path": "J-fixed-action-5101/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "ee4470a50abc59eb6f1556fb0ffb03d710a93b84fa689066ad7fe42a2bf2ed46"
+    },
+    {
+      "path": "J-fixed-action-5101/probe.pt",
+      "bytes": 2227130,
+      "sha256": "224140c7a86da19af95273d0ca79d935df21d03c387c9c6e68aacd5b170b7877"
+    },
+    {
+      "path": "J-fixed-action-5101/progress-1000.pt",
+      "bytes": 1264922,
+      "sha256": "9d48e717500928d255632b2aaf7c3485b8b98c6472eefabb66878912d32eeb3d"
+    },
+    {
+      "path": "J-fixed-action-5101/progress-1500.pt",
+      "bytes": 1264922,
+      "sha256": "41412aa4a9bfa5aacc206625545178561d21ac2015cda632e5832a42463ea6bb"
+    },
+    {
+      "path": "J-fixed-action-5101/progress-500.pt",
+      "bytes": 1264786,
+      "sha256": "d3b89def2636beea5ec75f8431963411fc58f9200c7e47022e58e555371d3617"
+    },
+    {
+      "path": "J-fixed-action-5101/terminal.pt",
+      "bytes": 1253110,
+      "sha256": "3a8bc3c94edc712e0de9165e56842e574d1a05330d42060154ae72c5836ad348"
+    },
+    {
+      "path": "J-fixed-action-5101/validation-predictions.json",
+      "bytes": 2285075,
+      "sha256": "0d094668ac9f24e9e7eff9c5722ceae919cdb2503b1e29b65db911bdb5b7906f"
+    },
+    {
+      "path": "J-fixed-action-5202/branch-regrets.json",
+      "bytes": 50229,
+      "sha256": "f6ec1355f7d0f4a399fd075370fcf03e97248f134c39e3c93f1b82f373699e09"
+    },
+    {
+      "path": "J-fixed-action-5202/history.jsonl",
+      "bytes": 69773,
+      "sha256": "e5291a4e3f1703271a8406cbe2e47acc33d6040f3dff8c140f2455936a73abec"
+    },
+    {
+      "path": "J-fixed-action-5202/metrics.json",
+      "bytes": 1402,
+      "sha256": "503ab61699e743b13fb6529272b73ce128d90c1881c1382bbc3222b1d0a09ff2"
+    },
+    {
+      "path": "J-fixed-action-5202/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "7ec254a91433c842322c5f9bbf86640c6a3c26ea593186923df45df32c8ca392"
+    },
+    {
+      "path": "J-fixed-action-5202/probe.pt",
+      "bytes": 2227130,
+      "sha256": "f8ef75f19ccf112dbaa0c35ea2826fdc097fa7cc2d35467a9be602861334b2c6"
+    },
+    {
+      "path": "J-fixed-action-5202/progress-1000.pt",
+      "bytes": 1264922,
+      "sha256": "cd0ec27b85d8020f45edf469efca165e341fbee11232bc308d712d13c8548aeb"
+    },
+    {
+      "path": "J-fixed-action-5202/progress-1500.pt",
+      "bytes": 1264922,
+      "sha256": "2e34f4a3f54a365b4ce7821fa6f1f77f7d832499604dc59b44546204f835a033"
+    },
+    {
+      "path": "J-fixed-action-5202/progress-500.pt",
+      "bytes": 1264786,
+      "sha256": "60cf2aecb269a78e555ffddb73f104f48b21fb295efa4b0c1674088774a72eb8"
+    },
+    {
+      "path": "J-fixed-action-5202/terminal.pt",
+      "bytes": 1253110,
+      "sha256": "2bef4cb884cb3f052cb92a2c59e865ad164b9676a9490f4a121564f03f7e1bfb"
+    },
+    {
+      "path": "J-fixed-action-5202/validation-predictions.json",
+      "bytes": 2282219,
+      "sha256": "11bb104ac223078ee92589e2f3ecdcb370418d93544255600aa6095514629dfd"
+    },
+    {
+      "path": "J-fixed-action-5303/branch-regrets.json",
+      "bytes": 49915,
+      "sha256": "84252bf16f7acfd36c25967e22068f7f747a44bbfdbd1a1b5d60045c47db6dfa"
+    },
+    {
+      "path": "J-fixed-action-5303/history.jsonl",
+      "bytes": 69869,
+      "sha256": "ee0a17c06b34c370a88fca75a871e8894b982e098236f030267cdcb04a3a5dcc"
+    },
+    {
+      "path": "J-fixed-action-5303/metrics.json",
+      "bytes": 1405,
+      "sha256": "48fc2727f4af0b8044b5f50f6003333b1586dad55078a70c0fb487f821aa4c6e"
+    },
+    {
+      "path": "J-fixed-action-5303/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "18091347f8655579f07d652eb46271b8592d8a35fd9039a9e670ed9e60d545c1"
+    },
+    {
+      "path": "J-fixed-action-5303/probe.pt",
+      "bytes": 2227130,
+      "sha256": "d4ef9b61a9f5b2d1d7ff8300ec221e5fa3f5a8f8d442e6565dbb8561af48dd22"
+    },
+    {
+      "path": "J-fixed-action-5303/progress-1000.pt",
+      "bytes": 1264922,
+      "sha256": "405c677ab87a25966ebcf720bb4e894902d7eb40ebb0044b6784902433808712"
+    },
+    {
+      "path": "J-fixed-action-5303/progress-1500.pt",
+      "bytes": 1264922,
+      "sha256": "eec49f3ef8f7ad6ab1817be3c5d980e959d3f755418159dd741166a2d34fce87"
+    },
+    {
+      "path": "J-fixed-action-5303/progress-500.pt",
+      "bytes": 1264786,
+      "sha256": "119065b7be48fcf42b33a7bbc2e4c453517fbe5f5328b81a252fbcbef77a4a90"
+    },
+    {
+      "path": "J-fixed-action-5303/terminal.pt",
+      "bytes": 1253110,
+      "sha256": "4a4268326a3fdf3f43de9c9c0cc4aeb45fc099b2158e8925fe3b2723a455d04a"
+    },
+    {
+      "path": "J-fixed-action-5303/validation-predictions.json",
+      "bytes": 2285425,
+      "sha256": "3c2a3a8b43806604eddb7358775ad33c54b454effca93c9b562078c634ca0563"
+    },
+    {
+      "path": "J-fixed-noaction-5101/branch-regrets.json",
+      "bytes": 50747,
+      "sha256": "79f9e772b2e30d7b046cc24d805af172b2183f266ee66d123386a80fcb1543ab"
+    },
+    {
+      "path": "J-fixed-noaction-5101/history.jsonl",
+      "bytes": 69212,
+      "sha256": "40e40c9e149c20d492384aa84df81d1b90e2644163c2eaaa9b4e76c18495646f"
+    },
+    {
+      "path": "J-fixed-noaction-5101/metrics.json",
+      "bytes": 1398,
+      "sha256": "d04ea77ed4bd3010100d2b38fd85f9723060545095c17f6390c7eff3303db6fd"
+    },
+    {
+      "path": "J-fixed-noaction-5101/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "ee4470a50abc59eb6f1556fb0ffb03d710a93b84fa689066ad7fe42a2bf2ed46"
+    },
+    {
+      "path": "J-fixed-noaction-5101/probe.pt",
+      "bytes": 2227130,
+      "sha256": "c79105f7e61dfeeb09799114bf3391947b100a10957cb2dbd8c0acfdc293dc94"
+    },
+    {
+      "path": "J-fixed-noaction-5101/progress-1000.pt",
+      "bytes": 1194114,
+      "sha256": "89910ca09978baf36cb5f7bea4a7a7642c19cfb0f41bdef35f036d2c140b84fd"
+    },
+    {
+      "path": "J-fixed-noaction-5101/progress-1500.pt",
+      "bytes": 1194114,
+      "sha256": "77643bab7807fbae14b1d6d4cd74cd94330cba6b7619e468ad2a163eb2f24470"
+    },
+    {
+      "path": "J-fixed-noaction-5101/progress-500.pt",
+      "bytes": 1193984,
+      "sha256": "dedff175bf5ea3899b5ec6b6009b111e9a8753d04f59f9d6141970297fd94661"
+    },
+    {
+      "path": "J-fixed-noaction-5101/terminal.pt",
+      "bytes": 1182332,
+      "sha256": "d73f7c8541db7f998b4d58853c6317096518722094d77f63db37409b1ae623a0"
+    },
+    {
+      "path": "J-fixed-noaction-5101/validation-predictions.json",
+      "bytes": 2278471,
+      "sha256": "a58389319c3ad487ec5b11e498c2d1f86ee1f1722c5cef9e78ac7959b67fc620"
+    },
+    {
+      "path": "J-fixed-noaction-5202/branch-regrets.json",
+      "bytes": 50747,
+      "sha256": "79f9e772b2e30d7b046cc24d805af172b2183f266ee66d123386a80fcb1543ab"
+    },
+    {
+      "path": "J-fixed-noaction-5202/history.jsonl",
+      "bytes": 69195,
+      "sha256": "73100a1b36fd646bcdc010110fe4145dc1af53d64418185610bc527c55d74108"
+    },
+    {
+      "path": "J-fixed-noaction-5202/metrics.json",
+      "bytes": 1396,
+      "sha256": "affa1cbb149c2367a18a236b00c13c13dfd70d045026eb49ec68ab275fa71254"
+    },
+    {
+      "path": "J-fixed-noaction-5202/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "7ec254a91433c842322c5f9bbf86640c6a3c26ea593186923df45df32c8ca392"
+    },
+    {
+      "path": "J-fixed-noaction-5202/probe.pt",
+      "bytes": 2227130,
+      "sha256": "582c2b171e9aedeb28b95a864906e214f57580548f025d732fe758a912ce3c49"
+    },
+    {
+      "path": "J-fixed-noaction-5202/progress-1000.pt",
+      "bytes": 1194114,
+      "sha256": "16ef9afbe8e3962a874e0f3d2a98d55d7722854c5849069fc340eff6c1260f53"
+    },
+    {
+      "path": "J-fixed-noaction-5202/progress-1500.pt",
+      "bytes": 1194114,
+      "sha256": "1ebbadaa358eb994d9743839cd2e59fb75684204c495b0faee78616667693186"
+    },
+    {
+      "path": "J-fixed-noaction-5202/progress-500.pt",
+      "bytes": 1193984,
+      "sha256": "ce24324c8fcdc7d5521e923d6b53d275439e9c39370a38af8ccb956b5298f1f7"
+    },
+    {
+      "path": "J-fixed-noaction-5202/terminal.pt",
+      "bytes": 1182332,
+      "sha256": "7f7d42279e032cd683b0a695b17a7ba798edf223bd2729027f4686754c56e641"
+    },
+    {
+      "path": "J-fixed-noaction-5202/validation-predictions.json",
+      "bytes": 2277958,
+      "sha256": "99ec496cfeffeb62c0f897b6384a6d421daf7110e09e61344dcc6307ab2e5a7b"
+    },
+    {
+      "path": "J-fixed-noaction-5303/branch-regrets.json",
+      "bytes": 50747,
+      "sha256": "79f9e772b2e30d7b046cc24d805af172b2183f266ee66d123386a80fcb1543ab"
+    },
+    {
+      "path": "J-fixed-noaction-5303/history.jsonl",
+      "bytes": 69244,
+      "sha256": "28a4123138a688044cd03a667c12b03332c77fb0eab966baecb7f7461d805465"
+    },
+    {
+      "path": "J-fixed-noaction-5303/metrics.json",
+      "bytes": 1400,
+      "sha256": "124427a2c163cf2489c7f3fce2ffc83e61479653fb9e00a8499eea1883caca95"
+    },
+    {
+      "path": "J-fixed-noaction-5303/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "18091347f8655579f07d652eb46271b8592d8a35fd9039a9e670ed9e60d545c1"
+    },
+    {
+      "path": "J-fixed-noaction-5303/probe.pt",
+      "bytes": 2227130,
+      "sha256": "053a8bf4fbf159736e5a077f6af868031af8a08985f8954ec2a37b514da544ea"
+    },
+    {
+      "path": "J-fixed-noaction-5303/progress-1000.pt",
+      "bytes": 1194114,
+      "sha256": "593377a8fbad1ad3fb0e49a5e1e8f9654b0bab79f10bcc329b28bf0d567f5d98"
+    },
+    {
+      "path": "J-fixed-noaction-5303/progress-1500.pt",
+      "bytes": 1194114,
+      "sha256": "58a6dd337104b1e1b2cba60b53f46f177e554194671f061bb65a21e1c396a128"
+    },
+    {
+      "path": "J-fixed-noaction-5303/progress-500.pt",
+      "bytes": 1193984,
+      "sha256": "9dbcc4edf6cd205ee0aa48a0d395d95a7cd62f05369d7869016bb571313911f0"
+    },
+    {
+      "path": "J-fixed-noaction-5303/terminal.pt",
+      "bytes": 1182332,
+      "sha256": "ea8d05d3412bedee5028373df0477d45ba1cda6ec78141ae3e9c4f887f7ede7b"
+    },
+    {
+      "path": "J-fixed-noaction-5303/validation-predictions.json",
+      "bytes": 2277781,
+      "sha256": "72ca96e50f0ba8dc395c50175bf96b247b1ecc1aef2f7a57a029015e8271789c"
+    },
+    {
+      "path": "J-joint-5101/branch-regrets.json",
+      "bytes": 49855,
+      "sha256": "cdc5dde64a897fcdb8606642d046577f62327d0211812cef22b07d935c3f2a77"
+    },
+    {
+      "path": "J-joint-5101/history.jsonl",
+      "bytes": 93775,
+      "sha256": "e329a6b17bae0b0b79126a200946b4b9763034441964bad8831d044dc9c8a57b"
+    },
+    {
+      "path": "J-joint-5101/metrics.json",
+      "bytes": 1394,
+      "sha256": "66df92690da89e62a8c167b37606d99071f91a0618f38d3153d6c8438be38355"
+    },
+    {
+      "path": "J-joint-5101/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "356d6d779d9e366e268b263da5f42d1f36390bf0c4acb91da2b94716622ea070"
+    },
+    {
+      "path": "J-joint-5101/probe.pt",
+      "bytes": 2227130,
+      "sha256": "6301462fab8d560edba61b28a76bf50a6e1217bbbb93f174bb5135f2d65d29ed"
+    },
+    {
+      "path": "J-joint-5101/progress-1000.pt",
+      "bytes": 1801786,
+      "sha256": "429ed4d6b9cd44f6b04bc0717c6216157fb1b639c36527b5ae87fabf9e89e4aa"
+    },
+    {
+      "path": "J-joint-5101/progress-1500.pt",
+      "bytes": 1801786,
+      "sha256": "183ec7ea773b74ea12e11f8ea3f7d01fcab3f3a25aad1a077f1b2953cccdb27e"
+    },
+    {
+      "path": "J-joint-5101/progress-2000.pt",
+      "bytes": 1801786,
+      "sha256": "49a6ecad84e9c0dc282e232b7ae24445b528938a643d0c60e439bcf200a61997"
+    },
+    {
+      "path": "J-joint-5101/progress-500.pt",
+      "bytes": 1801530,
+      "sha256": "2b13b500d49ada7ca7006c1d12ea07e94513d9417e5b2a273543c6443b0e3be1"
+    },
+    {
+      "path": "J-joint-5101/terminal.pt",
+      "bytes": 1789374,
+      "sha256": "03eeb644c89e19a917ecd77d34d8e9ef6eed4b82bba702e20ed932bf1033a6b5"
+    },
+    {
+      "path": "J-joint-5101/validation-predictions.json",
+      "bytes": 2288580,
+      "sha256": "b8297b8c825b2e1fd2100b07f50a8e296d24801e885cb94c9f6af31c50fd6db4"
+    },
+    {
+      "path": "J-joint-5202/branch-regrets.json",
+      "bytes": 49988,
+      "sha256": "811f95a5a7cc3cda5b9c7ffd54d1ee792dfc1039ffce07deed3383f15d949d82"
+    },
+    {
+      "path": "J-joint-5202/history.jsonl",
+      "bytes": 93751,
+      "sha256": "17f291e79f9a14096eb9ef4057e1cc5933c527620b24ae74679c5dad38315a2c"
+    },
+    {
+      "path": "J-joint-5202/metrics.json",
+      "bytes": 1392,
+      "sha256": "833eb60c32b1c0f4996826c87a06f2003b3a6a87a22b2a1dfab84cb132d958df"
+    },
+    {
+      "path": "J-joint-5202/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "0863562bf1a9e53a3b3801a6422314344c57b7de449d6216d93eda70b4310118"
+    },
+    {
+      "path": "J-joint-5202/probe.pt",
+      "bytes": 2227130,
+      "sha256": "15f66c59f4490720c9dc789269b64ab7e628d904b70459d45efdd740c6af1d65"
+    },
+    {
+      "path": "J-joint-5202/progress-1000.pt",
+      "bytes": 1801786,
+      "sha256": "72c4e019fc6624f671f0e22dfff4c9b2d869ef26fd228effa1cadea47d355cd9"
+    },
+    {
+      "path": "J-joint-5202/progress-1500.pt",
+      "bytes": 1801786,
+      "sha256": "ca38c6156365bb4fe6680a073cf715bd48a70e8f6b0cead0b739a7e76d1330fd"
+    },
+    {
+      "path": "J-joint-5202/progress-2000.pt",
+      "bytes": 1801786,
+      "sha256": "2dac17eab9ff8153ac5545e3ce4893c857fddc9c1e0f1e8f8f9db5149f251bc5"
+    },
+    {
+      "path": "J-joint-5202/progress-500.pt",
+      "bytes": 1801530,
+      "sha256": "9f210a313bc2da251151ebc02422e9645d3e0926218b85e915ff7a9af5121bc8"
+    },
+    {
+      "path": "J-joint-5202/terminal.pt",
+      "bytes": 1789374,
+      "sha256": "27e51ec0493f91a12dd849affbe76abd48f0ab8303189aaa6cbe62de9dfc5ecb"
+    },
+    {
+      "path": "J-joint-5202/validation-predictions.json",
+      "bytes": 2288042,
+      "sha256": "7e65f52e8ec6df3c49465cd2d9bebe9129fa613fb0a20eb596a26c2c0e7abb1e"
+    },
+    {
+      "path": "J-joint-5303/branch-regrets.json",
+      "bytes": 49922,
+      "sha256": "1dd85e1372fa23b00ca8ea28e212d9a34c6cb1261ff5d35d257520f74e4fa80b"
+    },
+    {
+      "path": "J-joint-5303/history.jsonl",
+      "bytes": 93923,
+      "sha256": "51519ee96a585be5b89a848c140c0c213ae253e46a554a2cd983cef3e28bdf87"
+    },
+    {
+      "path": "J-joint-5303/metrics.json",
+      "bytes": 1395,
+      "sha256": "69f7a06a02581ad0b008c0ded13a1f1b286ad1830ac75e387624ba6abe511a66"
+    },
+    {
+      "path": "J-joint-5303/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "b860ba812ce7d0e9dbc3ea028b53f482ebc0dce086a52c0d5e8a66a989667db9"
+    },
+    {
+      "path": "J-joint-5303/probe.pt",
+      "bytes": 2227130,
+      "sha256": "419e96c7dcffab8c97abb7a6d62823aa81cbb11068cefa3cf258bc5639c5cdc2"
+    },
+    {
+      "path": "J-joint-5303/progress-1000.pt",
+      "bytes": 1801786,
+      "sha256": "99a16cac10c383d93335cf7e0482916ded4f9db0289efde8a37e872d335b5376"
+    },
+    {
+      "path": "J-joint-5303/progress-1500.pt",
+      "bytes": 1801786,
+      "sha256": "9b126b5354b8622f1e3dd0e412d18de7c1142e95082882f15276f4ca758d04dc"
+    },
+    {
+      "path": "J-joint-5303/progress-2000.pt",
+      "bytes": 1801786,
+      "sha256": "7583314c3abc22aa2717c14022e5c4e7fad8e6badbcc11a678b2f8aba62bdf44"
+    },
+    {
+      "path": "J-joint-5303/progress-500.pt",
+      "bytes": 1801530,
+      "sha256": "82cf2e5d57a4de0e959e2744f0fd79c05631481356d7a5b275c497f316adbc91"
+    },
+    {
+      "path": "J-joint-5303/terminal.pt",
+      "bytes": 1789374,
+      "sha256": "726e00a95e064e62b95901ddc65b1fe5628f7597522ee76cda597841b2ebffe8"
+    },
+    {
+      "path": "J-joint-5303/validation-predictions.json",
+      "bytes": 2290114,
+      "sha256": "b063db73821843ae32225427969240e3e8f561b478d3456a0fdaefae80d2ae78"
+    },
+    {
+      "path": "S-5101/branch-regrets.json",
+      "bytes": 49666,
+      "sha256": "9af8527e0c4d7c4ffadf55289bcebfd9f782c4d23544f44f3d3cb68f24277380"
+    },
+    {
+      "path": "S-5101/history.jsonl",
+      "bytes": 92001,
+      "sha256": "7aed454620865ae9ade12b5dee8b6de9da6254155d7f53145bbb1b148c5722d7"
+    },
+    {
+      "path": "S-5101/metrics.json",
+      "bytes": 1389,
+      "sha256": "1ef990bbf92baaf875b322cc90d6ee723ae8792d143bda03e9c9fbcbd696321b"
+    },
+    {
+      "path": "S-5101/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "86a167e29f50d78db7b1bcf8321c753181ce1e8946542705a703ea3ae5d9aaee"
+    },
+    {
+      "path": "S-5101/probe.pt",
+      "bytes": 2227130,
+      "sha256": "5ce7e22d7bc244f8a6bc7ab1f6cdddb9ca4f63bd3a38f64c1fe82fd5425803bf"
+    },
+    {
+      "path": "S-5101/progress-1000.pt",
+      "bytes": 5120410,
+      "sha256": "c67322e37b7604cc88d26006c5e0e7f298777b73aef1b4336b4ef41e04ee1c7e"
+    },
+    {
+      "path": "S-5101/progress-1500.pt",
+      "bytes": 5120410,
+      "sha256": "6020c2aa4d2e2e521ff70084f16c888a26be8421358de0ee3b73c9b233ed3c10"
+    },
+    {
+      "path": "S-5101/progress-2000.pt",
+      "bytes": 5120410,
+      "sha256": "1bf0af678d9ecfe9c4ee9d35dd6eb2a2e240d35ab1188e163bff27e1f5607ac8"
+    },
+    {
+      "path": "S-5101/progress-500.pt",
+      "bytes": 5120146,
+      "sha256": "7e602d17a5a9867f629fb8e55265542656e636fbbf0a87fa519db38ab921d954"
+    },
+    {
+      "path": "S-5101/terminal.pt",
+      "bytes": 5107894,
+      "sha256": "9c0ef045d03c8a753634401184453546f778531fcde6cead2572f8ddb4853e0c"
+    },
+    {
+      "path": "S-5101/validation-predictions.json",
+      "bytes": 2308204,
+      "sha256": "b2cd42431f7e990c7679a41980c1cc83d968eb5918fb5043899485e25eb176e9"
+    },
+    {
+      "path": "S-5202/branch-regrets.json",
+      "bytes": 49708,
+      "sha256": "4ca52fa1469e4b8c805bce03a48181ff2d58018e4a80dc1ea58f1d606ae0ce21"
+    },
+    {
+      "path": "S-5202/history.jsonl",
+      "bytes": 91971,
+      "sha256": "47878b8f1e03e17ace7f1769c51349aba5efb39b4cd88812fcc58f7a825f50ec"
+    },
+    {
+      "path": "S-5202/metrics.json",
+      "bytes": 1390,
+      "sha256": "50b2f9623787a2dbbc91a459dec7d8d18a92dee42123fcfd0b761d7a9e2a6acf"
+    },
+    {
+      "path": "S-5202/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "7baf28459aed5300683a0f7c947dde8aafd3aa5ee0bbd5758e508eb4538d5dd5"
+    },
+    {
+      "path": "S-5202/probe.pt",
+      "bytes": 2227130,
+      "sha256": "15afd42c4950a1c653c5af426cd91666022eac809c07c0986ea3a1c1f2f00d11"
+    },
+    {
+      "path": "S-5202/progress-1000.pt",
+      "bytes": 5120410,
+      "sha256": "37f36e6449961dca2fe3d3aff01ba72d6cf64143ba3af7599d688b915eb161ca"
+    },
+    {
+      "path": "S-5202/progress-1500.pt",
+      "bytes": 5120410,
+      "sha256": "ac6666189eecc3eb0d0ca81a82e5e5fdf6ba7e52314c8eede3c3788a488b5dd4"
+    },
+    {
+      "path": "S-5202/progress-2000.pt",
+      "bytes": 5120410,
+      "sha256": "051643251de4071cc899b625afa4162e225041aeea5f4492206053ad2851a3f0"
+    },
+    {
+      "path": "S-5202/progress-500.pt",
+      "bytes": 5120146,
+      "sha256": "de4380299cb8e132c1caedbc893049ab3493b6f6b1dd5ac466454f748264e4c1"
+    },
+    {
+      "path": "S-5202/terminal.pt",
+      "bytes": 5107894,
+      "sha256": "d2473d0eab7a9d67780d17aa9a2328da7266fc2e9e294c7e3fa8bc056b9f1e9d"
+    },
+    {
+      "path": "S-5202/validation-predictions.json",
+      "bytes": 2306199,
+      "sha256": "07f1fb4dd138aec3e0819dcd172ab29c0a2e52536e0e81d5535a8c4c951e496a"
+    },
+    {
+      "path": "S-5303/branch-regrets.json",
+      "bytes": 49581,
+      "sha256": "5fb3f66a3ddfcd46a6a5f721bd6e2f9824e5670e29474f1bec8df404d1c83f5f"
+    },
+    {
+      "path": "S-5303/history.jsonl",
+      "bytes": 92008,
+      "sha256": "c1d010d15049dafb25dad3f5380c42a609aea17b9444237becf84232f89abaa6"
+    },
+    {
+      "path": "S-5303/metrics.json",
+      "bytes": 1388,
+      "sha256": "eefd64330ba7ed9cadcf8a9e5e75ab68d43f24a6445baa4aacd8b5dd3d786148"
+    },
+    {
+      "path": "S-5303/persistence-probe.pt",
+      "bytes": 2227558,
+      "sha256": "908736d8463b0ce870fe7141b2a8256e247ada80531419c2500f570ab14ce101"
+    },
+    {
+      "path": "S-5303/probe.pt",
+      "bytes": 2227130,
+      "sha256": "96f45dac6f4b8f386bcd37a16b91f0d8df329fd0b177f1cf17856439bc46ca8b"
+    },
+    {
+      "path": "S-5303/progress-1000.pt",
+      "bytes": 5120410,
+      "sha256": "ee8560611fe2c2562cb0b6339c31df650ba6af9daaafa00538914e548e4bf4bc"
+    },
+    {
+      "path": "S-5303/progress-1500.pt",
+      "bytes": 5120410,
+      "sha256": "cec51956b2b233c5797c194287249b6ae50a523d3f4d3c53261b65251e6148fb"
+    },
+    {
+      "path": "S-5303/progress-2000.pt",
+      "bytes": 5120410,
+      "sha256": "a586df493dd11beed27eaf6ad53ec3a551676d42e01fee64eba5fa9ef069a5c7"
+    },
+    {
+      "path": "S-5303/progress-500.pt",
+      "bytes": 5120146,
+      "sha256": "3ef35b6116e00bcad6c3d341f55c284f83bf7c9ecb775b0e173a6e26fe8cfe82"
+    },
+    {
+      "path": "S-5303/terminal.pt",
+      "bytes": 5107894,
+      "sha256": "8ec9d0cc27e9ae3dd4fca70f22f3eff658e50e034b1b2ad8a57e36e2b8b80115"
+    },
+    {
+      "path": "S-5303/validation-predictions.json",
+      "bytes": 2308125,
+      "sha256": "bde083a47709284d7ca1b3a1b2df76d88a2b5745d28da52efe9bfc7e205f3d28"
+    },
+    {
+      "path": "gates.json",
+      "bytes": 5174,
+      "sha256": "c62c60ae5c69e852924a088e83f2f9026c5836da5bc585aaf2275ce9a9d642a9"
+    },
+    {
+      "path": "input-audit.json",
+      "bytes": 1654,
+      "sha256": "fa7c83db293307ef55d0629e179d8b22533f63e45bbc9539cd24eabb3bb748cb"
+    },
+    {
+      "path": "inventory.json",
+      "bytes": 22465,
+      "sha256": "b094422d4335da6b01c3bb1e91f316b45699aaa999e827651d2cb2baed74e66c"
+    },
+    {
+      "path": "normalization.json",
+      "bytes": 17166,
+      "sha256": "6136379ec63f7c3156eab6528d87149b0dd9204d10307749bc00631142fd2815"
+    },
+    {
+      "path": "pretraining-5101/history.jsonl",
+      "bytes": 22288,
+      "sha256": "b500371cbca9fd1fe8752ad2394cdfb1b626bf397eedd41ad491c9fa1e8bb67d"
+    },
+    {
+      "path": "pretraining-5101/terminal.pt",
+      "bytes": 1137762,
+      "sha256": "6f1edd9b01bbe107c09cdea2ac3bf3935018adf22d9b3ecba3b8324beaad5643"
+    },
+    {
+      "path": "pretraining-5202/history.jsonl",
+      "bytes": 22274,
+      "sha256": "be708f150b45c0d4071591117b1e7a23d9568531624c0d388f72ad100e741682"
+    },
+    {
+      "path": "pretraining-5202/terminal.pt",
+      "bytes": 1137762,
+      "sha256": "38249dc4dc2b967e07ee8420b02d77e4d1fe378132581f6e5a7d943d3ae7ffe5"
+    },
+    {
+      "path": "pretraining-5303/history.jsonl",
+      "bytes": 22291,
+      "sha256": "771f4e372c342540f3fc8ed43e2b321e0e4a8076d689fe16cf0cd2164cb63a9f"
+    },
+    {
+      "path": "pretraining-5303/terminal.pt",
+      "bytes": 1137762,
+      "sha256": "337e4c11e7adcda53a476f8ee449e9486bbb715c66a8fd0d1b79a275401123f3"
+    },
+    {
+      "path": "random-5101-metrics.json",
+      "bytes": 443,
+      "sha256": "1aa635775db32e79fb7ec32746ebfb270627307edf6a27dcd9883dee6064bb28"
+    },
+    {
+      "path": "random-5101.pt",
+      "bytes": 2732959,
+      "sha256": "acaf8241c87015805a67740072e9e8d7045609bbd2e5df49aae734c3587a1df6"
+    },
+    {
+      "path": "random-5202-metrics.json",
+      "bytes": 447,
+      "sha256": "bf34a1eacc3f53bf85eefde79b0cf5fc627f1ca380cceeb51cf9f387d351a7d5"
+    },
+    {
+      "path": "random-5202.pt",
+      "bytes": 2732959,
+      "sha256": "d958720b1eb083b8c9436d031666d70013c94ced4d36c7a15eed47cb7204a3cd"
+    },
+    {
+      "path": "random-5303-metrics.json",
+      "bytes": 444,
+      "sha256": "593e5264b9df2b935154dd227a78cfa6bd84df22bd534ebb421abfd7f7131509"
+    },
+    {
+      "path": "random-5303.pt",
+      "bytes": 2732959,
+      "sha256": "f4a37b82675180b20f70aac00d1f027d14f98968a4b362b73f982e27615a2bdd"
+    },
+    {
+      "path": "raw-direct-probe.pt",
+      "bytes": 1316637,
+      "sha256": "2200f7806bf6f5b2b31bf997a444e69c9676dfa31f287f2a0a97b9501591669c"
+    },
+    {
+      "path": "reproduction-inputs/data.tar.gz",
+      "bytes": 1188611,
+      "sha256": "84aedfaeaa23d4550f5885a0c4ef5959897d631729c3ac196317a923f01b1b2b"
+    },
+    {
+      "path": "reproduction-inputs/server-protocol.json",
+      "bytes": 4637,
+      "sha256": "a2c5eceb770f211c5748bf3c575b2f5711d4fec6fbdc6b70e5175c9a1e17e1f2"
+    },
+    {
+      "path": "reproduction-inputs/source.bundle",
+      "bytes": 658891,
+      "sha256": "04549eb6a2b1f5655901a4bf8f598919e4b26676ee9f5b55919b0144a244a33b"
+    },
+    {
+      "path": "results.json",
+      "bytes": 20272,
+      "sha256": "ef03f4d32346b8ae0913e19dc9976d0513c23a8215ef5fde759c152f7df3accc"
+    },
+    {
+      "path": "run-manifest.json",
+      "bytes": 6397,
+      "sha256": "2cb744630b26e386602035c25ed9b9f712eaa875a3b2a9c20cd5b4f590acce95"
+    },
+    {
+      "path": "training-console.log",
+      "bytes": 3393,
+      "sha256": "adca3146565d90f081fe87980288022995c83f9268d11e0f80e7c520bf334bc9"
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "all_gates_passed": false,
+  "checks": [
+    {
+      "direction": "min",
+      "gate": "latent_persistence_improvement/seed5101",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.9243226554911608
+    },
+    {
+      "direction": "min",
+      "gate": "latent_mean_std/seed5101",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.3526742160320282
+    },
+    {
+      "direction": "min",
+      "gate": "effective_rank/seed5101",
+      "passed": true,
+      "threshold": 4.0,
+      "value": 24.855862106686736
+    },
+    {
+      "direction": "min",
+      "gate": "latent_persistence_improvement/seed5202",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.8807836464179958
+    },
+    {
+      "direction": "min",
+      "gate": "latent_mean_std/seed5202",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.39556580781936646
+    },
+    {
+      "direction": "min",
+      "gate": "effective_rank/seed5202",
+      "passed": true,
+      "threshold": 4.0,
+      "value": 20.978926900372823
+    },
+    {
+      "direction": "min",
+      "gate": "latent_persistence_improvement/seed5303",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.8818750603068524
+    },
+    {
+      "direction": "min",
+      "gate": "latent_mean_std/seed5303",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.35499337315559387
+    },
+    {
+      "direction": "min",
+      "gate": "effective_rank/seed5303",
+      "passed": true,
+      "threshold": 4.0,
+      "value": 21.506482081081195
+    },
+    {
+      "direction": "max",
+      "gate": "state_active_nmse/ratio_to_supervised",
+      "passed": false,
+      "threshold": 1.1,
+      "value": 2.284009659320939
+    },
+    {
+      "direction": "min",
+      "gate": "state_active_nmse/improvement_vs_noaction",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.6356104334221151
+    },
+    {
+      "direction": "min",
+      "gate": "state_active_nmse/positive_seed_count",
+      "passed": true,
+      "threshold": 2,
+      "value": 3
+    },
+    {
+      "direction": "max",
+      "gate": "reward_nmse/ratio_to_supervised",
+      "passed": false,
+      "threshold": 1.1,
+      "value": 13.00666799395817
+    },
+    {
+      "direction": "min",
+      "gate": "reward_nmse/improvement_vs_noaction",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.22398467292833635
+    },
+    {
+      "direction": "min",
+      "gate": "reward_nmse/positive_seed_count",
+      "passed": true,
+      "threshold": 2,
+      "value": 2
+    },
+    {
+      "direction": "max",
+      "gate": "cost_nmse/ratio_to_supervised",
+      "passed": false,
+      "threshold": 1.1,
+      "value": 8.229625722443117
+    },
+    {
+      "direction": "min",
+      "gate": "cost_nmse/improvement_vs_noaction",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.24913577306589718
+    },
+    {
+      "direction": "min",
+      "gate": "cost_nmse/positive_seed_count",
+      "passed": true,
+      "threshold": 2,
+      "value": 3
+    },
+    {
+      "direction": "max",
+      "gate": "reward/ratio_to_raw_direct",
+      "passed": false,
+      "threshold": 1.1,
+      "value": 2.9825398887378447
+    },
+    {
+      "direction": "min",
+      "gate": "branch_regret/improvement_vs_noaction",
+      "passed": true,
+      "threshold": 0.05,
+      "value": 0.777565240902733
+    },
+    {
+      "direction": "min",
+      "gate": "branch_regret/positive_seed_count",
+      "passed": true,
+      "threshold": 2,
+      "value": 3
+    },
+    {
+      "direction": "min",
+      "gate": "branch_distinguishable_origins",
+      "passed": true,
+      "threshold": 100,
+      "value": 232
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/single",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/sequential",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/overlap",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/burst",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/long_gap",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "min",
+      "gate": "tapes/weak_comm",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "direction": "max",
+      "gate": "input_audit_failures",
+      "passed": true,
+      "threshold": 0,
+      "value": 0
+    }
+  ],
+  "decision": "Stop current candidate branch; preserve negative results; no J02C/P01 launch",
+  "failed_gates": [
+    "state_active_nmse/ratio_to_supervised",
+    "reward_nmse/ratio_to_supervised",
+    "cost_nmse/ratio_to_supervised",
+    "reward/ratio_to_raw_direct"
+  ],
+  "interpretation": "Development screen only; no formal statistical or stable policy benefit claim",
+  "policy_training_started": false,
+  "source_protocol_sha256": "a2c5eceb770f211c5748bf3c575b2f5711d4fec6fbdc6b70e5175c9a1e17e1f2",
+  "status": "development_gate_failed",
+  "test_evaluated": false
+}

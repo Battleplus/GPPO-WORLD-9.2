@@ -1,0 +1,622 @@
+{
+  "elapsed_seconds": 1380.548124210909,
+  "pilot_overhead_updates": 100,
+  "policy_training_started": false,
+  "raw_direct": {
+    "cost_nmse": {
+      "scenario_macro": 0.15044846118996463,
+      "transition_mean": 0.1845106975055084
+    },
+    "reward_nmse": {
+      "scenario_macro": 0.15948922375213617,
+      "transition_mean": 0.1785258562913783
+    },
+    "state_active_nmse": {
+      "scenario_macro": 0.10556233164217045,
+      "transition_mean": 0.10662049201615632
+    },
+    "state_all_nmse": {
+      "scenario_macro": 0.043300520121756524,
+      "transition_mean": 0.04348531614144538
+    }
+  },
+  "results": [
+    {
+      "branch_origins": 232,
+      "effective_rank": 19.30931603613878,
+      "group": "S",
+      "immediate_branch_regret": 0.04924266352196119,
+      "latent_mean_std": 0.29794517159461975,
+      "latent_persistence_improvement": -3.141266016441576,
+      "latent_persistence_mse": 0.0660112336455117,
+      "latent_prediction_mse": 0.2733700785995424,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.2786356974013273,
+          "transition_mean": 0.34780551849326924
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9094908839854846,
+          "transition_mean": 1.1828045650614893
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7878863563894959,
+          "transition_mean": 0.9208880227440349
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.30094891488311637,
+          "transition_mean": 0.3509561285256703
+        }
+      },
+      "seed": 5101,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.026805209918441427,
+          "transition_mean": 0.03856691171966921
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.03811918143819854,
+          "transition_mean": 0.049773641220172846
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.12593706794936532,
+          "transition_mean": 0.14654391730528232
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.05099410544608792,
+          "transition_mean": 0.05856056787822472
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 17.87756044849503,
+      "group": "J-joint",
+      "immediate_branch_regret": 0.09822699920388744,
+      "latent_mean_std": 0.32789260149002075,
+      "latent_persistence_improvement": 0.8770078660918033,
+      "latent_persistence_mse": 0.018696554052938713,
+      "latent_prediction_mse": 0.002299529079700877,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.3014661064738639,
+          "transition_mean": 0.3455162536264122
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.7418386847863585,
+          "transition_mean": 0.8321848537228326
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7490812637781795,
+          "transition_mean": 0.8483841110293108
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2862959502251975,
+          "transition_mean": 0.3235783493625584
+        }
+      },
+      "seed": 5101,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.18247740064627307,
+          "transition_mean": 0.23586558340968136
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.39271669091623657,
+          "transition_mean": 0.5043044565724454
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.20325959489967624,
+          "transition_mean": 0.24188707932339146
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.08019141379972095,
+          "transition_mean": 0.09456254311943782
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 24.855862106686736,
+      "group": "J-fixed-noaction",
+      "immediate_branch_regret": 0.7422459948788284,
+      "latent_mean_std": 0.3526742160320282,
+      "latent_persistence_improvement": 0.722932148866885,
+      "latent_persistence_mse": 0.033737229902095656,
+      "latent_prediction_mse": 0.009347501792157516,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.3414598681671292,
+          "transition_mean": 0.3910392366911306
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9330322180902669,
+          "transition_mean": 0.9946926740333925
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7189679719265258,
+          "transition_mean": 0.8151765101882821
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2749250457499636,
+          "transition_mean": 0.3110390209199825
+        }
+      },
+      "seed": 5101,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.27335866111438917,
+          "transition_mean": 0.32438766331860247
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.46932741993408894,
+          "transition_mean": 0.5534744841644709
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7511064208754453,
+          "transition_mean": 0.8557761939242794
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2870606579832796,
+          "transition_mean": 0.32636963066404395
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 24.855862106686736,
+      "group": "J-fixed-action",
+      "immediate_branch_regret": 0.183271676500342,
+      "latent_mean_std": 0.3526742160320282,
+      "latent_persistence_improvement": 0.9243226554911608,
+      "latent_persistence_mse": 0.033737229902095656,
+      "latent_prediction_mse": 0.0025531439700748073,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.3414598681671292,
+          "transition_mean": 0.3910392366911306
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9330322180902669,
+          "transition_mean": 0.9946926740333925
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7189679719265258,
+          "transition_mean": 0.8151765101882821
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2749250457499636,
+          "transition_mean": 0.3110390209199825
+        }
+      },
+      "seed": 5101,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.23385781047147466,
+          "transition_mean": 0.28149733766027135
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.5054212207515,
+          "transition_mean": 0.6059080283373626
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.24515486656594176,
+          "transition_mean": 0.29367359622891603
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.09601124294453477,
+          "transition_mean": 0.11411734768011765
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 21.140814491006115,
+      "group": "S",
+      "immediate_branch_regret": 0.05567215785401151,
+      "latent_mean_std": 0.2892322242259979,
+      "latent_persistence_improvement": -3.464383903225394,
+      "latent_persistence_mse": 0.05851161032286377,
+      "latent_prediction_mse": 0.2612182912771898,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.32868151998208,
+          "transition_mean": 0.3987760438470239
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.7988613091858398,
+          "transition_mean": 0.9270634176440125
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7909534298770957,
+          "transition_mean": 0.9325998561836427
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.30210705461150694,
+          "transition_mean": 0.35537856563177217
+        }
+      },
+      "seed": 5202,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.027551996564412613,
+          "transition_mean": 0.038790028798538136
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.036897603163600246,
+          "transition_mean": 0.047303550683450504
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.12862428958177044,
+          "transition_mean": 0.1496681484959828
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.052008811531240894,
+          "transition_mean": 0.05974029059346319
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 19.29780961329362,
+      "group": "J-joint",
+      "immediate_branch_regret": 0.09438864175057203,
+      "latent_mean_std": 0.3532354235649109,
+      "latent_persistence_improvement": 0.8638103049869719,
+      "latent_persistence_mse": 0.022353052712452987,
+      "latent_prediction_mse": 0.0030442554315191143,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.39970499705692497,
+          "transition_mean": 0.47502387550382635
+        },
+        "reward_nmse": {
+          "scenario_macro": 1.3114822431436106,
+          "transition_mean": 1.5618285075616776
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.8136846136623649,
+          "transition_mean": 0.9648697567348806
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.31069044432209036,
+          "transition_mean": 0.3675638145378386
+        }
+      },
+      "seed": 5202,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.260956699904948,
+          "transition_mean": 0.3190634912511962
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.5319147701208298,
+          "transition_mean": 0.6370993386724737
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.2528152536929519,
+          "transition_mean": 0.30622153925988904
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.09890383704197347,
+          "transition_mean": 0.11885550325170903
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 20.978926900372823,
+      "group": "J-fixed-noaction",
+      "immediate_branch_regret": 0.7422459948788284,
+      "latent_mean_std": 0.39556580781936646,
+      "latent_persistence_improvement": 0.649258847054135,
+      "latent_persistence_mse": 0.02445706197072628,
+      "latent_prediction_mse": 0.008578098113281007,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.38602823490734633,
+          "transition_mean": 0.4481429841938005
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9355126316303316,
+          "transition_mean": 1.0702127803663872
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7553702972916387,
+          "transition_mean": 0.8450133183509775
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2886707154841859,
+          "transition_mean": 0.32230552400225027
+        }
+      },
+      "seed": 5202,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.31194120043485457,
+          "transition_mean": 0.3843269892419966
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.7678828185027656,
+          "transition_mean": 0.8948010095949192
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7539489129081852,
+          "transition_mean": 0.8442556875016644
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.288133994818559,
+          "transition_mean": 0.3220194394367545
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 20.978926900372823,
+      "group": "J-fixed-action",
+      "immediate_branch_regret": 0.21164060119385142,
+      "latent_mean_std": 0.39556580781936646,
+      "latent_persistence_improvement": 0.8807836464179958,
+      "latent_persistence_mse": 0.02445706197072628,
+      "latent_prediction_mse": 0.0029156817474790936,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.38602823490734633,
+          "transition_mean": 0.4481429841938005
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9355126316303316,
+          "transition_mean": 1.0702127803663872
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7553702972916387,
+          "transition_mean": 0.8450133183509775
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2886707154841859,
+          "transition_mean": 0.32230552400225027
+        }
+      },
+      "seed": 5202,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.20946587280090126,
+          "transition_mean": 0.24397106642799915
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.46526789062365487,
+          "transition_mean": 0.5131572072834955
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.3135607802101439,
+          "transition_mean": 0.36429451116863876
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.12184160096122566,
+          "transition_mean": 0.1407840994151692
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 19.14471279256386,
+      "group": "S",
+      "immediate_branch_regret": 0.05308147786515884,
+      "latent_mean_std": 0.28961485624313354,
+      "latent_persistence_improvement": -3.0695176083780202,
+      "latent_persistence_mse": 0.06793214475639645,
+      "latent_prediction_mse": 0.2764510592610399,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.19803906630336796,
+          "transition_mean": 0.232819130820459
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.5396345281325282,
+          "transition_mean": 0.6253579712940515
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7293719857730457,
+          "transition_mean": 0.8524130628405286
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.27885364472846724,
+          "transition_mean": 0.3250996983537735
+        }
+      },
+      "seed": 5303,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.028080646622623905,
+          "transition_mean": 0.04053815861675165
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.03469993267403497,
+          "transition_mean": 0.04663900227305099
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.1093459582645258,
+          "transition_mean": 0.12513242498522506
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.04472923329946884,
+          "transition_mean": 0.05047549916361978
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 18.51521361369917,
+      "group": "J-joint",
+      "immediate_branch_regret": 0.10106375624692003,
+      "latent_mean_std": 0.3060972988605499,
+      "latent_persistence_improvement": 0.8886072797120779,
+      "latent_persistence_mse": 0.016268449110050678,
+      "latent_prediction_mse": 0.0018121868012341699,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.3521634818427307,
+          "transition_mean": 0.40983963016827035
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9118577873023941,
+          "transition_mean": 1.0358344407832372
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.6943045145833736,
+          "transition_mean": 0.7969819735653355
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2656120214927837,
+          "transition_mean": 0.30416868808058856
+        }
+      },
+      "seed": 5303,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.20144322892137728,
+          "transition_mean": 0.24980875386847284
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.6129001563637431,
+          "transition_mean": 0.7492747514430707
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.19182265549443014,
+          "transition_mean": 0.22757080601791868
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.07587277782638582,
+          "transition_mean": 0.08915665866815252
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 21.506482081081195,
+      "group": "J-fixed-noaction",
+      "immediate_branch_regret": 0.7422459948788284,
+      "latent_mean_std": 0.35499337315559387,
+      "latent_persistence_improvement": 0.610647977313111,
+      "latent_persistence_mse": 0.022209109703167623,
+      "latent_prediction_mse": 0.008647161785003327,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.38727237501959927,
+          "transition_mean": 0.42922421641105934
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9061783029766168,
+          "transition_mean": 1.0195100847406127
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7422115741120232,
+          "transition_mean": 0.8316170263218597
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.28370192678354994,
+          "transition_mean": 0.31724702831417195
+        }
+      },
+      "seed": 5303,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.31823589376297334,
+          "transition_mean": 0.3752264413000085
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.6017340004337765,
+          "transition_mean": 0.6779697176813044
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7759315566497198,
+          "transition_mean": 0.8695340535001633
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.2964347326897113,
+          "transition_mean": 0.3315646557643126
+        }
+      }
+    },
+    {
+      "branch_origins": 232,
+      "effective_rank": 21.506482081081195,
+      "group": "J-fixed-action",
+      "immediate_branch_regret": 0.10039164949115675,
+      "latent_mean_std": 0.35499337315559387,
+      "latent_persistence_improvement": 0.8818750603068524,
+      "latent_persistence_mse": 0.022209109703167623,
+      "latent_prediction_mse": 0.0026234497443251748,
+      "model_parameters": 121728,
+      "persistence_readout_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.38727237501959927,
+          "transition_mean": 0.42922421641105934
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.9061783029766168,
+          "transition_mean": 1.0195100847406127
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.7422115741120232,
+          "transition_mean": 0.8316170263218597
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.28370192678354994,
+          "transition_mean": 0.31724702831417195
+        }
+      },
+      "seed": 5303,
+      "task_metrics": {
+        "cost_nmse": {
+          "scenario_macro": 0.23510899314745265,
+          "transition_mean": 0.28173066219432785
+        },
+        "reward_nmse": {
+          "scenario_macro": 0.4563598036185897,
+          "transition_mean": 0.5270511756930257
+        },
+        "state_active_nmse": {
+          "scenario_macro": 0.27245217759876045,
+          "transition_mean": 0.3177807555556801
+        },
+        "state_all_nmse": {
+          "scenario_macro": 0.10631882132932305,
+          "transition_mean": 0.12322031148840096
+        }
+      }
+    }
+  ],
+  "status": "development_matrix_completed",
+  "test_loaded": false,
+  "train_mean": {
+    "cost_nmse": {
+      "scenario_macro": 1.0372800180998467,
+      "transition_mean": 0.9622299708671154
+    },
+    "reward_nmse": {
+      "scenario_macro": 1.4826794326307413,
+      "transition_mean": 0.8423517573919875
+    },
+    "state_active_nmse": {
+      "scenario_macro": 0.7681552745563369,
+      "transition_mean": 0.836540806207413
+    },
+    "state_all_nmse": {
+      "scenario_macro": 0.2934983761700747,
+      "transition_mean": 0.3191062681147063
+    }
+  },
+  "updates": 22500
+}
