@@ -1,0 +1,18 @@
+{
+  "format": "gppo-three-phase/1.0.0",
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "profiles": ["normal", "single", "sequential", "overlap", "burst", "long_gap", "weak_comm"],
+  "development": {"master_seeds": {"train": 95020501, "validation": 95020502}, "tapes_per_profile": {"train": 8, "validation": 4}},
+  "branch_origins_per_episode": 4,
+  "max_wall_seconds": 3600,
+  "history_window": 4,
+  "observer": "Native first event-ingestion boundary after fixed clock increment; graph and cost computation unchanged",
+  "commit_time": "decision_time + known fixed decision_duration; no new observation ingested",
+  "input_allowlist": ["pre.graph", "pre.time", "pre.action_version", "pre.evidence", "pre.decision_duration", "action", "past_pre_graphs_and_executed_actions"],
+  "targets_only": ["commit", "next", "reward", "costs", "terminated", "truncated"],
+  "offline_audit_only": ["RNG fingerprints", "native state fingerprints", "tape", "history replay actions", "event cursor"],
+  "gates": ["zero native-vs-observed full state and return mismatches", "zero factual branch replay mismatches", "zero randomness consumed during commit", "all branches legal at replayed pre state", "no split or referenced historical seed overlap", "no future data in model_input"],
+  "branch_ground_truth": "Commit consequences only. Next graph can consume action-dependent amounts of detector randomness and is NOT claimed common-random-number causal evidence.",
+  "failure_policy": "Preserve failed attempt; no overwrites or result-dependent extra tapes",
+  "scope": "Development contract and bounded offline candidate preparation; no fresh Test or policy training yet"
+}
