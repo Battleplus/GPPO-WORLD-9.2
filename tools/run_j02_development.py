@@ -20,6 +20,13 @@ from tools.audit_j02_phases import audit
 def mean(values):return sum(values)/len(values)
 
 
+def to_device(value,device):
+    if isinstance(value,torch.Tensor):return value.to(device)
+    if isinstance(value,dict):return {k:to_device(v,device) for k,v in value.items()}
+    if isinstance(value,list):return [to_device(v,device) for v in value]
+    return value
+
+
 def macro(values,rows):
     grouped=defaultdict(lambda:defaultdict(list))
     for value,row in zip(values,rows):grouped[row['scenario_id']][row['tape_id']].append(float(value))
@@ -39,10 +46,11 @@ def readout(p,x):return (((x.double()-p['xmean'])/p['xscale'])@p['weight'])*p['y
 @torch.no_grad()
 def representations(model,data,target_encoder=None):
     predicted=[];current=[];target=[]
+    device=next(model.parameters()).device
     for ids in torch.arange(len(data['rows'])).split(64):
-        predicted.append(model(**model_arguments(data,ids)).flatten(1))
-        current.append((target_encoder or model.encoder)(select_batch(data['graphs'][-1],ids)).flatten(1))
-        target.append((target_encoder or model.encoder)(select_batch(data['commit'],ids)).flatten(1))
+        predicted.append(model(**to_device(model_arguments(data,ids),device)).flatten(1).cpu())
+        current.append((target_encoder or model.encoder)(to_device(select_batch(data['graphs'][-1],ids),device)).flatten(1).cpu())
+        target.append((target_encoder or model.encoder)(to_device(select_batch(data['commit'],ids),device)).flatten(1).cpu())
     return tuple(torch.cat(xs) for xs in (predicted,current,target))
 
 
@@ -71,8 +79,18 @@ def branch_regret(pred,rows,tolerance):
 
 
 def execute(args):
-    protocol_path=ROOT/'nodes/J-02/run-protocol.json';p=json.loads(protocol_path.read_text());cfg=p['training']
+    protocol_path=args.protocol;p=json.loads(protocol_path.read_text());cfg=p['training']
     if git(ROOT,'status','--porcelain'):raise ValueError('Commit/freeze all source before training')
+    import platform,os
+    if not p.get('server_only') or platform.system()!='Linux' or not cfg['device'].startswith('cuda'):
+        raise ValueError('Current user instruction requires a frozen Linux GPU server protocol; no local/CPU training')
+    if p.get('execution_host') and platform.node()!=p['execution_host']:
+        raise ValueError('Server hostname does not match frozen preflight')
+    if p.get('server_only') and platform.system()=='Windows':
+        raise ValueError('User requires server-only training')
+    device=torch.device(cfg['device'])
+    if device.type=='cuda' and not torch.cuda.is_available():raise ValueError('CUDA is required; no CPU fallback')
+    os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG',':4096:8')
     torch.set_num_threads(1);torch.use_deterministic_algorithms(True)
     started=time.monotonic()
     def budget():
@@ -84,11 +102,13 @@ def execute(args):
     train=prepare_phases(train_rows);val=prepare_phases(val_rows);branch=prepare_phases(branch_rows,val_rows)
     write(args.output/'run-manifest.json',{'source_commit':git(ROOT,'rev-parse','HEAD'),'protocol':p,
         'protocol_sha256':sha(protocol_path),'files':[{ 'path':str(f),'sha256':sha(f)} for f in sorted(args.data.glob('*.json*'))],
-        'torch':torch.__version__,'test_loaded':False})
+        'torch':torch.__version__,'test_loaded':False,'hostname':platform.node(),'device':str(device),
+        'gpu':torch.cuda.get_device_name(device) if device.type=='cuda' else None})
     scale=train['y'].std(0,unbiased=False).clamp_min(.05);ym=train['y'].mean(0)
     active=train['y'][:,:STATE_DIM].std(0,unbiased=False)>1e-6
     write(args.output/'normalization.json',{'scale':scale.tolist(),'mean':ym.tolist(),'active_dimensions':active.nonzero().flatten().tolist()})
-    normalized=(train['y']-ym)/scale
+    normalized=((train['y']-ym)/scale).to(device)
+    active_device=active.to(device)
     raw_probe=fit_readout(train['raw'],train['y'],scale)
     raw_metrics=task_metrics(readout(raw_probe,val['raw']),val['y'],scale,active,val_rows)
     mean_metrics=task_metrics(ym.double().expand_as(val['y']),val['y'],scale,active,val_rows)
@@ -96,25 +116,26 @@ def execute(args):
     results=[];updates=0
     for seed in p['seeds']:
         budget();torch.manual_seed(seed)
-        pre=MaskedPretrainer();gen=torch.Generator().manual_seed(seed+19)
+        pre=MaskedPretrainer().to(device);gen=torch.Generator().manual_seed(seed+19)
         opt=torch.optim.AdamW(pre.parameters(),lr=cfg['learning_rate'],weight_decay=cfg['weight_decay'])
         pre_dir=args.output/f'pretraining-{seed}';pre_dir.mkdir()
         with (pre_dir/'history.jsonl').open('x') as log:
             for i in range(cfg['shared_pretraining_updates_per_seed']):
                 budget();ids=torch.randint(len(train_rows),(cfg['batch_size'],),generator=gen)
-                loss=pre.loss(select_batch(train['graphs'][-1],ids),gen)
+                loss=pre.loss(to_device(select_batch(train['graphs'][-1],ids),device),gen)
                 opt.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(pre.parameters(),cfg['gradient_clip']);opt.step();pre.update_target();updates+=1
                 if not torch.isfinite(loss):raise ValueError('Nonfinite pretraining loss')
                 log.write(json.dumps({'update':i+1,'loss':float(loss.detach())})+'\n')
+                log.flush()
         torch.save({'encoder':pre.encoder.state_dict(),'target':pre.target.state_dict(),'optimizer':opt.state_dict(),
                     'seed':seed,'updates':500},pre_dir/'terminal.pt')
         shared=deepcopy(pre.encoder.state_dict())
         for group in p['groups']:
             budget();torch.manual_seed(seed)
-            fixed=group.startswith('J-fixed');model=TwoStageModel(with_action=group!='J-fixed-noaction',frozen=fixed)
+            fixed=group.startswith('J-fixed');model=TwoStageModel(with_action=group!='J-fixed-noaction',frozen=fixed).to(device)
             if fixed:model.encoder.load_state_dict(shared)
             target=deepcopy(model.encoder).requires_grad_(False)
-            decoder=torch.nn.Linear(11*64,STATE_DIM+8) if group=='S' else None
+            decoder=torch.nn.Linear(11*64,STATE_DIM+8).to(device) if group=='S' else None
             params=[v for v in model.parameters() if v.requires_grad]+([] if decoder is None else list(decoder.parameters()))
             opt=torch.optim.AdamW(params,lr=cfg['learning_rate'],weight_decay=cfg['weight_decay'])
             gen=torch.Generator().manual_seed(seed+71)
@@ -123,20 +144,26 @@ def execute(args):
             with (folder/'history.jsonl').open('x') as log:
                 for i in range(total):
                     budget();ids=torch.randint(len(train_rows),(cfg['batch_size'],),generator=gen)
-                    predicted=model(**model_arguments(train,ids))
+                    predicted=model(**to_device(model_arguments(train,ids),device))
                     if decoder is not None:
                         error=(decoder(predicted.flatten(1))-normalized[ids]).square()
-                        loss=(error[:,:STATE_DIM][:,active].mean()+error[:,STATE_DIM].mean()+error[:,STATE_DIM+1:].mean())/3
+                        loss=(error[:,:STATE_DIM][:,active_device].mean()+error[:,STATE_DIM].mean()+error[:,STATE_DIM+1:].mean())/3
                     else:
-                        with torch.no_grad():truth=target(select_batch(train['commit'],ids))
+                        with torch.no_grad():truth=target(to_device(select_batch(train['commit'],ids),device))
                         loss=F.mse_loss(predicted,truth)
-                        if not fixed:loss=loss+spread_penalty(model.encoder(select_batch(train['graphs'][-1],ids)))
+                        if not fixed:loss=loss+spread_penalty(model.encoder(to_device(select_batch(train['graphs'][-1],ids),device)))
                     if not torch.isfinite(loss):raise ValueError('Nonfinite dynamics loss')
                     opt.zero_grad();loss.backward();torch.nn.utils.clip_grad_norm_(params,cfg['gradient_clip']);opt.step();updates+=1
                     if not fixed:
                         with torch.no_grad():
                             for a,b in zip(target.parameters(),model.encoder.parameters()):a.lerp_(b,.01)
                     log.write(json.dumps({'update':i+1,'loss':float(loss.detach())})+'\n')
+                    log.flush()
+                    if (i+1)%500==0:
+                        torch.save({'model':model.state_dict(),'target':target.state_dict(),'optimizer':opt.state_dict(),
+                            'decoder':None if decoder is None else decoder.state_dict(),'group':group,'seed':seed,'updates':i+1,
+                            'sampling_rng':gen.get_state(),'torch_rng':torch.get_rng_state(),
+                            'cuda_rng':torch.cuda.get_rng_state_all() if device.type=='cuda' else []},folder/f'progress-{i+1}.pt')
                     if (i+1)%500==0:print(f'{group} seed {seed}: {i+1}/{total} updates',flush=True)
             if fixed and any(not torch.equal(v,shared[k]) for k,v in model.encoder.state_dict().items()):raise ValueError('Frozen encoder changed')
             torch.save({'model':model.state_dict(),'target':target.state_dict(),'decoder':None if decoder is None else decoder.state_dict(),
@@ -168,7 +195,7 @@ def execute(args):
             print(json.dumps({'finished':group,'seed':seed,'latent_improvement':result['latent_persistence_improvement'],
                               'reward_nmse':metrics['reward_nmse']['scenario_macro'],'regret':result['immediate_branch_regret']}),flush=True)
         # Random model is a reference, never optimized or selected.
-        torch.manual_seed(seed);random_model=TwoStageModel().eval()
+        torch.manual_seed(seed);random_model=TwoStageModel().to(device).eval()
         tx,_,_=representations(random_model,train);vx,_,_=representations(random_model,val)
         probe=fit_readout(tx,train['y'],scale)
         torch.save({'model':random_model.state_dict(),'probe':probe,'seed':seed,'updates':0},args.output/f'random-{seed}.pt')
@@ -183,6 +210,7 @@ def execute(args):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--data',type=Path,required=True);parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--protocol',type=Path,required=True)
     args=parser.parse_args();args.output.mkdir(parents=True,exist_ok=False)
     try:execute(args)
     except Exception:

@@ -2,7 +2,7 @@
   "node": "J-02",
   "updated": "2026-09-05",
   "J02A": "development_commit_branch_contract_passed_local_only",
-  "J02B": "implementation_pending_not_trained",
+  "J02B": "local_attempt_interrupted_server_migration_pending_connectivity",
   "J02C": "conditional_not_started",
   "confirmation_700_140_350_tapes": "not_collected",
   "development_tapes": 84,
@@ -13,5 +13,22 @@
   "risk_recall": "not_evaluable_zero_positive_support",
   "next_causal_branch_coupling": "not_claimed_commit_only",
   "report": "evidence/data-report.md",
-  "goal_complete": false
+  "goal_complete": false,
+  "active_run": {
+    "path": "E:/Z博士/9.2日/J02-development-attempt1-20260905",
+    "source_commit": "ef52fee",
+    "session_id": 58802,
+    "observed_process_id": 40220,
+    "completed_run_observed": "S seed5101 terminal 2000 updates",
+    "resume_rule": "Check process/session and result/failure files before taking action; do not restart on timeout",
+    "state": "terminated"
+  },
+  "server_requirement": {
+    "host": "172.17.27.173",
+    "user": "user1",
+    "port": 22,
+    "last_connection": "timeout_before_authentication",
+    "training_location": "server_only",
+    "final_export": "all checkpoints, configs, logs, results, failure records and SHA256 manifest"
+  }
 }
