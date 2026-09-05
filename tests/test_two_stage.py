@@ -3,6 +3,8 @@ import torch
 from gppo_world.jepa_two_stage import NodeEncoder,ActionDynamics,MaskedPretrainer,masked_graph
 from gppo_world.jepa import batch_graphs
 from test_contracts import make_graph
+from tools.run_j02_development import branch_regret,fit_readout,readout,macro
+from gppo_world.data import STATE_DIM
 
 
 def test_mask_clears_duplicate_relations_and_preserves_source():
@@ -44,3 +46,19 @@ def test_pretraining_target_no_grad_and_graph_shapes():
     assert torch.isfinite(loss)
     assert model.encoder(g).shape==(2,11,64)
     assert all(p.grad is None for p in model.target.parameters())
+
+
+def test_branch_regret_uses_true_same_origin_rewards_and_tie_rule():
+    rows=[{'episode_id':'a','tape_id':'t','scenario_id':'s','step':0,'action':a,'reward':r} for a,r in [(1,2.),(3,5.)]]
+    pred=torch.zeros(2,STATE_DIM+8)
+    result=branch_regret(pred,rows,1e-6)
+    assert result['immediate_reward_regret']==3.
+    pred[1,STATE_DIM]=1
+    assert branch_regret(pred,rows,1e-6)['immediate_reward_regret']==0
+
+
+def test_probe_normalization_is_train_only():
+    torch.manual_seed(7);x=torch.randn(80,4);y=x@torch.randn(4,3)
+    p=fit_readout(x,y,y.std(0).clamp_min(.05))
+    assert torch.equal(p['xmean'],x.double().mean(0))
+    assert ((readout(p,x)-y)**2).mean()<.01
