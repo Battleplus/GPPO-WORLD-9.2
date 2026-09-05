@@ -1,5 +1,7 @@
 # 实验矩阵与验收定义
 
+2026-09-05 原始要求复核：用户最初的完成定义包含 GPPO-History；已执行 T-05 的四组不包含它。历史实验记录继续保留，新完整验收必须补齐此对照。详见 [原始要求覆盖](../nodes/requirements-status.json) 和 [修订规划](10-revised-experiment-plan-20260905.md)。
+
 ## 1. 公平消融矩阵
 
 | 组别 | 历史世界模型 | 自动事件头 | GES | latent 接入 GPPO | imagined rollout |
@@ -67,7 +69,7 @@
 2. state/event/reward-cost/continuation/calibration 有独立评估；
 3. GPPO 可选读取冻结 latent，关闭后无损回退；
 4. 世界模型不污染 belief、mask、版本或并发安全链；
-5. 至少完成 GPPO、WM-GPPO、EA-noGES-GPPO、EAWM-GPPO 四组公平对照；
+5. 完成 GPPO、GPPO-History、WM-GPPO、EAWM-GPPO 的原始要求对照；EA-noGES-GPPO 继续作为事件/GES 分析组，不能替代 GPPO-History；
 6. 每项结论能追溯到 checkpoint、配置、seed、日志、结果和代码 commit。
 
 T-06 imagined rollout 不是基础迁移完成的必要条件；它是基础迁移通过后的扩展能力。

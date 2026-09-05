@@ -8,7 +8,7 @@
 
 本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
 
-> 当前进度总览：请查看 [GPPO 世界模型迁移当前进度](docs/05-current-progress.md)。T-00～T-05 已全部通过，正式四组 × 三 seeds 消融及证据已封存；结果不支持“世界模型稳定提升 GPPO”的普遍声明。详见 [T-05 最终报告](nodes/T-05/evidence/final-report.md) 和 [Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0)。
+> 2026-09-05 重新分析：T-00～T-05 已按各自已执行协议验收，四组 × 三 seeds 消融已封存；原始目标要求的 GPPO-History 对照仍未完成，不能等同于原始完整验收全部满足。稳定策略增益尚未建立。阅读 [重新分析](docs/09-project-reassessment-20260905.md)、[修订规划](docs/10-revised-experiment-plan-20260905.md) 与 [原始要求覆盖表](nodes/requirements-status.json)。历史结果见 [T-05 报告](nodes/T-05/evidence/final-report.md)。
 
 ## 为什么需要世界模型
 

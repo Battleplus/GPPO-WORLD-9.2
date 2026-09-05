@@ -1,12 +1,14 @@
 # GPPO 世界模型迁移当前进度
 
-更新时间：2026-09-04（Asia/Shanghai）
+更新时间：2026-09-05（Asia/Shanghai）
 
 ## 一页结论
 
+2026-09-05 复审完成：[重新分析](09-project-reassessment-20260905.md) 与 [修订规划](10-revised-experiment-plan-20260905.md) 已保存，186 个封存文件身份核验通过。**用户原始目标要求的 GPPO-History 对照缺失，完整验收尚未全部满足**；T 节点的历史 `passed` 仅指其已执行协议。原始要求覆盖以 [requirements-status.json](../nodes/requirements-status.json) 为准。下一步先做开发机制诊断和 pre/commit/next 时间目标合同，尚未启动新训练。
+
 新增进展：独立 [J-01 Graph-JEPA](../nodes/J-01/evidence/final-report.md) 已完成 9 次训练与 3 个随机对照，72 项测试通过；动作敏感性成立，但未来预测未超过持久化基线，统一探针明显落后于监督图对照。状态为 `experiment_completed_gate_failed`，不启动 JEPA-GPPO 训练。新图数据、模型、探针和结果已按独立 Release 封存；[J-02](../nodes/J-02/README.md) 仅是下一版设计草案。以下 T 节点结论仍指原 EAWM 路线，不可混称为 JEPA。
 
-T-00～T-05 已全部通过，世界模型基础迁移完成。动作条件异构图世界模型、自动事件与 GES、只读 Shadow、冻结 latent GPPO adapter、旧 GPPO 无损回退以及正式四组多 seed 消融均有可追踪证据。
+T-00～T-05 已按各自已执行协议通过，世界模型工程接入完成。动作条件异构图世界模型、自动事件与 GES、只读 Shadow、冻结 latent GPPO adapter、旧 GPPO 无损回退以及正式四组多 seed 消融均有可追踪证据；原始完整目标还需补历史对照。
 
 这里的“迁移完成”是工程与实验协议结论，不等于“世界模型提升了 GPPO”。正式结果不支持稳定的一般性性能增益：EAWM-GPPO 的部分安全/恢复均值略好，但 episode return 在三个 seeds 上分别显著下降、显著下降和无显著差异。因此现阶段推荐保留可关闭 adapter 和原 GPPO 回退，不默认宣称或启用性能提升。
 

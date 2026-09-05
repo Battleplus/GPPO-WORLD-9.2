@@ -1,0 +1,22 @@
+{
+  "version": "original-goal-coverage/1.0.0",
+  "reviewed_on": "2026-09-05",
+  "source_goal_repository": "Battleplus/GPPO-8.29",
+  "source_goal_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "source_goal_path": "docs/world-model/current/世界模型任务目标与改进目标.md",
+  "original_complete_acceptance": "incomplete_history_control_missing",
+  "executed_t05_protocol": "completed_with_no_stable_benefit_claim",
+  "historical_t_node_status_interpretation": "Acceptance under that executed protocol, not automatic fulfillment of every original goal requirement",
+  "requirements": [
+    {"requirement": "action_conditioned_graph_data_loop", "status": "implemented_and_tested", "evidence": "nodes/T-01/README.md"},
+    {"requirement": "state_event_reward_cost_continuation_calibration_evaluation", "status": "performed_with_reported_limitations", "evidence": "nodes/T-04/README.md"},
+    {"requirement": "optional_frozen_latent_and_fallback", "status": "implemented_and_tested", "evidence": "nodes/T-05/evidence/final-report.md"},
+    {"requirement": "no_belief_mask_version_execution_chain_pollution", "status": "tested_in_declared_scopes", "evidence": "nodes/T-05/evidence/final-report.md"},
+    {"requirement": "independent_gppo_history_control", "status": "not_executed", "evidence": "nodes/D-04/README.md"},
+    {"requirement": "traceable_checkpoints_configs_seeds_logs_results", "status": "published", "evidence": "nodes/J-01/evidence/publication-verification.json"},
+    {"requirement": "stable_gppo_performance_improvement", "status": "not_established", "evidence": "nodes/T-05/evidence/final-report.md"}
+  ],
+  "next_plan": "docs/10-revised-experiment-plan-20260905.md",
+  "review_evidence": "nodes/R-01/README.md",
+  "training_started_in_this_review": false
+}

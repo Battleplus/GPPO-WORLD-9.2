@@ -1,0 +1,31 @@
+{
+  "reviewed_on": "2026-09-05",
+  "project_repository": "https://github.com/Battleplus/GPPO-WORLD-9.2",
+  "project_read_commit": "b94390903121778ce2013d37748ebf9a29bf2c20",
+  "baseline_repository": "https://github.com/Battleplus/GPPO-8.29",
+  "baseline_read_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "freshness": "Both repositories fetched from GitHub main; rendered search cache was stale and was not used as progress authority",
+  "project_documents": [
+    "README.md", "docs/00-scope-and-boundaries.md", "docs/01-architecture-and-contracts.md",
+    "docs/04-experiment-and-acceptance.md", "docs/05-current-progress.md", "docs/08-post-t05-diagnostics-and-next-plan.md",
+    "nodes/T-03/README.md", "nodes/T-05/evidence/final-report.md", "nodes/D-02/evidence/final-report.md",
+    "nodes/D-04/README.md", "nodes/D-04/next-experiment-protocol.json", "nodes/J-01/protocol.json",
+    "nodes/J-01/evidence/final-report.md", "nodes/J-01/evidence/results.json", "nodes/J-02/README.md"
+  ],
+  "baseline_goal_document": "docs/world-model/current/世界模型任务目标与改进目标.md",
+  "code_sections_inspected": [
+    "gppo_world/jepa.py", "gppo_world/model.py:HeteroGraphEncoder/GraphWorldModel",
+    "gppo_world/gppo_shadow_env.py:PostActionShadowEnv", "gppo_world/gppo_adapter.py:ResidualLatentAdapter/forward",
+    "gppo_world/event_training.py:_state_event_weights/event_episode_loss", "gppo_world/events.py:ges_weight",
+    "gppo_world/registry.py", "tools/run_j01_experiment.py:train_all/evaluate",
+    "baseline:ppo_allocation/random_event/environment.py:_step_current",
+    "baseline:ppo_allocation/random_event/runtime_bridge.py:detector_rng/confirmation"
+  ],
+  "primary_research": [
+    {"url": "https://arxiv.org/html/2601.19336v1", "used_sections": ["3.1", "3.2", "3.3", "A.1"], "purpose": "Automatic events, representation learning and GES, not human preference labels"},
+    {"url": "https://arxiv.org/html/2506.09985v1", "used_sections": ["2.1", "3.1"], "purpose": "Separate representation pretraining and frozen-encoder action-conditioned predictor training"}
+  ],
+  "sealed_evidence": "nodes/J-01/evidence/release-inventory.json",
+  "checks_output": "nodes/R-01/evidence/j01-planning-audit.json",
+  "new_training_or_probe_fitting": false
+}
