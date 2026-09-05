@@ -1,0 +1,22 @@
+{
+  "version": "m09-staged-plan/1.0.0",
+  "updated": "2026-09-05",
+  "status": "planned",
+  "next_stage": "S0",
+  "target_review_date": "2026-09-15",
+  "review_date_confirmed": false,
+  "target_freeze_date": "2026-09-13",
+  "training_location": "server_only",
+  "server_connectivity": "must_recheck_before_execution",
+  "stages": [
+    {"id":"S0","name":"版本与术语对齐","status":"planned","depends_on":[],"evidence":[]},
+    {"id":"S1","name":"基础功能","status":"planned","depends_on":["S0"],"evidence":[]},
+    {"id":"S2","name":"延迟定位与优化","status":"planned","depends_on":["S1"],"evidence":[]},
+    {"id":"S3","name":"必要训练与对照","status":"planned","depends_on":["S2"],"evidence":[]},
+    {"id":"S4","name":"世界模型接入展示","status":"planned","depends_on":["S1","S3"],"evidence":[]},
+    {"id":"S5","name":"冻结与汇报","status":"planned","depends_on":["S4"],"evidence":[]}
+  ],
+  "open_inputs": ["实际汇报日期","竞赛控制周期和实体规模","会议五类型版本的源码提交","Task与Region/Target语义关系"],
+  "completed_stages": 0,
+  "new_training_started": false
+}

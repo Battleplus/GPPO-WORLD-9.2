@@ -10,7 +10,9 @@
 
 > 2026-09-05 重新分析：T-00～T-05 已按各自已执行协议验收，四组 × 三 seeds 消融已封存；原始目标要求的 GPPO-History 对照仍未完成，不能等同于原始完整验收全部满足。稳定策略增益尚未建立。阅读 [重新分析](docs/09-project-reassessment-20260905.md)、[修订规划](docs/10-revised-experiment-plan-20260905.md) 与 [原始要求覆盖表](nodes/requirements-status.json)。历史结果见 [T-05 报告](nodes/T-05/evidence/final-report.md)。
 
-本地后续执行：2026-09-05 已完成 [R-02 开发读出与 adapter 真开关诊断](nodes/R-02/README.md)，60 个读出、216 episodes。结果只作开发机制解释；尚未发布本节点 Release，J-02A 与正式策略验证仍待执行。
+当前执行入口：[9 月中旬分阶段交付计划](nodes/M-09/README.md)。按会议要求优先基础功能、延迟验证和汇报交付，再推进世界模型研究。
+
+2026-09-05 已完成 R-02、J-02A 和服务器 J-02B 四配置三 seed 实验。J-02B 开发门槛失败，完整训练文件已发布至 [GitHub Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/j02b-server-archive-20260905)。原始 GPPO-History 对照和稳定策略增益仍未完成；原始 R-02 大文件尚待独立 Release。
 
 ## 为什么需要世界模型
 
