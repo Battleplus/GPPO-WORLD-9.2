@@ -50,8 +50,8 @@ def masked_graph(graph, generator):
     """
     result={part:{k:v.clone() for k,v in values.items()} for part,values in graph.items()}
     batch=next(iter(graph['nodes'].values())).shape[0]
-    selected=torch.randint(3,(batch,),generator=generator)
-    token_mask=torch.zeros(batch,11,dtype=torch.bool)
+    selected=torch.randint(3,(batch,),generator=generator).to(graph['nodes']['uav'].device)
+    token_mask=torch.zeros(batch,11,dtype=torch.bool,device=selected.device)
     for index,k in enumerate(NODE_ORDER):
         eligible=[i for i,f in enumerate(FEATURE_REGISTRY.nodes[k]) if f.event_eligible]
         result['nodes'][k][:,:,eligible]=0
@@ -108,10 +108,11 @@ class ActionDynamics(nn.Module):
         if self.with_action:
             noop=action==16
             index=action.clamp_max(15)
-            endpoints=candidate_edges[torch.arange(batch),index]
-            u=current[torch.arange(batch),endpoints[:,0]]
-            r=current[torch.arange(batch),endpoints[:,1]+4]
-            edge=edge_attributes[torch.arange(batch),index]
+            batch_index=torch.arange(batch,device=current.device)
+            endpoints=candidate_edges[batch_index,index]
+            u=current[batch_index,endpoints[:,0]]
+            r=current[batch_index,endpoints[:,1]+4]
+            edge=edge_attributes[batch_index,index]
             payload=torch.cat([u,r,edge],-1).masked_fill(noop[:,None],0)
             conditioning=self.action(torch.cat([payload,noop[:,None].to(tokens.dtype)],-1))
         else:

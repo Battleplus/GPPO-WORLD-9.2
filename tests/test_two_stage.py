@@ -48,6 +48,18 @@ def test_pretraining_target_no_grad_and_graph_shapes():
     assert all(p.grad is None for p in model.target.parameters())
 
 
+def test_cuda_indices_share_device_when_available():
+    if not torch.cuda.is_available():
+        return
+    device=torch.device('cuda:0')
+    g={part:{key:value.to(device) for key,value in values.items()} for part,values in batch_graphs([make_graph(),make_graph()]).items()}
+    pre=MaskedPretrainer().to(device)
+    assert torch.isfinite(pre.loss(g,torch.Generator().manual_seed(7)))
+    model=ActionDynamics().to(device)
+    values={k:(v.to(device) if isinstance(v,torch.Tensor) else v) for k,v in arguments().items()}
+    assert model(**values).device==device
+
+
 def test_branch_regret_uses_true_same_origin_rewards_and_tie_rule():
     rows=[{'episode_id':'a','tape_id':'t','scenario_id':'s','step':0,'action':a,'reward':r} for a,r in [(1,2.),(3,5.)]]
     pred=torch.zeros(2,STATE_DIM+8)
