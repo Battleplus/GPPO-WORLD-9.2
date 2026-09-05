@@ -1,0 +1,176 @@
+{
+  "adapter_off_exact_base_logits": true,
+  "all_safety_mutations_zero": true,
+  "changed_trajectory_pairs": 66,
+  "checkpoint_hashes_unchanged": true,
+  "elapsed_seconds": 20.663624200002232,
+  "executed_episodes": 216,
+  "interpretation": "Development intervention only; not an independently trained GPPO comparison",
+  "paired_episodes": 108,
+  "probe_decisions": 1247,
+  "runs": [
+    {
+      "argmax_disagreements": 7,
+      "changed_trajectories": 4,
+      "decisions": 70,
+      "group": "EA-noGES-GPPO",
+      "mean_paired_return_difference": -0.5267562029084271,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 58
+      },
+      "seed": 1101,
+      "used_argmax_disagreements": 7,
+      "used_count": 58,
+      "used_mean_actor_residual_l2": 0.19534139656301203,
+      "used_mean_critic_residual": -4.021268893932474,
+      "used_mean_latent_l2": 10.52015969671052,
+      "used_mean_probability_tv": 0.02492662426961435
+    },
+    {
+      "argmax_disagreements": 15,
+      "changed_trajectories": 10,
+      "decisions": 70,
+      "group": "EA-noGES-GPPO",
+      "mean_paired_return_difference": -0.5239290724835204,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 58
+      },
+      "seed": 2202,
+      "used_argmax_disagreements": 15,
+      "used_count": 58,
+      "used_mean_actor_residual_l2": 0.22417908772055445,
+      "used_mean_critic_residual": -3.958443756761222,
+      "used_mean_latent_l2": 10.576525063350283,
+      "used_mean_probability_tv": 0.030761592542780675
+    },
+    {
+      "argmax_disagreements": 11,
+      "changed_trajectories": 9,
+      "decisions": 68,
+      "group": "EA-noGES-GPPO",
+      "mean_paired_return_difference": 0.5186202801636085,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 56
+      },
+      "seed": 3303,
+      "used_argmax_disagreements": 11,
+      "used_count": 56,
+      "used_mean_actor_residual_l2": 0.26177288628449397,
+      "used_mean_critic_residual": -4.791029879025051,
+      "used_mean_latent_l2": 10.379104665347509,
+      "used_mean_probability_tv": 0.03504087735768272
+    },
+    {
+      "argmax_disagreements": 5,
+      "changed_trajectories": 5,
+      "decisions": 69,
+      "group": "EAWM-GPPO",
+      "mean_paired_return_difference": 0.4981990289706933,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 57
+      },
+      "seed": 1101,
+      "used_argmax_disagreements": 5,
+      "used_count": 57,
+      "used_mean_actor_residual_l2": 0.2670281329437306,
+      "used_mean_critic_residual": -4.021949031896758,
+      "used_mean_latent_l2": 10.440126151369329,
+      "used_mean_probability_tv": 0.028915603493112958
+    },
+    {
+      "argmax_disagreements": 5,
+      "changed_trajectories": 5,
+      "decisions": 68,
+      "group": "EAWM-GPPO",
+      "mean_paired_return_difference": -0.006101942058613623,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 56
+      },
+      "seed": 2202,
+      "used_argmax_disagreements": 5,
+      "used_count": 56,
+      "used_mean_actor_residual_l2": 0.2277953795024327,
+      "used_mean_critic_residual": -4.011736410004752,
+      "used_mean_latent_l2": 10.45896143572671,
+      "used_mean_probability_tv": 0.031206189033653634
+    },
+    {
+      "argmax_disagreements": 7,
+      "changed_trajectories": 6,
+      "decisions": 69,
+      "group": "EAWM-GPPO",
+      "mean_paired_return_difference": 0.9808379178595822,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 57
+      },
+      "seed": 3303,
+      "used_argmax_disagreements": 7,
+      "used_count": 57,
+      "used_mean_actor_residual_l2": 0.2255335615523029,
+      "used_mean_critic_residual": -4.858720494989763,
+      "used_mean_latent_l2": 10.511303207330537,
+      "used_mean_probability_tv": 0.025861712538531915
+    },
+    {
+      "argmax_disagreements": 6,
+      "changed_trajectories": 6,
+      "decisions": 69,
+      "group": "WM-GPPO",
+      "mean_paired_return_difference": -0.6037224928425083,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 57
+      },
+      "seed": 1101,
+      "used_argmax_disagreements": 6,
+      "used_count": 57,
+      "used_mean_actor_residual_l2": 0.23934488286051833,
+      "used_mean_critic_residual": -4.538087426570424,
+      "used_mean_latent_l2": 10.441884450745164,
+      "used_mean_probability_tv": 0.01976475362459232
+    },
+    {
+      "argmax_disagreements": 19,
+      "changed_trajectories": 10,
+      "decisions": 70,
+      "group": "WM-GPPO",
+      "mean_paired_return_difference": -0.1548748646898573,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 58
+      },
+      "seed": 2202,
+      "used_argmax_disagreements": 19,
+      "used_count": 58,
+      "used_mean_actor_residual_l2": 0.2119867660362145,
+      "used_mean_critic_residual": -3.8265917547817887,
+      "used_mean_latent_l2": 10.521681793804827,
+      "used_mean_probability_tv": 0.03125550433408827
+    },
+    {
+      "argmax_disagreements": 16,
+      "changed_trajectories": 11,
+      "decisions": 70,
+      "group": "WM-GPPO",
+      "mean_paired_return_difference": -0.012203884117227393,
+      "reason_counts": {
+        "episode_reset": 12,
+        "used": 58
+      },
+      "seed": 3303,
+      "used_argmax_disagreements": 16,
+      "used_count": 58,
+      "used_mean_actor_residual_l2": 0.29401095150488205,
+      "used_mean_critic_residual": -4.9776436049362704,
+      "used_mean_latent_l2": 10.4812863037504,
+      "used_mean_probability_tv": 0.042369850327129054
+    }
+  ],
+  "status": "PASS"
+}

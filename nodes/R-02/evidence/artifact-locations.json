@@ -1,0 +1,26 @@
+{
+  "publication_status": "local_only",
+  "assets": [
+    {
+      "path": "E:\\Z博士\\9.2日\\R02-sealed-20260905\\r02-readouts.tar.gz",
+      "bytes": 9022791,
+      "sha256": "35ae5688a2d277aef973c77929b30be9bc7400dce0d7d2926e88286b7676a309",
+      "verified_members": 124
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\R02-sealed-20260905\\r02-adapter-intervention.tar.gz",
+      "bytes": 21584948,
+      "sha256": "3661ac7d314a329aa484307c2e2770275df1bb79a2bddaf15d749afc88c755bb",
+      "verified_members": 272
+    }
+  ],
+  "raw_directories": [
+    "E:\\Z博士\\9.2日\\R02-readouts-attempt1-20260905",
+    "E:\\Z博士\\9.2日\\R02-adapter-attempt1-20260905"
+  ],
+  "old_training_locations": {
+    "J01": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904",
+    "T05_archive": "E:\\Z博士\\9.2日\\T05-release-download-verify-20260904\\t05-run-artifacts.tar.gz",
+    "world_checkpoints": "E:/Z博士/server-transfer/gppo-t05-20260903-135255-hanzhangyang-cdcb23/world-checkpoints"
+  }
+}

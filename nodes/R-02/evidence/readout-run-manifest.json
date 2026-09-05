@@ -1,0 +1,133 @@
+{
+  "device": "cpu",
+  "inputs": [
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-data-attempt1-20260904\\dataset\\train.jsonl",
+      "sha256": "a0d9a590ec30a8ebf7770b5b4249d957784fbd08cee9a21b54193f52434678f0"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-data-attempt1-20260904\\dataset\\validation.jsonl",
+      "sha256": "bfa6d58f989250b0ef18eb1e582d2351b84e32165a680206de4e85bd123c1286"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\action_jepa-4101\\terminal.pt",
+      "sha256": "97921be9ad4e0cd11061193b853edef6fe874794a32204d1aa8ba9d2154f0409"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\action_jepa-4202\\terminal.pt",
+      "sha256": "533c37b4bdd2f6675f0a5cb3a20342eb78e86d66f52b9cdd145f5775921882fb"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\action_jepa-4303\\terminal.pt",
+      "sha256": "db8484b5f01bffcc41462bd1a3fedfb3fb8f2f3cf60fef33d53554ff4b551bfc"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\no_action_jepa-4101\\terminal.pt",
+      "sha256": "1c104118a1574e2e509709bec7c8375c29995acf24dff6903b6b1a0383c2848e"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\no_action_jepa-4202\\terminal.pt",
+      "sha256": "f4ccdf8768c98751a1611e6f89eaf6dc1ff1973783261e6a72f7f2d4c7503d1a"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\no_action_jepa-4303\\terminal.pt",
+      "sha256": "1e986d2e4b67aa66b412d90113b6b2b0436be3eb6c4c078607b088c1c9117ac1"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\supervised_graph-4101\\terminal.pt",
+      "sha256": "66fb36447644200c339b763588be9c7d493169778c0637ec2132d88acbc6c5b6"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\supervised_graph-4202\\terminal.pt",
+      "sha256": "14f499ce19c7a9ed0eae4de8d5c162b52af80f4adf71f3673982c23d8c137dcd"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\supervised_graph-4303\\terminal.pt",
+      "sha256": "5bf5d6560581e77a5148eaec455936a2368d8189b5dd4dedc929623725e3e48a"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\random_untrained-4101\\terminal.pt",
+      "sha256": "473e4145374fd9373b78cbebda4cbdddc60bc4d20da0293ccc09318fd4a799f7"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\random_untrained-4202\\terminal.pt",
+      "sha256": "a0d0e86e63f810642cb624dcd9f2f3dbeaa6c013c90a540a4113c4b552509af4"
+    },
+    {
+      "path": "E:\\Z博士\\9.2日\\J01-experiment-attempt1-20260904\\random_untrained-4303\\terminal.pt",
+      "sha256": "92bd0b286839843f2b8aaa61e4a0cb6490bd6be91f0853a396e4d2e105282992"
+    }
+  ],
+  "protocol": {
+    "adapter_intervention": {
+      "arms": [
+        "adapter_on",
+        "adapter_off"
+      ],
+      "checkpoint_step": 50000,
+      "development_bank": "Exact D02 12 tapes",
+      "expected_episodes": 216,
+      "groups": [
+        "WM-GPPO",
+        "EA-noGES-GPPO",
+        "EAWM-GPPO"
+      ],
+      "max_decisions_per_episode": 100,
+      "max_wall_seconds": 1800,
+      "metrics": [
+        "all_decision_return",
+        "original_event_attributed_return",
+        "full_episode_costs",
+        "fallback_counts",
+        "safety_mutations"
+      ],
+      "probe": "Identical observer in both arms; only model.enabled changes",
+      "seeds": [
+        1101,
+        2202,
+        3303
+      ],
+      "weights_update": false
+    },
+    "device": "cpu",
+    "failure_policy": "Stop on integrity/safety/weight mutation or time budget failure, preserve attempt without overwrite",
+    "interpretation": "Disabling a co-trained adapter may shift its input distribution; this is not a GPPO-History control or independent GPPO comparison",
+    "plan": "docs/10-revised-experiment-plan-20260905.md",
+    "readouts": {
+      "capacity": "Four latent views padded to 62 columns, identical linear ridge recipe; raw graph reference separately disclosed larger width",
+      "encoder_predictor_optimizer_updates": 0,
+      "evaluate": "J01 Validation (posthoc development)",
+      "fit": "J01 Train",
+      "groups": [
+        "action_jepa",
+        "no_action_jepa",
+        "supervised_graph",
+        "random_untrained"
+      ],
+      "hyperparameter_search": false,
+      "max_wall_seconds": 1800,
+      "ridge": 1.0,
+      "seeds": [
+        4101,
+        4202,
+        4303
+      ],
+      "views": [
+        "current",
+        "current_action_evidence",
+        "predicted_future",
+        "observed_future_oracle",
+        "raw_graph_action_evidence"
+      ]
+    },
+    "scope": "Fixed frozen-model development diagnosis; no original Test evaluation or policy training",
+    "statistics": "Report per seed and paired tape differences, scenario macro with equal tape weights; no confirmatory significance or gain threshold",
+    "torch_num_threads": 1,
+    "version": "r02-development-diagnostics/1.0.0"
+  },
+  "protocol_sha256": "c85306ab2950707eff31d91406c71dea93e5fa4097cb4b601d9d5ad5d7588bc9",
+  "python": "3.14.4 (tags/v3.14.4:23116f9, Apr  7 2026, 14:10:54) [MSC v.1944 64 bit (AMD64)]",
+  "source_commit": "41d4fe7ffcbb3ec3f5c70d85a10de7427b8addfe",
+  "test_loaded": false,
+  "torch": "2.13.0+cpu"
+}

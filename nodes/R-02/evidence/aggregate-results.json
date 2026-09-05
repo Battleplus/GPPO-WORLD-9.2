@@ -1,0 +1,867 @@
+{
+  "readouts": [
+    {
+      "group": "action_jepa",
+      "view": "current",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.20011616121732642,
+        "costs_nmse": 0.41192350818877693,
+        "reward_nmse": 0.8193454798073966,
+        "state_active_nmse": 1.0948325277324216,
+        "state_all_nmse": 1.004470897407046
+      }
+    },
+    {
+      "group": "action_jepa",
+      "view": "current_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.09444958131548725,
+        "costs_nmse": 0.21530737023218086,
+        "reward_nmse": 0.2247424555331728,
+        "state_active_nmse": 1.0786145212480172,
+        "state_all_nmse": 0.9922651581518563
+      }
+    },
+    {
+      "group": "action_jepa",
+      "view": "predicted_future",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.17450977586871558,
+        "costs_nmse": 0.5209833587313549,
+        "reward_nmse": 0.6596680666697564,
+        "state_active_nmse": 1.074858861328195,
+        "state_all_nmse": 0.9894386328476154
+      }
+    },
+    {
+      "group": "action_jepa",
+      "view": "observed_future_oracle",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.17426228462078452,
+        "costs_nmse": 0.6809534849672789,
+        "reward_nmse": 0.9377499038882764,
+        "state_active_nmse": 0.9220803998113599,
+        "state_all_nmse": 0.874456926133122
+      }
+    },
+    {
+      "group": "action_jepa",
+      "view": "raw_graph_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.08693514746358676,
+        "costs_nmse": 0.0894930830267618,
+        "reward_nmse": 0.192038289396188,
+        "state_active_nmse": 1.289505241007635,
+        "state_all_nmse": 1.1509823925542768
+      }
+    },
+    {
+      "group": "no_action_jepa",
+      "view": "current",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.18776379271526622,
+        "costs_nmse": 0.4179361799408303,
+        "reward_nmse": 0.7973114586130505,
+        "state_active_nmse": 1.0762976596260752,
+        "state_all_nmse": 0.9905214784415927
+      }
+    },
+    {
+      "group": "no_action_jepa",
+      "view": "current_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.09700433708611725,
+        "costs_nmse": 0.22373191406146364,
+        "reward_nmse": 0.2255732590724137,
+        "state_active_nmse": 1.0570319949371472,
+        "state_all_nmse": 0.9760220589231027
+      }
+    },
+    {
+      "group": "no_action_jepa",
+      "view": "predicted_future",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.16139746385253653,
+        "costs_nmse": 0.5340876055267881,
+        "reward_nmse": 0.7559639991096438,
+        "state_active_nmse": 1.0813077870244465,
+        "state_all_nmse": 0.9942921211971377
+      }
+    },
+    {
+      "group": "no_action_jepa",
+      "view": "observed_future_oracle",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.16296193115359278,
+        "costs_nmse": 0.6647392467518072,
+        "reward_nmse": 0.8872847894271153,
+        "state_active_nmse": 0.9083815637942635,
+        "state_all_nmse": 0.8641471250681718
+      }
+    },
+    {
+      "group": "no_action_jepa",
+      "view": "raw_graph_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.08693514746358676,
+        "costs_nmse": 0.0894930830267618,
+        "reward_nmse": 0.192038289396188,
+        "state_active_nmse": 1.289505241007635,
+        "state_all_nmse": 1.1509823925542768
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "view": "current",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.1614786022949904,
+        "costs_nmse": 0.23939662860110228,
+        "reward_nmse": 0.6104647959929927,
+        "state_active_nmse": 1.047597941740045,
+        "state_all_nmse": 0.9689219511784085
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "view": "current_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.0686387599239085,
+        "costs_nmse": 0.09706062439912502,
+        "reward_nmse": 0.1870305735837925,
+        "state_active_nmse": 1.0117239409724599,
+        "state_all_nmse": 0.9419230287257208
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "view": "predicted_future",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.06756945020907164,
+        "costs_nmse": 0.10140181159821013,
+        "reward_nmse": 0.1795855596761436,
+        "state_active_nmse": 0.9527566798737908,
+        "state_all_nmse": 0.897544022325941
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "view": "observed_future_oracle",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.07824163476901017,
+        "costs_nmse": 0.5810312727805533,
+        "reward_nmse": 0.9855056830305646,
+        "state_active_nmse": 0.9015671278963224,
+        "state_all_nmse": 0.8590185522178985
+      }
+    },
+    {
+      "group": "supervised_graph",
+      "view": "raw_graph_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.08693514746358676,
+        "costs_nmse": 0.0894930830267618,
+        "reward_nmse": 0.192038289396188,
+        "state_active_nmse": 1.289505241007635,
+        "state_all_nmse": 1.1509823925542768
+      }
+    },
+    {
+      "group": "random_untrained",
+      "view": "current",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.16264154795652933,
+        "costs_nmse": 0.30643630082185663,
+        "reward_nmse": 0.739927478763618,
+        "state_active_nmse": 1.043606849039967,
+        "state_all_nmse": 0.9659182381827769
+      }
+    },
+    {
+      "group": "random_untrained",
+      "view": "current_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.07809005113393021,
+        "costs_nmse": 0.14604221388497363,
+        "reward_nmse": 0.22501154943138243,
+        "state_active_nmse": 1.0160768147629229,
+        "state_all_nmse": 0.9451990196773973
+      }
+    },
+    {
+      "group": "random_untrained",
+      "view": "predicted_future",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.1210362572315251,
+        "costs_nmse": 0.26274993358993753,
+        "reward_nmse": 0.3564928199154951,
+        "state_active_nmse": 0.9270785822332047,
+        "state_all_nmse": 0.8782185790495626
+      }
+    },
+    {
+      "group": "random_untrained",
+      "view": "observed_future_oracle",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.11617752381302979,
+        "costs_nmse": 0.6743585689094211,
+        "reward_nmse": 0.9968595749915365,
+        "state_active_nmse": 0.9132183465981807,
+        "state_all_nmse": 0.8677873079596616
+      }
+    },
+    {
+      "group": "random_untrained",
+      "view": "raw_graph_action_evidence",
+      "seed_count": 3,
+      "metrics": {
+        "continuation_brier_clipped": 0.08693514746358676,
+        "costs_nmse": 0.0894930830267618,
+        "reward_nmse": 0.192038289396188,
+        "state_active_nmse": 1.289505241007635,
+        "state_all_nmse": 1.1509823925542768
+      }
+    }
+  ],
+  "adapter_paired_metrics": [
+    {
+      "group": "WM-GPPO",
+      "seed": 1101,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.6037224928425082,
+          "by_scenario": {
+            "single": -0.34887055078389534,
+            "sequential": 0.0,
+            "overlap": -0.04881553646890957,
+            "burst": -2.017203884117228
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": 0.04826671972281682,
+          "by_scenario": {
+            "single": 2.259086299477404,
+            "sequential": 0.0,
+            "overlap": -0.04881553646890957,
+            "burst": -2.0172038841172273
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -0.12002094342201482,
+          "by_scenario": {
+            "single": -1.5399929852307157,
+            "sequential": 0.0,
+            "overlap": 0.09627508581369189,
+            "burst": 0.9636341257289646
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": -0.3350833333333335,
+          "by_scenario": {
+            "single": -0.0006666666666667412,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": -1.3396666666666672
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": -0.03333333333333331,
+          "by_scenario": {
+            "single": 0.0666666666666667,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": -0.19999999999999996
+          }
+        }
+      }
+    },
+    {
+      "group": "WM-GPPO",
+      "seed": 2202,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.1548748646898573,
+          "by_scenario": {
+            "single": -0.16019741058851503,
+            "sequential": -0.3285307439218492,
+            "overlap": -0.14297518836629308,
+            "burst": 0.012203884117228133
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": -0.7492791255396702,
+          "by_scenario": {
+            "single": 2.090716289934081,
+            "sequential": -0.32853074392184684,
+            "overlap": -2.3685307439218497,
+            "burst": -2.3907713042490655
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": 1.1924660166440306,
+          "by_scenario": {
+            "single": -1.4713063674164129,
+            "sequential": -0.03661165235168203,
+            "overlap": 3.53118751988193,
+            "burst": 2.7465945664622873
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": -0.08274999999999993,
+          "by_scenario": {
+            "single": 0.0013333333333328163,
+            "sequential": -0.0003333333333332226,
+            "overlap": 0.0003333333333333706,
+            "burst": -0.3323333333333327
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": -0.03333333333333337,
+          "by_scenario": {
+            "single": 0.06666666666666665,
+            "sequential": 0.0,
+            "overlap": -0.06666666666666672,
+            "burst": -0.1333333333333334
+          }
+        }
+      }
+    },
+    {
+      "group": "WM-GPPO",
+      "seed": 3303,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.012203884117227393,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": -0.024407768234453897,
+            "overlap": -0.02440776823445449,
+            "burst": -1.1842378929335002e-15
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": -1.6527548551465343,
+          "by_scenario": {
+            "single": -4.345734628039075,
+            "sequential": -0.016271845489637116,
+            "overlap": -4.651988135423717,
+            "burst": 2.4029751883662924
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": 1.8691550718207484,
+          "by_scenario": {
+            "single": 3.016469256078158,
+            "sequential": 0.048815536468907794,
+            "overlap": 5.816962966522652,
+            "burst": -1.405627471786725
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": -0.08266666666666686,
+          "by_scenario": {
+            "single": 0.000999999999999816,
+            "sequential": -0.0003333333333333706,
+            "overlap": -0.3336666666666665,
+            "burst": 0.0023333333333326323
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": -0.08333333333333334,
+          "by_scenario": {
+            "single": -0.1333333333333334,
+            "sequential": 0.0,
+            "overlap": -0.2666666666666666,
+            "burst": 0.06666666666666665
+          }
+        }
+      }
+    },
+    {
+      "group": "EA-noGES-GPPO",
+      "seed": 1101,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.5267562029084271,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": -2.09482092751648,
+            "overlap": 0.0,
+            "burst": -0.012203884117228133
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": -0.5267562029084267,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": -2.09482092751648,
+            "overlap": 0.0,
+            "burst": -0.012203884117226949
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -0.014717232655468314,
+          "by_scenario": {
+            "single": 0.010169903431024826,
+            "sequential": -0.08333333333333333,
+            "overlap": 0.0,
+            "burst": 0.014294499280435247
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": -0.0007500000000001763,
+          "by_scenario": {
+            "single": 0.001000000000000038,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": -0.004000000000000743
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        }
+      }
+    },
+    {
+      "group": "EA-noGES-GPPO",
+      "seed": 2202,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.5239290724835204,
+          "by_scenario": {
+            "single": -0.33666666666666717,
+            "sequential": 2.09482092751648,
+            "overlap": 0.02440776823445508,
+            "burst": -3.8782783190183494
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": -1.0024908309475025,
+          "by_scenario": {
+            "single": -0.1683333333333342,
+            "sequential": 2.09482092751648,
+            "overlap": 0.02440776823445508,
+            "burst": -5.960858686207611
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -0.5543673591229166,
+          "by_scenario": {
+            "single": 0.006469256078152815,
+            "sequential": 0.0914692560781513,
+            "overlap": -1.3810469277436301,
+            "burst": -0.9343610209043405
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": -0.5845,
+          "by_scenario": {
+            "single": 0.0003333333333331486,
+            "sequential": -0.0006666666666666673,
+            "overlap": -0.00100000000000063,
+            "burst": -2.336666666666666
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": -0.05000000000000003,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.06666666666666665,
+            "burst": -0.2666666666666668
+          }
+        }
+      }
+    },
+    {
+      "group": "EA-noGES-GPPO",
+      "seed": 3303,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": 0.5186202801636084,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 2.098888888888889,
+            "overlap": -0.02440776823445508,
+            "burst": 0.0
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": 1.4683781014542137,
+          "by_scenario": {
+            "single": -0.5172405603272168,
+            "sequential": 6.415160734378525,
+            "overlap": -0.024407768234453897,
+            "burst": 0.0
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -1.043074073184151,
+          "by_scenario": {
+            "single": 0.17612028016361592,
+            "sequential": -2.912302589411485,
+            "overlap": -0.06316792244195331,
+            "burst": -1.3729460610467814
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": 0.08358333333333326,
+          "by_scenario": {
+            "single": 0.0023333333333334463,
+            "sequential": -0.001000000000000038,
+            "overlap": -0.0006666666666668893,
+            "burst": 0.3336666666666665
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": 0.04999999999999998,
+          "by_scenario": {
+            "single": -3.700743415417188e-17,
+            "sequential": 0.1333333333333333,
+            "overlap": -7.401486830834377e-17,
+            "burst": 0.06666666666666672
+          }
+        }
+      }
+    },
+    {
+      "group": "EAWM-GPPO",
+      "seed": 1101,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": 0.4981990289706933,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": -0.02440776823445508,
+            "burst": 2.017203884117228
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": 0.4581496763235643,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 2.2336914783003734,
+            "overlap": -2.4182966571233435,
+            "burst": 2.0172038841172273
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -0.25910180674847005,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": -1.5768457391501869,
+            "overlap": 1.4966713431795238,
+            "burst": -0.956232831023217
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": 0.33475000000000005,
+          "by_scenario": {
+            "single": -0.0003333333333331486,
+            "sequential": -0.0003333333333333706,
+            "overlap": 0.0003333333333331486,
+            "burst": 1.3393333333333335
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": 0.04999999999999999,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.06666666666666665,
+            "overlap": -0.06666666666666665,
+            "burst": 0.19999999999999996
+          }
+        }
+      }
+    },
+    {
+      "group": "EAWM-GPPO",
+      "seed": 2202,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": -0.006101942058613623,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": -0.02440776823445449,
+            "burst": 0.0
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": 1.19491046375824,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 4.77964185503296,
+            "burst": 0.0
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": -1.4235889065742715,
+          "by_scenario": {
+            "single": 0.008135922744817966,
+            "sequential": 0.0,
+            "overlap": -5.682151742179859,
+            "burst": -0.020339806862044913
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": 0.08341666666666676,
+          "by_scenario": {
+            "single": -0.0003333333333331486,
+            "sequential": 0.0,
+            "overlap": 0.33200000000000013,
+            "burst": 0.002000000000000076
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": 0.06666666666666664,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.2666666666666666,
+            "burst": -7.401486830834377e-17
+          }
+        }
+      }
+    },
+    {
+      "group": "EAWM-GPPO",
+      "seed": 3303,
+      "metrics": {
+        "all_decision_return": {
+          "macro_difference_on_minus_off": 0.9808379178595821,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 2.098888888888889,
+            "overlap": -0.02440776823445449,
+            "burst": 1.848870550783894
+          }
+        },
+        "original_event_attributed_return": {
+          "macro_difference_on_minus_off": 0.42444902897069303,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 2.098888888888889,
+            "overlap": -2.2499633237900096,
+            "burst": 1.848870550783893
+          }
+        },
+        "fixed_j": {
+          "macro_difference_on_minus_off": 0.5535302053510461,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.08333333333333333,
+            "overlap": 1.6763362128303356,
+            "burst": 0.45445127524051543
+          }
+        },
+        "final_infeasible_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "event_success_rate": {
+          "macro_difference_on_minus_off": 0.0,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": 0.0,
+            "burst": 0.0
+          }
+        },
+        "cumulative_uncovered_time": {
+          "macro_difference_on_minus_off": 0.4179166666666667,
+          "by_scenario": {
+            "single": -0.0003333333333331486,
+            "sequential": 0.0,
+            "overlap": 0.33400000000000024,
+            "burst": 1.3379999999999999
+          }
+        },
+        "recovery_delay": {
+          "macro_difference_on_minus_off": 0.0166666666666667,
+          "by_scenario": {
+            "single": 0.0,
+            "sequential": 0.0,
+            "overlap": -0.06666666666666658,
+            "burst": 0.1333333333333334
+          }
+        }
+      }
+    }
+  ]
+}

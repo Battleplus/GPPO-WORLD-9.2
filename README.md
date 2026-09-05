@@ -10,6 +10,8 @@
 
 > 2026-09-05 重新分析：T-00～T-05 已按各自已执行协议验收，四组 × 三 seeds 消融已封存；原始目标要求的 GPPO-History 对照仍未完成，不能等同于原始完整验收全部满足。稳定策略增益尚未建立。阅读 [重新分析](docs/09-project-reassessment-20260905.md)、[修订规划](docs/10-revised-experiment-plan-20260905.md) 与 [原始要求覆盖表](nodes/requirements-status.json)。历史结果见 [T-05 报告](nodes/T-05/evidence/final-report.md)。
 
+本地后续执行：2026-09-05 已完成 [R-02 开发读出与 adapter 真开关诊断](nodes/R-02/README.md)，60 个读出、216 episodes。结果只作开发机制解释；尚未发布本节点 Release，J-02A 与正式策略验证仍待执行。
+
 ## 为什么需要世界模型
 
 新增独立路线：[J-01 Graph-JEPA 实验](nodes/J-01/README.md)已完成三组 × 三 seed 离线训练，接入门槛未通过，未启动 JEPA-GPPO 训练。它与原 EAWM 并列，不替换 GPPO。[完整结果](nodes/J-01/evidence/final-report.md) / [下一版草案](nodes/J-02/README.md)。

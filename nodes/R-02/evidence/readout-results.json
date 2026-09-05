@@ -1,0 +1,4397 @@
+{
+  "elapsed_seconds": 5.238316599999962,
+  "hyperparameter_search": false,
+  "limitations": [
+    "Posthoc Train/Validation diagnosis, not new Test evidence",
+    "Observed future alone may not recover deltas without current state; oracle is a clue, not an upper bound",
+    "Four latent views use equal padded input width; raw graph reference has a larger width",
+    "JEPA predictor was trained toward EMA space; current/oracle use the identical online encoder",
+    "No causal action-branch or policy-benefit claim"
+  ],
+  "model_weights_unchanged": true,
+  "results": [
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.20450656583316087,
+            "long_gap": 0.12678902811557835,
+            "normal": 0.8109677130409201,
+            "overlap": 0.19951289619207474,
+            "sequential": 0.1655664106322711,
+            "single": 0.1416121736853171,
+            "weak_comm": 0.15631233000586622
+          },
+          "scenario_macro": 0.2578953025007412,
+          "transition_mean": 0.181180964763813
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.3112748161134801,
+            "long_gap": 0.37896379075878894,
+            "normal": 1.02307336708781,
+            "overlap": 0.38353715818104045,
+            "sequential": 0.5684757894646834,
+            "single": 0.6476866131321556,
+            "weak_comm": 0.6058098345345037
+          },
+          "scenario_macro": 0.5598316241817803,
+          "transition_mean": 0.5277956010686463
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.28546788994479877,
+            "long_gap": 0.250560873529155,
+            "normal": 1.5777032204033923,
+            "overlap": 0.5875737751305683,
+            "sequential": 1.0691462467875377,
+            "single": 1.3401577463763383,
+            "weak_comm": 1.232841711525587
+          },
+          "scenario_macro": 0.9062073519567682,
+          "transition_mean": 0.8785656587285161
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 1.0381164773080218,
+            "long_gap": 1.4928510144183806,
+            "normal": 0.1437724935521928,
+            "overlap": 1.3377308934904402,
+            "sequential": 1.4267714266741816,
+            "single": 1.206005688934602,
+            "weak_comm": 1.261056277080164
+          },
+          "scenario_macro": 1.129472038779712,
+          "transition_mean": 1.2467511060296224
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.797566827974006,
+            "long_gap": 1.1235258936638333,
+            "normal": 0.10820377769943676,
+            "overlap": 1.3540040665418502,
+            "sequential": 1.0737941205959334,
+            "single": 1.6237907398492186,
+            "weak_comm": 1.1328997379434507
+          },
+          "scenario_macro": 1.0305407377525326,
+          "transition_mean": 1.133622577194169
+        }
+      },
+      "seed": 4101,
+      "view": "current"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.16107273236523553,
+            "long_gap": 0.10939777569306773,
+            "normal": 0.02476938396288624,
+            "overlap": 0.18001457880978644,
+            "sequential": 0.08593235109824565,
+            "single": 0.09233240245439936,
+            "weak_comm": 0.106453382657917
+          },
+          "scenario_macro": 0.10856751529164828,
+          "transition_mean": 0.11452868729437854
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.24452853616212616,
+            "long_gap": 0.29525884078442743,
+            "normal": 0.15373834836498787,
+            "overlap": 0.3194392317656661,
+            "sequential": 0.4259172678362651,
+            "single": 0.33646468151546316,
+            "weak_comm": 0.29511509857516505
+          },
+          "scenario_macro": 0.29578028642915727,
+          "transition_mean": 0.3279927372541642
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.2941475199064104,
+            "long_gap": 0.24305767126481578,
+            "normal": 0.042898638195974156,
+            "overlap": 0.23011068977097182,
+            "sequential": 0.3765554751503646,
+            "single": 0.2437071486375509,
+            "weak_comm": 0.2978554487994596
+          },
+          "scenario_macro": 0.24690465596079245,
+          "transition_mean": 0.2784801555255866
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 1.0632517587893155,
+            "long_gap": 1.4869969887036616,
+            "normal": 0.14854473825154066,
+            "overlap": 1.2231240503849048,
+            "sequential": 1.4276977729735678,
+            "single": 1.1442385743399566,
+            "weak_comm": 1.2212361378824586
+          },
+          "scenario_macro": 1.1021557173322007,
+          "transition_mean": 1.2088947218100383
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.8164837455471672,
+            "long_gap": 1.119120129519162,
+            "normal": 0.11179538894451889,
+            "overlap": 1.2677504788921117,
+            "sequential": 1.0744912926806278,
+            "single": 1.577304552042311,
+            "weak_comm": 1.1029309352660108
+          },
+          "scenario_macro": 1.00998236041313,
+          "transition_mean": 1.1051317046955758
+        }
+      },
+      "seed": 4101,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.19229455577786853,
+            "long_gap": 0.12423643108886877,
+            "normal": 0.32525219979681236,
+            "overlap": 0.18547358758619686,
+            "sequential": 0.2015909234298447,
+            "single": 0.1405274342308084,
+            "weak_comm": 0.1945952604873289
+          },
+          "scenario_macro": 0.1948529131996755,
+          "transition_mean": 0.17260072163275225
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.4959458029877671,
+            "long_gap": 0.4901171365867286,
+            "normal": 0.35218681225692333,
+            "overlap": 0.6760115119728607,
+            "sequential": 0.67765882792178,
+            "single": 0.6769507420605347,
+            "weak_comm": 0.7648375507884089
+          },
+          "scenario_macro": 0.5905297692250004,
+          "transition_mean": 0.6443805354525516
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3067823302681627,
+            "long_gap": 0.24470699651475944,
+            "normal": 0.1778139742557854,
+            "overlap": 0.7962443593037889,
+            "sequential": 0.9213053816744822,
+            "single": 0.9468056944919723,
+            "weak_comm": 1.2448224068363065
+          },
+          "scenario_macro": 0.6626401633350367,
+          "transition_mean": 0.7638135130094493
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9526902162895089,
+            "long_gap": 1.482278872246817,
+            "normal": 0.09484181671786979,
+            "overlap": 1.327456272410136,
+            "sequential": 1.4636455818305711,
+            "single": 1.1740532414475113,
+            "weak_comm": 1.184664806931737
+          },
+          "scenario_macro": 1.097090115410593,
+          "transition_mean": 1.2118959271265215
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.733274667988719,
+            "long_gap": 1.1155692554149221,
+            "normal": 0.07137834643610513,
+            "overlap": 1.3462713439058922,
+            "sequential": 1.1015457634089454,
+            "single": 1.5997431947352365,
+            "weak_comm": 1.075407199211952
+          },
+          "scenario_macro": 1.0061699673002533,
+          "transition_mean": 1.1073904243217831
+        }
+      },
+      "seed": 4101,
+      "view": "predicted_future"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.2363432221959466,
+            "long_gap": 0.1518538948785068,
+            "normal": 0.5445028659462011,
+            "overlap": 0.27354839812539433,
+            "sequential": 0.1806832032089474,
+            "single": 0.17567954406987352,
+            "weak_comm": 0.21873618424630561
+          },
+          "scenario_macro": 0.2544781875244536,
+          "transition_mean": 0.2160960117833488
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.6900631472178137,
+            "long_gap": 0.47504400677402314,
+            "normal": 0.547392609970495,
+            "overlap": 0.8737616241745838,
+            "sequential": 0.8621180400394872,
+            "single": 0.8038660609306671,
+            "weak_comm": 0.9166243128615876
+          },
+          "scenario_macro": 0.7384099717098083,
+          "transition_mean": 0.7909406663154523
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.4768044343645468,
+            "long_gap": 0.2496046640108664,
+            "normal": 0.5521994149003017,
+            "overlap": 0.6174416565651187,
+            "sequential": 1.5526871650346992,
+            "single": 1.3706671102615935,
+            "weak_comm": 1.7002645598786374
+          },
+          "scenario_macro": 0.9313812864308233,
+          "transition_mean": 1.026082723664893
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6989681280217924,
+            "long_gap": 1.3518462581902106,
+            "normal": 0.1282290696199993,
+            "overlap": 1.0762996953621256,
+            "sequential": 1.2901293137697374,
+            "single": 1.0609134260936222,
+            "weak_comm": 1.041435939397567
+          },
+          "scenario_macro": 0.9496888329221507,
+          "transition_mean": 1.0568758403288623
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5423223671830677,
+            "long_gap": 1.017405126606695,
+            "normal": 0.09650573208380156,
+            "overlap": 1.157249857533822,
+            "sequential": 0.9709566970819117,
+            "single": 1.514593698284002,
+            "weak_comm": 0.9676125567187877
+          },
+          "scenario_macro": 0.8952351479274411,
+          "transition_mean": 0.9907216610808365
+        }
+      },
+      "seed": 4101,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4101,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.20074659144761334,
+            "long_gap": 0.11958422156196895,
+            "normal": 0.2972030579561077,
+            "overlap": 0.13046556882166696,
+            "sequential": 0.15641980981362114,
+            "single": 0.12391919469285127,
+            "weak_comm": 0.13797961049492885
+          },
+          "scenario_macro": 0.1666168649698226,
+          "transition_mean": 0.14264360748198687
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.2476620786053691,
+            "long_gap": 0.20121286075602945,
+            "normal": 0.4219352112480861,
+            "overlap": 0.2600591927317566,
+            "sequential": 0.42338280550844615,
+            "single": 0.4404922300594489,
+            "weak_comm": 0.4593779561740342
+          },
+          "scenario_macro": 0.3505889050118815,
+          "transition_mean": 0.3526216362662569
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3828952839395586,
+            "long_gap": 0.24610641284961227,
+            "normal": 0.4681071666424529,
+            "overlap": 0.5823598693948601,
+            "sequential": 1.044650735938086,
+            "single": 1.3922254992260386,
+            "weak_comm": 1.2090401068236523
+          },
+          "scenario_macro": 0.7607692964020372,
+          "transition_mean": 0.8478424038271402
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.925807233829159,
+            "long_gap": 1.4069865638621204,
+            "normal": 0.13198157861100296,
+            "overlap": 1.322479406713808,
+            "sequential": 1.4251904083244316,
+            "single": 1.1907890806180035,
+            "weak_comm": 1.153434362287213
+          },
+          "scenario_macro": 1.079524090606534,
+          "transition_mean": 1.1947411090282785
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7130424233766326,
+            "long_gap": 1.058903950406648,
+            "normal": 0.09932988598588505,
+            "overlap": 1.3425257340458954,
+            "sequential": 1.072604239598335,
+            "single": 1.612338657027612,
+            "weak_comm": 1.0519030364456305
+          },
+          "scenario_macro": 0.9929497038409484,
+          "transition_mean": 1.0944796367426366
+        }
+      },
+      "seed": 4202,
+      "view": "current"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.10533261943144628,
+            "long_gap": 0.10480172727555426,
+            "normal": 0.007717123252249171,
+            "overlap": 0.11690014744555856,
+            "sequential": 0.1086388306145065,
+            "single": 0.0936053777267709,
+            "weak_comm": 0.06145627207425629
+          },
+          "scenario_macro": 0.08549315683147742,
+          "transition_mean": 0.08930706929979629
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.14772251067877895,
+            "long_gap": 0.17691710317316797,
+            "normal": 0.044437226017749694,
+            "overlap": 0.1753779026751557,
+            "sequential": 0.3205203101841415,
+            "single": 0.18798127836839973,
+            "weak_comm": 0.1953779473884437
+          },
+          "scenario_macro": 0.17833346835511962,
+          "transition_mean": 0.20042319721427448
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.24526511056253822,
+            "long_gap": 0.1909174154743972,
+            "normal": 0.0067887561229867865,
+            "overlap": 0.18776417849077293,
+            "sequential": 0.33477944040123375,
+            "single": 0.24470160011324216,
+            "weak_comm": 0.24921762131354339
+          },
+          "scenario_macro": 0.20849058892553063,
+          "transition_mean": 0.24032401967374728
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8220116823024961,
+            "long_gap": 1.4231932299444754,
+            "normal": 0.0768409800509543,
+            "overlap": 1.2854583318405761,
+            "sequential": 1.4505076981306693,
+            "single": 1.1654467849660044,
+            "weak_comm": 1.121555067379667
+          },
+          "scenario_macro": 1.0492876820878345,
+          "transition_mean": 1.1641155036675688
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6349254588162015,
+            "long_gap": 1.0711011548280036,
+            "normal": 0.05783084175709842,
+            "overlap": 1.3146635188418225,
+            "sequential": 1.0916581373952172,
+            "single": 1.593265939727019,
+            "weak_comm": 1.0279105462678162
+          },
+          "scenario_macro": 0.9701936568047398,
+          "transition_mean": 1.0714306785414776
+        }
+      },
+      "seed": 4202,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.21556447042147603,
+            "long_gap": 0.1317966330912856,
+            "normal": 0.13577208493553936,
+            "overlap": 0.2088181700364398,
+            "sequential": 0.15846627236897518,
+            "single": 0.1497180018444196,
+            "weak_comm": 0.17083766655097826
+          },
+          "scenario_macro": 0.16728189989273054,
+          "transition_mean": 0.1614734320236893
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.4080636187712038,
+            "long_gap": 0.5128742110023943,
+            "normal": 0.10250271010467801,
+            "overlap": 0.5708057707263767,
+            "sequential": 0.6302308636463568,
+            "single": 0.6592072304635382,
+            "weak_comm": 0.6341206205278495
+          },
+          "scenario_macro": 0.5025435750346282,
+          "transition_mean": 0.5760853372426009
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.34242731404561183,
+            "long_gap": 0.4146979802168776,
+            "normal": 0.1073456862610032,
+            "overlap": 0.7012058548407372,
+            "sequential": 1.0124307122659804,
+            "single": 1.0714777679679817,
+            "weak_comm": 1.2731624375717847
+          },
+          "scenario_macro": 0.7032496790242824,
+          "transition_mean": 0.8214582617784869
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.859900611663433,
+            "long_gap": 1.435356513474792,
+            "normal": 0.09646630012102313,
+            "overlap": 1.350135864225399,
+            "sequential": 1.3818532971639323,
+            "single": 1.1471144692884079,
+            "weak_comm": 1.099053621262862
+          },
+          "scenario_macro": 1.0528400967428355,
+          "transition_mean": 1.1667712805465587
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6634408249237815,
+            "long_gap": 1.080255292693268,
+            "normal": 0.07260093941399917,
+            "overlap": 1.3633400992043585,
+            "sequential": 1.039988549167647,
+            "single": 1.579468962563411,
+            "weak_comm": 1.0109758641642834
+          },
+          "scenario_macro": 0.9728672188758213,
+          "transition_mean": 1.0734294272863425
+        }
+      },
+      "seed": 4202,
+      "view": "predicted_future"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.07638864097301103,
+            "long_gap": 0.08347481645770709,
+            "normal": 0.10471418747692361,
+            "overlap": 0.10318297619553789,
+            "sequential": 0.13765091778432736,
+            "single": 0.23089366090512348,
+            "weak_comm": 0.13537645649064647
+          },
+          "scenario_macro": 0.124525950897611,
+          "transition_mean": 0.13191709671537769
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.533700358051089,
+            "long_gap": 0.5151768200594402,
+            "normal": 0.2744289933747861,
+            "overlap": 1.0239665041511334,
+            "sequential": 0.6996384330526396,
+            "single": 0.7934626422156557,
+            "weak_comm": 0.7833985531868908
+          },
+          "scenario_macro": 0.6605389005845191,
+          "transition_mean": 0.7363517847964449
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.5443058329943069,
+            "long_gap": 0.39655633702157855,
+            "normal": 0.47183959320206,
+            "overlap": 0.9653398018859103,
+            "sequential": 1.5183687122699157,
+            "single": 1.3020306384054068,
+            "weak_comm": 1.4477057120484882
+          },
+          "scenario_macro": 0.9494495182610951,
+          "transition_mean": 1.0413533248784725
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6614654527281236,
+            "long_gap": 1.2941544249089665,
+            "normal": 0.06375449965016325,
+            "overlap": 1.1545807535190435,
+            "sequential": 1.2417602595459287,
+            "single": 1.04415370262696,
+            "weak_comm": 0.9385769175746979
+          },
+          "scenario_macro": 0.914063715793412,
+          "transition_mean": 1.0178916129353826
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5140976974959055,
+            "long_gap": 0.973986012496592,
+            "normal": 0.04798190208046141,
+            "overlap": 1.216164508073794,
+            "sequential": 0.9345539453353474,
+            "single": 1.5019802605708112,
+            "weak_comm": 0.8902004283156388
+          },
+          "scenario_macro": 0.8684235363383644,
+          "transition_mean": 0.9613819691102227
+        }
+      },
+      "seed": 4202,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4202,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.19057652568171646,
+            "long_gap": 0.11039738313029913,
+            "normal": 0.3692071478999839,
+            "overlap": 0.16409163684637598,
+            "sequential": 0.1737192910082731,
+            "single": 0.10193005324102997,
+            "weak_comm": 0.12093217546222967
+          },
+          "scenario_macro": 0.17583631618141546,
+          "transition_mean": 0.14084939218818607
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.17571417481889087,
+            "long_gap": 0.21431494273439888,
+            "normal": 0.5007146808347319,
+            "overlap": 0.27584002675142355,
+            "sequential": 0.3637446923697352,
+            "single": 0.3865630824329514,
+            "weak_comm": 0.3605583676665503
+          },
+          "scenario_macro": 0.3253499953726689,
+          "transition_mean": 0.3164389425683907
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3466915110573048,
+            "long_gap": 0.3844658281627288,
+            "normal": 1.052459348562472,
+            "overlap": 0.6759630168965709,
+            "sequential": 0.9073167500816397,
+            "single": 1.0481221749044072,
+            "weak_comm": 1.1223999077785676
+          },
+          "scenario_macro": 0.7910597910633844,
+          "transition_mean": 0.8012065247606633
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9761970626329394,
+            "long_gap": 1.3715474266070748,
+            "normal": 0.1664112309279012,
+            "overlap": 1.2511519974339091,
+            "sequential": 1.4831494361407824,
+            "single": 1.0877026130387273,
+            "weak_comm": 1.1923504098957969
+          },
+          "scenario_macro": 1.0755014538110188,
+          "transition_mean": 1.184301581274523
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7509660184919779,
+            "long_gap": 1.0322323080454288,
+            "normal": 0.1252417857764673,
+            "overlap": 1.288844428624305,
+            "sequential": 1.1162244454288701,
+            "single": 1.5347553520005006,
+            "weak_comm": 1.0811914160260492
+          },
+          "scenario_macro": 0.989922250627657,
+          "transition_mean": 1.0866228046571278
+        }
+      },
+      "seed": 4303,
+      "view": "current"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12082212069043025,
+            "long_gap": 0.09073501193812333,
+            "normal": 0.003912381408385942,
+            "overlap": 0.1364831681943445,
+            "sequential": 0.10902747159877618,
+            "single": 0.07899856431429964,
+            "weak_comm": 0.08503778461899271
+          },
+          "scenario_macro": 0.08928807182333608,
+          "transition_mean": 0.09483711117096766
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.12080428111016063,
+            "long_gap": 0.13661250055655205,
+            "normal": 0.03845609942055993,
+            "overlap": 0.18283811371279884,
+            "sequential": 0.32522626819743244,
+            "single": 0.23572555925615948,
+            "weak_comm": 0.1629956691321964
+          },
+          "scenario_macro": 0.17180835591226568,
+          "transition_mean": 0.19439185786808436
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.23062147206515501,
+            "long_gap": 0.2241940319692409,
+            "normal": 0.012110898263360618,
+            "overlap": 0.16284794098903005,
+            "sequential": 0.35804955485443274,
+            "single": 0.230298040583382,
+            "weak_comm": 0.3137029132677656
+          },
+          "scenario_macro": 0.21883212171319527,
+          "transition_mean": 0.2508369931215245
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 1.0206486115036468,
+            "long_gap": 1.3893883172029082,
+            "normal": 0.07505720927186983,
+            "overlap": 1.2321711638543604,
+            "sequential": 1.5829144551984504,
+            "single": 1.1405166406342768,
+            "weak_comm": 1.1501047526026025
+          },
+          "scenario_macro": 1.0844001643240164,
+          "transition_mean": 1.1939541247155856
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7844204393868591,
+            "long_gap": 1.0456594366448972,
+            "normal": 0.05648836843638119,
+            "overlap": 1.2745593741855297,
+            "sequential": 1.1913080144592507,
+            "single": 1.5745034092273593,
+            "weak_comm": 1.049397158323619
+          },
+          "scenario_macro": 0.9966194572376994,
+          "transition_mean": 1.093887349069803
+        }
+      },
+      "seed": 4303,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.22950897889839061,
+            "long_gap": 0.1465332704711893,
+            "normal": 0.1679696266980918,
+            "overlap": 0.16789007968126884,
+            "sequential": 0.1273492859638497,
+            "single": 0.143117413941588,
+            "weak_comm": 0.1473929459418067
+          },
+          "scenario_macro": 0.1613945145137407,
+          "transition_mean": 0.1517156557017126
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.4791155526864706,
+            "long_gap": 0.43331903617941414,
+            "normal": 0.24495766423708504,
+            "overlap": 0.4016466648702799,
+            "sequential": 0.5927291084541876,
+            "single": 0.6115147973187534,
+            "weak_comm": 0.5258542997948631
+          },
+          "scenario_macro": 0.46987673193443624,
+          "transition_mean": 0.5101298912618175
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.26179663956138133,
+            "long_gap": 0.3349709665832187,
+            "normal": 0.20847072872858988,
+            "overlap": 0.54292379870355,
+            "sequential": 0.7293280877805437,
+            "single": 1.299256245239979,
+            "weak_comm": 0.9150540369523881
+          },
+          "scenario_macro": 0.61311435764995,
+          "transition_mean": 0.7120661833124576
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9369183266749627,
+            "long_gap": 1.4316067071139145,
+            "normal": 0.14706589057823982,
+            "overlap": 1.409575502487243,
+            "sequential": 1.4641154106677874,
+            "single": 1.068822862515432,
+            "weak_comm": 1.0644199027805188
+          },
+          "scenario_macro": 1.074646371831157,
+          "transition_mean": 1.1759391626729119
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7214046781486048,
+            "long_gap": 1.0774331728018784,
+            "normal": 0.11068240202372735,
+            "overlap": 1.4080746186253816,
+            "sequential": 1.1018993585494545,
+            "single": 1.520546373091041,
+            "weak_comm": 0.9849103833273114
+          },
+          "scenario_macro": 0.9892787123667713,
+          "transition_mean": 1.0803292135741447
+        }
+      },
+      "seed": 4303,
+      "view": "predicted_future"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1401624637425947,
+            "long_gap": 0.18525291999255172,
+            "normal": 0.10328303806816068,
+            "overlap": 0.11605074463454722,
+            "sequential": 0.1921631407689605,
+            "single": 0.1210759767591447,
+            "weak_comm": 0.14849072411606326
+          },
+          "scenario_macro": 0.14378271544028895,
+          "transition_mean": 0.1498925583383594
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.6945790981015076,
+            "long_gap": 0.500067421163435,
+            "normal": 0.3573073991241676,
+            "overlap": 0.7780112648447439,
+            "sequential": 0.7339597195335921,
+            "single": 0.7127655566961899,
+            "weak_comm": 0.7306906187889284
+          },
+          "scenario_macro": 0.6439115826075092,
+          "transition_mean": 0.6932620214068369
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.4123515551315857,
+            "long_gap": 0.22673306113758174,
+            "normal": 1.136055247874694,
+            "overlap": 0.654096825668101,
+            "sequential": 1.4511527073978965,
+            "single": 1.2752641016353445,
+            "weak_comm": 1.3712788499651722
+          },
+          "scenario_macro": 0.9324189069729109,
+          "transition_mean": 0.9432329257383578
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.638365948265139,
+            "long_gap": 1.20873934142642,
+            "normal": 0.07184342040240004,
+            "overlap": 1.156671070110049,
+            "sequential": 1.2765756708377416,
+            "single": 1.0158946010035264,
+            "weak_comm": 0.9493305029843428
+          },
+          "scenario_macro": 0.902488650718517,
+          "transition_mean": 1.005318337998037
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.49671291418912805,
+            "long_gap": 0.9097022647714463,
+            "normal": 0.054069657542431274,
+            "overlap": 1.2177376890498373,
+            "sequential": 0.9607561689377795,
+            "single": 1.480712342942758,
+            "weak_comm": 0.8982936215015435
+          },
+          "scenario_macro": 0.8597120941335605,
+          "transition_mean": 0.9519192700037311
+        }
+      },
+      "seed": 4303,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4303,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1902671952075193,
+            "long_gap": 0.130262249044824,
+            "normal": 0.48909748447534546,
+            "overlap": 0.16712167853733156,
+            "sequential": 0.14046467366277457,
+            "single": 0.13386902415286955,
+            "weak_comm": 0.12851753610814376
+          },
+          "scenario_macro": 0.19708569159840117,
+          "transition_mean": 0.15137095951850799
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.3424624286280458,
+            "long_gap": 0.33902945207687707,
+            "normal": 0.5861027524591267,
+            "overlap": 0.36382312920174514,
+            "sequential": 0.48934791972907543,
+            "single": 0.604066633932428,
+            "weak_comm": 0.6368111120405917
+          },
+          "scenario_macro": 0.48023477543827,
+          "transition_mean": 0.4877635517721506
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.34584963298696614,
+            "long_gap": 0.23341251851274347,
+            "normal": 0.9940805514693399,
+            "overlap": 0.5924740916552983,
+            "sequential": 1.059942561482686,
+            "single": 1.3936533030236393,
+            "weak_comm": 1.3181487176222906
+          },
+          "scenario_macro": 0.8482230538218519,
+          "transition_mean": 0.8841133521613164
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8951038858127001,
+            "long_gap": 1.4046305238015995,
+            "normal": 0.1676474237683122,
+            "overlap": 1.2716991194818748,
+            "sequential": 1.4537453396852364,
+            "single": 1.1396213476869288,
+            "weak_comm": 1.1690283309516243
+          },
+          "scenario_macro": 1.071639424455468,
+          "transition_mean": 1.1791304963740479
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.689934955728829,
+            "long_gap": 1.0571307848402662,
+            "normal": 0.12617214965896412,
+            "overlap": 1.3043082782906124,
+            "sequential": 1.0940947999193575,
+            "single": 1.573829608024798,
+            "weak_comm": 1.0636391222373363
+          },
+          "scenario_macro": 0.9870156712428805,
+          "transition_mean": 1.0827310246148432
+        }
+      },
+      "seed": 4101,
+      "view": "current"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1518010589106203,
+            "long_gap": 0.11764306297328309,
+            "normal": 0.01490078805666601,
+            "overlap": 0.1585275075751014,
+            "sequential": 0.10488043262735662,
+            "single": 0.09291109520711573,
+            "weak_comm": 0.11446834777129251
+          },
+          "scenario_macro": 0.1078760418744908,
+          "transition_mean": 0.11452304219854496
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.21178460529181864,
+            "long_gap": 0.2470023528066613,
+            "normal": 0.1398080825958345,
+            "overlap": 0.2550308955742546,
+            "sequential": 0.4210838064478296,
+            "single": 0.2738872532110963,
+            "weak_comm": 0.286249039369928
+          },
+          "scenario_macro": 0.26212086218534614,
+          "transition_mean": 0.2880379292248975
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.22950675118625444,
+            "long_gap": 0.24450047781945589,
+            "normal": 0.05413096544441646,
+            "overlap": 0.16967849335783747,
+            "sequential": 0.36314808786593067,
+            "single": 0.22882134944924618,
+            "weak_comm": 0.32157796904158575
+          },
+          "scenario_macro": 0.230194870594961,
+          "transition_mean": 0.26518577294042817
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8991951022217354,
+            "long_gap": 1.3747788025445944,
+            "normal": 0.15336576631636445,
+            "overlap": 1.2180352990531755,
+            "sequential": 1.4146913156374583,
+            "single": 1.0898191631136553,
+            "weak_comm": 1.182281448324068
+          },
+          "scenario_macro": 1.047452413887293,
+          "transition_mean": 1.1481079184365477
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.693014022245004,
+            "long_gap": 1.0346642550400724,
+            "normal": 0.1154237147537222,
+            "overlap": 1.2639206634367215,
+            "sequential": 1.0647025786958997,
+            "single": 1.53634827640585,
+            "weak_comm": 1.0736134735931597
+          },
+          "scenario_macro": 0.9688124263100614,
+          "transition_mean": 1.0593833031983393
+        }
+      },
+      "seed": 4101,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.18368820185171508,
+            "long_gap": 0.15583642839382575,
+            "normal": 0.16186281920350157,
+            "overlap": 0.1932999035149402,
+            "sequential": 0.16908483730934173,
+            "single": 0.13618291966220186,
+            "weak_comm": 0.1572312695113994
+          },
+          "scenario_macro": 0.1653123399209894,
+          "transition_mean": 0.15841934681843647
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.4321265673203153,
+            "long_gap": 0.45128258516639924,
+            "normal": 0.28134500434113985,
+            "overlap": 0.5199088429289268,
+            "sequential": 0.6614735006372201,
+            "single": 0.78675515473245,
+            "weak_comm": 0.7398685600460136
+          },
+          "scenario_macro": 0.5532514593103521,
+          "transition_mean": 0.6148447230942179
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.23372569362789544,
+            "long_gap": 0.25053423298892746,
+            "normal": 0.32313985938191747,
+            "overlap": 0.5672284116929103,
+            "sequential": 0.992896119297528,
+            "single": 1.1615036087540074,
+            "weak_comm": 1.368950363888503
+          },
+          "scenario_macro": 0.6997111842330984,
+          "transition_mean": 0.8099839542633112
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.846505507555236,
+            "long_gap": 1.364706638830585,
+            "normal": 0.14825583969909567,
+            "overlap": 1.3525461846387061,
+            "sequential": 1.5288923818877682,
+            "single": 1.1976681424092521,
+            "weak_comm": 1.1838912787560867
+          },
+          "scenario_macro": 1.0889237105395329,
+          "transition_mean": 1.2028034360368012
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6533596137590189,
+            "long_gap": 1.0270839026615601,
+            "normal": 0.11157796269020484,
+            "overlap": 1.3651541163904153,
+            "sequential": 1.150650776993659,
+            "single": 1.6175158675944632,
+            "weak_comm": 1.0748250386839238
+          },
+          "scenario_macro": 1.0000238969676063,
+          "transition_mean": 1.1005473776422798
+        }
+      },
+      "seed": 4101,
+      "view": "predicted_future"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.19645904228664474,
+            "long_gap": 0.1899701599788255,
+            "normal": 0.28363044098854473,
+            "overlap": 0.2084997381632677,
+            "sequential": 0.21263136333298527,
+            "single": 0.21503682389660517,
+            "weak_comm": 0.20009410432621436
+          },
+          "scenario_macro": 0.2151888104247268,
+          "transition_mean": 0.20612751805845222
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.6856229864522712,
+            "long_gap": 0.46272756024243084,
+            "normal": 0.3130474675780533,
+            "overlap": 0.8090410624077592,
+            "sequential": 0.8239132657002117,
+            "single": 0.8880829023337069,
+            "weak_comm": 0.8407722336669866
+          },
+          "scenario_macro": 0.6890296397687743,
+          "transition_mean": 0.7618730368413645
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.5323603945588709,
+            "long_gap": 0.2683822328877205,
+            "normal": 0.30663505036505023,
+            "overlap": 0.6116847935217166,
+            "sequential": 1.412887197033364,
+            "single": 1.4596199607098492,
+            "weak_comm": 1.5350712780807434
+          },
+          "scenario_macro": 0.8752344153081878,
+          "transition_mean": 0.9812269263086866
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.69293816527361,
+            "long_gap": 1.2492291819030303,
+            "normal": 0.10078465231493386,
+            "overlap": 1.0875356596987567,
+            "sequential": 1.2837526450045593,
+            "single": 1.034713191147927,
+            "weak_comm": 0.9870871056602603
+          },
+          "scenario_macro": 0.9194343715718682,
+          "transition_mean": 1.0216577945871153
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5377841920939408,
+            "long_gap": 0.9401750874218119,
+            "normal": 0.07585094926827055,
+            "overlap": 1.1657060911100885,
+            "sequential": 0.9661575895997856,
+            "single": 1.4948752922962263,
+            "weak_comm": 0.9267093979946168
+          },
+          "scenario_macro": 0.872465514254963,
+          "transition_mean": 0.9642164131137405
+        }
+      },
+      "seed": 4101,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4101,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.20434479620248958,
+            "long_gap": 0.14377550898363894,
+            "normal": 0.3193564246617516,
+            "overlap": 0.14140991361920882,
+            "sequential": 0.17524984484056882,
+            "single": 0.1092816463417359,
+            "weak_comm": 0.12724658986780252
+          },
+          "scenario_macro": 0.17438067493102802,
+          "transition_mean": 0.14568968935886442
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.29331039149052746,
+            "long_gap": 0.3034082989712715,
+            "normal": 0.5203830109950447,
+            "overlap": 0.31080601169406535,
+            "sequential": 0.4762995925231531,
+            "single": 0.5058371355565461,
+            "weak_comm": 0.523177608719959
+          },
+          "scenario_macro": 0.4190317214215096,
+          "transition_mean": 0.4224713559161656
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3026647984407541,
+            "long_gap": 0.2508589304751432,
+            "normal": 0.5906056382011537,
+            "overlap": 0.6744976133539717,
+            "sequential": 0.9755539498409411,
+            "single": 1.3309677246983194,
+            "weak_comm": 1.3283720220370874
+          },
+          "scenario_macro": 0.7790743824353387,
+          "transition_mean": 0.8634219457445352
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8825743804974394,
+            "long_gap": 1.450192475545641,
+            "normal": 0.10264007978769833,
+            "overlap": 1.3091282049986082,
+            "sequential": 1.4151471245432385,
+            "single": 1.1841649654556752,
+            "weak_comm": 1.159203615185048
+          },
+          "scenario_macro": 1.0718644065733354,
+          "transition_mean": 1.1901056754978987
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6805051978222916,
+            "long_gap": 1.0914208995642976,
+            "normal": 0.07724735171522087,
+            "overlap": 1.3324775640050288,
+            "sequential": 1.0650456223775937,
+            "single": 1.6073533203559638,
+            "weak_comm": 1.0562450002150952
+          },
+          "scenario_macro": 0.987184993722213,
+          "transition_mean": 1.0909909901533665
+        }
+      },
+      "seed": 4202,
+      "view": "current"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.09351452192054278,
+            "long_gap": 0.10770730584796663,
+            "normal": 0.005137102956267245,
+            "overlap": 0.1572498040433084,
+            "sequential": 0.10574821088965927,
+            "single": 0.07584628649150027,
+            "weak_comm": 0.07818942551361778
+          },
+          "scenario_macro": 0.08905609395183747,
+          "transition_mean": 0.09523193447611582
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.15083862331160072,
+            "long_gap": 0.2789555703640114,
+            "normal": 0.028269721410934086,
+            "overlap": 0.24910008251544177,
+            "sequential": 0.43908889733758094,
+            "single": 0.2453220713683408,
+            "weak_comm": 0.2009471484944118
+          },
+          "scenario_macro": 0.22750315925747452,
+          "transition_mean": 0.2627720571808732
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.26356894976534506,
+            "long_gap": 0.23187544743973668,
+            "normal": 0.0012428911065082223,
+            "overlap": 0.19716367760043835,
+            "sequential": 0.344354815573025,
+            "single": 0.2394295759266474,
+            "weak_comm": 0.26922476198583317
+          },
+          "scenario_macro": 0.22098001705679057,
+          "transition_mean": 0.2549357802321867
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7960255211833906,
+            "long_gap": 1.4141961518148944,
+            "normal": 0.06592706591064754,
+            "overlap": 1.3020449749833298,
+            "sequential": 1.4545667048966544,
+            "single": 1.173123225656649,
+            "weak_comm": 1.1054790567709072
+          },
+          "scenario_macro": 1.0444803858880676,
+          "transition_mean": 1.159754038666501
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6153681656822914,
+            "long_gap": 1.0643299163398554,
+            "normal": 0.04961698450046129,
+            "overlap": 1.327146695582072,
+            "sequential": 1.094712962799826,
+            "single": 1.5990432609759677,
+            "weak_comm": 1.015811673700286
+          },
+          "scenario_macro": 0.9665756656543943,
+          "transition_mean": 1.0681482218089031
+        }
+      },
+      "seed": 4202,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.2173411771268805,
+            "long_gap": 0.1382366811336172,
+            "normal": 0.14614617161442708,
+            "overlap": 0.21487896982005958,
+            "sequential": 0.16679611860762883,
+            "single": 0.13652929499439784,
+            "weak_comm": 0.13891201850542767
+          },
+          "scenario_macro": 0.1655486331146341,
+          "transition_mean": 0.15707464689749998
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.5106198150154061,
+            "long_gap": 0.47889301931526707,
+            "normal": 0.20479667218489375,
+            "overlap": 0.6209301463189753,
+            "sequential": 0.6784589539558926,
+            "single": 0.7219641682039312,
+            "weak_comm": 0.6415185030840586
+          },
+          "scenario_macro": 0.5510258968683464,
+          "transition_mean": 0.6123516568831803
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.265541362923897,
+            "long_gap": 0.424813089462557,
+            "normal": 0.21299322338577167,
+            "overlap": 0.6816509839990934,
+            "sequential": 0.9785673647513341,
+            "single": 1.2197981367398865,
+            "weak_comm": 1.6064963458854402
+          },
+          "scenario_macro": 0.7699800724497115,
+          "transition_mean": 0.9072284488668733
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7971914740082133,
+            "long_gap": 1.450619679681815,
+            "normal": 0.09135715825954001,
+            "overlap": 1.3389772722350795,
+            "sequential": 1.4048095313974773,
+            "single": 1.2648628486168234,
+            "weak_comm": 1.1613924007469778
+          },
+          "scenario_macro": 1.0727443378494181,
+          "transition_mean": 1.1947763489655434
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6162456666363897,
+            "long_gap": 1.0917424151771993,
+            "normal": 0.06875577796095589,
+            "overlap": 1.3549420963783105,
+            "sequential": 1.057265506702789,
+            "single": 1.668086883464224,
+            "weak_comm": 1.0578922893489433
+          },
+          "scenario_macro": 0.9878472336669731,
+          "transition_mean": 1.0945061584662554
+        }
+      },
+      "seed": 4202,
+      "view": "predicted_future"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1530233870635826,
+            "long_gap": 0.10823297824349103,
+            "normal": 0.1217583770163439,
+            "overlap": 0.16202119334192758,
+            "sequential": 0.1706777083304886,
+            "single": 0.18556520446903482,
+            "weak_comm": 0.14161653203531022
+          },
+          "scenario_macro": 0.1489850543571684,
+          "transition_mean": 0.14983448215433354
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.5962631578509626,
+            "long_gap": 0.527211590098824,
+            "normal": 0.2775158244254814,
+            "overlap": 0.9947270403193202,
+            "sequential": 0.7248257471862052,
+            "single": 0.7939420398980481,
+            "weak_comm": 0.8009635527406421
+          },
+          "scenario_macro": 0.6736355646456406,
+          "transition_mean": 0.7440792988741851
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.5071731646735395,
+            "long_gap": 0.288236644835536,
+            "normal": 0.5175338913827809,
+            "overlap": 0.9162564421751016,
+            "sequential": 1.4341897281973672,
+            "single": 1.3204651356631159,
+            "weak_comm": 1.5438717853228712
+          },
+          "scenario_macro": 0.9325323988929017,
+          "transition_mean": 1.0352141521450309
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6518506322849156,
+            "long_gap": 1.3203372558890767,
+            "normal": 0.05384120865962629,
+            "overlap": 1.1132925376095881,
+            "sequential": 1.252791535361867,
+            "single": 1.0254744354263248,
+            "weak_comm": 0.9321340748466092
+          },
+          "scenario_macro": 0.9071030971540012,
+          "transition_mean": 1.0161857287188363
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5068615435685954,
+            "long_gap": 0.9936913201873521,
+            "normal": 0.040521117975604155,
+            "overlap": 1.185090824746105,
+            "sequential": 0.9428561294780718,
+            "single": 1.487922166245333,
+            "weak_comm": 0.8853515180333013
+          },
+          "scenario_macro": 0.863184945747766,
+          "transition_mean": 0.9600981135409993
+        }
+      },
+      "seed": 4202,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4202,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.21806452305651997,
+            "long_gap": 0.10775606933158038,
+            "normal": 0.46129337074095494,
+            "overlap": 0.17797412558579118,
+            "sequential": 0.15871625870273426,
+            "single": 0.09931807961997641,
+            "weak_comm": 0.11965265427702922
+          },
+          "scenario_macro": 0.1918250116163695,
+          "transition_mean": 0.14550627077764144
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.16695988432981548,
+            "long_gap": 0.20508036638378946,
+            "normal": 0.5550059879632823,
+            "overlap": 0.3075801995267272,
+            "sequential": 0.39101738659012736,
+            "single": 0.4212288359646348,
+            "weak_comm": 0.43492163998060385
+          },
+          "scenario_macro": 0.35454204296271147,
+          "transition_mean": 0.34690412958832956
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.21983118226456713,
+            "long_gap": 0.28794039667391597,
+            "normal": 0.8056189676418651,
+            "overlap": 0.5644190236417724,
+            "sequential": 0.9588659388960563,
+            "single": 1.209903899147795,
+            "weak_comm": 1.305879168807755
+          },
+          "scenario_macro": 0.764636939581961,
+          "transition_mean": 0.8156946145041992
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9741128812313941,
+            "long_gap": 1.384418939607222,
+            "normal": 0.16762542854091655,
+            "overlap": 1.2347267888862152,
+            "sequential": 1.512145111025205,
+            "single": 1.1426548415863431,
+            "weak_comm": 1.1820400440686594
+          },
+          "scenario_macro": 1.0853891478494222,
+          "transition_mean": 1.1965538678567953
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7493974548850857,
+            "long_gap": 1.0419194623606436,
+            "normal": 0.12615559595917936,
+            "overlap": 1.2764827482329415,
+            "sequential": 1.1380467111621986,
+            "single": 1.576112628173055,
+            "weak_comm": 1.0734317917446878
+          },
+          "scenario_macro": 0.9973637703596845,
+          "transition_mean": 1.0958439265901403
+        }
+      },
+      "seed": 4303,
+      "view": "current"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1266016269446924,
+            "long_gap": 0.09792324691421639,
+            "normal": 0.004663648963909552,
+            "overlap": 0.14587001435771574,
+            "sequential": 0.09176007149884172,
+            "single": 0.11562365290622369,
+            "weak_comm": 0.07612386643856467
+          },
+          "scenario_macro": 0.09408087543202345,
+          "transition_mean": 0.100855060409721
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.13704937832724673,
+            "long_gap": 0.13987575939835123,
+            "normal": 0.028362740668344606,
+            "overlap": 0.21613630514191157,
+            "sequential": 0.3293279435649412,
+            "single": 0.2339686633048477,
+            "weak_comm": 0.186281254785349
+          },
+          "scenario_macro": 0.1815717207415703,
+          "transition_mean": 0.2063470654545566
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.23827378648393682,
+            "long_gap": 0.20023319881749554,
+            "normal": 0.003814667323870608,
+            "overlap": 0.17024499770876247,
+            "sequential": 0.39878144348970757,
+            "single": 0.23453740525853026,
+            "weak_comm": 0.3329287278761238
+          },
+          "scenario_macro": 0.2255448895654896,
+          "transition_mean": 0.25974604249024674
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9416778101263316,
+            "long_gap": 1.415177433309847,
+            "normal": 0.06140751967648746,
+            "overlap": 1.304674995636034,
+            "sequential": 1.5945240796362141,
+            "single": 1.102663839727477,
+            "weak_comm": 1.1340166171401753
+          },
+          "scenario_macro": 1.0791631850360808,
+          "transition_mean": 1.1906396105589163
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7249866852252861,
+            "long_gap": 1.0650684328816298,
+            "normal": 0.04621555517318977,
+            "overlap": 1.3291260600837165,
+            "sequential": 1.2000454661845465,
+            "single": 1.5460152335448982,
+            "weak_comm": 1.0372891605406986
+          },
+          "scenario_macro": 0.9926780848048523,
+          "transition_mean": 1.0913928319050177
+        }
+      },
+      "seed": 4303,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.21820865586731947,
+            "long_gap": 0.1562885393627746,
+            "normal": 0.1160123447701615,
+            "overlap": 0.16269031576571785,
+            "sequential": 0.15455725688985938,
+            "single": 0.13255746322591205,
+            "weak_comm": 0.13300535377215794
+          },
+          "scenario_macro": 0.15333141852198612,
+          "transition_mean": 0.14730359813658084
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.43473392638785496,
+            "long_gap": 0.420423500354183,
+            "normal": 0.3274249663184406,
+            "overlap": 0.47658880252629715,
+            "sequential": 0.6190927991336536,
+            "single": 0.6096487121954683,
+            "weak_comm": 0.5979855158957633
+          },
+          "scenario_macro": 0.49798546040166586,
+          "transition_mean": 0.5359306277964696
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.4117702309938593,
+            "long_gap": 0.2787070427197015,
+            "normal": 0.29518882756088577,
+            "overlap": 0.6657746350983411,
+            "sequential": 1.0503547250501146,
+            "single": 1.450998853885089,
+            "weak_comm": 1.4346108692148614
+          },
+          "scenario_macro": 0.7982007406461218,
+          "transition_mean": 0.9250675983394523
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9798779079238898,
+            "long_gap": 1.417923276648472,
+            "normal": 0.0609392097119359,
+            "overlap": 1.3189084575028212,
+            "sequential": 1.478499856056893,
+            "single": 1.1487143521009842,
+            "weak_comm": 1.1709241288457248
+          },
+          "scenario_macro": 1.0822553126843888,
+          "transition_mean": 1.201874282683569
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7537362379948025,
+            "long_gap": 1.0671349660192926,
+            "normal": 0.04586310314257676,
+            "overlap": 1.3398382227907517,
+            "sequential": 1.1127251520844845,
+            "single": 1.5806730410343344,
+            "weak_comm": 1.0650659076315943
+          },
+          "scenario_macro": 0.9950052329568339,
+          "transition_mean": 1.0998480929571652
+        }
+      },
+      "seed": 4303,
+      "view": "predicted_future"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12436451214565676,
+            "long_gap": 0.12438597388879541,
+            "normal": 0.1151689794309898,
+            "overlap": 0.09230943947339368,
+            "sequential": 0.17550630632964173,
+            "single": 0.1217168296541737,
+            "weak_comm": 0.11953145982953087
+          },
+          "scenario_macro": 0.12471192867888314,
+          "transition_mean": 0.12371383890325871
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.7675007613468613,
+            "long_gap": 0.4419213834866157,
+            "normal": 0.32916245152362905,
+            "overlap": 0.80767960339083,
+            "sequential": 0.7117571540534393,
+            "single": 0.6568987372904374,
+            "weak_comm": 0.7059476597952346
+          },
+          "scenario_macro": 0.6315525358410067,
+          "transition_mean": 0.677591284607279
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.38434765769752316,
+            "long_gap": 0.2997189587637562,
+            "normal": 0.5823340852538428,
+            "overlap": 0.6222490484446179,
+            "sequential": 1.502369014469496,
+            "single": 1.2772324385129004,
+            "weak_comm": 1.3103616754196579
+          },
+          "scenario_macro": 0.8540875540802563,
+          "transition_mean": 0.9258723194963289
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6842881390758201,
+            "long_gap": 1.253426292336787,
+            "normal": 0.07910776913408137,
+            "overlap": 1.1169032300680561,
+            "sequential": 1.2503386065033313,
+            "single": 0.9769438480958497,
+            "weak_comm": 0.929242673384522
+          },
+          "scenario_macro": 0.8986072226569212,
+          "transition_mean": 1.0001057940823348
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5312741463357084,
+            "long_gap": 0.9433338502222172,
+            "normal": 0.059536836666014364,
+            "overlap": 1.1878082469348998,
+            "sequential": 0.9410100449986009,
+            "single": 1.451397844009637,
+            "weak_comm": 0.8831754372454284
+          },
+          "scenario_macro": 0.8567909152017865,
+          "transition_mean": 0.9479962877338404
+        }
+      },
+      "seed": 4303,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "no_action_jepa",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4303,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.17518733867868752,
+            "long_gap": 0.05383907884828302,
+            "normal": 0.37918354104271695,
+            "overlap": 0.15020687716153341,
+            "sequential": 0.16038183274139353,
+            "single": 0.08162299483988777,
+            "weak_comm": 0.09991585454637968
+          },
+          "scenario_macro": 0.15719107397984028,
+          "transition_mean": 0.11640931162958335
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.18632079385786535,
+            "long_gap": 0.10876228007861667,
+            "normal": 0.551889870768053,
+            "overlap": 0.1783578783933328,
+            "sequential": 0.26047892473589584,
+            "single": 0.1994772582560746,
+            "weak_comm": 0.29566062438474006
+          },
+          "scenario_macro": 0.2544210900677969,
+          "transition_mean": 0.21958903033539948
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.4561278989492206,
+            "long_gap": 0.24824610221794863,
+            "normal": 1.1065913592842858,
+            "overlap": 0.39431300046140294,
+            "sequential": 0.6689983204522405,
+            "single": 0.5932932196407886,
+            "weak_comm": 1.0622240194920785
+          },
+          "scenario_macro": 0.6471134172139951,
+          "transition_mean": 0.6135903419326021
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8977703408866373,
+            "long_gap": 1.3765764176336637,
+            "normal": 0.14208436886280507,
+            "overlap": 1.1899772012083663,
+            "sequential": 1.4618324804913259,
+            "single": 1.1351085000389427,
+            "weak_comm": 1.2487410799764485
+          },
+          "scenario_macro": 1.0645843412997413,
+          "transition_mean": 1.1770413970938824
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6919417409277037,
+            "long_gap": 1.0360171476461686,
+            "normal": 0.10693328802435069,
+            "overlap": 1.242804022089977,
+            "sequential": 1.1001812157864406,
+            "single": 1.5704332200813915,
+            "weak_comm": 1.123631269289873
+          },
+          "scenario_macro": 0.9817059862637008,
+          "transition_mean": 1.0811587597920105
+        }
+      },
+      "seed": 4101,
+      "view": "current"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.06631163363536582,
+            "long_gap": 0.040987341933236346,
+            "normal": 0.00045203896845253684,
+            "overlap": 0.14541501998819356,
+            "sequential": 0.08963826322445656,
+            "single": 0.04611979105458076,
+            "weak_comm": 0.050290097319606084
+          },
+          "scenario_macro": 0.06274488373198453,
+          "transition_mean": 0.06232144569651728
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08950280448720954,
+            "long_gap": 0.08413770179491137,
+            "normal": 0.0027043809160026944,
+            "overlap": 0.0906407812039512,
+            "sequential": 0.22153447158622092,
+            "single": 0.08926783475833897,
+            "weak_comm": 0.07586900515031002
+          },
+          "scenario_macro": 0.09337956855670639,
+          "transition_mean": 0.10378328555309257
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.12951167193996926,
+            "long_gap": 0.19204679917665377,
+            "normal": 0.0024433776942525878,
+            "overlap": 0.1394543362532188,
+            "sequential": 0.33689517878371666,
+            "single": 0.19589405094705692,
+            "weak_comm": 0.2004236335850324
+          },
+          "scenario_macro": 0.17095272119712862,
+          "transition_mean": 0.19773380354167813
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.897006075976169,
+            "long_gap": 1.4062532398012986,
+            "normal": 0.015446234893893452,
+            "overlap": 1.0996492422511424,
+            "sequential": 1.516176494582571,
+            "single": 1.114266972624183,
+            "weak_comm": 1.1484130288904222
+          },
+          "scenario_macro": 1.0281730412885257,
+          "transition_mean": 1.1415801271396724
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.691366551971648,
+            "long_gap": 1.0583520476629564,
+            "normal": 0.01162490074045627,
+            "overlap": 1.1748228238122747,
+            "sequential": 1.1410807472249038,
+            "single": 1.5547477997093462,
+            "weak_comm": 1.0481239600089833
+          },
+          "scenario_macro": 0.9543026901615098,
+          "transition_mean": 1.0544704602691806
+        }
+      },
+      "seed": 4101,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12772654573755463,
+            "long_gap": 0.009233093682432466,
+            "normal": 0.0,
+            "overlap": 0.13778506131495166,
+            "sequential": 0.0827888707167952,
+            "single": 0.03870530242411093,
+            "weak_comm": 0.0484236512776188
+          },
+          "scenario_macro": 0.06352321787906624,
+          "transition_mean": 0.05788258653054054
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.10503575628630263,
+            "long_gap": 0.08786539591479522,
+            "normal": 0.007281600301182424,
+            "overlap": 0.08325805402607962,
+            "sequential": 0.17594153596731194,
+            "single": 0.10008699545553146,
+            "weak_comm": 0.08652419146023814
+          },
+          "scenario_macro": 0.09228478991592019,
+          "transition_mean": 0.10344738117381404
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.0947445068896509,
+            "long_gap": 0.2713276826824003,
+            "normal": 0.0032943262371340604,
+            "overlap": 0.16791098773995064,
+            "sequential": 0.24398589560240583,
+            "single": 0.18695503655815324,
+            "weak_comm": 0.2049915756765245
+          },
+          "scenario_macro": 0.16760143019803134,
+          "transition_mean": 0.19782441837501252
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8101299367599909,
+            "long_gap": 1.2947488611366542,
+            "normal": 0.01846868911780923,
+            "overlap": 1.1673217094286226,
+            "sequential": 1.3988309597829554,
+            "single": 1.037273733351042,
+            "weak_comm": 1.0708496450488727
+          },
+          "scenario_macro": 0.9710890763751353,
+          "transition_mean": 1.0803124365618284
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.625983207613639,
+            "long_gap": 0.9744333876783672,
+            "normal": 0.013899612382934549,
+            "overlap": 1.2257534045786596,
+            "sequential": 1.0527660087949846,
+            "single": 1.4968023670272166,
+            "weak_comm": 0.9897494341490672
+          },
+          "scenario_macro": 0.9113410603178383,
+          "transition_mean": 1.0083601410582512
+        }
+      },
+      "seed": 4101,
+      "view": "predicted_future"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.06537551940096388,
+            "long_gap": 0.030951147242821202,
+            "normal": 0.114673091148817,
+            "overlap": 0.04350005111173383,
+            "sequential": 0.08467171768017787,
+            "single": 0.06449644441274079,
+            "weak_comm": 0.10399344395554364
+          },
+          "scenario_macro": 0.07252305927897117,
+          "transition_mean": 0.06572904672249966
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.3952020624049593,
+            "long_gap": 0.38726238718110584,
+            "normal": 0.38345727223052184,
+            "overlap": 0.7129130347802317,
+            "sequential": 0.6769883020471442,
+            "single": 0.6422550096243127,
+            "weak_comm": 0.7366640496163985
+          },
+          "scenario_macro": 0.5621060168406677,
+          "transition_mean": 0.5931068083595311
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3240959398489156,
+            "long_gap": 0.3283033214055211,
+            "normal": 1.577186175142835,
+            "overlap": 0.5993328422836984,
+            "sequential": 1.288155312569741,
+            "single": 1.1059595816105041,
+            "weak_comm": 1.5877248975376113
+          },
+          "scenario_macro": 0.9729654386284038,
+          "transition_mean": 0.9399972914698678
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.745358293661035,
+            "long_gap": 1.2803003284929293,
+            "normal": 0.03294855107628602,
+            "overlap": 1.0600699683640586,
+            "sequential": 1.2391348517675311,
+            "single": 0.96857507544465,
+            "weak_comm": 0.9764659443275211
+          },
+          "scenario_macro": 0.9004075733048588,
+          "transition_mean": 1.005511689006778
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5772357991355185,
+            "long_gap": 0.9635593618084806,
+            "normal": 0.02479721682564234,
+            "overlap": 1.1450352973712141,
+            "sequential": 0.9325780525021263,
+            "single": 1.445099470842458,
+            "weak_comm": 0.9187158677207585
+          },
+          "scenario_macro": 0.8581458666008855,
+          "transition_mean": 0.9520647867785385
+        }
+      },
+      "seed": 4101,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4101,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1742504102761735,
+            "long_gap": 0.07886532609404365,
+            "normal": 0.341989407022745,
+            "overlap": 0.15780324024460524,
+            "sequential": 0.16333951730109605,
+            "single": 0.05755949862915091,
+            "weak_comm": 0.09608329308886453
+          },
+          "scenario_macro": 0.1528415275223827,
+          "transition_mean": 0.1166825701399967
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.11429997933210208,
+            "long_gap": 0.11503256283569188,
+            "normal": 0.25486215309699345,
+            "overlap": 0.13362287230995415,
+            "sequential": 0.2797401417073025,
+            "single": 0.134991563393644,
+            "weak_comm": 0.14862359700172406
+          },
+          "scenario_macro": 0.16873898138248747,
+          "transition_mean": 0.16230382252739478
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.32854341280394034,
+            "long_gap": 0.2450388660678391,
+            "normal": 0.31753059930156685,
+            "overlap": 0.4469127698684971,
+            "sequential": 0.5478457941609876,
+            "single": 0.4425193755281026,
+            "weak_comm": 0.46356857115643324
+          },
+          "scenario_macro": 0.3988513412696238,
+          "transition_mean": 0.43086246416595847
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.941056577302234,
+            "long_gap": 1.329408959132845,
+            "normal": 0.11136111584879665,
+            "overlap": 1.274550050749836,
+            "sequential": 1.390650299532367,
+            "single": 1.1047876098515026,
+            "weak_comm": 1.0833002627670032
+          },
+          "scenario_macro": 1.0335878393120834,
+          "transition_mean": 1.136254483555676
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7245191428134001,
+            "long_gap": 1.0005187218473757,
+            "normal": 0.08381083979245374,
+            "overlap": 1.3064539010417602,
+            "sequential": 1.0466092098043074,
+            "single": 1.547613591789282,
+            "weak_comm": 0.9991198209213061
+          },
+          "scenario_macro": 0.9583778897156979,
+          "transition_mean": 1.0504623587176831
+        }
+      },
+      "seed": 4202,
+      "view": "current"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.0875679393082884,
+            "long_gap": 0.06104566413634639,
+            "normal": 0.0011377271378026973,
+            "overlap": 0.15178142653544938,
+            "sequential": 0.09497188112138856,
+            "single": 0.044557267218966516,
+            "weak_comm": 0.05376335777016368
+          },
+          "scenario_macro": 0.07068932331834367,
+          "transition_mean": 0.07270848351572366
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.0686877485802878,
+            "long_gap": 0.08825139975726101,
+            "normal": 0.0020287001273788068,
+            "overlap": 0.08240818978378399,
+            "sequential": 0.28166886101062255,
+            "single": 0.08591020079574603,
+            "weak_comm": 0.0897798685557161
+          },
+          "scenario_macro": 0.09981928123011376,
+          "transition_mean": 0.11049146689058242
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.10276859567639172,
+            "long_gap": 0.22912022078695468,
+            "normal": 0.0011306436982879214,
+            "overlap": 0.16570412983138627,
+            "sequential": 0.4834748465923123,
+            "single": 0.1860046453994295,
+            "weak_comm": 0.19954532060244082
+          },
+          "scenario_macro": 0.19539262894102905,
+          "transition_mean": 0.21966003840389817
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8908005741638374,
+            "long_gap": 1.3492044662470017,
+            "normal": 0.026046354789051318,
+            "overlap": 1.2011400520921014,
+            "sequential": 1.4735209507590217,
+            "single": 1.1169205361507095,
+            "weak_comm": 1.0810934194275428
+          },
+          "scenario_macro": 1.0198180505184664,
+          "transition_mean": 1.128326432687525
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6866962654514297,
+            "long_gap": 1.0154169029827695,
+            "normal": 0.01960259514071831,
+            "overlap": 1.2512052301769547,
+            "sequential": 1.108978007211868,
+            "single": 1.5567448826759247,
+            "weak_comm": 0.9974589414288477
+          },
+          "scenario_macro": 0.9480146892955018,
+          "transition_mean": 1.0444956746007672
+        }
+      },
+      "seed": 4202,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.10574008636413024,
+            "long_gap": 0.031188532815090445,
+            "normal": 5.7578173352629916e-05,
+            "overlap": 0.16838014950800134,
+            "sequential": 0.06455643789234296,
+            "single": 0.046365083031453015,
+            "weak_comm": 0.060247463157293395
+          },
+          "scenario_macro": 0.06807647584880915,
+          "transition_mean": 0.0653524459350966
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.10971310512646294,
+            "long_gap": 0.08347664735870486,
+            "normal": 0.004698205626588451,
+            "overlap": 0.09635209527752474,
+            "sequential": 0.2283372234629137,
+            "single": 0.10713914942972763,
+            "weak_comm": 0.09250188463873157
+          },
+          "scenario_macro": 0.10317404441723628,
+          "transition_mean": 0.11663215962165915
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.15210229795787983,
+            "long_gap": 0.2135079803336983,
+            "normal": 0.0015415666619276618,
+            "overlap": 0.1954811171251644,
+            "sequential": 0.4076719974392804,
+            "single": 0.224556701509125,
+            "weak_comm": 0.20427409530238078
+          },
+          "scenario_macro": 0.19987653661849378,
+          "transition_mean": 0.22854901843063455
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7358759093340244,
+            "long_gap": 1.262621040758859,
+            "normal": 0.024670439715965574,
+            "overlap": 1.1658317160697758,
+            "sequential": 1.3108919707634217,
+            "single": 1.0887195606656785,
+            "weak_comm": 1.0294646805151961
+          },
+          "scenario_macro": 0.9454393311175602,
+          "transition_mean": 1.0534412428746487
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5700993171810758,
+            "long_gap": 0.9502538561961204,
+            "normal": 0.018567075723734512,
+            "overlap": 1.2246320293684856,
+            "sequential": 0.9865827592464296,
+            "single": 1.5355207110218259,
+            "weak_comm": 0.9586029374036701
+          },
+          "scenario_macro": 0.8920369551630488,
+          "transition_mean": 0.9881367687259727
+        }
+      },
+      "seed": 4202,
+      "view": "predicted_future"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.05421809273745188,
+            "long_gap": 0.02242845728333717,
+            "normal": 0.08793921495574782,
+            "overlap": 0.04242691189676853,
+            "sequential": 0.09545487377536743,
+            "single": 0.059022029619216335,
+            "weak_comm": 0.09519894073432748
+          },
+          "scenario_macro": 0.06524121728603095,
+          "transition_mean": 0.06180894847963284
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.4215041581887075,
+            "long_gap": 0.4597142670973415,
+            "normal": 0.41837819807639864,
+            "overlap": 0.6686127712374158,
+            "sequential": 0.6306784108938525,
+            "single": 0.5809155713694205,
+            "weak_comm": 0.603006376424065
+          },
+          "scenario_macro": 0.5404013933267431,
+          "transition_mean": 0.5644399198673706
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.2947067647145541,
+            "long_gap": 0.3163393463680939,
+            "normal": 1.8726003698540692,
+            "overlap": 0.6620670271872259,
+            "sequential": 1.2568419242611564,
+            "single": 1.1295096771361548,
+            "weak_comm": 1.2112819342755268
+          },
+          "scenario_macro": 0.9633352919709688,
+          "transition_mean": 0.8824063900998608
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7577056563200123,
+            "long_gap": 1.2355106882991336,
+            "normal": 0.03987649415071838,
+            "overlap": 1.0956469440753789,
+            "sequential": 1.238460233471673,
+            "single": 1.0138813811686684,
+            "weak_comm": 0.8883461811272921
+          },
+          "scenario_macro": 0.895632511230411,
+          "transition_mean": 0.9959094890137625
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5865284757200093,
+            "long_gap": 0.9298504919751291,
+            "normal": 0.030011215649889608,
+            "overlap": 1.1718106775289527,
+            "sequential": 0.9320703319617538,
+            "single": 1.4791971853066281,
+            "weak_comm": 0.8523965667705861
+          },
+          "scenario_macro": 0.8545521349875641,
+          "transition_mean": 0.9448381310546287
+        }
+      },
+      "seed": 4202,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4202,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.165317708243157,
+            "long_gap": 0.06647602116301918,
+            "normal": 0.5797131878277737,
+            "overlap": 0.15290934186645191,
+            "sequential": 0.10894869096640032,
+            "single": 0.0762748959719615,
+            "weak_comm": 0.07118259164047362
+          },
+          "scenario_macro": 0.17440320538274817,
+          "transition_mean": 0.11239070890828515
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.164180442885114,
+            "long_gap": 0.12329625570480758,
+            "normal": 0.8226677542232858,
+            "overlap": 0.17085660828178562,
+            "sequential": 0.28368833754844536,
+            "single": 0.20206922362435745,
+            "weak_comm": 0.29845007820336134
+          },
+          "scenario_macro": 0.29502981435302245,
+          "transition_mean": 0.23634261905424955
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.33789390788266305,
+            "long_gap": 0.31735958275908466,
+            "normal": 1.876015574262678,
+            "overlap": 0.42445906190051585,
+            "sequential": 0.8007340539148657,
+            "single": 0.7698366244464793,
+            "weak_comm": 0.9717086013012284
+          },
+          "scenario_macro": 0.7854296294953593,
+          "transition_mean": 0.6875636307457925
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9027324410335099,
+            "long_gap": 1.3352691866724649,
+            "normal": 0.1924505581329506,
+            "overlap": 1.2320506448868567,
+            "sequential": 1.4029064451588826,
+            "single": 1.1205472729448327,
+            "weak_comm": 1.1263949634286723
+          },
+          "scenario_macro": 1.0446216446083099,
+          "transition_mean": 1.1390179000365788
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6956762381736572,
+            "long_gap": 1.0049291535113083,
+            "normal": 0.14483909192818417,
+            "overlap": 1.274468671108424,
+            "sequential": 1.0558332360700966,
+            "single": 1.5594743798985853,
+            "weak_comm": 1.031553072200531
+          },
+          "scenario_macro": 0.9666819775558267,
+          "transition_mean": 1.052542117475446
+        }
+      },
+      "seed": 4303,
+      "view": "current"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.10748549599380633,
+            "long_gap": 0.056561552780769055,
+            "normal": 9.287797553828843e-06,
+            "overlap": 0.14929132129141334,
+            "sequential": 0.09015543836841028,
+            "single": 0.06466421868331562,
+            "weak_comm": 0.03920719413451265
+          },
+          "scenario_macro": 0.0724820727213973,
+          "transition_mean": 0.07363679131437685
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.07270654983625138,
+            "long_gap": 0.08427092028094146,
+            "normal": 0.0013244202579053915,
+            "overlap": 0.09470225223932857,
+            "sequential": 0.23801250501045884,
+            "single": 0.09134385133948912,
+            "weak_comm": 0.10352066490950969
+          },
+          "scenario_macro": 0.09798302341055491,
+          "transition_mean": 0.11151501285310894
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.14640103931489917,
+            "long_gap": 0.21911836644090235,
+            "normal": 0.008706478546635074,
+            "overlap": 0.14043796718543852,
+            "sequential": 0.36431118780171146,
+            "single": 0.2258530794152125,
+            "weak_comm": 0.2583964755877394
+          },
+          "scenario_macro": 0.19474637061321978,
+          "transition_mean": 0.22562566920623414
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8233692661936115,
+            "long_gap": 1.3852894571977055,
+            "normal": 0.011938918083725245,
+            "overlap": 1.1328762285315768,
+            "sequential": 1.4191438315394362,
+            "single": 1.0624805715392724,
+            "weak_comm": 1.0751668446873843
+          },
+          "scenario_macro": 0.9871807311103875,
+          "transition_mean": 1.0943311470274553
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6359471821092545,
+            "long_gap": 1.0425746175263981,
+            "normal": 0.008985279495303634,
+            "overlap": 1.1998295921327058,
+            "sequential": 1.0680535607158776,
+            "single": 1.5157731384761712,
+            "weak_comm": 0.9929985765853432
+          },
+          "scenario_macro": 0.9234517067201506,
+          "transition_mean": 1.0189106809659754
+        }
+      },
+      "seed": 4303,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1081855245579677,
+            "long_gap": 0.016532238353087196,
+            "normal": 6.125729425908665e-05,
+            "overlap": 0.14836399783206738,
+            "sequential": 0.1067860363989562,
+            "single": 0.05806618058353449,
+            "weak_comm": 0.05976536327550464
+          },
+          "scenario_macro": 0.07110865689933953,
+          "transition_mean": 0.06917905309669475
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.12320939616250404,
+            "long_gap": 0.09690757755191795,
+            "normal": 0.005075628851897807,
+            "overlap": 0.08964718683309145,
+            "sequential": 0.24274312175938212,
+            "single": 0.10670607654531514,
+            "weak_comm": 0.0969372155262089
+          },
+          "scenario_macro": 0.10874660046147391,
+          "transition_mean": 0.12070132239236508
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.11818410636229969,
+            "long_gap": 0.20045789962128163,
+            "normal": 0.003309953547634368,
+            "overlap": 0.16674598787622302,
+            "sequential": 0.3884952045809009,
+            "single": 0.1646131741200635,
+            "weak_comm": 0.15714465937493666
+          },
+          "scenario_macro": 0.1712787122119057,
+          "transition_mean": 0.1967314583382482
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7157634125189642,
+            "long_gap": 1.2799728608180723,
+            "normal": 0.020507757236268867,
+            "overlap": 1.1669938009230294,
+            "sequential": 1.296614095573874,
+            "single": 1.090150132587999,
+            "weak_comm": 1.0221893652425285
+          },
+          "scenario_macro": 0.9417416321286767,
+          "transition_mean": 1.0489569236029628
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5549625682759913,
+            "long_gap": 0.9633129082719345,
+            "normal": 0.015434223545004433,
+            "overlap": 1.2255066192710644,
+            "sequential": 0.9758371708876291,
+            "single": 1.5365973654112803,
+            "weak_comm": 0.9531275048156469
+          },
+          "scenario_macro": 0.8892540514969358,
+          "transition_mean": 0.9847618513574381
+        }
+      },
+      "seed": 4303,
+      "view": "predicted_future"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.07997599399419736,
+            "long_gap": 0.06493536728788181,
+            "normal": 0.18524955687127212,
+            "overlap": 0.05039136739483589,
+            "sequential": 0.11650194238165715,
+            "single": 0.07553215334032334,
+            "weak_comm": 0.10613801292403083
+          },
+          "scenario_macro": 0.09696062774202836,
+          "transition_mean": 0.08431471030073925
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.41884657195634534,
+            "long_gap": 0.45612131588281113,
+            "normal": 0.717222864295378,
+            "overlap": 0.8730193734144549,
+            "sequential": 0.6625638866640985,
+            "single": 0.5691434827291475,
+            "weak_comm": 0.7871873622775092
+          },
+          "scenario_macro": 0.6405864081742492,
+          "transition_mean": 0.6540050379743944
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3370276709023515,
+            "long_gap": 0.2295941653485455,
+            "normal": 2.3634363574465436,
+            "overlap": 0.6126254349763346,
+            "sequential": 1.2400820411386018,
+            "single": 1.1518884591704723,
+            "weak_comm": 1.206860100463399
+          },
+          "scenario_macro": 1.0202163184923212,
+          "transition_mean": 0.890038004083289
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7903127336282352,
+            "long_gap": 1.217233614271714,
+            "normal": 0.050923021918827624,
+            "overlap": 1.0753885359820392,
+            "sequential": 1.2595700592559276,
+            "single": 1.0153774659553303,
+            "weak_comm": 0.9518236630638077
+          },
+          "scenario_macro": 0.9086612991536974,
+          "transition_mean": 1.0110948248047393
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6110686979649999,
+            "long_gap": 0.9160950899076181,
+            "normal": 0.03832487847536766,
+            "overlap": 1.1565641151878716,
+            "sequential": 0.9479576748045913,
+            "single": 1.4803231449507566,
+            "weak_comm": 0.9001699841655159
+          },
+          "scenario_macro": 0.8643576550652459,
+          "transition_mean": 0.9562666780431502
+        }
+      },
+      "seed": 4303,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "supervised_graph",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4303,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.16772072231299712,
+            "long_gap": 0.10376179566734262,
+            "normal": 0.3274340376928337,
+            "overlap": 0.13816781284902296,
+            "sequential": 0.17450754780442362,
+            "single": 0.0926648390303051,
+            "weak_comm": 0.14539740342479157
+          },
+          "scenario_macro": 0.1642363083973881,
+          "transition_mean": 0.13440603088521202
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.2894419688988311,
+            "long_gap": 0.17950617011314862,
+            "normal": 0.43845869794184855,
+            "overlap": 0.19598444949769908,
+            "sequential": 0.3922050876355323,
+            "single": 0.3719451975475944,
+            "weak_comm": 0.3738222600661137
+          },
+          "scenario_macro": 0.32019483310010965,
+          "transition_mean": 0.3069524933207286
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.72399253959577,
+            "long_gap": 0.25401802937766044,
+            "normal": 0.8578069642135613,
+            "overlap": 0.47089349730627705,
+            "sequential": 1.0631554043832334,
+            "single": 0.9668198494209692,
+            "weak_comm": 1.178469114864605
+          },
+          "scenario_macro": 0.7878793427374395,
+          "transition_mean": 0.7942702488824946
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8224871085243349,
+            "long_gap": 1.4197942655004092,
+            "normal": 0.18851059378136834,
+            "overlap": 1.190620831677493,
+            "sequential": 1.4190895809995947,
+            "single": 1.170918631185273,
+            "weak_comm": 1.1230394754027626
+          },
+          "scenario_macro": 1.047780069581605,
+          "transition_mean": 1.1526214229081149
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6352832665717,
+            "long_gap": 1.0685430800250477,
+            "normal": 0.14187385834066524,
+            "overlap": 1.2432884210628354,
+            "sequential": 1.068012731533549,
+            "single": 1.5973840739909997,
+            "weak_comm": 1.0290277179310314
+          },
+          "scenario_macro": 0.9690590213508327,
+          "transition_mean": 1.0627801854699093
+        }
+      },
+      "seed": 4101,
+      "view": "current"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.11210247758268223,
+            "long_gap": 0.08207714970932398,
+            "normal": 0.0019329208829164234,
+            "overlap": 0.13195543494290468,
+            "sequential": 0.08477289772688056,
+            "single": 0.05868921566223921,
+            "weak_comm": 0.054473249040855966
+          },
+          "scenario_macro": 0.07514333507825757,
+          "transition_mean": 0.07853752401086428
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.1162042965283649,
+            "long_gap": 0.13478976574520238,
+            "normal": 0.017745288741952928,
+            "overlap": 0.13296935874722912,
+            "sequential": 0.3155089348192922,
+            "single": 0.164081506878256,
+            "weak_comm": 0.13835344305045988
+          },
+          "scenario_macro": 0.14566465635867965,
+          "transition_mean": 0.16454592411934232
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.24849270842055904,
+            "long_gap": 0.1980952941388373,
+            "normal": 0.011937691260638575,
+            "overlap": 0.1611780972914732,
+            "sequential": 0.330526279483025,
+            "single": 0.2458331623748655,
+            "weak_comm": 0.2580866792458202
+          },
+          "scenario_macro": 0.20773570174503125,
+          "transition_mean": 0.23791568791472462
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7958415556953242,
+            "long_gap": 1.4433661529862811,
+            "normal": 0.088099543691866,
+            "overlap": 1.156318865658048,
+            "sequential": 1.4114202388604227,
+            "single": 1.1722667934187068,
+            "weak_comm": 1.090203228577546
+          },
+          "scenario_macro": 1.0225023398411708,
+          "transition_mean": 1.1248254926687795
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6152297124894497,
+            "long_gap": 1.0862833807631125,
+            "normal": 0.0663040836639304,
+            "overlap": 1.2174726185117426,
+            "sequential": 1.062240752684016,
+            "single": 1.5983987065052245,
+            "weak_comm": 1.0043150217526782
+          },
+          "scenario_macro": 0.9500348966243077,
+          "transition_mean": 1.0418608525554098
+        }
+      },
+      "seed": 4101,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1877193098204403,
+            "long_gap": 0.1413373052405919,
+            "normal": 0.044819138278363806,
+            "overlap": 0.1923117470977523,
+            "sequential": 0.11951177805587178,
+            "single": 0.12059222985782328,
+            "weak_comm": 0.11074415767369708
+          },
+          "scenario_macro": 0.1310050951463629,
+          "transition_mean": 0.13228328555898244
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.3161409922413474,
+            "long_gap": 0.25044327598475524,
+            "normal": 0.12594394717583576,
+            "overlap": 0.307941665217281,
+            "sequential": 0.4302990088049546,
+            "single": 0.431654381699064,
+            "weak_comm": 0.29681402792570066
+          },
+          "scenario_macro": 0.3084624712927055,
+          "transition_mean": 0.33458575855988165
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.15426491023627947,
+            "long_gap": 0.47767901875308383,
+            "normal": 0.22959460357214567,
+            "overlap": 0.560730477730003,
+            "sequential": 0.5335071177523053,
+            "single": 0.705576129656331,
+            "weak_comm": 0.48429343921129725
+          },
+          "scenario_macro": 0.44937795670163505,
+          "transition_mean": 0.5038514817946435
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6620800973148347,
+            "long_gap": 1.316577645591224,
+            "normal": 0.08394530179951942,
+            "overlap": 1.117536288482336,
+            "sequential": 1.307288568630464,
+            "single": 1.0655537796999277,
+            "weak_comm": 0.9915190978851015
+          },
+          "scenario_macro": 0.9349286827719154,
+          "transition_mean": 1.0332231528127318
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5145602815728835,
+            "long_gap": 0.9908618218121451,
+            "normal": 0.06317758390640915,
+            "overlap": 1.1882846893352303,
+            "sequential": 0.9838708237869898,
+            "single": 1.5180860477429143,
+            "weak_comm": 0.9300449338096666
+          },
+          "scenario_macro": 0.8841265974237483,
+          "transition_mean": 0.972920549903332
+        }
+      },
+      "seed": 4101,
+      "view": "predicted_future"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.08605108746532125,
+            "long_gap": 0.09127807691775468,
+            "normal": 0.08866045482707324,
+            "overlap": 0.09588869295537514,
+            "sequential": 0.19405778950027808,
+            "single": 0.13049038524395723,
+            "weak_comm": 0.13903214023378424
+          },
+          "scenario_macro": 0.11792266102050628,
+          "transition_mean": 0.11546842846984995
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.6532204313079386,
+            "long_gap": 0.5251948615360958,
+            "normal": 0.5661532692126681,
+            "overlap": 0.6173163077746369,
+            "sequential": 0.7378201062707784,
+            "single": 0.8521955629756071,
+            "weak_comm": 0.8428918090763435
+          },
+          "scenario_macro": 0.6849703354505812,
+          "transition_mean": 0.7093757383379361
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.38437975690462206,
+            "long_gap": 0.3063247916335165,
+            "normal": 1.7537643392349105,
+            "overlap": 0.641866929066612,
+            "sequential": 1.470086409310993,
+            "single": 1.1416260704792796,
+            "weak_comm": 1.4152794890108835
+          },
+          "scenario_macro": 1.0161896836629738,
+          "transition_mean": 0.9567083064803719
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6791452477525357,
+            "long_gap": 1.3225344432238753,
+            "normal": 0.0674824679067667,
+            "overlap": 1.0511043361531593,
+            "sequential": 1.3224946973698846,
+            "single": 1.113613870899351,
+            "weak_comm": 0.9824813094792331
+          },
+          "scenario_macro": 0.934122338969258,
+          "transition_mean": 1.04433289566562
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5274035848970907,
+            "long_gap": 0.9953449325304686,
+            "normal": 0.05078758652358223,
+            "overlap": 1.1382877252124906,
+            "sequential": 0.9953150196351476,
+            "single": 1.5542562726299802,
+            "weak_comm": 0.9232430565979584
+          },
+          "scenario_macro": 0.8835197397181026,
+          "transition_mean": 0.9812817886650107
+        }
+      },
+      "seed": 4101,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4101,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.19165720733412633,
+            "long_gap": 0.08962833725308221,
+            "normal": 0.4202385297128291,
+            "overlap": 0.1649908886142675,
+            "sequential": 0.1043411715165439,
+            "single": 0.08889683419331929,
+            "weak_comm": 0.12195487835617957
+          },
+          "scenario_macro": 0.16881540671147827,
+          "transition_mean": 0.1251382533155899
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.25704419615087654,
+            "long_gap": 0.14138925541433622,
+            "normal": 0.6051994072598156,
+            "overlap": 0.2313854865824837,
+            "sequential": 0.4088536140431753,
+            "single": 0.3326030730041225,
+            "weak_comm": 0.4097508901365715
+          },
+          "scenario_macro": 0.3408894175130545,
+          "transition_mean": 0.3143970859717176
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.43672635106423374,
+            "long_gap": 0.21807107921996552,
+            "normal": 1.332466267677278,
+            "overlap": 0.579597442309192,
+            "sequential": 1.0824232253064257,
+            "single": 0.9830744884897121,
+            "weak_comm": 1.214332033872393
+          },
+          "scenario_macro": 0.8352415554198858,
+          "transition_mean": 0.8077901480779495
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8301503043248943,
+            "long_gap": 1.3882759670520404,
+            "normal": 0.23112945656130496,
+            "overlap": 1.2035472470048982,
+            "sequential": 1.4093436483311135,
+            "single": 1.1073682250692118,
+            "weak_comm": 1.0520665651953423
+          },
+          "scenario_macro": 1.0316973447912579,
+          "transition_mean": 1.1260944587230004
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6410506196611835,
+            "long_gap": 1.0448222772865616,
+            "normal": 0.17394899204744046,
+            "overlap": 1.2530168950983045,
+            "sequential": 1.0606779019991974,
+            "single": 1.5495557735546932,
+            "weak_comm": 0.9756132099884676
+          },
+          "scenario_macro": 0.956955095662264,
+          "transition_mean": 1.0428158816951747
+        }
+      },
+      "seed": 4202,
+      "view": "current"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.11839915305340666,
+            "long_gap": 0.07218802981799427,
+            "normal": 0.0009661588214623482,
+            "overlap": 0.144644722072404,
+            "sequential": 0.07265245779658865,
+            "single": 0.07006999192933036,
+            "weak_comm": 0.070873716031521
+          },
+          "scenario_macro": 0.07854203278895819,
+          "transition_mean": 0.08295145668450746
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.14392482681002947,
+            "long_gap": 0.12828380342402507,
+            "normal": 0.01452337584710485,
+            "overlap": 0.15908955734728442,
+            "sequential": 0.2814000656284696,
+            "single": 0.12836066517374664,
+            "weak_comm": 0.13639052320672396
+          },
+          "scenario_macro": 0.14171040249105485,
+          "transition_mean": 0.15916270550176723
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.23168188198068443,
+            "long_gap": 0.22798642566263425,
+            "normal": 0.02365608474279876,
+            "overlap": 0.20784038352300782,
+            "sequential": 0.3953971319033873,
+            "single": 0.26285115671040016,
+            "weak_comm": 0.2693083795042248
+          },
+          "scenario_macro": 0.23124592057530538,
+          "transition_mean": 0.25977498419809514
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.8000003589869724,
+            "long_gap": 1.401356682726381,
+            "normal": 0.06306962978403939,
+            "overlap": 1.1709995743375474,
+            "sequential": 1.5102336020396918,
+            "single": 1.144952335945554,
+            "weak_comm": 1.0033194902124858
+          },
+          "scenario_macro": 1.013418810576096,
+          "transition_mean": 1.116544847765518
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6183596451750912,
+            "long_gap": 1.0546668784060524,
+            "normal": 0.04746646616559214,
+            "overlap": 1.2285213810335534,
+            "sequential": 1.1366081015350806,
+            "single": 1.5778417320006903,
+            "weak_comm": 0.9389259582435576
+          },
+          "scenario_macro": 0.943198594651374,
+          "transition_mean": 1.035628804698528
+        }
+      },
+      "seed": 4202,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.17270810205304865,
+            "long_gap": 0.083930363154469,
+            "normal": 0.019702214107188795,
+            "overlap": 0.17130478663951929,
+            "sequential": 0.1156236939409993,
+            "single": 0.07947686329068708,
+            "weak_comm": 0.12325443495963803
+          },
+          "scenario_macro": 0.10942863687793573,
+          "transition_mean": 0.11256553621984218
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.34580467964314576,
+            "long_gap": 0.22912008316826557,
+            "normal": 0.05525671399862535,
+            "overlap": 0.2879963644628527,
+            "sequential": 0.37013070051596114,
+            "single": 0.2617485259639223,
+            "weak_comm": 0.35034490547199876
+          },
+          "scenario_macro": 0.2714859961749674,
+          "transition_mean": 0.30495605059777986
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.24839587581509148,
+            "long_gap": 0.2259918931580458,
+            "normal": 0.018409286531750457,
+            "overlap": 0.3410607549716999,
+            "sequential": 0.4478974084447766,
+            "single": 0.3280968263965191,
+            "weak_comm": 0.4799363984986862
+          },
+          "scenario_macro": 0.29854120625951,
+          "transition_mean": 0.3469797362938416
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6979241905113713,
+            "long_gap": 1.3098944169553641,
+            "normal": 0.07434006387847648,
+            "overlap": 1.1290064998624159,
+            "sequential": 1.2472849297851627,
+            "single": 0.9955850769300475,
+            "weak_comm": 1.0126815570054413
+          },
+          "scenario_macro": 0.9238166764183255,
+          "transition_mean": 1.0190098713739393
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5415366954629852,
+            "long_gap": 0.985831996094011,
+            "normal": 0.05594864182520756,
+            "overlap": 1.196917218212426,
+            "sequential": 0.9387118351768542,
+            "single": 1.465427310502041,
+            "weak_comm": 0.9459718887205473
+          },
+          "scenario_macro": 0.8757636551420103,
+          "transition_mean": 0.9622235750704908
+        }
+      },
+      "seed": 4202,
+      "view": "predicted_future"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.13545194174092626,
+            "long_gap": 0.11580575457163803,
+            "normal": 0.18612305391280282,
+            "overlap": 0.19263396205522892,
+            "sequential": 0.13032176591439826,
+            "single": 0.05263043726960937,
+            "weak_comm": 0.15177139017207975
+          },
+          "scenario_macro": 0.13781975794809762,
+          "transition_mean": 0.12272829766077252
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.6811698373686542,
+            "long_gap": 0.4583830217541605,
+            "normal": 0.49587100557723146,
+            "overlap": 0.6240180354056846,
+            "sequential": 0.7302604217848491,
+            "single": 0.7456669535757988,
+            "weak_comm": 0.8061878902526165
+          },
+          "scenario_macro": 0.6487938808169993,
+          "transition_mean": 0.6852039650795352
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.42179102113265265,
+            "long_gap": 0.22359494171824332,
+            "normal": 1.3154999918963997,
+            "overlap": 0.725226416749658,
+            "sequential": 1.3548609329111778,
+            "single": 1.2454410303470953,
+            "weak_comm": 1.3993215635906886
+          },
+          "scenario_macro": 0.9551051283351307,
+          "transition_mean": 0.9437846432017998
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6533010229940232,
+            "long_gap": 1.2367929005606404,
+            "normal": 0.08518633879759761,
+            "overlap": 1.0720169614288495,
+            "sequential": 1.237874743420463,
+            "single": 0.953833639133607,
+            "weak_comm": 0.9073915055137841
+          },
+          "scenario_macro": 0.8780567302641379,
+          "transition_mean": 0.9780111195131206
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5079531136595642,
+            "long_gap": 0.9308154902656902,
+            "normal": 0.06411159352215029,
+            "overlap": 1.1540266541309137,
+            "sequential": 0.9316296897096715,
+            "single": 1.4340050044521158,
+            "weak_comm": 0.8667301572593782
+          },
+          "scenario_macro": 0.8413245289999262,
+          "transition_mean": 0.9313677435919059
+        }
+      },
+      "seed": 4202,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4202,
+      "view": "raw_graph_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.18015393428516616,
+            "long_gap": 0.08421259164562371,
+            "normal": 0.24013199374307995,
+            "overlap": 0.13316231509334844,
+            "sequential": 0.17683497332195885,
+            "single": 0.12641215710788803,
+            "weak_comm": 0.1432025361279862
+          },
+          "scenario_macro": 0.15487292876072162,
+          "transition_mean": 0.13543863884051321
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.1275732558404313,
+            "long_gap": 0.17092815045295046,
+            "normal": 0.24389450877294563,
+            "overlap": 0.2072937206921895,
+            "sequential": 0.41035435490581873,
+            "single": 0.34589132426813707,
+            "weak_comm": 0.30163724803436803
+          },
+          "scenario_macro": 0.2582246518524058,
+          "transition_mean": 0.2753055584090627
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.2704890949427514,
+            "long_gap": 0.22624800630033381,
+            "normal": 0.5511667035006134,
+            "overlap": 0.49999139899690836,
+            "sequential": 0.9228867852806004,
+            "single": 0.8338554906976176,
+            "weak_comm": 0.8719932872158757
+          },
+          "scenario_macro": 0.5966615381335287,
+          "transition_mean": 0.6423039775303089
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9040435523606791,
+            "long_gap": 1.4245429561230678,
+            "normal": 0.15903534782431186,
+            "overlap": 1.210048446400298,
+            "sequential": 1.4227424520348737,
+            "single": 1.1355455462903712,
+            "weak_comm": 1.1034436281956645
+          },
+          "scenario_macro": 1.051343132747038,
+          "transition_mean": 1.1574947305796148
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.6966629860214485,
+            "long_gap": 1.0721169643738713,
+            "normal": 0.1196906654198597,
+            "overlap": 1.2579097248516131,
+            "sequential": 1.0707618974949962,
+            "single": 1.570762142911243,
+            "weak_comm": 1.014279801673606
+          },
+          "scenario_macro": 0.971740597535234,
+          "transition_mean": 1.0664478571289289
+        }
+      },
+      "seed": 4303,
+      "view": "current"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.1038614523644098,
+            "long_gap": 0.07109314873186724,
+            "normal": 0.00206156019407448,
+            "overlap": 0.13674623368399036,
+            "sequential": 0.09800568843933627,
+            "single": 0.06307982475501317,
+            "weak_comm": 0.08924559057333267
+          },
+          "scenario_macro": 0.08058478553457485,
+          "transition_mean": 0.085970861383928
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.1110433160208493,
+            "long_gap": 0.10840741575336287,
+            "normal": 0.016421048233264603,
+            "overlap": 0.14289194508085915,
+            "sequential": 0.3480228559904181,
+            "single": 0.18371099822122297,
+            "weak_comm": 0.14476350033632795
+          },
+          "scenario_macro": 0.1507515828051864,
+          "transition_mean": 0.1744137440654796
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.3010711783045829,
+            "long_gap": 0.24042398655230424,
+            "normal": 0.005277185124574415,
+            "overlap": 0.13927218809534525,
+            "sequential": 0.3967384675698705,
+            "single": 0.26094523887727783,
+            "weak_comm": 0.3086429372927192
+          },
+          "scenario_macro": 0.23605302597381064,
+          "transition_mean": 0.27072188252664153
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7738832446445694,
+            "long_gap": 1.4898768722968838,
+            "normal": 0.04827610436013355,
+            "overlap": 1.146903207646303,
+            "sequential": 1.4692720149326068,
+            "single": 1.0573509876603533,
+            "weak_comm": 1.1006026255596622
+          },
+          "scenario_macro": 1.0123092938715017,
+          "transition_mean": 1.1221853485518645
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5987037960996889,
+            "long_gap": 1.1212875419109358,
+            "normal": 0.03633279729187135,
+            "overlap": 1.2103863550601952,
+            "sequential": 1.1057802404050088,
+            "single": 1.5119125922756305,
+            "weak_comm": 1.0121416512522394
+          },
+          "scenario_macro": 0.94236356775651,
+          "transition_mean": 1.039873869092419
+        }
+      },
+      "seed": 4303,
+      "view": "current_action_evidence"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.166387481938228,
+            "long_gap": 0.12931280852635776,
+            "normal": 0.03829134023246625,
+            "overlap": 0.15072515346222043,
+            "sequential": 0.13836599695356822,
+            "single": 0.11945432367162542,
+            "weak_comm": 0.11618817290747055
+          },
+          "scenario_macro": 0.12267503967027667,
+          "transition_mean": 0.1261510697394351
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.1793873231005969,
+            "long_gap": 0.18669139308108115,
+            "normal": 0.08360246053791708,
+            "overlap": 0.21045710235740142,
+            "sequential": 0.3133069657091059,
+            "single": 0.2677728205085063,
+            "weak_comm": 0.21689126782036985
+          },
+          "scenario_macro": 0.2083013333021398,
+          "transition_mean": 0.2323631164755375
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.31468144690739486,
+            "long_gap": 0.2173408648848572,
+            "normal": 0.09688304808276059,
+            "overlap": 0.32333257962364137,
+            "sequential": 0.5239675634433401,
+            "single": 0.4090093504829158,
+            "weak_comm": 0.36570022407247194
+          },
+          "scenario_macro": 0.3215592967853403,
+          "transition_mean": 0.34813399513024207
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.6808564683818492,
+            "long_gap": 1.3192083717748857,
+            "normal": 0.054848917531818524,
+            "overlap": 1.162873573848898,
+            "sequential": 1.260162975973595,
+            "single": 1.0557494841197077,
+            "weak_comm": 0.9237329209348583
+          },
+          "scenario_macro": 0.9224903875093732,
+          "transition_mean": 1.023159503228906
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.528691456672798,
+            "long_gap": 0.992841717299328,
+            "normal": 0.041279523871603004,
+            "overlap": 1.2224057192074607,
+            "sequential": 0.9484039063967942,
+            "single": 1.510707294038009,
+            "weak_comm": 0.8790287745945096
+          },
+          "scenario_macro": 0.874765484582929,
+          "transition_mean": 0.9653466052946713
+        }
+      },
+      "seed": 4303,
+      "view": "predicted_future"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 62,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.10719101035154881,
+            "long_gap": 0.06585893303329098,
+            "normal": 0.09625190747690038,
+            "overlap": 0.06564852323438847,
+            "sequential": 0.08876212119262362,
+            "single": 0.11293519567779704,
+            "weak_comm": 0.112883376326849
+          },
+          "scenario_macro": 0.09279015247048547,
+          "transition_mean": 0.09006930037410334
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.5879188959096269,
+            "long_gap": 0.4995906578374539,
+            "normal": 0.4079648780769967,
+            "overlap": 0.771876680669267,
+            "sequential": 0.8093948317173898,
+            "single": 0.844920436325044,
+            "weak_comm": 0.9035140526890023
+          },
+          "scenario_macro": 0.6893114904606829,
+          "transition_mean": 0.7399436880725332
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.49142987453787956,
+            "long_gap": 0.44765437243267425,
+            "normal": 1.4851428583099082,
+            "overlap": 0.5782398484526119,
+            "sequential": 1.3337726606974156,
+            "single": 1.2644424643373253,
+            "weak_comm": 1.5343053120677204
+          },
+          "scenario_macro": 1.019283912976505,
+          "transition_mean": 0.9982748092242983
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.7006076771359167,
+            "long_gap": 1.3387697098153033,
+            "normal": 0.09910276586862242,
+            "overlap": 1.1513697825192064,
+            "sequential": 1.1996129826871167,
+            "single": 1.0663865548694895,
+            "weak_comm": 0.9364823210323678
+          },
+          "scenario_macro": 0.9274759705611462,
+          "transition_mean": 1.0337437384194104
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.5435562986778124,
+            "long_gap": 1.0075636618141215,
+            "normal": 0.07458515452091637,
+            "overlap": 1.2137479179202708,
+            "sequential": 0.902833729157752,
+            "single": 1.5187127978054231,
+            "weak_comm": 0.8886240262303957
+          },
+          "scenario_macro": 0.878517655160956,
+          "transition_mean": 0.973312344800025
+        }
+      },
+      "seed": 4303,
+      "view": "observed_future_oracle"
+    },
+    {
+      "group": "random_untrained",
+      "input_width": 414,
+      "metrics": {
+        "continuation_brier_clipped": {
+          "by_scenario": {
+            "burst": 0.12467391043247952,
+            "long_gap": 0.10581168971239588,
+            "normal": 0.0,
+            "overlap": 0.13695556459005528,
+            "sequential": 0.07195962810966795,
+            "single": 0.08531858537431129,
+            "weak_comm": 0.0838266540261974
+          },
+          "scenario_macro": 0.08693514746358676,
+          "transition_mean": 0.09285903892216937
+        },
+        "costs_nmse": {
+          "by_scenario": {
+            "burst": 0.08203467271971691,
+            "long_gap": 0.08466257890509557,
+            "normal": 0.0034019703558919533,
+            "overlap": 0.0927114551181571,
+            "sequential": 0.17161369768355322,
+            "single": 0.10334221675998519,
+            "weak_comm": 0.08868498964493265
+          },
+          "scenario_macro": 0.0894930830267618,
+          "transition_mean": 0.10161080133093835
+        },
+        "reward_nmse": {
+          "by_scenario": {
+            "burst": 0.18814514228957785,
+            "long_gap": 0.23480265773355047,
+            "normal": 0.0043150872511822595,
+            "overlap": 0.17436603182881383,
+            "sequential": 0.367208842341994,
+            "single": 0.17493643785711355,
+            "weak_comm": 0.200493826471084
+          },
+          "scenario_macro": 0.192038289396188,
+          "transition_mean": 0.21511296640572197
+        },
+        "state_active_nmse": {
+          "by_scenario": {
+            "burst": 0.9701772690310202,
+            "long_gap": 1.479322001302255,
+            "normal": 0.15129487463978114,
+            "overlap": 1.4695417947375782,
+            "sequential": 1.9721269974695366,
+            "single": 1.5752288925845996,
+            "weak_comm": 1.4088448572886745
+          },
+          "scenario_macro": 1.289505241007635,
+          "transition_mean": 1.4250534891791968
+        },
+        "state_all_nmse": {
+          "by_scenario": {
+            "burst": 0.7464354967447,
+            "long_gap": 1.1133439020217493,
+            "normal": 0.11386515304921027,
+            "overlap": 1.453205500032535,
+            "sequential": 1.484230995491396,
+            "single": 1.9016696613462223,
+            "weak_comm": 1.2441260391941265
+          },
+          "scenario_macro": 1.1509823925542768,
+          "transition_mean": 1.267813693679135
+        }
+      },
+      "seed": 4303,
+      "view": "raw_graph_action_evidence"
+    }
+  ],
+  "ridge": 1.0,
+  "status": "completed_development_diagnosis",
+  "test_loaded": false
+}

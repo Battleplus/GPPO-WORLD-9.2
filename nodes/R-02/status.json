@@ -1,0 +1,16 @@
+{
+  "node": "R-02",
+  "date": "2026-09-05",
+  "status": "completed_development_diagnosis_local_only",
+  "source_commit": "41d4fe7",
+  "readout_count": 60,
+  "intervention_episodes": 216,
+  "tests_passed": 75,
+  "world_model_or_policy_training_started": false,
+  "new_test_evaluation": false,
+  "stable_policy_benefit_established": false,
+  "remote_release_published": false,
+  "next_node": "J-02A",
+  "full_revised_plan_complete": false,
+  "report": "evidence/final-report.md"
+}

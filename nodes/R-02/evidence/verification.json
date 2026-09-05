@@ -1,0 +1,12 @@
+{
+  "status": "passed",
+  "new_artifact_members_sha256_verified": 394,
+  "historical_J01_members_sha256_verified": 186,
+  "raw_episode_returns_recomputed": 216,
+  "paired_return_differences_recomputed": 108,
+  "all_episodes_terminated": true,
+  "historical_test_usage": "bytes hashed for integrity only; no Test model evaluation or probe selection",
+  "validation": "75 tests passed; default temporary-folder permission failure was resolved using a dedicated workspace temporary directory",
+  "source_commit": "41d4fe7",
+  "formal_policy_improvement_claim": false
+}
