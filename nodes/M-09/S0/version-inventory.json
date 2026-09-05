@@ -1,0 +1,61 @@
+{
+  "format": "m09-s0-version-inventory/1.0.0",
+  "checked_at": "2026-09-05",
+  "classification_legend": {
+    "source_fact": "directly verified from source or immutable metadata",
+    "prior_result": "reported by an earlier sealed experiment",
+    "current_measurement": "performed during S0",
+    "decision": "S0 selection or handling rule"
+  },
+  "repositories": {
+    "gppo_world": {
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2",
+      "planning_commit": "ea6cc588028a85d0858e5e0aab780e2a64b80d5d",
+      "remote_main_at_check": "c9ee0018ce11d315d578c7048db8de0a81242764",
+      "remote_execution_branch_at_check": "ea6cc588028a85d0858e5e0aab780e2a64b80d5d",
+      "main_only_commits": 0,
+      "execution_only_commits_before_s0": 14
+    },
+    "baseline": {
+      "url": "https://github.com/Battleplus/GPPO-8.29",
+      "commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+      "remote_main_at_check": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
+    }
+  },
+  "selected_demo": {
+    "decision": "selected",
+    "group": "GPPO",
+    "variant": "GPPO-Adaptive",
+    "seed": 1101,
+    "accepted_decision_steps": 50000,
+    "checkpoint": "gppo_seed1101_step50000.pt",
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "source_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0",
+    "source_asset": "t05-run-artifacts.tar.gz",
+    "archive_member": "runs/GPPO/seed1101-attempt-2/models/gppo_seed1101_step50000.pt",
+    "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "config": "nodes/T-05/server-training-config.json",
+    "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+    "test_manifest_sha256": "f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5",
+    "parameter_count": 203395,
+    "current_check": "SHA-256 matched and checkpoint loaded on CPU; no episode run"
+  },
+  "reusable_assets": [
+    {"kind":"code","name":"three-type GPPO baseline","commit":"2a9bb9f87b9d543df144f4d108ba970c924151f9","classification":"source_fact"},
+    {"kind":"code","name":"T-05 evaluation/runtime","commit":"69e3be5931deea7371df77d75fb14f2f5bdeab72","classification":"source_fact"},
+    {"kind":"model","name":"GPPO 50k policies, 3 seeds","release":"t05-gppo-ablation-v0.1.0","classification":"prior_result"},
+    {"kind":"model","name":"T-02/T-03 world models","releases":["t02-base-wm-v0.1.0","t03-eawm-v0.1.0"],"classification":"prior_result"},
+    {"kind":"data","name":"T-01 transition data","release":"t01-data-v0.1.0","classification":"prior_result"},
+    {"kind":"data","name":"T-05 fixed 100-tape held-out bank","asset":"test-bank-manifest.json","sha256":"f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5","classification":"prior_result"},
+    {"kind":"configuration","name":"T-05 frozen config","path":"nodes/T-05/server-training-config.json","sha256":"973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225","classification":"source_fact"},
+    {"kind":"entrypoint","name":"held-out evaluator","path":"tools/evaluate_t05_server_checkpoint.py","classification":"source_fact"},
+    {"kind":"validation","name":"release asset digest check","path":"nodes/M-09/S0/artifact-verification.json","classification":"current_measurement"},
+    {"kind":"validation","name":"checkpoint load check","path":"nodes/M-09/S0/checkpoint-load.json","classification":"current_measurement"}
+  ],
+  "not_selected": [
+    {"name":"world-model GPPO groups","reason":"engineering integration exists but stable policy gain was not established"},
+    {"name":"J-02B","reason":"development gate failed; archive only"},
+    {"name":"five-node-type meeting version","reason":"not found in inspected repositories/branches/releases; source and model are missing"}
+  ]
+}

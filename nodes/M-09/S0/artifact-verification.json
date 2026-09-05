@@ -1,0 +1,25 @@
+{
+  "classification": "current_measurement",
+  "checked_at": "2026-09-05",
+  "method": "Compared SHA-256 for all 13 previously downloaded T-05 Release assets against the current GitHub Releases API response, then extracted and hashed the selected checkpoint.",
+  "fresh_download_performed": false,
+  "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0",
+  "asset_count": 13,
+  "matching_asset_count": 13,
+  "all_release_assets_match": true,
+  "selected_checkpoint": {
+    "archive": "t05-run-artifacts.tar.gz",
+    "archive_member": "runs/GPPO/seed1101-attempt-2/models/gppo_seed1101_step50000.pt",
+    "name": "gppo_seed1101_step50000.pt",
+    "sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "step": 50000,
+    "group": "GPPO",
+    "seed": 1101,
+    "status": "done",
+    "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9"
+  },
+  "asset_digests_source": "github-releases.json",
+  "run_manifest_source": "../../T-05/evidence/server-run-manifest.json",
+  "result": "passed"
+}

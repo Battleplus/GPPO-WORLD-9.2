@@ -1,0 +1,31 @@
+{
+  "format": "m09-s0-server-preflight/1.0.0",
+  "checked_at": "2026-09-05",
+  "host": "172.17.27.173",
+  "user": "user1",
+  "mode": "read_only_batch_ssh",
+  "command_policy": "No training, environment changes, process termination, or project writes.",
+  "attempt": {
+    "ssh_options": ["BatchMode=yes", "ConnectTimeout=8", "ConnectionAttempts=1", "StrictHostKeyChecking=yes"],
+    "authentication_reached": false,
+    "exit_code": 255,
+    "error": "ssh: connect to host 172.17.27.173 port 22: Connection timed out"
+  },
+  "current_state": {
+    "reachable": false,
+    "gpu": "unknown",
+    "gpu_processes": "unknown",
+    "disk": "unknown",
+    "python": "unknown",
+    "pytorch": "unknown",
+    "cuda": "unknown",
+    "project_directory": "unknown"
+  },
+  "historical_only": {
+    "user_provided": "Two RTX 2080 Ti; dporl Python 3.9.20, torch 2.2.2, CUDA 12.1",
+    "sealed_t05_preflight_2026_09_03": "One visible RTX 2080 Ti; system Python 3.10.12; torch 2.7.1+cu118; CUDA available",
+    "interpretation": "These records describe different historical observations and are not evidence of current availability or idleness."
+  },
+  "result": "unreachable_current_state_not_verified",
+  "raw_error_file": "server-ssh-attempt.txt"
+}
