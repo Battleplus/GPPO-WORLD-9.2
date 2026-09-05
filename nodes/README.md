@@ -1,5 +1,7 @@
 # 节点总索引
 
+最新入口：[R-01 重新分析](R-01/README.md)、[修订执行规划](../docs/10-revised-experiment-plan-20260905.md)。T 节点历史 `passed` 指各自已执行协议；[原始要求覆盖表](requirements-status.json)明确 GPPO-History 尚未完成。JEPA 独立路线见 [J-01](J-01/README.md) 和 [J-02](J-02/README.md)。
+
 节点用于保存决策、实现状态、checkpoint 和实验证据。规划建立日期为 2026-09-02；下表已同步到 [`status.json`](status.json) 的当前状态。面向阅读者的完整进度说明见 [当前任务进度](../docs/05-current-progress.md)。
 
 | 节点 | 页面 | 状态 | 产物类型 |

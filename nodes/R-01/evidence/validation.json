@@ -1,0 +1,15 @@
+{
+  "validated_on": "2026-09-05",
+  "sealed_input_members_verified": 186,
+  "notebook_code_cells_executed": true,
+  "notebook_result_matches_saved_json": true,
+  "local_markdown_links_checked": 89,
+  "broken_local_markdown_links": 0,
+  "git_diff_check_passed": true,
+  "training_started": false,
+  "probe_fitting_started": false,
+  "model_checkpoint_loading": false,
+  "historical_experiment_files_changed": false,
+  "verification_scope": "Notebook cells executed with Python; results compared after standard JSON key serialization. No rendered charts are included.",
+  "limitations": ["Analysis validates saved experiment identity and arithmetic, not real-world physics", "New subgroup values are posthoc descriptive planning evidence", "No general method superiority or new policy gain is established"]
+}
