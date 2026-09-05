@@ -1,0 +1,33 @@
+{
+  "version": "r02-development-diagnostics/1.0.0",
+  "scope": "Fixed frozen-model development diagnosis; no original Test evaluation or policy training",
+  "plan": "docs/10-revised-experiment-plan-20260905.md",
+  "readouts": {
+    "groups": ["action_jepa", "no_action_jepa", "supervised_graph", "random_untrained"],
+    "seeds": [4101, 4202, 4303],
+    "fit": "J01 Train", "evaluate": "J01 Validation (posthoc development)",
+    "ridge": 1.0, "hyperparameter_search": false,
+    "views": ["current", "current_action_evidence", "predicted_future", "observed_future_oracle", "raw_graph_action_evidence"],
+    "capacity": "Four latent views padded to 62 columns, identical linear ridge recipe; raw graph reference separately disclosed larger width",
+    "max_wall_seconds": 1800,
+    "encoder_predictor_optimizer_updates": 0
+  },
+  "adapter_intervention": {
+    "groups": ["WM-GPPO", "EA-noGES-GPPO", "EAWM-GPPO"],
+    "seeds": [1101, 2202, 3303],
+    "checkpoint_step": 50000,
+    "development_bank": "Exact D02 12 tapes",
+    "arms": ["adapter_on", "adapter_off"],
+    "expected_episodes": 216,
+    "max_decisions_per_episode": 100,
+    "max_wall_seconds": 1800,
+    "weights_update": false,
+    "probe": "Identical observer in both arms; only model.enabled changes",
+    "metrics": ["all_decision_return", "original_event_attributed_return", "full_episode_costs", "fallback_counts", "safety_mutations"]
+  },
+  "device": "cpu",
+  "torch_num_threads": 1,
+  "statistics": "Report per seed and paired tape differences, scenario macro with equal tape weights; no confirmatory significance or gain threshold",
+  "failure_policy": "Stop on integrity/safety/weight mutation or time budget failure, preserve attempt without overwrite",
+  "interpretation": "Disabling a co-trained adapter may shift its input distribution; this is not a GPPO-History control or independent GPPO comparison"
+}
