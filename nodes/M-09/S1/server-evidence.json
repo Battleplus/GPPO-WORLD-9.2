@@ -3,9 +3,9 @@
   "downloaded_at": "2026-09-06",
   "server": "user1@172.17.27.173",
   "server_archive": "m09-s1-server-artifacts-20260906.tar.gz",
-  "server_archive_sha256": "6fd244ffbc6e28abeb96bb4883aed38dc07d983131595e714c23d32366e89d17",
+  "server_archive_sha256": "4a5688fb58a00639ca342138ea6f3fc72793e87679f9e1ca4b179223238225f6",
   "source_commit": "0bcbcdb7475cabe9cfc69f6fcd9e51aaa0519cde",
-  "acceptance_tool_commit": "0245b6aecb02676a482f6c9257fef7784c003d7c",
+  "acceptance_tool_commit": "ea7436efaf2035dc820613c4af70064a22a6d2f1",
   "runtime": {
     "python": "3.10.12",
     "torch": "2.2.2+cu121",
