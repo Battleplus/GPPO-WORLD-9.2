@@ -1,0 +1,25 @@
+{
+  "format": "m09-s2-version-inventory/1.0.0",
+  "project_branch": "execute-r02-20260905",
+  "s2_protocol_commit": "043a6ab",
+  "acceptance_base_commit": "dadae5c35645ddeae27b7170d562b5a8e4b73446",
+  "frozen_baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "s1r2_fix_commit": "f53efbf95db49ca826b7902b2577217e378d2d96",
+  "optimization_commit": "e3f2b4053446e8fe4ba8787c6c1b4be0910ced25",
+  "benchmark_tool_sha256": "5576362f3e87ab3c899d328226871e522dc5847af214f8eab520ad83f0e105f1",
+  "protocol_sha256": "6f7131848272b3f4cf01604073f2ba8aeaa459035a849c75e1c4bcbc2eab8daa",
+  "optimization_patch_sha256": "8613b8c9999b950495813373adb1efa8954121876820e5814cbf6c778a4f2e66",
+  "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+  "workload_tape_manifest_sha256": "a38168f54321387ce776faeca2e7b623914e8e0bc9b93be365cb1c501bf5bbd8",
+  "server_archive_sha256": "36369ad2d6fb318f398b92d70c1c6218f8d2a136259abf6f668b543096366b7b",
+  "trace_manifest_sha256": "fba4f8a06d020c4d24123b51dacc497d03ff74a68592a66b87dd8cd69596cc04",
+  "comparison_sha256": "930f7304954bfd7369d7fe06a13456449ff8e467f30ea03db07ec1523763acc9",
+  "server_environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda": "12.1",
+    "gymnasium": "0.29.1",
+    "gpu": "2 x NVIDIA GeForce RTX 2080 Ti; measured only cuda:0",
+    "cpu_count": 32
+  }
+}

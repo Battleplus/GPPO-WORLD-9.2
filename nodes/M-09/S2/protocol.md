@@ -6,6 +6,7 @@
 - 使用 S1-R2 原六类固定 tape，每类 10 条；同一 tape 的不同重复是重复测量，不增加独立场景数。
 - 每个设备分别测 CPU 和单卡 `cuda:0`，不并行使用两张 GPU。
 - batch=1、model.eval()、固定随机种子、确定性 argmax；不修改确认、安全、能量、版本或通信语义。
+- 正式采用臂走真实源码 `GraphActorCritic.act` 路径：baseline 保持 `no_grad`，优化臂使用 `inference_mode`；direct forward 分段仅作为辅助仪器对照，不替代 source-act 结果。
 
 ## 采样
 

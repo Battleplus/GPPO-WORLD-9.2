@@ -1,0 +1,198 @@
+{
+  "format": "m09-s2-trace-manifest/1.0.0",
+  "source": "server-172.17.27.173",
+  "measurement_path": "source-act",
+  "measurement_files": [
+    {
+      "path": "source-act/cpu/r0-baseline/measurement.json",
+      "sha256": "8015071a4745cb060f92eaf30b542c7c05a205aab626d17ff093886246220118"
+    },
+    {
+      "path": "source-act/cpu/r0-inference_mode/measurement.json",
+      "sha256": "9716aeb5257a647bd5bec655e1570b3865800c4722ee586ca202ad9eca57d9aa"
+    },
+    {
+      "path": "source-act/cpu/r1-baseline/measurement.json",
+      "sha256": "c1a12f5814fef61630248dda5b1be7e09673d55a08db4d51c790a8b965722df9"
+    },
+    {
+      "path": "source-act/cpu/r1-inference_mode/measurement.json",
+      "sha256": "b70c1e4e2f6fee7c639b5fb72482828f755b1d46a528306d17d96598b7d6b377"
+    },
+    {
+      "path": "source-act/cpu/r2-baseline/measurement.json",
+      "sha256": "951866a78c731bb97f655f59f75b6a86cecf9988b7445e73481cfb3c7930ff02"
+    },
+    {
+      "path": "source-act/cpu/r2-inference_mode/measurement.json",
+      "sha256": "815f49e3849482f6c79b89e52aea4a81fa9e6e01ea39a659734fd616344a55e0"
+    },
+    {
+      "path": "source-act/cpu/r3-baseline/measurement.json",
+      "sha256": "ebc823bf725b3e8e95f1b0de2d881c7187824d56fb1261e20cc52ab5eb02d05c"
+    },
+    {
+      "path": "source-act/cpu/r3-inference_mode/measurement.json",
+      "sha256": "59055d52711f8ffd0445bb84545b10aa4bb78380d3a58af8a45ff2bae6d19119"
+    },
+    {
+      "path": "source-act/cpu/r4-baseline/measurement.json",
+      "sha256": "f177b3f1c7e4811dc21dc9f5a7d38ed6198f6c67bdc01253bee681746aa96f6c"
+    },
+    {
+      "path": "source-act/cpu/r4-inference_mode/measurement.json",
+      "sha256": "c9f127a2185d640874e0ac48223a93cf806a6026c77870559c6d7b7f6ec4192f"
+    },
+    {
+      "path": "source-act/cuda_0/r0-baseline/measurement.json",
+      "sha256": "b0136d94f218325ddce48fa0d85f3b65126eff8b9f0a2b192d1d0b0cd294edb7"
+    },
+    {
+      "path": "source-act/cuda_0/r0-inference_mode/measurement.json",
+      "sha256": "bf52cbca4986bb6a04911cd442e9308b34505566d41f6cde75df095a19b5c606"
+    },
+    {
+      "path": "source-act/cuda_0/r1-baseline/measurement.json",
+      "sha256": "bf64f02771ed38370dd51e517874ecc7ccaf0855829114be600601e8a3c83f0e"
+    },
+    {
+      "path": "source-act/cuda_0/r1-inference_mode/measurement.json",
+      "sha256": "815e31a282d3067c0dbb2b6a5a880f5466a7a933ce4b5f91265537436fe88e90"
+    },
+    {
+      "path": "source-act/cuda_0/r2-baseline/measurement.json",
+      "sha256": "ca080a9903d3346b07ddd9eeeb162b6f09747fdee3c758e7654d4bd4dc39a2d8"
+    },
+    {
+      "path": "source-act/cuda_0/r2-inference_mode/measurement.json",
+      "sha256": "874659ac1f69fe92d7dd0dfec7af0cf6f07e3985d87804e9d16f2a1cf03255af"
+    },
+    {
+      "path": "source-act/cuda_0/r3-baseline/measurement.json",
+      "sha256": "e3580f3b5c193f313ac80ecde79e2a89b57bba0eed683c5e24a9b314aaec2fea"
+    },
+    {
+      "path": "source-act/cuda_0/r3-inference_mode/measurement.json",
+      "sha256": "e10d1d540a91d5085e234afc7450d48baedcac245a53d0b05b4587bacf73b8cd"
+    },
+    {
+      "path": "source-act/cuda_0/r4-baseline/measurement.json",
+      "sha256": "a86fd649d098ced862fa47974a806c8a4b3d8809c7d3ab453ef0676c1d016d5f"
+    },
+    {
+      "path": "source-act/cuda_0/r4-inference_mode/measurement.json",
+      "sha256": "7e2b07c3bb6de23c0f6d7c1ca6a9900d8b1f1db4f51a7140d99eba0cb1ef8ceb"
+    },
+    {
+      "path": "measurements-v2/cpu/r0-baseline/measurement.json",
+      "sha256": "70be6e9299d446fab3f97c951239028dd5c094f5afcc556c555f45bb8666a271"
+    },
+    {
+      "path": "measurements-v2/cpu/r0-inference_mode/measurement.json",
+      "sha256": "47b7a6a4e219f47081d04a63871eb3aaec09a5bb757b82ee532dcc04058f55df"
+    },
+    {
+      "path": "measurements-v2/cpu/r1-baseline/measurement.json",
+      "sha256": "9a178e49ef2d016c07eb43c34df5dbcf8fda0cfaeb1dc4a2c7bf6ddef1965bfc"
+    },
+    {
+      "path": "measurements-v2/cpu/r1-inference_mode/measurement.json",
+      "sha256": "42423e6d7981999e04f43c0077683c8e70d0f0f730ad03e7c60b90c1a4418ed9"
+    },
+    {
+      "path": "measurements-v2/cpu/r2-baseline/measurement.json",
+      "sha256": "fc7e4f3d7c22726fc015ab49f37606900c3bf85d45638b50ed7246dd4b08bd4f"
+    },
+    {
+      "path": "measurements-v2/cpu/r2-inference_mode/measurement.json",
+      "sha256": "32c4d2cca5d712b0d1c57620e8c63b65adb5fbd2de28767c3209975f17978d50"
+    },
+    {
+      "path": "measurements-v2/cpu/r3-baseline/measurement.json",
+      "sha256": "1eabfe82fd042563e0b01cda575103a2505f88170f2f507def5c5658338b7015"
+    },
+    {
+      "path": "measurements-v2/cpu/r3-inference_mode/measurement.json",
+      "sha256": "60332567b78d1e0f2d355160d2144d40b03f3902abb23e482657dc1cba267c49"
+    },
+    {
+      "path": "measurements-v2/cpu/r4-baseline/measurement.json",
+      "sha256": "57229991c791accba8304249015fc8583f3673832703af9122c08861f67dca85"
+    },
+    {
+      "path": "measurements-v2/cpu/r4-inference_mode/measurement.json",
+      "sha256": "4d17c691f18179417d2391f363f87e0da498e78c4ef7dd555fd8e1290e3d29f1"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r0-baseline/measurement.json",
+      "sha256": "f6965015bea81c359ffb0aadc6f0f3c155866c9de0263ebc88a529dc3a1634d6"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r0-inference_mode/measurement.json",
+      "sha256": "be2cda2de058d2cfbe95a841d8e02785a721d05d250e77ae1f2ef0c1d02dfceb"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r1-baseline/measurement.json",
+      "sha256": "ec0debd6fcbb5ba83483b36c0187059d2d3330fb20fd9933165224c4d8edefb4"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r1-inference_mode/measurement.json",
+      "sha256": "927c3fbd74860639380ac423cc154d4784835309b7acece2d1f3c1ccbeb86b7c"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r2-baseline/measurement.json",
+      "sha256": "0c483539f2328b16ad765512635def86b679c906f17fb3a1a0d7b48aefa729ec"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r2-inference_mode/measurement.json",
+      "sha256": "bb99aedecf2639ba2b7757511a1793ab764a6e0770e0fa68a369ebba10a7a494"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r3-baseline/measurement.json",
+      "sha256": "ad5a9f6ff0598812aa26220e38ec3e09f57b52c95b261c3fdd98d24ab8215c46"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r3-inference_mode/measurement.json",
+      "sha256": "2a6a10c2f1a268888a441df217a107d5a2c828244a3f64599c1a25efc1d6c028"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r4-baseline/measurement.json",
+      "sha256": "7ce4aa2cb2610c2031448426c9106df2b6b7fd5fae583e78614233ef6a931901"
+    },
+    {
+      "path": "measurements-v2/cuda_0/r4-inference_mode/measurement.json",
+      "sha256": "8ed7df9559f080ea6b47fce75c20626a4449112fb5cc9b90bb6232c2bb6f835c"
+    }
+  ],
+  "cold_start_files": [
+    {
+      "path": "cold-v2/cpu-p0/cold-start.json",
+      "sha256": "888235e8c5beb8d129471fd4ebbd33566addcacab6aaeac5292ec5760d46f396"
+    },
+    {
+      "path": "cold-v2/cpu-p1/cold-start.json",
+      "sha256": "ca8cdfdb256e8539186b672161ccf56e4f2462cd06c36f213083ee5d65d32871"
+    },
+    {
+      "path": "cold-v2/cpu-p2/cold-start.json",
+      "sha256": "ed49c3ece81f2dedbdea2c8a5662e97a77da24d1163392ee684d5d311583a418"
+    },
+    {
+      "path": "cold-v2/cuda_0-p0/cold-start.json",
+      "sha256": "beac6e7e10f66e285aa4396986c152254b8aa970d597b5b0d3b3ed38401950ff"
+    },
+    {
+      "path": "cold-v2/cuda_0-p1/cold-start.json",
+      "sha256": "faea3571070a40fecf4c7dc6f22e578cfa80e0616f07af0be44a28954bad9684"
+    },
+    {
+      "path": "cold-v2/cuda_0-p2/cold-start.json",
+      "sha256": "1b03f03d9baac70c8d0eed634f1255e8b6bb8710463443bd9a60cdad70fde497"
+    }
+  ],
+  "independent_tapes_per_pass": 60,
+  "formal_repeats": 5,
+  "total_source_act_measurement_files": 20,
+  "workload_tape_manifest_sha256": "a38168f54321387ce776faeca2e7b623914e8e0bc9b93be365cb1c501bf5bbd8",
+  "archive_sha256": "36369ad2d6fb318f398b92d70c1c6218f8d2a136259abf6f668b543096366b7b"
+}

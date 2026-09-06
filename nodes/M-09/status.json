@@ -2,12 +2,12 @@
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
   "status": "passed",
-  "next_stage": "S2",
+  "next_stage": "S3",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
   "training_location": "server_only",
-  "server_connectivity": "172.17.27.173_preflight_and_s1r2_rerun_passed_2026-09-06_no_training",
+  "server_connectivity": "172.17.27.173_preflight_s1r2_and_s2_latency_measurement_passed_2026-09-06_no_training",
   "stages": [
     {
       "id": "S0",
@@ -104,11 +104,29 @@
     {
       "id": "S2",
       "name": "延迟定位与优化",
-      "status": "planned",
+      "status": "passed",
       "depends_on": [
         "S1"
       ],
-      "evidence": []
+      "evidence": [
+        "nodes/M-09/S2/README.md",
+        "nodes/M-09/S2/protocol.md",
+        "nodes/M-09/S2/protocol.json",
+        "nodes/M-09/S2/version-inventory.json",
+        "nodes/M-09/S2/measurement-boundaries.md",
+        "nodes/M-09/S2/baseline-profile.json",
+        "nodes/M-09/S2/optimization-report.md",
+        "nodes/M-09/S2/comparison.json",
+        "nodes/M-09/S2/correctness-report.md",
+        "nodes/M-09/S2/test-results.md",
+        "nodes/M-09/S2/trace-manifest.json",
+        "nodes/M-09/S2/server-evidence.json",
+        "nodes/M-09/S2/m09-s2-server-artifacts-20260906-v2.tar.gz",
+        "nodes/M-09/S2/final-report.md",
+        "nodes/M-09/S2/optimization-inference-mode.patch",
+        "tools/run_s2_latency_benchmark.py"
+      ],
+      "decision": "Server latency measurement and one low-risk inference_mode optimization passed; S3 remains planned and was not started."
     },
     {
       "id": "S3",
@@ -149,7 +167,7 @@
     "返航与换电/充电能力（S1 明确不在范围）",
     "五类型图版本及会议 GPO 来源仍未提供"
   ],
-  "completed_stages": 2,
+  "completed_stages": 3,
   "new_training_started": false,
   "s1_start_condition": "passed_2026-09-06_after_s1r2_local_and_server_replay"
 }

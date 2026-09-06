@@ -22,7 +22,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from tools.run_s1_r2_acceptance import SCENARIOS, MAX_DECISIONS, import_baseline, make_tape, json_safe, sha256
+try:
+    from tools.run_s1_r2_acceptance import SCENARIOS, MAX_DECISIONS, import_baseline, make_tape, json_safe, sha256
+except ImportError:  # server run places both runners in one independent directory
+    from run_s1_r2_acceptance import SCENARIOS, MAX_DECISIONS, import_baseline, make_tape, json_safe, sha256
 
 
 def now_ns() -> int:
@@ -37,6 +40,19 @@ def synchronize(device) -> None:
     if getattr(device, "type", str(device)) == "cuda":
         import torch
         torch.cuda.synchronize(device)
+
+
+def metadata_summary(metadata: Any) -> dict[str, Any]:
+    if not isinstance(metadata, dict):
+        return {"type": type(metadata).__name__}
+    summary: dict[str, Any] = {}
+    for key in ("baseline_commit", "accepted_decision_steps", "variant", "seed"):
+        if key in metadata:
+            summary[key] = json_safe(metadata[key])
+    history = metadata.get("history")
+    if isinstance(history, list):
+        summary["history_records"] = len(history)
+    return summary
 
 
 def quantile(values: list[float], q: float) -> float | None:
@@ -64,17 +80,21 @@ def stats(values: list[float]) -> dict[str, Any]:
     }
 
 
-def model_step(model, graph, torch, device, mode: str):
+def model_step(model, graph, torch, device, mode: str, path: str):
     synchronize(device)
     started = now_ns()
+    if path == "source_act":
+        action, _, value, _ = model.act(graph, deterministic=True)
+        synchronize(device)
+        return elapsed_ms(started), value, int(action)
     context = torch.inference_mode() if mode == "inference_mode" else torch.no_grad()
     with context:
         logits, value, _ = model(graph)
     synchronize(device)
-    return elapsed_ms(started), logits, value
+    return elapsed_ms(started), value, logits
 
 
-def run_episode(imports, model, torch, device, scenario: str, index: int, mode: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+def run_episode(imports, model, torch, device, scenario: str, index: int, mode: str, path: str) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     ActionSubmission, Env, EventTape, RandomEvent, RandomEventType, decode_edge_action, _ = imports
     tape = make_tape(EventTape, RandomEvent, RandomEventType, scenario, index)
     env = Env(initial_seed=tape.initial_seed, event_seed=tape.event_seed, mode=tape.mode, event_tape=tape, max_decisions=MAX_DECISIONS)
@@ -104,13 +124,16 @@ def run_episode(imports, model, torch, device, scenario: str, index: int, mode: 
         policy_graph = ctx.graph.to(device) if str(device) != "cpu" else ctx.graph
         feature_transfer_ms = elapsed_ms(started)
         segments["feature_tensor_prepare"].append(feature_transfer_ms)
-        forward_ms, logits, value = model_step(model, policy_graph, torch, device, mode)
+        forward_ms, value, policy_output = model_step(model, policy_graph, torch, device, mode, path)
         segments["policy_forward"].append(forward_ms)
 
         started = now_ns()
-        action = int(torch.argmax(logits).item())
-        if not (0 <= action < int(ctx.graph.num_actions) and bool(ctx.graph.action_mask[action].item())):
-            action = int(ctx.graph.noop_action)
+        if path == "source_act":
+            action = int(policy_output)
+        else:
+            action = int(torch.argmax(policy_output).item())
+            if not (0 <= action < int(ctx.graph.num_actions) and bool(ctx.graph.action_mask[action].item())):
+                action = int(ctx.graph.noop_action)
         selection_ms = elapsed_ms(started)
         segments["action_selection_legality"].append(selection_ms)
 
@@ -138,12 +161,15 @@ def run_episode(imports, model, torch, device, scenario: str, index: int, mode: 
             started = now_ns()
             retry_graph = retry_ctx.graph.to(device) if str(device) != "cpu" else retry_ctx.graph
             retry_timings["feature_tensor_prepare"] = elapsed_ms(started)
-            retry_forward, retry_logits, retry_value = model_step(model, retry_graph, torch, device, mode)
+            retry_forward, retry_value, retry_output = model_step(model, retry_graph, torch, device, mode, path)
             retry_timings["policy_forward"] = retry_forward
             started = now_ns()
-            retry_action = int(torch.argmax(retry_logits).item())
-            if not (0 <= retry_action < int(retry_ctx.graph.num_actions) and bool(retry_ctx.graph.action_mask[retry_action].item())):
-                retry_action = int(retry_ctx.graph.noop_action)
+            if path == "source_act":
+                retry_action = int(retry_output)
+            else:
+                retry_action = int(torch.argmax(retry_output).item())
+                if not (0 <= retry_action < int(retry_ctx.graph.num_actions) and bool(retry_ctx.graph.action_mask[retry_action].item())):
+                    retry_action = int(retry_ctx.graph.noop_action)
             retry_timings["action_selection_legality"] = elapsed_ms(started)
             started = now_ns()
             retry_result = env.submit_action(ActionSubmission.from_decision(retry_action, retry_ctx))
@@ -214,11 +240,11 @@ def collect(args) -> int:
     for warmup in range(args.warmup):
         for scenario in SCENARIOS:
             for index in range(args.tapes_per_scenario):
-                run_episode(imports, model, torch, device, scenario, index, args.mode)
+                run_episode(imports, model, torch, device, scenario, index, args.mode, args.path)
     for repeat in range(args.repeat):
         for scenario in SCENARIOS:
             for index in range(args.tapes_per_scenario):
-                samples, episode = run_episode(imports, model, torch, device, scenario, index, args.mode)
+                samples, episode = run_episode(imports, model, torch, device, scenario, index, args.mode, args.path)
                 for row in samples:
                     row["repeat"] = repeat
                 episode["repeat"] = repeat
@@ -244,6 +270,7 @@ def collect(args) -> int:
     report = {
         "format": "m09-s2-latency-measurement/1.0.0",
         "mode": args.mode,
+        "path": args.path,
         "device": str(device),
         "checkpoint_sha256": sha256(args.checkpoint.resolve()),
         "repeat": args.repeat,
@@ -257,7 +284,7 @@ def collect(args) -> int:
         "torch_version": torch.__version__,
         "cuda_version": torch.version.cuda,
         "cuda_available": bool(torch.cuda.is_available()),
-        "model_metadata": json_safe(metadata),
+        "model_metadata": metadata_summary(metadata),
         "segments": {key: stats(values) for key, values in sorted(segment_values.items())},
         "scenario_segments": scenario_stats,
         "episodes": all_episodes,
@@ -277,7 +304,7 @@ def cold_start(args) -> int:
     model, metadata = GraphActorCritic.load(args.checkpoint.resolve(), map_location=args.device)
     model.eval()
     load_ms = elapsed_ms(started)
-    payload = {"format": "m09-s2-cold-start/1.0.0", "device": args.device, "checkpoint_sha256": sha256(args.checkpoint.resolve()), "model_load_ms": load_ms, "python": platform.python_version(), "torch_version": torch.__version__, "cuda_available": bool(torch.cuda.is_available()), "model_metadata": json_safe(metadata)}
+    payload = {"format": "m09-s2-cold-start/1.0.0", "device": args.device, "checkpoint_sha256": sha256(args.checkpoint.resolve()), "model_load_ms": load_ms, "python": platform.python_version(), "torch_version": torch.__version__, "cuda_available": bool(torch.cuda.is_available()), "model_metadata": metadata_summary(metadata)}
     args.output.mkdir(parents=True, exist_ok=True)
     (args.output / "cold-start.json").write_text(json.dumps(payload, indent=2, sort_keys=True, ensure_ascii=False), encoding="utf-8")
     print(json.dumps(payload, indent=2, sort_keys=True))
@@ -290,6 +317,7 @@ def main() -> int:
     parser.add_argument("checkpoint", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--mode", choices=("baseline", "inference_mode"), default="baseline")
+    parser.add_argument("--path", choices=("direct", "source_act"), default="direct")
     parser.add_argument("--device", default="cpu")
     parser.add_argument("--repeat", type=int, default=5)
     parser.add_argument("--warmup", type=int, default=1)

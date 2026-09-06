@@ -1,0 +1,47 @@
+{
+  "format": "m09-s2-server-evidence/1.0.0",
+  "status": "passed",
+  "host": "172.17.27.173",
+  "account": "user1",
+  "run_dir": "/home/user1/s2-runs/20260906-v1",
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda": "12.1",
+    "gymnasium": "0.29.1",
+    "cpu_count": 32,
+    "gpus": ["NVIDIA GeForce RTX 2080 Ti", "NVIDIA GeForce RTX 2080 Ti"],
+    "measured_gpu": "cuda:0",
+    "preflight_loadavg": "0.00 0.03 0.05",
+    "background_policy": "existing TensorBoard and unrelated processes inspected and left running"
+  },
+  "versions": {
+    "frozen_baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "s1r2_fix_commit": "f53efbf95db49ca826b7902b2577217e378d2d96",
+    "optimization_commit": "e3f2b4053446e8fe4ba8787c6c1b4be0910ced25",
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "optimization_patch_sha256": "8613b8c9999b950495813373adb1efa8954121876820e5814cbf6c778a4f2e66"
+  },
+  "formal_measurement": {
+    "source_act": "source-act",
+    "devices": ["cpu", "cuda:0"],
+    "arms": ["baseline", "inference_mode"],
+    "repeats_per_arm": 5,
+    "warmup_per_arm": 1,
+    "tapes_per_pass": 60,
+    "comparison_runs": 20,
+    "cold_start_runs": 6,
+    "all_exit_codes_zero": true
+  },
+  "archive": {
+    "name": "m09-s2-server-artifacts-20260906-v2.tar.gz",
+    "sha256": "36369ad2d6fb318f398b92d70c1c6218f8d2a136259abf6f668b543096366b7b",
+    "local_download": "E:/Z博士/tmp-s2-server-download-20260906-final/m09-s2-server-artifacts-20260906-v2.tar.gz",
+    "server_hash_matches_local": true,
+    "independent_extract_verified": true
+  },
+  "github": {
+    "pending": true,
+    "note": "S2 Release is created after this commit is pushed; CDN/API verification will be recorded separately."
+  }
+}

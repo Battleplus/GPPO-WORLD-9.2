@@ -12,6 +12,8 @@
   "devices": ["cpu", "cuda:0"],
   "cuda_policy": "single_device_no_concurrent_gpu_arms_synchronize_before_and_after_forward",
   "modes": ["baseline", "inference_mode"],
+  "formal_primary_path": "source_act",
+  "secondary_instrumentation_path": "direct",
   "repeats": 5,
   "warmup_passes": 1,
   "cold_start_processes": 3,

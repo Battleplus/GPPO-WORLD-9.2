@@ -1,0 +1,25 @@
+From e3f2b4053446e8fe4ba8787c6c1b4be0910ced25 Mon Sep 17 00:00:00 2001
+From: Battleplus <3559424769@qq.com>
+Date: Sun, 6 Sep 2026 12:53:08 +0800
+Subject: [PATCH] optimize deterministic policy inference with inference mode
+
+---
+ ppo_allocation/random_event/models.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/ppo_allocation/random_event/models.py b/ppo_allocation/random_event/models.py
+index 3652867..777c10f 100644
+--- a/ppo_allocation/random_event/models.py
++++ b/ppo_allocation/random_event/models.py
+@@ -200,7 +200,7 @@ class GraphActorCritic(nn.Module):
+         logits, value, diagnostics = self(graph)
+         return Categorical(logits=logits), value, diagnostics
+ 
+-    @torch.no_grad()
++    @torch.inference_mode()
+     def act(self, graph: HeteroGraphState, deterministic: bool = False) -> tuple[int, float, float, dict]:
+         distribution, value, diagnostics = self.distribution(graph)
+         action = torch.argmax(distribution.logits) if deterministic else distribution.sample()
+-- 
+2.49.0.windows.1
+
