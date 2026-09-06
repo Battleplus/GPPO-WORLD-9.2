@@ -1,31 +1,34 @@
 {
-  "format": "m09-s0-server-preflight/1.0.0",
-  "checked_at": "2026-09-05",
+  "format": "m09-s0-server-preflight/1.1.0",
+  "checked_at": "2026-09-06T09:34:00+08:00",
   "host": "172.17.27.173",
+  "hostname": "ru-server-MS-1",
   "user": "user1",
-  "mode": "read_only_batch_ssh",
+  "mode": "read_only_interactive_ssh",
   "command_policy": "No training, environment changes, process termination, or project writes.",
-  "attempt": {
-    "ssh_options": ["BatchMode=yes", "ConnectTimeout=8", "ConnectionAttempts=1", "StrictHostKeyChecking=yes"],
-    "authentication_reached": false,
-    "exit_code": 255,
-    "error": "ssh: connect to host 172.17.27.173 port 22: Connection timed out"
+  "connectivity": {"vpn":"connected","ssh_port":22,"authentication":"successful","credentials_persisted":false},
+  "gpu": [
+    {"index":0,"name":"NVIDIA GeForce RTX 2080 Ti","memory_total_mib":11264,"memory_used_mib":6,"utilization_percent":0,"temperature_c":33},
+    {"index":1,"name":"NVIDIA GeForce RTX 2080 Ti","memory_total_mib":11264,"memory_used_mib":20,"utilization_percent":0,"temperature_c":35}
+  ],
+  "gpu_process_check": {
+    "compute_processes": 0,
+    "display_processes": ["Xorg on GPU 0", "Xorg on GPU 1"],
+    "interpretation": "Both GPUs were idle for compute at the measurement instant; this is not a reservation or guarantee of future availability."
   },
-  "current_state": {
-    "reachable": false,
-    "gpu": "unknown",
-    "gpu_processes": "unknown",
-    "disk": "unknown",
-    "python": "unknown",
-    "pytorch": "unknown",
-    "cuda": "unknown",
-    "project_directory": "unknown"
+  "disk": {"filesystem":"/dev/nvme0n1p2","size_gib":916,"used_gib":576,"available_gib":293,"used_percent":67},
+  "dporl": {"python":"3.9.20","torch":"2.2.2","cuda_runtime":"12.1","cuda_available":true,"visible_gpu_count":2},
+  "processes": {
+    "training_processes_detected": 0,
+    "other_user_gpu_compute_processes_detected": 0,
+    "non_training_python_processes": "Three existing HARL TensorBoard processes were observed; none appeared in nvidia-smi compute process output."
   },
-  "historical_only": {
-    "user_provided": "Two RTX 2080 Ti; dporl Python 3.9.20, torch 2.2.2, CUDA 12.1",
-    "sealed_t05_preflight_2026_09_03": "One visible RTX 2080 Ti; system Python 3.10.12; torch 2.7.1+cu118; CUDA available",
-    "interpretation": "These records describe different historical observations and are not evidence of current availability or idleness."
-  },
-  "result": "unreachable_current_state_not_verified",
-  "raw_error_file": "server-ssh-attempt.txt"
+  "project_directories": [
+    {"path":"/home/user1/gppo-t05-campaigns/gppo-t05-20260903-135255-hanzhangyang-cdcb23/GPPO-8.29","commit":"2a9bb9f87b9d543df144f4d108ba970c924151f9","dirty_entries":0},
+    {"path":"/home/user1/gppo-t05-campaigns/gppo-t05-20260903-135255-hanzhangyang-cdcb23/run-target-69e3be5","commit":"69e3be5931deea7371df77d75fb14f2f5bdeab72","dirty_entries":0},
+    {"path":"/home/user1/gppo-j02-server-20260905-run1/project","commit":"dac3f8cd03f079d2c67aff570eef7a070e46a730","dirty_entries":0}
+  ],
+  "scope_result": "preflight_passed_no_training_started",
+  "evidence_file": "server-preflight-20260906.txt",
+  "earlier_failed_attempt_file": "server-ssh-attempt.txt"
 }

@@ -1,0 +1,35 @@
+checked_at=2026-09-06T09:34:00+08:00
+host=172.17.27.173
+hostname=ru-server-MS-1
+user=user1
+ssh_authentication=successful
+credentials_persisted=false
+
+gpu_0=NVIDIA GeForce RTX 2080 Ti, 11264 MiB total, 6 MiB used, 0% utilization, 33 C
+gpu_1=NVIDIA GeForce RTX 2080 Ti, 11264 MiB total, 20 MiB used, 0% utilization, 35 C
+gpu_compute_processes=0
+gpu_display_processes=Xorg only
+
+disk=/dev/nvme0n1p2, 916 GiB total, 576 GiB used, 293 GiB available, 67% used
+dporl_python=3.9.20
+dporl_torch=2.2.2
+dporl_cuda_runtime=12.1
+dporl_cuda_available=true
+dporl_visible_gpu_count=2
+
+training_processes_detected=0
+other_user_gpu_compute_processes_detected=0
+non_training_processes=three pre-existing HARL TensorBoard processes
+
+baseline_path=/home/user1/gppo-t05-campaigns/gppo-t05-20260903-135255-hanzhangyang-cdcb23/GPPO-8.29
+baseline_commit=2a9bb9f87b9d543df144f4d108ba970c924151f9
+baseline_dirty_entries=0
+target_path=/home/user1/gppo-t05-campaigns/gppo-t05-20260903-135255-hanzhangyang-cdcb23/run-target-69e3be5
+target_commit=69e3be5931deea7371df77d75fb14f2f5bdeab72
+target_dirty_entries=0
+j02_path=/home/user1/gppo-j02-server-20260905-run1/project
+j02_commit=dac3f8cd03f079d2c67aff570eef7a070e46a730
+j02_dirty_entries=0
+
+result=preflight_passed_no_training_started
+note=GPU idleness is an instantaneous observation, not a reservation. No environment, process, project, or training state was modified.

@@ -1,13 +1,13 @@
 {
   "version": "m09-staged-plan/1.0.0",
-  "updated": "2026-09-05",
+  "updated": "2026-09-06",
   "status": "in_progress",
   "next_stage": "S1",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
   "training_location": "server_only",
-  "server_connectivity": "unreachable_ssh_timeout_2026-09-05",
+  "server_connectivity": "reachable_preflight_passed_2026-09-06_no_training_started",
   "stages": [
     {
       "id": "S0",
@@ -21,6 +21,7 @@
         "nodes/M-09/S0/demo-runbook.md",
         "nodes/M-09/S0/gaps.md",
         "nodes/M-09/S0/server-preflight.json",
+        "nodes/M-09/S0/server-preflight-20260906.txt",
         "nodes/M-09/S0/artifact-verification.json",
         "nodes/M-09/S0/checkpoint-load.json"
       ],
@@ -36,8 +37,7 @@
     "实际汇报日期",
     "竞赛控制周期和实体规模",
     "会议五类型版本的源码提交",
-    "会议所称GPO的实现来源",
-    "服务器网络与认证可用性"
+    "会议所称GPO的实现来源"
   ],
   "implementation_gaps_for_s1": [
     "通用紧急Task和deadline",
