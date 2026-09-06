@@ -1,0 +1,40 @@
+{
+  "server": "172.17.27.173",
+  "user": "user1",
+  "run_dir": "/home/user1/s4-runs/20260906-read-only",
+  "python": "3.10.12",
+  "torch": "2.2.2+cu121",
+  "gymnasium": "0.29.1",
+  "gpu": "2 x NVIDIA GeForce RTX 2080 Ti; preflight 0% utilization",
+  "filesystem_free": "287G",
+  "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+  "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "target_worktree_clean": true,
+  "baseline_worktree_clean": true,
+  "a_output": {
+    "pair_count": 60,
+    "equal_count": 60,
+    "all_equal": true,
+    "return_difference": [0.0],
+    "shadow_equivalence_sha256": "4cc4f73af11cefb1bfce1c5091ca2a709204e648638375c1b7b2e65a7eb54865",
+    "fault_results_sha256": "90bc9c84dc382eb8590a1b919888e269d14cdae96b2b1dd50e5e44ad24d2a007",
+    "run_summary_sha256": "f83f40ec50e35cd093e4d26a2c04a927e9abd7b800384d81bd1adbdcc5354cbb"
+  },
+  "b_output": {
+    "group": "EAWM-GPPO",
+    "seed": 1101,
+    "tape_count": 100,
+    "decision_count": 635,
+    "adapter_used_count": 487,
+    "checkpoint_sha256": "bc4e5e9cc1741892ced68f6166845d6c0c5e63452d852c928354669156e1a1bd",
+    "world_checkpoint_sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+    "calibration_sha256": "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d",
+    "evaluation_sha256": "59f73729c675005dfb5b2572e73ee406f69e54c4331382fdd6bf7c6cd32f86f8",
+    "trace_index_sha256": "f499904194300041296eb23a91d9d7bcd02b3f090b985fcd09e43518a81862b5",
+    "shadow": {"valid": 577, "fallback": 58, "high_uncertainty": 11, "ood": 47, "timeout": 0, "stale_before": 0, "stale_after": 0},
+    "safety_all_zero": true
+  },
+  "archive": {"name": "m09-s4-server-artifacts-20260906.tar.gz", "sha256": "8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f", "local_independent_extract": true, "member_count_in_tar_listing": 232},
+  "existing_processes_preserved": true,
+  "training_started": false
+}

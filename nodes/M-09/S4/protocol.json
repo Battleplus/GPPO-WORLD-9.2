@@ -1,0 +1,21 @@
+{
+  "format": "m09-s4-read-only-world-model/1.0.0",
+  "scope": "read-only shadow, safe fallback, and historical adapter consumption demonstration",
+  "training": false,
+  "demo_a": {
+    "policy": "S3 frozen GPPO seed1101 checkpoint",
+    "scenarios": ["normal", "emergency", "uav_damage", "energy_insufficient", "communication_interrupt", "composite_three_factor"],
+    "tapes_per_scenario": 10,
+    "arms": ["off", "on"],
+    "deterministic_policy": true
+  },
+  "demo_b": {
+    "candidate": "T-05 historical EAWM-GPPO seed1101 at step50000",
+    "requires_exact_asset_relation": true,
+    "context_must_be_consumed": true,
+    "not_s3_pure_gppo_equivalent": true
+  },
+  "faults": ["disabled", "no_context", "reset", "invalid_or_exception", "stale_before", "stale_after", "timeout", "synthetic_ood"],
+  "timeout_semantics": "post-inference fail-closed budget gate; no hard worker-cancellation claim",
+  "ood_semantics": "T-04 synthetic feature-range shift only; no real unseen-mission generalization claim"
+}

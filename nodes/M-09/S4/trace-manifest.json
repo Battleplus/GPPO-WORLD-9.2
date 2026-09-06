@@ -1,0 +1,8 @@
+{
+  "format": "m09-s4-trace-manifest/1.0.0",
+  "server_archive": "m09-s4-server-artifacts-20260906.tar.gz",
+  "server_archive_sha256": "8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f",
+  "a": {"off_trace_count": 60, "on_trace_count": 60, "shadow_equivalence_sha256": "4cc4f73af11cefb1bfce1c5091ca2a709204e648638375c1b7b2e65a7eb54865", "fault_results_sha256": "90bc9c84dc382eb8590a1b919888e269d14cdae96b2b1dd50e5e44ad24d2a007"},
+  "b": {"trace_count": 100, "evaluation_sha256": "59f73729c675005dfb5b2572e73ee406f69e54c4331382fdd6bf7c6cd32f86f8", "trace_index_sha256": "f499904194300041296eb23a91d9d7bcd02b3f090b985fcd09e43518a81862b5"},
+  "independent_extract_key_hashes": {"a_shadow_equivalence": "4cc4f73af11cefb1bfce1c5091ca2a709204e648638375c1b7b2e65a7eb54865", "a_faults": "90bc9c84dc382eb8590a1b919888e269d14cdae96b2b1dd50e5e44ad24d2a007", "b_evaluation": "59f73729c675005dfb5b2572e73ee406f69e54c4331382fdd6bf7c6cd32f86f8"}
+}

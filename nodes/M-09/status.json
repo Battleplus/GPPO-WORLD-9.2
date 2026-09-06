@@ -2,7 +2,7 @@
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
   "status": "passed",
-  "next_stage": "S4",
+  "next_stage": "S5",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
@@ -156,12 +156,32 @@
     {
       "id": "S4",
       "name": "世界模型接入展示",
-      "status": "planned",
+      "status": "passed",
       "depends_on": [
         "S1",
         "S3"
       ],
-      "evidence": []
+      "evidence": [
+        "nodes/M-09/S4/README.md",
+        "nodes/M-09/S4/protocol.md",
+        "nodes/M-09/S4/protocol.json",
+        "nodes/M-09/S4/asset-inventory.json",
+        "nodes/M-09/S4/compatibility-report.md",
+        "nodes/M-09/S4/interface-contract.md",
+        "nodes/M-09/S4/demo-runbook.md",
+        "nodes/M-09/S4/demo-explanation.md",
+        "nodes/M-09/S4/fault-injection-results.json",
+        "nodes/M-09/S4/shadow-equivalence.json",
+        "nodes/M-09/S4/adapter-consumption-report.md",
+        "nodes/M-09/S4/test-results.md",
+        "nodes/M-09/S4/server-evidence.json",
+        "nodes/M-09/S4/trace-manifest.json",
+        "nodes/M-09/S4/final-report.md",
+        "nodes/M-09/S4/artifact-manifest.json",
+        "nodes/M-09/S4/m09-s4-server-artifacts-20260906.tar.gz",
+        "tools/run_s4_read_only_demo.py"
+      ],
+      "decision": "A pure-GPPO Shadow side-car is read-only and behavior-equivalent on 60/60 fixed tapes; B historical EAWM-GPPO consumes matched latent context on 487/635 decisions. S4 limits are recorded; S5 remains not started."
     },
     {
       "id": "S5",
@@ -183,7 +203,7 @@
     "返航与换电/充电能力（S1 明确不在范围）",
     "五类型图版本及会议 GPO 来源仍未提供"
   ],
-  "completed_stages": 4,
+  "completed_stages": 5,
   "skipped_stages": ["S3"],
   "new_training_started": false,
   "s1_start_condition": "passed_2026-09-06_after_s1r2_local_and_server_replay"

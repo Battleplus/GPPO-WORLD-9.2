@@ -1,0 +1,100 @@
+{
+  "disabled": {
+    "context_consumed": false,
+    "context_ignored": true,
+    "policy_mode": "pure_gppo"
+  },
+  "invalid_or_exception": {
+    "result": {
+      "action_version": 0,
+      "fallback_reason": "exception",
+      "graph_version": 1,
+      "history_reset": true,
+      "latency_ms": 0.236525,
+      "model_version": "s4-fault:8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "ood_score": 0.41149759775861616,
+      "post_action_version": 1,
+      "post_graph_version": 3,
+      "uncertainty": null,
+      "valid": false,
+      "zero_latent": true
+    },
+    "zero_context": true
+  },
+  "no_context": {
+    "valid": false
+  },
+  "reset": {
+    "after_valid": false,
+    "before_valid": true
+  },
+  "stale_after": {
+    "result": {
+      "action_version": 0,
+      "fallback_reason": "stale_after",
+      "graph_version": 1,
+      "history_reset": true,
+      "latency_ms": 1.807786,
+      "model_version": "s4-fault:8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "ood_score": 0.41149759775861616,
+      "post_action_version": 1,
+      "post_graph_version": 3,
+      "uncertainty": null,
+      "valid": false,
+      "zero_latent": true
+    },
+    "zero_context": true
+  },
+  "stale_before": {
+    "result": {
+      "action_version": 0,
+      "fallback_reason": "stale_before",
+      "graph_version": 1,
+      "history_reset": false,
+      "latency_ms": 0.132453,
+      "model_version": "s4-fault:8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "ood_score": -1.0,
+      "post_action_version": 1,
+      "post_graph_version": 3,
+      "uncertainty": null,
+      "valid": false,
+      "zero_latent": true
+    },
+    "zero_context": true
+  },
+  "synthetic_ood": {
+    "input_ood_score": 269.0106024867358,
+    "result": {
+      "action_version": 0,
+      "fallback_reason": "ood",
+      "graph_version": 1,
+      "history_reset": false,
+      "latency_ms": 0.208894,
+      "model_version": "s4-fault:8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "ood_score": 269.0106024867358,
+      "post_action_version": 1,
+      "post_graph_version": 3,
+      "uncertainty": null,
+      "valid": false,
+      "zero_latent": true
+    },
+    "zero_context": true
+  },
+  "timeout": {
+    "result": {
+      "action_version": 0,
+      "fallback_reason": "timeout",
+      "graph_version": 1,
+      "history_reset": true,
+      "latency_ms": 52.706344,
+      "model_version": "s4-fault:8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "ood_score": 0.41149759775861616,
+      "post_action_version": 1,
+      "post_graph_version": 3,
+      "uncertainty": null,
+      "valid": false,
+      "zero_latent": true
+    },
+    "zero_context": true
+  }
+}

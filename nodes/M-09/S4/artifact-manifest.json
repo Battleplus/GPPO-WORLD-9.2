@@ -1,0 +1,9 @@
+{
+  "format": "m09-s4-artifact-manifest/1.0.0",
+  "status": "server_verified_pending_release",
+  "required_docs": ["README.md", "protocol.md", "protocol.json", "asset-inventory.json", "compatibility-report.md", "interface-contract.md", "demo-runbook.md", "demo-explanation.md", "fault-injection-results.json", "shadow-equivalence.json", "adapter-consumption-report.md", "test-results.md", "server-evidence.json", "trace-manifest.json", "final-report.md", "artifact-manifest.json"],
+  "server_archive": {"path": "m09-s4-server-artifacts-20260906.tar.gz", "sha256": "8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f", "local_extract_verified": true},
+  "key_member_sha256": {"output/shadow-equivalence.json": "4cc4f73af11cefb1bfce1c5091ca2a709204e648638375c1b7b2e65a7eb54865", "output/fault-injection-results.json": "90bc9c84dc382eb8590a1b919888e269d14cdae96b2b1dd50e5e44ad24d2a007", "output/run-summary.json": "f83f40ec50e35cd093e4d26a2c04a927e9abd7b800384d81bd1adbdcc5354cbb", "b-eawm/evaluation.json": "59f73729c675005dfb5b2572e73ee406f69e54c4331382fdd6bf7c6cd32f86f8", "b-eawm/trace-index.json": "f499904194300041296eb23a91d9d7bcd02b3f090b985fcd09e43518a81862b5"},
+  "github_release": null,
+  "cdn_independent_download": null
+}
