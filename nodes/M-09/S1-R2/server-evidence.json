@@ -34,7 +34,18 @@
     "local_path": "E:/Z博士/tmp-s1r2-server-download-20260906-v2/m09-s1r2-server-artifacts-20260906.tar.gz",
     "sha256": "016b9608a1090c95cb41375e35f548cfa5e38fda9716b41a107ee2c7ebcbcc59",
     "server_hash_matches": true,
-    "independent_extract_verified": true
+    "independent_extract_verified": true,
+    "github_release": {
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s1r2-corrected-v1-20260906",
+      "tag": "m09-s1r2-corrected-v1-20260906",
+      "target_commit": "9c1b5f4",
+      "asset_name": "m09-s1r2-server-artifacts-20260906.tar.gz",
+      "asset_api_state": "uploaded",
+      "asset_api_sha256": "016b9608a1090c95cb41375e35f548cfa5e38fda9716b41a107ee2c7ebcbcc59",
+      "asset_size_bytes": 6284438,
+      "cdn_independent_download": "failed_connect_timeout",
+      "cdn_download_verified": false
+    }
   },
   "note": "The provided password was used only for this SSH/SCP session; it was not written to code, logs, Git, or the archive. Existing processes were not stopped and the old runs were not overwritten."
 }
