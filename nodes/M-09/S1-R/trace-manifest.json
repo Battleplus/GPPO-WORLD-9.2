@@ -1,0 +1,448 @@
+{
+  "archive": "m09-s1r-server-artifacts-20260906.tar.gz",
+  "traces": [
+    {
+      "tape_id": "normal-00",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-01",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-02",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-03",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-04",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-05",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-06",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-07",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-08",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "normal-09",
+      "scenario": "normal",
+      "trace_sha256": "9c8912161c14184d4fa8f515d9c767fcf3d1deb69ebad6407f70d23c03de193a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-00",
+      "scenario": "emergency",
+      "trace_sha256": "746be7a664acc9d41cd0f8f2cbd977a15bbba565cd523854e9674e86a2f6a780",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-01",
+      "scenario": "emergency",
+      "trace_sha256": "db32d950066119123e6c4f8bdf90232ccf9eb9fb5414eae105e2e79fca6bd94b",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-02",
+      "scenario": "emergency",
+      "trace_sha256": "0005f72b807d88e39a0793faefd0f56b747f52fe17ccf087181ab9275df2ee29",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-03",
+      "scenario": "emergency",
+      "trace_sha256": "428588d3f10a0fd2360ec286d2524f587935fc86faeacb8787f1f14f52554e04",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-04",
+      "scenario": "emergency",
+      "trace_sha256": "6a69d35f20f52630624c65ecd9cd912054a65431e03f3fd8464641b8f92bec13",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-05",
+      "scenario": "emergency",
+      "trace_sha256": "451c59eed36bacf28be4791b108a7d2fc6174ec8ad035a9dac30295dfb280044",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-06",
+      "scenario": "emergency",
+      "trace_sha256": "5d1ac21161ff69788b8d0952443d39c2c31d274649d1a23dd77098e05489b68a",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-07",
+      "scenario": "emergency",
+      "trace_sha256": "4dc3d16d36bc466379ed7223d5a95c81e6e71638f3cd53d04ffa047119b0fd04",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-08",
+      "scenario": "emergency",
+      "trace_sha256": "a73e49f929ee6caad0ad960fe5c910be92a9be0adcd669c0f35db6b8bf9f81aa",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "emergency-09",
+      "scenario": "emergency",
+      "trace_sha256": "fb9827e8e4a33f95eaf30a79a2ed02034f18d3da4042d3a44c15920d29014141",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-00",
+      "scenario": "uav_damage",
+      "trace_sha256": "f0368accd34d187f4aa3e9fcdd7db962032d9fa1c11dad93726f0b47ba56ab4f",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-01",
+      "scenario": "uav_damage",
+      "trace_sha256": "e34eba8db7f90d1980e2d57679781a69d6d53ddca198e6e9bbe1d955f0ca60ad",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-02",
+      "scenario": "uav_damage",
+      "trace_sha256": "7429f945b13b3e5b74e9a838a09c1d52133279ce2983dfe91d79fb9916f62778",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-03",
+      "scenario": "uav_damage",
+      "trace_sha256": "5c9909d44515facf89b92983e691c68cfef98b5a56ac8be39227bda2c05831d7",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-04",
+      "scenario": "uav_damage",
+      "trace_sha256": "e78b356a361da1582c47dfc9df7017d1b82326e49ba992b6f93ddf7ad437a14f",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-05",
+      "scenario": "uav_damage",
+      "trace_sha256": "baee821a7a59c4fd7257a29298ec7a74437cafdf967f4a9ede633e288f1fef12",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-06",
+      "scenario": "uav_damage",
+      "trace_sha256": "deb16ea4465350128275efa65470682d32f227b1ac26375832886766c57b6962",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-07",
+      "scenario": "uav_damage",
+      "trace_sha256": "55e88bd5e74d1255dca8085477755bce401da904d264ed241c0add3f67ce9c11",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-08",
+      "scenario": "uav_damage",
+      "trace_sha256": "d0cf7807fa600c446b1808dbecc18c51f171595c7344ec627303ed62673dba97",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "uav_damage-09",
+      "scenario": "uav_damage",
+      "trace_sha256": "1e18dbf911f39f4099e3f6b9fe5a0145a978fa5e816895ba5d07d6df2448b044",
+      "decisions": 2,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-00",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "399d8caf7dfa917b16c2907366df04f0d4afb7640f4c90711b07a0f0d320ceca",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-01",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "a22916a25b727bc89d1452fb50301653ce5e44b9915aaaf30ae84087cdfa1566",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-02",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "bb36a2da077faaed6f274ef7041099b205e8a7634c64ad05da5a9f7b9e6453fc",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-03",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "16bf02877225bfb2853a8aad8669c677cdaa53a11e9daca01f028f0416de71bb",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-04",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "0c67d63f27e9233046231d086c95a26354422c720804c33ef6af4d418f75f2bc",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-05",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "da02c08106370da9391c2982fc4258587682b5bb2ac685124c58e612100f95ec",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-06",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "c6854f79f3afc36c2073375c385aa6e640bfba63cde23ef8941758cca06413d9",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-07",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "d70cf8c739222707d9384596bbb08f7eb5df225735ed78de5aba7e0bd0e1e7be",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-08",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "8b9eaa6bd43c085dd5edcacf2a429cd2368dd1375e60d75a8c9d8ce9777ce4b9",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "energy_insufficient-09",
+      "scenario": "energy_insufficient",
+      "trace_sha256": "534915795cb429594dded0dd87308dab9970d424d1c02e5a53bbff07fe8f2dde",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-00",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "6d45e1de5487d88ce0e3c35a28e602a393b95ef61b53a8d1ad8c35f11f6f420d",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-01",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "3fd50ca44e24593d98f3596040152f3c721e65c904323da34aec33688c75f163",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-02",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "bcf3c1f2f6c999a83f7a7798017faf2bd526521a78f35309ac86a79b16760a28",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-03",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "f71b506ce4b98889dc0db4ac4ddd5434ad82c9beb99fac2dd65eb30c8396d5bb",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-04",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "3b0f19befd61e0a322a23e72b47fb5c09f57e8dcf3a8b91383b06cda3fa54c61",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-05",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "6484006cf26cd59a8376bfb8bed1c4c13daae25b76552d6267317b4f303873d1",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-06",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "fe6d1b75eff92e797dd0e5144d0012d88a76b1e3fb4256fd80296b8cad1709be",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-07",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "17b37730c9e86c85fe4c41a53d1da8ed08f9b33a93996ddda7b2709391035f14",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-08",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "1a592c1aa7c4bd0e6878d777050effa76f135d835577ebee2567a3d87a5bbaf7",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "communication_interrupt-09",
+      "scenario": "communication_interrupt",
+      "trace_sha256": "18468319bec51718be9460fd5b030258757d6aab0341985c50a155f46769e030",
+      "decisions": 1,
+      "assertion_failures": []
+    },
+    {
+      "tape_id": "composite_three_factor-00",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "ae2acba87511d3c63bf8bad64493ad1e7d1e8ffaebca73688b23c9ba97d6ee4f",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-01",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "e7a913f1d387af661a05913e816591073464e6693b74c10668cb1fa38291db1f",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-02",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "d8bb542303f49b6be0c03ca92648eaba1c02f319b23a2e3045e1c2726666c388",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-03",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "b119890e9f80396aa7d749a71c72b15ab384a8974980f550de4d4d6b16bbdb39",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-04",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "1866c15585ace06bca713660067e75954cffb4db96a82b316054268f18d54b3c",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-05",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "1c4739d05c35e830dbf22203c828a8fcb9376bbe400def63a40f24864338596a",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-06",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "f0061e545cae750facc68b8b677a885e280bf21834a4d77ce7bfd31defae688b",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-07",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "67f026b6975a77b205d784c0eec12edf1cb27ceab8d7027a6fdec77c01a96e1f",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-08",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "9261636e9fab2a770e7df0e1a7eba53060464c0bc3db49e5c9afc1e5d06e9514",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    },
+    {
+      "tape_id": "composite_three_factor-09",
+      "scenario": "composite_three_factor",
+      "trace_sha256": "fc49e728c4f7ca096c84f84e56648b61c0e96b336039877bad1e0f8454e78ef8",
+      "decisions": 2,
+      "assertion_failures": [
+        "low_confidence_not_detector_confirmed"
+      ]
+    }
+  ],
+  "format": "m09-s1r-trace-manifest/1.0.0",
+  "archive_sha256": "d160fcb03d8e5a54cf0a2e963211e59d529be90482ba665f965e846d3f902f97",
+  "tape_count": 60
+}

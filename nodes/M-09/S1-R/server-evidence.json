@@ -1,0 +1,11 @@
+{
+  "format": "m09-s1r-server-evidence/1.0.0",
+  "server": "user1@172.17.27.173",
+  "environment": "/home/user1/s1-gppo-venv",
+  "archive": "m09-s1r-server-artifacts-20260906.tar.gz",
+  "archive_sha256": "d160fcb03d8e5a54cf0a2e963211e59d529be90482ba665f965e846d3f902f97",
+  "redownload_sha256": "d160fcb03d8e5a54cf0a2e963211e59d529be90482ba665f965e846d3f902f97",
+  "training_started": false,
+  "fixed_tape_count": 60,
+  "status": "blocked"
+}
