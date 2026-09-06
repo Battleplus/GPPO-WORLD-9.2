@@ -1,0 +1,40 @@
+{
+  "format": "m09-s3-training-decision/1.0.0",
+  "stage": "S3",
+  "status": "skipped",
+  "path": "A",
+  "training_necessary_for_current_delivery": false,
+  "decision": "必要性审查完成，当前交付不需要新增训练。",
+  "training_started": false,
+  "weights_changed": false,
+  "reason_codes": [
+    "s1r2_fixed_60_tapes_passed",
+    "s2_is_inference_only_and_checkpoint_unchanged",
+    "no_confirmed_realtime_deadline",
+    "missing_fair_ppo_two_type_five_type_assets",
+    "current_gaps_are_scope_and_contract_boundaries"
+  ],
+  "evidence": {
+    "s1r2_report": "nodes/M-09/S1-R2/final-report.md",
+    "s1r2_server_evidence": "nodes/M-09/S1-R2/server-evidence.json",
+    "s2_report": "nodes/M-09/S2/final-report.md",
+    "s2_comparison": "nodes/M-09/S2/comparison.json",
+    "fresh_smoke_summary": "nodes/M-09/S3/fresh-smoke-summary.json",
+    "fresh_smoke_trace": "nodes/M-09/S3/fresh-smoke-trace.json"
+  },
+  "not_claimed": [
+    "strategy independently learned energy/deadline/confirmation semantics",
+    "five-type graph support",
+    "ordinary PPO fairness comparison",
+    "three-to-four-times PPO latency claim",
+    "competition real-time compliance"
+  ],
+  "s4_start": {
+    "allowed_on_frozen_candidate": true,
+    "conditions": [
+      "preserve real belief/action mask/version authority",
+      "show read-only world-model trace and fail-closed fallback",
+      "do not treat skipped S3 as a training pass"
+    ]
+  }
+}

@@ -214,7 +214,9 @@ def _confirmed_ids(env):
 
 
 def _policy_action(model, graph) -> int:
-    action, _, _, _ = model.act(graph, deterministic=True)
+    # Keep the M-09 replay/demo entry on the same inference-only path as S2.
+    with __import__("torch").inference_mode():
+        action, _, _, _ = model.act(graph, deterministic=True)
     return int(action)
 
 
@@ -231,7 +233,7 @@ def _graph_payload(graph):
 
 
 def _model_evidence(model, graph):
-    with __import__("torch").no_grad():
+    with __import__("torch").inference_mode():
         logits, value, _ = model(graph)
     payload = _graph_payload(graph)
     payload["logits"] = json_safe(logits)
@@ -324,8 +326,7 @@ def run_tape(args, imports, scenario: str, index: int, model):
             retry_fields = {str(x) for x in vars(retry.graph)}
             counters["future_input_violations"] += len(retry_fields - POLICY_GRAPH_ALLOWLIST)
             retry_input_hash, retry_logits, retry_value = _model_evidence(model, retry.graph)
-            retry_action, _, _, _ = model.act(retry.graph, deterministic=True)
-            retry_action = int(retry_action)
+            retry_action = _policy_action(model, retry.graph)
             retry_noop = int(retry.graph.noop_action)
             if not (0 <= retry_action < int(retry.graph.num_actions) and bool(retry.graph.action_mask[retry_action].item())):
                 counters["illegal_effective_actions"] += 1

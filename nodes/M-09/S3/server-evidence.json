@@ -1,0 +1,56 @@
+{
+  "format": "m09-s3-training-necessity-server-evidence/1.0.0",
+  "status": "passed",
+  "decision": "skipped_training_path_a",
+  "host": "172.17.27.173",
+  "account": "user1",
+  "run_dir": "/home/user1/s3-runs/20260906-a-candidate",
+  "training_started": false,
+  "environment": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "gymnasium": "0.29.1",
+    "cuda_available": true,
+    "gpus": ["NVIDIA GeForce RTX 2080 Ti", "NVIDIA GeForce RTX 2080 Ti"],
+    "cpu_count": 32,
+    "preflight_gpu_utilization": "0% on both GPUs",
+    "disk_free_at_preflight": "287G",
+    "background_policy": "existing TensorBoard and unrelated processes inspected and left running"
+  },
+  "fresh_smoke": {
+    "entrypoint": "tools/run_s1_r2_acceptance.py",
+    "entrypoint_sha256_server_bytes": "4a93c57d9fecd69e3a7ad1c36a56caf46139f591a28dc181e04b434e26fbb698",
+    "contract_sha256": "49e375ed10f5ebc102f21f111b4ef56ac6902878335e2f61fb38860afe686aa7",
+    "baseline_root": "/home/user1/s2-runs/20260906-v1/optimized-baseline",
+    "checkpoint": "/home/user1/s2-runs/20260906-v1/checkpoint.pt",
+    "tapes": 60,
+    "exit_code": 0,
+    "stderr_bytes": 0,
+    "summary_sha256": "f3da1cf078058971787835c633d17853ec91f3189411acef0d5b64cb98d7fa92",
+    "trace_sha256": "e6edae8a5e2e9d3b962712f368ce582ac1d2b534bc7bfe900174cde40a83e608",
+    "all_episode_ended": true,
+    "all_task_completed": true,
+    "scenario_assertion_failures": 0,
+    "future_input_violations": 0,
+    "constraint_violations": 0,
+    "illegal_effective_actions": 0,
+    "collector_safety_violations": 0,
+    "inference_mode_in_entrypoint": true
+  },
+  "archive": {
+    "server_path": "/home/user1/s3-runs/m09-s3-training-necessity-skipped-20260906.tar.gz",
+    "local_path": "nodes/M-09/S3/m09-s3-training-necessity-skipped-20260906.tar.gz",
+    "sha256": "9e770aa349baf5e001c45e2007b5871dffa8b067eb4bae0b2061a9f1159b3ef5",
+    "server_hash_matches_local": true,
+    "member_count_verified": 8,
+    "member_mismatches": 0,
+    "contains_training_checkpoint": false,
+    "contains": ["runner", "fresh acceptance trace", "fresh summary", "stdout", "stderr", "resource record", "command record", "member hashes"]
+  },
+  "github": {
+    "release_required": true,
+    "release_title": "S3 训练必要性审查与候选冻结",
+    "cdn_independent_download": "pending_until_release",
+    "cdn_download_verified": false
+  }
+}
