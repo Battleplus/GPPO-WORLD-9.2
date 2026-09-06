@@ -19,6 +19,14 @@
     "s1_sha256": "4a5688fb58a00639ca342138ea6f3fc72793e87679f9e1ca4b179223238225f6",
     "s1r_sha256": "d160fcb03d8e5a54cf0a2e963211e59d529be90482ba665f965e846d3f902f97"
   },
+  "server_evidence": {
+    "acceptance_sha256": "e6edae8a5e2e9d3b962712f368ce582ac1d2b534bc7bfe900174cde40a83e608",
+    "summary_sha256": "f3da1cf078058971787835c633d17853ec91f3189411acef0d5b64cb98d7fa92",
+    "archive_sha256": "016b9608a1090c95cb41375e35f548cfa5e38fda9716b41a107ee2c7ebcbcc59",
+    "download_hash_matches_server": true,
+    "status": "passed",
+    "tapes": 60
+  },
   "local_evidence": {
     "acceptance_sha256": "438bbe72a62fa26252f3f1aebfdcd5edf47e215f864fd08cfab0bdad14f498df",
     "status": "passed",

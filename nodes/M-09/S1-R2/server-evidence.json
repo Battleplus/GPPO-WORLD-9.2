@@ -1,19 +1,40 @@
 {
   "format": "m09-s1r2-server-evidence/1.0.0",
-  "status": "blocked",
+  "status": "passed",
   "host": "172.17.27.173",
   "account": "user1",
   "preflight": {
-    "result": "reachable_but_authentication_rejected",
+    "result": "passed",
     "commands_attempted": [
       "ssh -o BatchMode=yes -o ConnectTimeout=10 user1@172.17.27.173 ...",
       "ssh -i ~/.ssh/my_key.pem -o IdentitiesOnly=yes -o BatchMode=yes user1@172.17.27.173 ...",
       "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes user1@172.17.27.173 ..."
     ],
-    "result_text": "Permission denied (publickey,password)."
+    "result_text": "Python 3.10.12; Torch 2.2.2+cu121; Gymnasium 0.29.1; 288G free; existing processes inspected and left running."
   },
-  "server_run": null,
-  "server_archive": null,
-  "download_verification": null,
-  "note": "No password was guessed or stored; no server process or shared environment was modified. Server acceptance must be rerun after an authorized working credential is available."
+  "server_run": {
+    "run_dir": "/home/user1/s1-r2-runs/20260906-v2",
+    "baseline_frozen_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "result": "passed",
+    "tapes": 60,
+    "scenario_assertion_failures": 0,
+    "future_input_violations": 0,
+    "constraint_violations": 0,
+    "collector_safety_violations": 0,
+    "acceptance_sha256": "e6edae8a5e2e9d3b962712f368ce582ac1d2b534bc7bfe900174cde40a83e608",
+    "summary_sha256": "f3da1cf078058971787835c633d17853ec91f3189411acef0d5b64cb98d7fa92",
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1"
+  },
+  "server_archive": {
+    "name": "m09-s1r2-server-artifacts-20260906.tar.gz",
+    "sha256": "016b9608a1090c95cb41375e35f548cfa5e38fda9716b41a107ee2c7ebcbcc59",
+    "members": ["output/s1r-acceptance.json", "output/s1r2-summary.json", "run.stdout", "run_s1_r2_acceptance.py", "s1_r_contracts.py", "baseline-fix.patch", "gppo_seed1101_step50000.pt", "server-manifest.txt"]
+  },
+  "download_verification": {
+    "local_path": "E:/Z博士/tmp-s1r2-server-download-20260906-v2/m09-s1r2-server-artifacts-20260906.tar.gz",
+    "sha256": "016b9608a1090c95cb41375e35f548cfa5e38fda9716b41a107ee2c7ebcbcc59",
+    "server_hash_matches": true,
+    "independent_extract_verified": true
+  },
+  "note": "The provided password was used only for this SSH/SCP session; it was not written to code, logs, Git, or the archive. Existing processes were not stopped and the old runs were not overwritten."
 }

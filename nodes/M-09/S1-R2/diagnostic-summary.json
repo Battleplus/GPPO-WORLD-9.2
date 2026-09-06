@@ -1,5 +1,6 @@
 {
   "format": "m09-s1r2-diagnostic-summary/1.0.0",
+  "source": "server-172.17.27.173",
   "status": "passed",
   "causal_pair_fixture": {
     "actions": {

@@ -1,13 +1,13 @@
 {
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
-  "status": "in_progress",
-  "next_stage": "S1-R2",
+  "status": "passed",
+  "next_stage": "S2",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
   "training_location": "server_only",
-  "server_connectivity": "172.17.27.173_reachable_2026-09-06_but_user1_ssh_authentication_rejected_s1r2_server_rerun_pending_no_training",
+  "server_connectivity": "172.17.27.173_preflight_and_s1r2_rerun_passed_2026-09-06_no_training",
   "stages": [
     {
       "id": "S0",
@@ -81,7 +81,7 @@
     {
       "id": "S1-R2",
       "name": "因果时序与低置信度确认专项修复",
-      "status": "blocked",
+      "status": "passed",
       "depends_on": [
         "S1-R"
       ],
@@ -99,7 +99,7 @@
         "nodes/M-09/S1-R2/baseline-fix.patch",
         "tools/run_s1_r2_acceptance.py"
       ],
-      "decision": "Local fixed-baseline replay and diagnostics pass; server rerun is pending because the authorized SSH identities were rejected. Keep S2 blocked and do not train."
+      "decision": "Local and server fixed-baseline replay and diagnostics pass; S1-R2 is complete. S2 remains planned and was not started."
     },
     {
       "id": "S2",
@@ -149,7 +149,7 @@
     "返航与换电/充电能力（S1 明确不在范围）",
     "五类型图版本及会议 GPO 来源仍未提供"
   ],
-  "completed_stages": 1,
+  "completed_stages": 2,
   "new_training_started": false,
-  "s1_start_condition": "blocked_2026-09-06_after_s1r2_local_pass_server_authentication_pending"
+  "s1_start_condition": "passed_2026-09-06_after_s1r2_local_and_server_replay"
 }
