@@ -1,0 +1,35 @@
+{
+  "format": "m09-s0-alternate-server-preflight/1.0.0",
+  "checked_at": "2026-09-06T09:44:18+08:00/2026-09-06T09:47:00+08:00",
+  "address": "172.17.27.172",
+  "hostname": "admin123-AS4110G-D04R-G3",
+  "accounts_checked": ["daji", "xiaoji"],
+  "same_physical_host": true,
+  "credentials_persisted": false,
+  "gpu_inventory": {"count":8,"name":"NVIDIA GeForce RTX 4090","memory_total_mib_each":49140},
+  "occupancy": {
+    "busy_or_reserved_observed": [0,1,2,3,5,7],
+    "candidate_idle": [4,6],
+    "gpu_4_observations": ["4 MiB, 0%, no process", "1554 MiB, 0%, python process", "4 MiB, 0%, no process"],
+    "gpu_6_observations": ["4 MiB, 0%, no process", "4 MiB, 0%, no process", "4 MiB, 0%, no process"],
+    "decision": "GPU 6 is the preferred candidate. GPU 4 changed ownership during the audit and requires extra caution. Recheck immediately before any launch; no GPU is reserved by this audit."
+  },
+  "disk": {"root_available_tib":1.2,"home_available_tib":7.3,"home_used_percent":58},
+  "xiaoji_candidate_environment": {
+    "path":"/home/xiaoji/miniconda3/envs/heteromrta-preplan",
+    "python":"3.10.20",
+    "torch":"2.12.1+cu130",
+    "cuda_runtime":"13.0",
+    "cuda_available":true,
+    "visible_gpu_count":8,
+    "compatibility_with_frozen_t05":"not verified and differs from the T-05 sealed environment"
+  },
+  "project_search": {
+    "scope":"each account home, max depth 5, run_t05_server_training.py or server-training-config.json",
+    "matching_files":0,
+    "training_ready":false,
+    "reason":"No GPPO source checkout, frozen config, or checkpoint/data bundle was found under either account."
+  },
+  "actions": {"training_started":false,"shared_environment_modified":false,"processes_terminated":0},
+  "result":"gpu_capacity_available_but_no_frozen_training_job_staged"
+}

@@ -7,7 +7,7 @@
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
   "training_location": "server_only",
-  "server_connectivity": "reachable_preflight_passed_2026-09-06_no_training_started",
+  "server_connectivity": "primary_and_alternate_hosts_reachable_preflight_passed_2026-09-06_no_training_started",
   "stages": [
     {
       "id": "S0",
@@ -22,6 +22,8 @@
         "nodes/M-09/S0/gaps.md",
         "nodes/M-09/S0/server-preflight.json",
         "nodes/M-09/S0/server-preflight-20260906.txt",
+        "nodes/M-09/S0/server-preflight-alternates-20260906.json",
+        "nodes/M-09/S0/server-preflight-alternates-20260906.txt",
         "nodes/M-09/S0/artifact-verification.json",
         "nodes/M-09/S0/checkpoint-load.json"
       ],

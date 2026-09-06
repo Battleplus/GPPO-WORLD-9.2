@@ -1,0 +1,31 @@
+checked_at=2026-09-06T09:44:18+08:00 through 2026-09-06T09:47:00+08:00
+address=172.17.27.172
+hostname=admin123-AS4110G-D04R-G3
+accounts=daji,xiaoji
+same_physical_host=true
+credentials_persisted=false
+
+gpu_inventory=8 x NVIDIA GeForce RTX 4090, 49140 MiB each
+busy_or_reserved_observed=GPU 0,1,2,3,5,7
+gpu_4_observations=idle; then 1554 MiB python allocation; then idle
+gpu_6_observations=idle in all three checks, 4 MiB, 0%, no process
+preferred_candidate=GPU 6
+reservation_created=false
+
+root_available=1.2 TiB
+home_available=7.3 TiB
+home_used=58%
+
+xiaoji_candidate_env=/home/xiaoji/miniconda3/envs/heteromrta-preplan
+xiaoji_python=3.10.20
+xiaoji_torch=2.12.1+cu130
+xiaoji_cuda_runtime=13.0
+xiaoji_cuda_available=true
+xiaoji_visible_gpu_count=8
+
+gppo_training_entrypoints_found=0
+gppo_frozen_configs_found=0
+training_started=false
+shared_environment_modified=false
+processes_terminated=0
+result=gpu_capacity_available_but_no_frozen_training_job_staged
