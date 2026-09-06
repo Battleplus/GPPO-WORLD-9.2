@@ -173,6 +173,9 @@ def run_tape(args, imports, scenario: str, index: int, model):
     for step in range(MAX_DECISIONS):
         ctx = env.begin_decision()
         before_version = (int(env.graph_version), int(env.decision_version))
+        graph_fields = {str(name).lower() for name in vars(ctx.graph)}
+        if any(token in name for name in graph_fields for token in ("future", "truth", "oracle", "optimal")):
+            counters["future_input_violations"] += 1
         proposed, _, _, _ = model.act(ctx.graph, deterministic=True)
         proposed = int(proposed)
         probe_override = False
@@ -194,11 +197,13 @@ def run_tape(args, imports, scenario: str, index: int, model):
                 executed = ctx.graph.noop_action
         if scenario in {"communication_interrupt", "composite_three_factor"} and step == 0:
             env.advance_time(3.0)
+        stale_snapshot_before = json_hash(env.snapshot())
         result = env.submit_action(ActionSubmission.from_decision(executed, ctx))
         info = result[-1]
         if bool(info.get("stale_decision", False)):
             counters["stale_rejections"] += 1
-            if (int(env.graph_version), int(env.decision_version)) == before_version:
+            stale_snapshot_after = json_hash(env.snapshot())
+            if stale_snapshot_before != stale_snapshot_after:
                 counters["collector_safety_violations"] += 1
             retry = env.begin_decision()
             retry_action, _, _, _ = model.act(retry.graph, deterministic=True)
