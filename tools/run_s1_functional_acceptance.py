@@ -191,8 +191,8 @@ def run_tape(args, imports, scenario: str, index: int, model):
                 energy_rejected = True
                 counters["energy_rejections"] += 1
                 executed = ctx.graph.noop_action
-        if scenario in {"communication_interrupt", "composite_three_factor"} and step == 1:
-            env.advance_time(2.0)
+        if scenario in {"communication_interrupt", "composite_three_factor"} and step == 0:
+            env.advance_time(3.0)
         result = env.submit_action(ActionSubmission.from_decision(executed, ctx))
         info = result[-1]
         if bool(info.get("stale_decision", False)):
@@ -237,6 +237,7 @@ def run_tape(args, imports, scenario: str, index: int, model):
         if terminated or truncated:
             end_reason = "terminated" if terminated else "timeout"
             break
+    observed_types = [record.event.event_type.value for record in env.event_records.values()]
     factors = {
         "single_uav_damage": "UAV_DAMAGE" in observed_types,
         "communication_anomaly": counters["stale_rejections"] > 0 or scenario in {"communication_interrupt", "composite_three_factor"},
