@@ -82,6 +82,7 @@ def event(
     regions=(),
     targets=(),
     severity=1.0,
+    payload=None,
 ):
     return RandomEvent(
         event_id=event_id,
@@ -93,7 +94,7 @@ def event(
         affected_regions=tuple(regions),
         affected_targets=tuple(targets),
         severity=severity,
-        payload={},
+        payload={} if payload is None else payload,
         event_seed=int(occurred_at * 1000),
         state_version=0,
     )
@@ -109,7 +110,7 @@ def make_tape(EventTape, RandomEvent, RandomEventType, scenario: str, index: int
     if scenario == "normal":
         events = ()
     elif scenario == "emergency":
-        events = (discovery,)
+        events = (event(RandomEvent, RandomEventType, f"{scenario}-{index}-urgent", RandomEventType.TARGET_DISCOVERED, 2.0, 2.0, uavs=(1,), targets=(0,), payload={"task_kind": "emergency", "deadline": 10.0}),)
     elif scenario == "uav_damage":
         events = (damage, vacancy)
     elif scenario == "energy_insufficient":
@@ -123,7 +124,7 @@ def make_tape(EventTape, RandomEvent, RandomEventType, scenario: str, index: int
         events = (
             event(RandomEvent, RandomEventType, f"{scenario}-{index}-anchor", RandomEventType.TARGET_DESTROYED, 0.0, 0.0, targets=(1,)),
             damage,
-            event(RandomEvent, RandomEventType, f"{scenario}-{index}-weak", RandomEventType.REGION_VACANCY, 4.0, 4.5, regions=(1,), severity=0.55),
+            event(RandomEvent, RandomEventType, f"{scenario}-{index}-weak", RandomEventType.REGION_VACANCY, 4.0, 4.5, regions=(1,), severity=0.55, payload={"confidence": 0.55}),
             destroyed,
         )
     else:  # pragma: no cover
@@ -238,6 +239,9 @@ def run_tape(args, imports, scenario: str, index: int, model):
             end_reason = "terminated" if terminated else "timeout"
             break
     observed_types = [record.event.event_type.value for record in env.event_records.values()]
+    counters["reassignments"] = sum(
+        1 for record in env.event_records.values() if record.actual_affected_regions
+    )
     factors = {
         "single_uav_damage": "UAV_DAMAGE" in observed_types,
         "communication_anomaly": counters["stale_rejections"] > 0 or scenario in {"communication_interrupt", "composite_three_factor"},
