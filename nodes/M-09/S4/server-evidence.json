@@ -36,5 +36,8 @@
   },
   "archive": {"name": "m09-s4-server-artifacts-20260906.tar.gz", "sha256": "8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f", "local_independent_extract": true, "member_count_in_tar_listing": 232},
   "existing_processes_preserved": true,
-  "training_started": false
+  "training_started": false,
+  "github_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s4-read-only-world-model-v1-20260906",
+  "github_asset_digest": "sha256:8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f",
+  "cdn_independent_download": {"status": "success", "sha256": "8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f"}
 }

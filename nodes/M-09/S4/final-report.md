@@ -17,4 +17,4 @@ S4 通过：A 的纯 GPPO + Shadow 只读演示和 B 的历史 adapter 真实上
 
 ## 归档
 
-服务器 archive SHA-256：`8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f`。本地独立解包后关键成员 hash 记录在 `artifact-manifest.json`；GitHub Release 与独立 CDN 下载状态在完成发布后补记。
+服务器 archive SHA-256：`8c30648b98e853e29a849dd6a1ca59b64d393957abe48cb5f0d80836d820300f`。GitHub Release 为 [m09-s4-read-only-world-model-v1-20260906](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s4-read-only-world-model-v1-20260906)，API asset digest 和独立 CDN 下载 SHA-256 均与服务器归档一致。
