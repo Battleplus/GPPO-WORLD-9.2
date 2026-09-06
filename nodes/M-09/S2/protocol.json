@@ -1,0 +1,28 @@
+{
+  "format": "m09-s2-latency-protocol/1.0.0",
+  "status": "frozen_before_formal_measurement",
+  "workload": {
+    "scenarios": ["normal", "emergency", "uav_damage", "energy_insufficient", "communication_interrupt", "composite_three_factor"],
+    "tapes_per_scenario": 10,
+    "independent_tapes_per_pass": 60,
+    "batch": 1,
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "s1r2_confirmation_rule": "confidence_below_0.95_region_vacancy_requires_two_distinct_positive_sources"
+  },
+  "devices": ["cpu", "cuda:0"],
+  "cuda_policy": "single_device_no_concurrent_gpu_arms_synchronize_before_and_after_forward",
+  "modes": ["baseline", "inference_mode"],
+  "repeats": 5,
+  "warmup_passes": 1,
+  "cold_start_processes": 3,
+  "deterministic": true,
+  "eval_mode": true,
+  "clock": "time.perf_counter_ns",
+  "timeout_minutes_per_arm": 60,
+  "sampling_order": "repeat_interleaved_baseline_then_optimization",
+  "raw_record": "per_decision_and_per_tape_json",
+  "statistics": ["mean", "p50", "p95", "p99", "max", "n", "timeout_count", "paired_tape_delta"],
+  "p99_note": "unstable_when_segment_sample_count_is_less_than_100",
+  "optimization_limit": 2,
+  "fairness": "same_checkpoint_tapes_seeds_device_and_execution_contract_for_each_arm"
+}
