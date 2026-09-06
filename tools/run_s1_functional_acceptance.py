@@ -151,6 +151,8 @@ class TapeResult:
     collector_safety_violations: int
     observed_event_types: list[str]
     factors: dict[str, bool]
+    assertion_failures: list[str]
+    scenario_assertions_passed: bool
     trace_sha256: str
     trace: list[dict[str, Any]]
 
