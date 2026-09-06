@@ -19,7 +19,7 @@
   "files": [
     {"path":"README.md","bytes":3135,"sha256":"5c66bbc5973db3878fd37ae41bb3f7849fa851b5b0d885a28ddcc58c4f19015e"},
     {"path":"claims-and-evidence.md","bytes":5720,"sha256":"164ae3e77f4d3b47e4e1366910df26c263a98ae4b32c944158097913260612ef"},
-    {"path":"release-candidate.json","bytes":4168,"sha256":"6881f9b0207862adfc677c051601bff7620e1d01603536387e36063727191d14"},
+    {"path":"release-candidate.json","bytes":4190,"sha256":"2f088fed6dc152b663495a30ef1f81b8af24e041fda7b9c027a2ce0a8c7dcbdd"},
     {"path":"reproduction-runbook.md","bytes":2445,"sha256":"55a1b1974daf299639877bf5ff1cdfdab1fe4fc58791bb3bb3fb3d37c842da98"},
     {"path":"reproduction-results.json","bytes":2149,"sha256":"16ef04f98b290d42512d4c3d8eddf72704313b9723f2f6d5abce157882a2dc94"},
     {"path":"server-evidence.json","bytes":2718,"sha256":"2bbadd8733a12a35ace0ff1a16a5a946ab63e316186ea18d69b4a3ff86cb5524"},
