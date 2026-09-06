@@ -1,0 +1,9 @@
+{
+  "format": "m09-s1-trace-manifest/1.0.0",
+  "status": "blocked",
+  "source_commit": "0bcbcdb7475cabe9cfc69f6fcd9e51aaa0519cde",
+  "expected_tape_count": 60,
+  "completed_tape_count": 0,
+  "entries": [],
+  "reason": "S1-A frozen baseline import failed before episode execution"
+}

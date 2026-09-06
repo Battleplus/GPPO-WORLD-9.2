@@ -29,7 +29,7 @@
       ],
       "decision": "Use verified three-node-type GPPO baseline; five-node-type meeting version remains missing."
     },
-    {"id":"S1","name":"基础功能","status":"planned","depends_on":["S0"],"evidence":[]},
+    {"id":"S1","name":"基础功能","status":"in_progress","depends_on":["S0"],"evidence":["nodes/M-09/S1/README.md","nodes/M-09/S1/protocol.md","nodes/M-09/S1/implementation.md","nodes/M-09/S1/compatibility.md","nodes/M-09/S1/scenario-manifest.json","nodes/M-09/S1/trace-manifest.json","nodes/M-09/S1/failed-records.md","nodes/M-09/S1/final-report.md","tools/run_s1_functional_acceptance.py"],"decision":"S1 protocol frozen; baseline reproduction is being executed in an isolated server environment. No S1 pass claim until the six-scenario run completes."},
     {"id":"S2","name":"延迟定位与优化","status":"planned","depends_on":["S1"],"evidence":[]},
     {"id":"S3","name":"必要训练与对照","status":"planned","depends_on":["S2"],"evidence":[]},
     {"id":"S4","name":"世界模型接入展示","status":"planned","depends_on":["S1","S3"],"evidence":[]},
