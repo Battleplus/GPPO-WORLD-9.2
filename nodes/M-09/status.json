@@ -2,12 +2,12 @@
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
   "status": "in_progress",
-  "next_stage": "S1-R",
+  "next_stage": "S1-R2",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
   "training_location": "server_only",
-  "server_connectivity": "primary_and_alternate_hosts_reachable_preflight_passed_2026-09-06_s1r_rerun_completed_no_training",
+  "server_connectivity": "172.17.27.173_reachable_2026-09-06_but_user1_ssh_authentication_rejected_s1r2_server_rerun_pending_no_training",
   "stages": [
     {
       "id": "S0",
@@ -79,6 +79,29 @@
       "decision": "60 fixed tapes rerun; lifecycle and execution accounting corrected, but low-confidence confirmation and future-input causal assertions fail in composite/UAV-damage scenarios. S2 is not ready."
     },
     {
+      "id": "S1-R2",
+      "name": "因果时序与低置信度确认专项修复",
+      "status": "blocked",
+      "depends_on": [
+        "S1-R"
+      ],
+      "evidence": [
+        "nodes/M-09/S1-R2/README.md",
+        "nodes/M-09/S1-R2/protocol.md",
+        "nodes/M-09/S1-R2/root-cause-report.md",
+        "nodes/M-09/S1-R2/evidence-version-inventory.json",
+        "nodes/M-09/S1-R2/regression-tests.md",
+        "nodes/M-09/S1-R2/scenario-summary.json",
+        "nodes/M-09/S1-R2/diagnostic-summary.json",
+        "nodes/M-09/S1-R2/trace-manifest.json",
+        "nodes/M-09/S1-R2/server-evidence.json",
+        "nodes/M-09/S1-R2/final-report.md",
+        "nodes/M-09/S1-R2/baseline-fix.patch",
+        "tools/run_s1_r2_acceptance.py"
+      ],
+      "decision": "Local fixed-baseline replay and diagnostics pass; server rerun is pending because the authorized SSH identities were rejected. Keep S2 blocked and do not train."
+    },
+    {
       "id": "S2",
       "name": "延迟定位与优化",
       "status": "planned",
@@ -128,5 +151,5 @@
   ],
   "completed_stages": 1,
   "new_training_started": false,
-  "s1_start_condition": "blocked_2026-09-06_after_s1r_correction_low_confidence_and_future_input_failures"
+  "s1_start_condition": "blocked_2026-09-06_after_s1r2_local_pass_server_authentication_pending"
 }

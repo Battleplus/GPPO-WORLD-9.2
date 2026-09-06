@@ -1,0 +1,150 @@
+{
+  "format": "m09-s1r2-diagnostic-summary/1.0.0",
+  "status": "passed",
+  "causal_pair_fixture": {
+    "actions": {
+      "after": [
+        0,
+        8
+      ],
+      "before": [
+        16,
+        16
+      ],
+      "during": [
+        16,
+        16
+      ]
+    },
+    "after_action_differ": true,
+    "after_graphs_differ": true,
+    "after_logit_differ": true,
+    "arrivals": [
+      [
+        "pair-future-a"
+      ],
+      [
+        "pair-future-b"
+      ]
+    ],
+    "before_action_equal": true,
+    "before_equal": true,
+    "before_logit_equal": true,
+    "decision_times": {
+      "after": 4.0,
+      "before": 0.0,
+      "during": 1.0
+    },
+    "during_action_equal": true,
+    "during_equal": true,
+    "during_logit_equal": true,
+    "future_event_ids": [
+      [
+        "pair-future-a"
+      ],
+      [
+        "pair-future-b"
+      ]
+    ],
+    "graph_versions": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "negative_test_future_hidden_until_arrival": true,
+    "positive_test_after_arrival_changes_input": true
+  },
+  "confirmation_fixtures": {
+    "contract": {
+      "direct_confirmation_confidence_threshold": 0.95,
+      "severity_is_separate_from_confidence": true,
+      "target_discovered_requires_distinct_sources": 3
+    },
+    "contradiction": {
+      "expected": "FALSE_ALARM",
+      "status": "ConfirmationStatus.FALSE_ALARM"
+    },
+    "expiry": {
+      "expected": "EXPIRED",
+      "status": "ConfirmationStatus.EXPIRED"
+    },
+    "insufficient_evidence": {
+      "confirmed": false,
+      "expected": "SUSPECTED",
+      "status": "ConfirmationStatus.SUSPECTED"
+    },
+    "low_confidence_region_sufficient_evidence": {
+      "confirmed": true,
+      "evidence_sources": [
+        "src-0",
+        "src-1"
+      ],
+      "expected": "CONFIRMED",
+      "status": "ConfirmationStatus.CONFIRMED"
+    },
+    "payload_consumption": {
+      "consumed": true,
+      "observed_confidences": [
+        0.55
+      ],
+      "payload_confidence": 0.55
+    },
+    "sufficient_evidence": {
+      "confirmed": true,
+      "evidence_sources": [
+        "src-0",
+        "src-1",
+        "src-2"
+      ],
+      "expected": "CONFIRMED",
+      "status": "ConfirmationStatus.CONFIRMED"
+    }
+  },
+  "execution_layer_probes": [
+    {
+      "accepted": false,
+      "charged_uid": null,
+      "energy_after": 0.0,
+      "energy_before": 0.0,
+      "executed_action": 16,
+      "reason": "energy",
+      "status": "energy_rejected"
+    },
+    {
+      "accepted": true,
+      "charged_uid": 1,
+      "energy_after": 0.0,
+      "energy_before": 1.0,
+      "executed_action": 2,
+      "reason": null,
+      "status": "accepted"
+    },
+    {
+      "accepted": false,
+      "charged_uid": null,
+      "energy_after": 0.0,
+      "energy_before": 0.0,
+      "executed_action": 16,
+      "reason": "stale",
+      "status": "stale_rejected"
+    },
+    {
+      "accepted": false,
+      "charged_uid": null,
+      "energy_after": 0.0,
+      "energy_before": 0.0,
+      "executed_action": 16,
+      "reason": "duplicate",
+      "status": "duplicate_rejected"
+    }
+  ]
+}

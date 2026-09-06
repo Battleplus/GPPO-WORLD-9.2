@@ -1,0 +1,27 @@
+{
+  "format": "m09-s1r2-evidence-version-inventory/1.0.0",
+  "project": {
+    "branch": "execute-r02-20260905",
+    "head_before_r2_docs": "64c9b889f2bc133a424b998f4f274a26a7998d31",
+    "acceptance_tool_sha256": "56b8f4da37f5918184f46ff2e62f0d8c6e1593067322634a79ded3f0c4219722",
+    "contracts_sha256": "49e375ed10f5ebc102f21f111b4ef56ac6902878335e2f61fb38860afe686aa7"
+  },
+  "policy": {
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225"
+  },
+  "baseline": {
+    "frozen_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "isolated_fix_commit": "f53efbf95db49ca826b7902b2577217e378d2d96",
+    "reproducible_patch_sha256": "e9442fe64dbd54af701572b417f2e26e5e50e724a46dc37368b6bdda67661b98"
+  },
+  "historical_archives": {
+    "s1_sha256": "4a5688fb58a00639ca342138ea6f3fc72793e87679f9e1ca4b179223238225f6",
+    "s1r_sha256": "d160fcb03d8e5a54cf0a2e963211e59d529be90482ba665f965e846d3f902f97"
+  },
+  "local_evidence": {
+    "acceptance_sha256": "438bbe72a62fa26252f3f1aebfdcd5edf47e215f864fd08cfab0bdad14f498df",
+    "status": "passed",
+    "tapes": 60
+  }
+}

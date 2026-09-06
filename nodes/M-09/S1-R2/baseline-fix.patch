@@ -1,0 +1,214 @@
+From f53efbf95db49ca826b7902b2577217e378d2d96 Mon Sep 17 00:00:00 2001
+From: Battleplus <3559424769@qq.com>
+Date: Sun, 6 Sep 2026 11:37:43 +0800
+Subject: [PATCH] fix causal payload propagation and low confidence
+ confirmation
+
+---
+ event_runtime/detector.py                     | 17 +++++++----
+ event_runtime/state_machine.py                | 10 +++++--
+ ppo_allocation/random_event/environment.py    |  1 +
+ ppo_allocation/random_event/runtime_bridge.py |  5 +++-
+ .../test_confirmation_timelines.py            | 30 ++++++++++++++++++-
+ .../test_event_runtime_integration.py         | 30 ++++++++++++++++++-
+ 6 files changed, 81 insertions(+), 12 deletions(-)
+
+diff --git a/event_runtime/detector.py b/event_runtime/detector.py
+index a23af07..4ca565f 100644
+--- a/event_runtime/detector.py
++++ b/event_runtime/detector.py
+@@ -36,26 +36,31 @@ class EventDetector:
+ 
+     @staticmethod
+     def _signal_plan(event: TruthEvent, profile: WeakCommunicationProfile) -> list[tuple[str, str, float, float]]:
++        payload_confidence = event.payload.get("confidence")
++
++        def confidence(default: float) -> float:
++            return float(payload_confidence) if payload_confidence is not None else default
++
+         if event.event_type is EventType.UAV_DAMAGE:
+             if bool(event.payload.get("active_report", False)):
+-                return [("ACTIVE_FAILURE_REPORT", "onboard_self_test", 0.05, 0.99)]
++                return [("ACTIVE_FAILURE_REPORT", "onboard_self_test", 0.05, confidence(0.99))]
+             return [
+-                ("HEARTBEAT_MISSED", "heartbeat_monitor", profile.heartbeat_interval * index, 0.75)
++                ("HEARTBEAT_MISSED", "heartbeat_monitor", profile.heartbeat_interval * index, confidence(0.75))
+                 for index in range(1, profile.heartbeat_miss_threshold + 1)
+             ]
+         if event.event_type is EventType.TARGET_DISCOVERED:
+             return [
+-                ("TARGET_DETECTION", "eo_ir", 0.10 * index, min(0.99, 0.68 + index * 0.08))
++                ("TARGET_DETECTION", "eo_ir", 0.10 * index, confidence(min(0.99, 0.68 + index * 0.08)))
+                 for index in range(1, profile.target_confirmation_count + 1)
+             ]
+         if event.event_type is EventType.TARGET_DESTROYED:
+             if bool(event.payload.get("authoritative", False)):
+-                return [("AUTHORITATIVE_TARGET_DESTROYED", "command_system", 0.05, 0.99)]
++                return [("AUTHORITATIVE_TARGET_DESTROYED", "command_system", 0.05, confidence(0.99))]
+             return [
+-                ("TARGET_DESTROYED_EVIDENCE", "eo_sar", 0.15 * index, 0.90)
++                ("TARGET_DESTROYED_EVIDENCE", "eo_sar", 0.15 * index, confidence(0.90))
+                 for index in range(1, profile.destruction_confirmation_count + 1)
+             ]
+-        return [("REGION_LEASE_VACANT", "lease_monitor", 0.05, 0.99)]
++        return [("REGION_LEASE_VACANT", "lease_monitor", 0.05, confidence(0.99))]
+ 
+     def generate_observation_tape(self, truth_tape: TruthEventTape) -> ObservationTape:
+         rng = self._rng(truth_tape.initial_seed, truth_tape.event_seed, self.profile.name)
+diff --git a/event_runtime/state_machine.py b/event_runtime/state_machine.py
+index 34899b7..bf767c4 100644
+--- a/event_runtime/state_machine.py
++++ b/event_runtime/state_machine.py
+@@ -119,11 +119,15 @@ class ConfirmationStateMachine:
+         return cleared
+ 
+     def _required_evidence(self, observation: Observation) -> int:
++        # A low-confidence observation cannot satisfy a one-sensor direct
++        # confirmation path.  It needs two independent positive sources; the
++        # event-specific rules below may require even more.
++        low_confidence_required = 2 if observation.confidence < 0.95 else 1
+         if observation.event_type is EventType.TARGET_DISCOVERED:
+-            return self.target_confirmation_count
++            return max(self.target_confirmation_count, low_confidence_required)
+         if observation.event_type is EventType.TARGET_DESTROYED:
+-            return self.destruction_confirmation_count
+-        return 1
++            return max(self.destruction_confirmation_count, low_confidence_required)
++        return low_confidence_required
+ 
+     @staticmethod
+     def _direct_confirmation(observation: Observation) -> bool:
+diff --git a/ppo_allocation/random_event/environment.py b/ppo_allocation/random_event/environment.py
+index f46d5cf..adffb56 100644
+--- a/ppo_allocation/random_event/environment.py
++++ b/ppo_allocation/random_event/environment.py
+@@ -349,6 +349,7 @@ class RandomEventAllocationEnv(UAVTaskAllocationEnv):
+             affected_regions=event.affected_regions,
+             affected_targets=event.affected_targets,
+             severity=event.severity,
++            payload=dict(event.payload),
+             event_seed=event.event_seed,
+             state_version=event.state_version,
+         )
+diff --git a/ppo_allocation/random_event/runtime_bridge.py b/ppo_allocation/random_event/runtime_bridge.py
+index 3a15104..ee698ca 100644
+--- a/ppo_allocation/random_event/runtime_bridge.py
++++ b/ppo_allocation/random_event/runtime_bridge.py
+@@ -218,6 +218,8 @@ class DeterministicDetector:
+         emitted_at = truth_event.occurred_at + observation_delay
+         received_at = emitted_at + order_jitter
+ 
++        payload_confidence = truth_event.payload.get("confidence")
++        confidence = float(payload_confidence) if payload_confidence is not None else (0.95 if not is_false_positive else 0.3)
+         obs = Observation(
+             observation_id=f"OBS-{truth_event.event_id}-{int(self.rng.integers(0, 10**9))}",
+             event_id=truth_event.event_id,
+@@ -227,7 +229,7 @@ class DeterministicDetector:
+             source_type="sensor",
+             signal_type=signal_type_override or self._signal_type_for(truth_event),
+             sequence=1,
+-            confidence=0.95 if not is_false_positive else 0.3,
++            confidence=confidence,
+             positive=True if not is_false_positive else bool(self.rng.integers(0, 2)),
+             emitted_at=emitted_at,
+             received_at=received_at,
+@@ -238,6 +240,7 @@ class DeterministicDetector:
+             severity=truth_event.severity,
+             event_seed=truth_event.event_seed,
+             state_version=truth_event.state_version,
++            payload=dict(truth_event.payload),
+             is_false_positive=is_false_positive,
+         )
+         return obs
+diff --git a/ppo_allocation/tests_random_event/test_confirmation_timelines.py b/ppo_allocation/tests_random_event/test_confirmation_timelines.py
+index 12394f1..0c30113 100644
+--- a/ppo_allocation/tests_random_event/test_confirmation_timelines.py
++++ b/ppo_allocation/tests_random_event/test_confirmation_timelines.py
+@@ -139,7 +139,35 @@ class TruthBeliefIsolationTests(unittest.TestCase):
+         self.assertEqual(env.graph_version, gv_before)
+         self.assertEqual(env.decision_version, dv_before)
+         graph_after = build_graph_state(env)
+-        self.assertTrue(torch.equal(mask_before, graph_after.action_mask))
++        self.assertTrue(np.array_equal(mask_before.numpy(), graph_after.action_mask.numpy()))
++
++
++class LowConfidenceConfirmationTests(unittest.TestCase):
++    def test_low_confidence_region_requires_two_independent_sources(self):
++        adapter = EventRuntimeAdapter()
++        first = _obs(
++            event_id="LOW-REGION",
++            event_type=EventType.REGION_VACANCY,
++            signal_type="REGION_LEASE_VACANT",
++            source_id="src-0",
++            confidence=0.55,
++            affected_targets=(),
++            affected_regions=("0",),
++        )
++        second = _obs(
++            event_id="LOW-REGION",
++            event_type=EventType.REGION_VACANCY,
++            signal_type="REGION_LEASE_VACANT",
++            source_id="src-1",
++            confidence=0.55,
++            affected_targets=(),
++            affected_regions=("0",),
++            sequence=2,
++        )
++        self.assertIsNone(adapter.process_observation(first))
++        self.assertEqual(adapter.state_machine.records["LOW-REGION"].status, ConfirmationStatus.SUSPECTED)
++        self.assertIsNotNone(adapter.process_observation(second))
++        self.assertEqual(adapter.state_machine.records["LOW-REGION"].status, ConfirmationStatus.CONFIRMED)
+ 
+ 
+ class DiscoveryThreeOfFiveTests(unittest.TestCase):
+diff --git a/ppo_allocation/tests_random_event/test_event_runtime_integration.py b/ppo_allocation/tests_random_event/test_event_runtime_integration.py
+index d13df61..4661fc3 100644
+--- a/ppo_allocation/tests_random_event/test_event_runtime_integration.py
++++ b/ppo_allocation/tests_random_event/test_event_runtime_integration.py
+@@ -20,7 +20,7 @@ _REPO_ROOT = str(Path(__file__).resolve().parents[2])
+ if _REPO_ROOT not in sys.path:
+     sys.path.append(_REPO_ROOT)
+ 
+-from event_runtime.events import EventType, TruthEvent
++from event_runtime.events import ConfirmationStatus, EventType, TruthEvent
+ 
+ from random_event.environment import RandomEventAllocationEnv
+ from random_event.events import EventTape, RandomEvent, RandomEventType
+@@ -62,6 +62,34 @@ class SnapshotIdentityTests(unittest.TestCase):
+ 
+ 
+ class BridgeEndToEndTests(unittest.TestCase):
++    def test_low_confidence_payload_reaches_detector_and_stays_suspected(self):
++        event = RandomEvent(
++            event_id="LOW-CONF",
++            event_type=RandomEventType.REGION_VACANCY,
++            occurred_at=0.0,
++            observed_at=0.0,
++            source_event="test",
++            affected_regions=(0,),
++            severity=0.9,
++            payload={"confidence": 0.55},
++            event_seed=42001,
++            state_version=0,
++        )
++        env = RandomEventAllocationEnv(
++            initial_seed=42,
++            event_seed=42001,
++            mode="single",
++            event_tape=EventTape(initial_seed=42, event_seed=42001, mode="single", events=(event,)),
++            max_decisions=10,
++        )
++        env.reset()
++        record = env.runtime_bridge.adapter.state_machine.records["LOW-CONF"]
++        self.assertEqual(record.status, ConfirmationStatus.SUSPECTED)
++        self.assertEqual(len(record.observations), 1)
++        self.assertAlmostEqual(record.observations[0].confidence, 0.55)
++        self.assertEqual(len(env.event_records), 0)
++        self.assertEqual(env.graph_version, 0)
++
+     def test_region_vacancy_confirms_and_modifies_env(self):
+         env = RandomEventAllocationEnv(
+             initial_seed=42, event_seed=42001, mode="single", events_per_episode=1,
+-- 
+2.49.0.windows.1
+

@@ -1,0 +1,19 @@
+{
+  "format": "m09-s1r2-server-evidence/1.0.0",
+  "status": "blocked",
+  "host": "172.17.27.173",
+  "account": "user1",
+  "preflight": {
+    "result": "reachable_but_authentication_rejected",
+    "commands_attempted": [
+      "ssh -o BatchMode=yes -o ConnectTimeout=10 user1@172.17.27.173 ...",
+      "ssh -i ~/.ssh/my_key.pem -o IdentitiesOnly=yes -o BatchMode=yes user1@172.17.27.173 ...",
+      "ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes -o BatchMode=yes user1@172.17.27.173 ..."
+    ],
+    "result_text": "Permission denied (publickey,password)."
+  },
+  "server_run": null,
+  "server_archive": null,
+  "download_verification": null,
+  "note": "No password was guessed or stored; no server process or shared environment was modified. Server acceptance must be rerun after an authorized working credential is available."
+}
