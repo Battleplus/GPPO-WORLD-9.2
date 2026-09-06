@@ -2,7 +2,7 @@
   "format": "m09-s1-trace-manifest/1.0.0",
   "status": "passed",
   "source_commit": "0bcbcdb7475cabe9cfc69f6fcd9e51aaa0519cde",
-  "acceptance_tool_commit": "0245b6aecb02676a482f6c9257fef7784c003d7c",
+  "acceptance_tool_commit": "ea7436efaf2035dc820613c4af70064a22a6d2f1",
   "tape_count": 60,
   "entries": [
     {
