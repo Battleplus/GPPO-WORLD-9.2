@@ -115,9 +115,13 @@ def make_tape(EventTape, RandomEvent, RandomEventType, scenario: str, index: int
     elif scenario == "energy_insufficient":
         events = (vacancy,)
     elif scenario == "communication_interrupt":
-        events = (event(RandomEvent, RandomEventType, f"{scenario}-{index}-delayed", RandomEventType.REGION_VACANCY, 2.0, 2.5, regions=(0,)),)
+        events = (
+            event(RandomEvent, RandomEventType, f"{scenario}-{index}-anchor", RandomEventType.TARGET_DESTROYED, 0.0, 0.0, targets=(1,)),
+            event(RandomEvent, RandomEventType, f"{scenario}-{index}-delayed", RandomEventType.REGION_VACANCY, 2.0, 2.5, regions=(0,)),
+        )
     elif scenario == "composite_three_factor":
         events = (
+            event(RandomEvent, RandomEventType, f"{scenario}-{index}-anchor", RandomEventType.TARGET_DESTROYED, 0.0, 0.0, targets=(1,)),
             damage,
             event(RandomEvent, RandomEventType, f"{scenario}-{index}-weak", RandomEventType.REGION_VACANCY, 4.0, 4.5, regions=(1,), severity=0.55),
             destroyed,
@@ -157,7 +161,7 @@ def run_tape(args, imports, scenario: str, index: int, model):
     tape_bytes = tape.to_bytes()
     env = Env(initial_seed=tape.initial_seed, event_seed=tape.event_seed, mode=tape.mode, event_tape=tape, max_decisions=MAX_DECISIONS)
     graph, reset_info = env.reset()
-    energy = {uid: ENERGY_INITIAL for uid in env.uavs}
+    energy = {uid: (0.0 if scenario == "energy_insufficient" else ENERGY_INITIAL) for uid in env.uavs}
     trace: list[dict[str, Any]] = []
     counters = {"reassignments": 0, "constraint_violations": 0, "fallback_count": 0, "stale_rejections": 0, "energy_rejections": 0, "illegal_effective_actions": 0, "future_input_violations": 0, "collector_safety_violations": 0}
     observed_types: list[str] = []
@@ -168,6 +172,12 @@ def run_tape(args, imports, scenario: str, index: int, model):
         before_version = (int(env.graph_version), int(env.decision_version))
         proposed, _, _, _ = model.act(ctx.graph, deterministic=True)
         proposed = int(proposed)
+        probe_override = False
+        if scenario == "energy_insufficient" and step == 0 and proposed == ctx.graph.noop_action:
+            legal_edges = [int(index) for index in ctx.graph.action_mask[:-1].nonzero().flatten().tolist()]
+            if legal_edges:
+                proposed = legal_edges[0]
+                probe_override = True
         if not (0 <= proposed < ctx.graph.num_actions and bool(ctx.graph.action_mask[proposed].item())):
             counters["illegal_effective_actions"] += 1
         executed = proposed
@@ -180,7 +190,7 @@ def run_tape(args, imports, scenario: str, index: int, model):
                 counters["energy_rejections"] += 1
                 executed = ctx.graph.noop_action
         if scenario in {"communication_interrupt", "composite_three_factor"} and step == 1:
-            env.advance_time(1.0)
+            env.advance_time(2.0)
         result = env.submit_action(ActionSubmission.from_decision(executed, ctx))
         info = result[-1]
         if bool(info.get("stale_decision", False)):
@@ -214,6 +224,7 @@ def run_tape(args, imports, scenario: str, index: int, model):
             "executed_action": executed,
             "energy_before": dict(energy),
             "energy_rejected": energy_rejected,
+            "execution_layer_probe_override": probe_override,
             "stale_decision": bool(info.get("stale_decision", False)),
             "new_events": list(info.get("new_events", ())),
             "reward": float(result[1]),
@@ -224,11 +235,6 @@ def run_tape(args, imports, scenario: str, index: int, model):
         if terminated or truncated:
             end_reason = "terminated" if terminated else "timeout"
             break
-    expected_factors = {
-        "single_uav_damage": scenario in {"uav_damage", "composite_three_factor"},
-        "communication_anomaly": scenario in {"communication_interrupt", "composite_three_factor"},
-        "low_confidence": scenario == "composite_three_factor",
-    }
     factors = {
         "single_uav_damage": "UAV_DAMAGE" in observed_types,
         "communication_anomaly": counters["stale_rejections"] > 0 or scenario in {"communication_interrupt", "composite_three_factor"},
@@ -251,6 +257,19 @@ def run_tape(args, imports, scenario: str, index: int, model):
         "observed_event_types": sorted(set(observed_types)),
         "factors": {key: bool(value) for key, value in factors.items()},
     }
+    assertion_failures = []
+    if scenario == "emergency" and "TARGET_DISCOVERED" not in observed_types:
+        assertion_failures.append("emergency_event_not_observed")
+    if scenario in {"uav_damage", "composite_three_factor"} and "UAV_DAMAGE" not in observed_types:
+        assertion_failures.append("uav_damage_not_observed")
+    if scenario == "energy_insufficient" and counters["energy_rejections"] == 0:
+        assertion_failures.append("energy_constraint_not_exercised")
+    if scenario in {"communication_interrupt", "composite_three_factor"} and counters["stale_rejections"] == 0:
+        assertion_failures.append("stale_submission_not_rejected")
+    if scenario == "composite_three_factor" and not factors["low_confidence"]:
+        assertion_failures.append("low_confidence_factor_not_present")
+    result_without_trace["assertion_failures"] = assertion_failures
+    result_without_trace["scenario_assertions_passed"] = not assertion_failures
     trace_sha = json_hash(trace)
     result_without_trace["trace_sha256"] = trace_sha
     result_without_trace["trace"] = trace
@@ -287,10 +306,19 @@ def main() -> int:
             "illegal_effective_actions": sum(row["illegal_effective_actions"] for row in rows),
             "future_input_violations": sum(row["future_input_violations"] for row in rows),
             "collector_safety_violations": sum(row["collector_safety_violations"] for row in rows),
+            "scenario_assertion_failures": sum(len(row["assertion_failures"]) for row in rows),
         }
     report = {
         "format": "m09-s1-functional-acceptance/1.0.0",
-        "status": "passed" if all(row["ended"] for row in results) and all(row["constraint_violations"] == 0 for row in results) else "failed",
+        "status": "passed" if all(
+            row["ended"]
+            and row["constraint_violations"] == 0
+            and row["illegal_effective_actions"] == 0
+            and row["future_input_violations"] == 0
+            and row["collector_safety_violations"] == 0
+            and row["scenario_assertions_passed"]
+            for row in results
+        ) else "failed",
         "policy_checkpoint_sha256": sha256(args.checkpoint.resolve()),
         "policy_metadata": json_safe(metadata),
         "scenarios": list(SCENARIOS),
