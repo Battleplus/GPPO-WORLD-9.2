@@ -4,20 +4,30 @@
   "manifest_excludes_self": true,
   "release": {
     "tag": "m09-s5-delivery-freeze-v1-20260906",
-    "status": "pending_final_commit_and_upload"
+    "status": "published_and_cdn_verified",
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s5-delivery-freeze-v1-20260906",
+    "target_commit": "cb99a490704a9055bde960d5cd3dd992aaa543d4",
+    "prerelease": true,
+    "assets": [
+      {"name": "default.pdf", "bytes": 820581, "sha256": "fce6545d9e61558940c1e0783727cd328085ef1b94cbc5a79776f890518c74e0"},
+      {"name": "default.pptx", "bytes": 56831, "sha256": "032a4800fca93ec92eef506fdad2750574e60be86e18dab727fa5c68bd2c7c44"},
+      {"name": "m09-s5-server-artifacts-20260906.tar.gz", "bytes": 10357488, "sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f"},
+      {"name": "m09-s5-source-delivery-20260906.tar.gz", "bytes": 302096, "sha256": "b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84"}
+    ],
+    "cdn_independent_download_verified": true
   },
   "files": [
-    {"path":"README.md","bytes":2815,"sha256":"fef2ba90d8b1ddaa09b6c1b50485ff7f58766f0d49b4ce14249fff088ce99267"},
+    {"path":"README.md","bytes":3135,"sha256":"5c66bbc5973db3878fd37ae41bb3f7849fa851b5b0d885a28ddcc58c4f19015e"},
     {"path":"claims-and-evidence.md","bytes":5720,"sha256":"164ae3e77f4d3b47e4e1366910df26c263a98ae4b32c944158097913260612ef"},
-    {"path":"release-candidate.json","bytes":2684,"sha256":"573225f71c090acfd40525be22783eeaa9cc46b2552a6090cf8ab5f75b08f42b"},
+    {"path":"release-candidate.json","bytes":4168,"sha256":"e895a76f9ab2a5679f853f252dbb4eef36ac028579aa3c1f86b325cc8c66d95e"},
     {"path":"reproduction-runbook.md","bytes":2445,"sha256":"55a1b1974daf299639877bf5ff1cdfdab1fe4fc58791bb3bb3fb3d37c842da98"},
     {"path":"reproduction-results.json","bytes":2149,"sha256":"16ef04f98b290d42512d4c3d8eddf72704313b9723f2f6d5abce157882a2dc94"},
-    {"path":"server-evidence.json","bytes":1875,"sha256":"65e3a2e47006aba0b7d5d6b473913382f963197c6d8f78e5a4ac4218125fd19c"},
+    {"path":"server-evidence.json","bytes":2718,"sha256":"2bbadd8733a12a35ace0ff1a16a5a946ab63e316186ea18d69b4a3ff86cb5524"},
     {"path":"demo-script.md","bytes":2310,"sha256":"505fcb1a96ea91827ff0bb297e1aa1fb6bd667f3cb7c205934f785f44575ec12"},
     {"path":"speaker-notes.md","bytes":3743,"sha256":"21e91b4df3c9a3992c53871dc986eec1500677db2f1c70bc5025f3a0e5684123"},
     {"path":"questions-and-answers.md","bytes":2353,"sha256":"1c877d3c7e7ce8c68745e49c38696a392d68e7c793f6d05fd7c15a48d12b0f8f"},
     {"path":"limitations.md","bytes":1868,"sha256":"7ec966a6c029f6c1a1e817b9090fd1c8ea0bc175bb0a8be96a657a81f0989944"},
-    {"path":"final-report.md","bytes":2121,"sha256":"65fd2e1ade0556691b409214841b4fa208c1d5a0b3c45881c2ab6545737bb427"},
+    {"path":"final-report.md","bytes":2313,"sha256":"3fc6cfaba603a776fa7d5122b459a4777d9904d446f43ff83de0ab56b6cd0741"},
     {"path":"test-results.md","bytes":681,"sha256":"f158b4b36a589f7081e8ef35a35a8591859852b433899ac363215b2454291ddb"},
     {"path":"m09-s5-source-delivery-20260906.tar.gz","bytes":302096,"sha256":"b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84"},
     {"path":"m09-s5-server-artifacts-20260906.tar.gz","bytes":10357488,"sha256":"886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f"},

@@ -23,6 +23,10 @@
 - [final-report.md](final-report.md)：S5 最终报告。
 - [slides/汇报.pptx](slides/汇报.pptx) / [slides/汇报.pdf](slides/汇报.pdf)：已渲染检查的可编辑汇报稿和 PDF。
 
+## GitHub 归档
+
+交付 Release：<https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s5-delivery-freeze-v1-20260906>。Release 中的 `default.pptx`、`default.pdf`、源归档和服务器归档均已独立下载并按 SHA-256 校验；其中 `default.*` 是 GitHub 对中文文件名的归一化名称。
+
 ## S5 状态
 
 | 状态项 | 结果 |

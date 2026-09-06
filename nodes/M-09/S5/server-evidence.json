@@ -38,7 +38,20 @@
     "member_listing_count": 134,
     "local_download_sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f",
     "local_independent_extract_verified": true,
-    "github_release": "pending_commit_and_release",
-    "cdn_independent_download": "pending_release"
+    "github_release": {
+      "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s5-delivery-freeze-v1-20260906",
+      "tag": "m09-s5-delivery-freeze-v1-20260906",
+      "target_commit": "cb99a490704a9055bde960d5cd3dd992aaa543d4",
+      "assets_verified": true
+    },
+    "cdn_independent_download": {
+      "verified": true,
+      "files": [
+        {"name": "default.pdf", "bytes": 820581, "sha256": "fce6545d9e61558940c1e0783727cd328085ef1b94cbc5a79776f890518c74e0"},
+        {"name": "default.pptx", "bytes": 56831, "sha256": "032a4800fca93ec92eef506fdad2750574e60be86e18dab727fa5c68bd2c7c44"},
+        {"name": "m09-s5-server-artifacts-20260906.tar.gz", "bytes": 10357488, "sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f"},
+        {"name": "m09-s5-source-delivery-20260906.tar.gz", "bytes": 302096, "sha256": "b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84"}
+      ]
+    }
   }
 }

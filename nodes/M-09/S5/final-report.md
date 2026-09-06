@@ -4,6 +4,8 @@
 
 S5 交付候选包已准备，独立服务器复现通过，PPTX/PDF 已渲染检查，服务器归档已下载并独立解包。S5 不新增训练、不修改 main、不宣称导师已验收。
 
+GitHub Release 已归档：<https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s5-delivery-freeze-v1-20260906>。四个 Release 资产均已独立下载并通过 SHA-256 校验。
+
 默认交付 A 为纯 GPPO：policy SHA-256 `8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1`，世界模型关闭或只读 Shadow。S4 全量证据为 60/60 paired equal、回报差全 0、所有 Shadow 写入和动作提交为 0。S5 新目录最小复现抽取 normal、energy、damage、communication、composite 五类各一条，5/5 paired equal。
 
 历史入口 B 为 EAWM-GPPO：policy `bc4e5e9c…a1bd`、world `eb8c13dd…b19cf`、calibration `a77f2a38…5272d`、config `973dc586…71225`。新目录 held-out 复现退出码 0，100 tapes / 635 decisions，487 次真实 adapter 消费，577 valid / 58 fallback；fallback 为 11 high uncertainty + 47 OOD，timeout/stale-before/stale-after 为 0，安全计数全零。B 不是 A 的替代，不是新训练，不是公平性能增益。
