@@ -44,6 +44,21 @@ def json_hash(value: Any) -> str:
     ).hexdigest()
 
 
+def json_safe(value: Any) -> Any:
+    """Convert checkpoint metadata and tensor-like values to audit JSON."""
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+    if isinstance(value, dict):
+        return {str(key): json_safe(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_safe(item) for item in value]
+    if hasattr(value, "detach") and hasattr(value, "cpu"):
+        return json_safe(value.detach().cpu().tolist())
+    if hasattr(value, "tolist"):
+        return json_safe(value.tolist())
+    return str(value)
+
+
 def import_baseline(baseline_root: Path):
     ppo_root = baseline_root / "ppo_allocation"
     sys.path.insert(0, str(ppo_root))
@@ -277,7 +292,7 @@ def main() -> int:
         "format": "m09-s1-functional-acceptance/1.0.0",
         "status": "passed" if all(row["ended"] for row in results) and all(row["constraint_violations"] == 0 for row in results) else "failed",
         "policy_checkpoint_sha256": sha256(args.checkpoint.resolve()),
-        "policy_metadata": metadata,
+        "policy_metadata": json_safe(metadata),
         "scenarios": list(SCENARIOS),
         "tape_count": len(results),
         "summary": summary,
