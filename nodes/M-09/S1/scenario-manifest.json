@@ -1,6 +1,6 @@
 {
   "format": "m09-s1-scenario-manifest/1.0.0",
-  "status": "frozen_protocol_not_executed",
+  "status": "executed_passed",
   "source_commit": "0bcbcdb7475cabe9cfc69f6fcd9e51aaa0519cde",
   "tape_count": 60,
   "scenarios": [
@@ -11,5 +11,5 @@
     {"id":"communication_interrupt","count":10,"tape_ids":["comm-00","comm-01","comm-02","comm-03","comm-04","comm-05","comm-06","comm-07","comm-08","comm-09"]},
     {"id":"composite_three_factor","count":10,"tape_ids":["composite-00","composite-01","composite-02","composite-03","composite-04","composite-05","composite-06","composite-07","composite-08","composite-09"]}
   ],
-  "execution": "not_started_due_to_s1_a_block"
+  "execution": "server-artifacts-20260906/functional-60/s1-acceptance.json"
 }

@@ -1,0 +1,47 @@
+{
+  "format": "m09-s1-server-evidence/1.0.0",
+  "downloaded_at": "2026-09-06",
+  "server": "user1@172.17.27.173",
+  "server_archive": "m09-s1-server-artifacts-20260906.tar.gz",
+  "server_archive_sha256": "6fd244ffbc6e28abeb96bb4883aed38dc07d983131595e714c23d32366e89d17",
+  "source_commit": "0bcbcdb7475cabe9cfc69f6fcd9e51aaa0519cde",
+  "acceptance_tool_commit": "0245b6aecb02676a482f6c9257fef7784c003d7c",
+  "runtime": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "cuda": "12.1",
+    "isolated_environment": "/home/user1/s1-gppo-venv",
+    "policy_device": "cpu in functional harness; server has CUDA available"
+  },
+  "baseline": {
+    "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "checkpoint_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+    "tape_manifest_sha256": "f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5",
+    "episodes": 100,
+    "trace_count": 100,
+    "mean_event_success_rate": 0.956,
+    "mean_episode_return": 26.21926576507144,
+    "total_final_infeasible": 22,
+    "total_repairs": 0
+  },
+  "functional_acceptance": {
+    "status": "passed",
+    "tapes": 60,
+    "scenarios": 6,
+    "tapes_per_scenario": 10,
+    "completed": 60,
+    "timeouts": 0,
+    "constraint_violations": 0,
+    "illegal_effective_actions": 0,
+    "future_input_violations": 0,
+    "collector_safety_violations": 0,
+    "scenario_assertion_failures": 0,
+    "communication_stale_rejections": 20,
+    "energy_rejections": 20,
+    "reassignments": 40,
+    "no_training": true,
+    "shared_environment_modified": false
+  }
+}
