@@ -16,7 +16,7 @@
     {"path": "decision.json", "sha256": "d476e54fd9bdc064fc8008213a527fc135df9c3298724d29a854e2b595f9271b"},
     {"path": "version-inventory.json", "sha256": "2c7bbdf67b7684b115d0159161dfc037698e8ce876935e3c29e8736d9ac3dde5"},
     {"path": "demo-runbook.md", "sha256": "4811e55a174ec92d4335071b2f9f76704dda94cc61d9acaf202da85f21d881c3"},
-    {"path": "server-evidence.json", "sha256": "00890408a1b90c78188f041d76423c5d322711b1f5bd2d16af5c33d243a755cf"},
+    {"path": "server-evidence.json", "sha256": "e7d1ebcd2683fd7f5d9afc2b63ac636948bc325c1c7ee14b6ba5bd36fa2dde88"},
     {"path": "test-results.md", "sha256": "bea9f1e52d2ead33b2c18d8115112b775b3f8eddc592ae5b69b4c5592e62507b"},
     {"path": "final-report.md", "sha256": "921c7ceb4834f1b25f5bfa04e04a6dc54a1248d8514801f4e9afc03d5044ce5a"},
     {"path": "deployment-candidate.json", "sha256": "37448cbda9069f0c70ad6960a4a8046296ecbb319ee6908fedb370655e12fa86"},

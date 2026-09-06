@@ -50,7 +50,15 @@
   "github": {
     "release_required": true,
     "release_title": "S3 训练必要性审查与候选冻结",
-    "cdn_independent_download": "pending_until_release",
-    "cdn_download_verified": false
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s3-training-necessity-v1-20260906",
+    "tag": "m09-s3-training-necessity-v1-20260906",
+    "target_commit": "20721e48b6603fd63064a98ba0e5376564e05012",
+    "asset_name": "m09-s3-training-necessity-skipped-20260906.tar.gz",
+    "asset_api_state": "uploaded",
+    "asset_api_size": 4059214,
+    "asset_api_sha256": "9e770aa349baf5e001c45e2007b5871dffa8b067eb4bae0b2061a9f1159b3ef5",
+    "cdn_independent_download": "failed_connect_timeout",
+    "cdn_download_verified": false,
+    "note": "GitHub Release API digest matches the server archive and independent SCP/local download. A separate CDN direct-download attempt failed with a connect timeout; it is not reported as an independent CDN verification."
   }
 }
