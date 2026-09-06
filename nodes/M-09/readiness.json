@@ -1,0 +1,66 @@
+{
+  "version": "m09-meeting-readiness/1.0.0",
+  "assessed_on": "2026-09-06",
+  "purpose": "Engineering presentation readiness checkpoint, not model accuracy or scientific acceptance",
+  "readiness_range_percent": [40, 50],
+  "weighted_checkpoint_percent": 46,
+  "formal_stage_progress": {
+    "completed": 1,
+    "total": 6,
+    "completed_percent": 16.6667
+  },
+  "dimensions": [
+    {
+      "id": "scope_alignment",
+      "name": "版本、术语与范围",
+      "weight": 15,
+      "earned": 15,
+      "evidence": ["nodes/M-09/S0/README.md", "nodes/M-09/S0/version-inventory.json"]
+    },
+    {
+      "id": "basic_allocation_safety",
+      "name": "基础任务分配与安全链",
+      "weight": 20,
+      "earned": 8,
+      "evidence": ["nodes/T-05/evidence/final-report.md", "nodes/M-09/S0/checkpoint-load.json"]
+    },
+    {
+      "id": "five_type_and_disturbances",
+      "name": "五类型与四类扰动功能",
+      "weight": 20,
+      "earned": 4,
+      "evidence": ["nodes/M-09/S0/task-and-event-definitions.md", "nodes/M-09/S0/gaps.md"]
+    },
+    {
+      "id": "latency",
+      "name": "延迟证据与优化",
+      "weight": 15,
+      "earned": 3,
+      "evidence": ["nodes/T-05/evidence/final-report.md", "nodes/M-09/S0/demo-runbook.md"]
+    },
+    {
+      "id": "world_model_training_reproduction",
+      "name": "世界模型、训练与可复现性",
+      "weight": 15,
+      "earned": 10,
+      "evidence": ["nodes/J-02/evidence/server-run1/final-report.md", "nodes/J-02/evidence/server-run1/local-verification.json"]
+    },
+    {
+      "id": "presentation_archive",
+      "name": "汇报材料与最终归档",
+      "weight": 15,
+      "earned": 6,
+      "evidence": ["nodes/M-09/README.md", "docs/12-meeting-delivery-plan-20260905.md"]
+    }
+  ],
+  "weight_total": 100,
+  "earned_total": 46,
+  "current_blockers": [
+    "会议五类型实现没有可核查源码、模型和数据",
+    "四类扰动尚未形成统一可控的端到端验收",
+    "PPO与五类型/压缩图缺少同条件延迟复测",
+    "汇报稿、演示和最终离线备份尚未冻结"
+  ],
+  "next_stage": "S1",
+  "new_training_started": false
+}
