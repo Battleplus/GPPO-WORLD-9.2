@@ -1,0 +1,43 @@
+{
+  "format": "m09-s5-reproduction-results/1.0.0",
+  "server": "172.17.27.173",
+  "run_dir": "/home/user1/s5-runs/20260906-delivery-candidate-v2",
+  "environment": {"python": "3.10.12", "torch": "2.2.2+cu121", "gymnasium": "0.29.1", "cuda_available": true},
+  "source_archive_sha256": "b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84",
+  "assets": {
+    "A_policy_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+    "B_policy_sha256": "bc4e5e9cc1741892ced68f6166845d6c0c5e63452d852c928354669156e1a1bd",
+    "world_sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+    "calibration_sha256": "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d",
+    "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+    "test_manifest_sha256": "f295bc42ba932ed192162f231670de3865dedae7f2d737331576b90f2cf88bf5"
+  },
+  "A_minimal": {
+    "exit_code": 0,
+    "scenarios": ["normal", "energy_insufficient", "uav_damage", "communication_interrupt", "composite_three_factor"],
+    "paired_scenario_count": 5,
+    "paired_equal_count": 5,
+    "all_selected_pairs_equal": true,
+    "policy_state_unchanged": true,
+    "world_frozen_and_unchanged": true,
+    "summary_sha256": "da959b070a5db4589b94358ba425064b187539a3e9bc9374846d7d31dc087b4a",
+    "fault_results_sha256": "b5424238f6a5698811754cbe6a878bc91888e8d7e4e2fb052bea8315df1bbfb1"
+  },
+  "B_historical_eawm": {
+    "exit_code": 0,
+    "tapes": 100,
+    "decisions": 635,
+    "adapter_used": 487,
+    "shadow_valid": 577,
+    "shadow_fallback": 58,
+    "high_uncertainty": 11,
+    "ood": 47,
+    "timeout": 0,
+    "stale_before": 0,
+    "stale_after": 0,
+    "safety_all_zero": true,
+    "evaluation_sha256": "5bc166d2783555e689de8f0ee94bff3923f1b03bf6a0fc77580e8f8dee91b519",
+    "trace_index_sha256": "fb57337dd006e159c601a131dbd1c1fee1679e767a32e8f672727da7eafe01f0"
+  },
+  "archive": {"name": "m09-s5-server-artifacts-20260906.tar.gz", "bytes": 10357488, "sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f", "member_count": 134, "local_extract_member_files": 125}
+}

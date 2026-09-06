@@ -1,0 +1,44 @@
+{
+  "format": "m09-s5-server-evidence/1.0.0",
+  "date": "2026-09-06",
+  "host": "172.17.27.173",
+  "account": "user1",
+  "preflight": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "gymnasium": "0.29.1",
+    "gpus": ["NVIDIA GeForce RTX 2080 Ti", "NVIDIA GeForce RTX 2080 Ti"],
+    "gpu_utilization": ["0%", "0%"],
+    "filesystem_free": "287G",
+    "existing_processes_preserved": true,
+    "training_started": false
+  },
+  "independent_run": {
+    "new_directory": true,
+    "path": "/home/user1/s5-runs/20260906-delivery-candidate-v2",
+    "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+    "baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+    "target_worktree_clean": true,
+    "baseline_worktree_clean": true,
+    "source_archive_sha256": "b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84",
+    "A_exit_code": 0,
+    "B_exit_code": 0
+  },
+  "key_outputs": {
+    "A_summary_sha256": "da959b070a5db4589b94358ba425064b187539a3e9bc9374846d7d31dc087b4a",
+    "A_faults_sha256": "b5424238f6a5698811754cbe6a878bc91888e8d7e4e2fb052bea8315df1bbfb1",
+    "B_evaluation_sha256": "5bc166d2783555e689de8f0ee94bff3923f1b03bf6a0fc77580e8f8dee91b519",
+    "B_trace_index_sha256": "fb57337dd006e159c601a131dbd1c1fee1679e767a32e8f672727da7eafe01f0",
+    "server_record_sha256": "586c54ac4bfc6acf1b2d295e90e90dfa0c431cef23870a3694455a018f92af04"
+  },
+  "archive": {
+    "server_name": "m09-s5-server-artifacts-20260906.tar.gz",
+    "server_sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f",
+    "server_bytes": 10357488,
+    "member_listing_count": 134,
+    "local_download_sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f",
+    "local_independent_extract_verified": true,
+    "github_release": "pending_commit_and_release",
+    "cdn_independent_download": "pending_release"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "format": "m09-s5-slide-render-check/1.0.0",
+  "pptx": {
+    "path": "汇报.pptx",
+    "bytes": 56831,
+    "sha256": "032a4800fca93ec92eef506fdad2750574e60be86e18dab727fa5c68bd2c7c44",
+    "slide_count": 10,
+    "slide_size": "13.3333 x 7.5 in",
+    "finalizer_receipt": ".codex-finalizer/汇报.pptx.validation.json",
+    "finalizer_sha256": "67ed7326f6d2964e85ebab0c8ea2b652054ed8dc4515cf1beb2199c7ca55e45f",
+    "finalizer_status": "pass",
+    "layout_warnings": 0,
+    "first_party_import": "pass",
+    "font": "Arial (design basis; native font rendering not independently verified by finalizer)"
+  },
+  "pdf": {
+    "path": "汇报.pdf",
+    "bytes": 820581,
+    "sha256": "fce6545d9e61558940c1e0783727cd328085ef1b94cbc5a79776f890518c74e0",
+    "pages": 10,
+    "page_size": "960 x 540 pt",
+    "method": "reportlab image-wrap of the verified PPTX renders",
+    "visual_spot_check": "pdf-rendered/slide-01.png"
+  },
+  "rendered_pptx_slides": [
+    {"path": "rendered/slide-1.png", "bytes": 82828, "sha256": "84e36065a62399c68c5058f9ef1a55e992a76f5951b306638b6a02b4f296326b"},
+    {"path": "rendered/slide-2.png", "bytes": 113011, "sha256": "e80f78312dc1b8bcf6a52d3e3eb63537a733c31a56b77db9e25b9d63c381991f"},
+    {"path": "rendered/slide-3.png", "bytes": 131924, "sha256": "78a5cdd1e4568707c50a90c91e006298addb43b73051287e6a406c5208c521b0"},
+    {"path": "rendered/slide-4.png", "bytes": 126822, "sha256": "b6ebf73b14c84c07e7686e72e356260970cb7cefdb07ceba2f26d1d34957ff9b"},
+    {"path": "rendered/slide-5.png", "bytes": 125169, "sha256": "dcd10a1c70145447fd11941cb255462ba2da11775befb87ce3d7cb805669c2d7"},
+    {"path": "rendered/slide-6.png", "bytes": 128281, "sha256": "f4039eb141509d7f6883a05c827e08c5e39dfc82454e83b3972c4f5724c0aa54"},
+    {"path": "rendered/slide-7.png", "bytes": 115170, "sha256": "809aa9fbda2c16ac3b4c999326998d7673307fe6843c71f9538dec4cd4742653"},
+    {"path": "rendered/slide-8.png", "bytes": 129575, "sha256": "41e676e386cd36e62b132730d0c5a432631f77c49e32feb071465e590b0e6b55"},
+    {"path": "rendered/slide-9.png", "bytes": 106627, "sha256": "f33f57e4f4ec2edf1837603832faabb92c20de17a7fe185829ddefb160f5ff05"},
+    {"path": "rendered/slide-10.png", "bytes": 141082, "sha256": "971e2c7df43521df298835aa5f5c851dde7a57be9b20f3cd0d665d540ca156e3"}
+  ],
+  "visual_review": {"pptx_montage": "rendered/montage.png", "pptx_full_slide_spot_checks": [5, 6, 10], "status": "passed"}
+}

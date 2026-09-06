@@ -2,7 +2,7 @@
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
   "status": "passed",
-  "next_stage": "S5",
+  "next_stage": null,
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
@@ -186,11 +186,30 @@
     {
       "id": "S5",
       "name": "冻结与汇报",
-      "status": "planned",
+      "status": "passed",
       "depends_on": [
         "S4"
       ],
-      "evidence": []
+      "evidence": [
+        "nodes/M-09/S5/README.md",
+        "nodes/M-09/S5/claims-and-evidence.md",
+        "nodes/M-09/S5/release-candidate.json",
+        "nodes/M-09/S5/reproduction-runbook.md",
+        "nodes/M-09/S5/reproduction-results.json",
+        "nodes/M-09/S5/server-evidence.json",
+        "nodes/M-09/S5/demo-script.md",
+        "nodes/M-09/S5/speaker-notes.md",
+        "nodes/M-09/S5/questions-and-answers.md",
+        "nodes/M-09/S5/limitations.md",
+        "nodes/M-09/S5/final-report.md",
+        "nodes/M-09/S5/artifact-manifest.json",
+        "nodes/M-09/S5/m09-s5-source-delivery-20260906.tar.gz",
+        "nodes/M-09/S5/m09-s5-server-artifacts-20260906.tar.gz",
+        "nodes/M-09/S5/slides/汇报.pptx",
+        "nodes/M-09/S5/slides/汇报.pdf",
+        "nodes/M-09/S5/slides/render-check.json"
+      ],
+      "decision": "Delivery package, independent server reproduction, slide/PDF rendering and archive verification completed; actual rehearsal and review remain pending."
     }
   ],
   "open_inputs": [
@@ -203,8 +222,20 @@
     "返航与换电/充电能力（S1 明确不在范围）",
     "五类型图版本及会议 GPO 来源仍未提供"
   ],
-  "completed_stages": 5,
+  "completed_stages": 6,
   "skipped_stages": ["S3"],
   "new_training_started": false,
-  "s1_start_condition": "passed_2026-09-06_after_s1r2_local_and_server_replay"
+  "s1_start_condition": "passed_2026-09-06_after_s1r2_local_and_server_replay",
+  "s5": {
+    "delivery_package_ready": true,
+    "reproduction_verified": true,
+    "slides_render_verified": true,
+    "archive_verified": true,
+    "rehearsal_status": "materials_ready; user_rehearsal_pending",
+    "actual_review_status": "not_held",
+    "target_review_date": "2026-09-15 tentative",
+    "target_freeze_date": "2026-09-13 tentative",
+    "training_started": false,
+    "new_research_started": false
+  }
 }

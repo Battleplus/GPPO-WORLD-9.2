@@ -1,0 +1,54 @@
+{
+  "format": "m09-s5-release-candidate/1.0.0",
+  "date": "2026-09-06",
+  "branch": "execute-r02-20260905",
+  "source_commit_local": "80be6acdc5dd4f045e4ce9d71b1094251efc604d",
+  "source_commit_remote_at_start": "9a191c20745b05ea6371780c69e5434ee30b64ec",
+  "frozen_baseline_commit": "2a9bb9f87b9d543df144f4d108ba970c924151f9",
+  "target_commit": "69e3be5931deea7371df77d75fb14f2f5bdeab72",
+  "patch_order": [
+    "frozen baseline 2a9bb9f",
+    "S1-R2 causal/payload fix e9442fe64dbd54af701572b417f2e26e5e50e724a46dc37368b6bdda67661b98",
+    "S2 inference_mode optimization 8613b8c9999b950495813373adb1efa8954121876820e5814cbf6c778a4f2e66",
+    "S4 read-only runner ac7b305d50bf49f18cdbd22aceb3bf7b91b59cad8e6cdac46d516a3f6072ec6e"
+  ],
+  "runtime": {
+    "python": "3.10.12",
+    "torch": "2.2.2+cu121",
+    "gymnasium": "0.29.1",
+    "gpu": "2 x NVIDIA GeForce RTX 2080 Ti",
+    "training_started": false
+  },
+  "entries": {
+    "A_default": {
+      "role": "default delivery",
+      "policy": "pure GPPO seed1101 step50000",
+      "policy_sha256": "8c11eabbba79c3a0adc1785e84c5b793fecc4d3b9299630a2f18a5d8cfa253b1",
+      "wm_mode": "off or read-only Shadow",
+      "input_source": "S1-R2 fixed 6 scenarios x 10 tapes; minimal S5 sample 5 scenarios x 1 tape",
+      "expected": "A full S4 60/60 OFF/ON equal; minimal S5 5/5 equal; no Shadow safety writes"
+    },
+    "B_historical_eawm": {
+      "role": "historical reproduction only",
+      "policy": "EAWM-GPPO seed1101 step50000",
+      "policy_sha256": "bc4e5e9cc1741892ced68f6166845d6c0c5e63452d852c928354669156e1a1bd",
+      "world_sha256": "eb8c13dd822f27511ed892a091833b1fd5b8d69ed28b044ec47a7e34a68b19cf",
+      "calibration_sha256": "a77f2a38ff99bc63996af343e2218ebaea84e943448fab15618454fc1265272d",
+      "config_sha256": "973dc586fb0bac268ab753c180b8a19cfe0e01430b3bd9251c91118af4871225",
+      "expected": "100 held-out tapes; 635 decisions; 487 adapter-used; 577 valid / 58 fallback; safety counts zero",
+      "not_claimed": "not A, not newly trained, not a fair performance gain"
+    }
+  },
+  "archive": {
+    "source_archive": {"name": "m09-s5-source-delivery-20260906.tar.gz", "sha256": "b4db4bca0e225c26c0cf49c17732f3cf58e5590c3df0a6af58d64fd5db0b4f84", "bytes": 302096},
+    "server_archive": {"name": "m09-s5-server-artifacts-20260906.tar.gz", "sha256": "886c8ff400ed87ca5b1dac5c141b22f63a6381793ce253ef2568d0ffcf88bb9f", "bytes": 10357488}
+  },
+  "status": {
+    "delivery_package_ready": true,
+    "reproduction_verified": true,
+    "slides_render_verified": true,
+    "archive_verified": true,
+    "rehearsal_status": "materials_ready; user_rehearsal_pending",
+    "actual_review_status": "not_held"
+  }
+}

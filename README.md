@@ -12,6 +12,10 @@
 
 当前执行入口：[9 月中旬分阶段交付计划](nodes/M-09/README.md)。按会议要求优先基础功能、延迟验证和汇报交付，再推进世界模型研究。
 
+## 2026-09-06 最新交付
+
+M-09 S5 已形成候选交付包并完成服务器独立复现、PPTX/PDF 渲染检查与归档校验：[S5 交付目录](nodes/M-09/S5/README.md)。默认 A 为纯 GPPO + 可关闭只读 Shadow；历史 B 为 EAWM-GPPO adapter 消费复现。S3 明确跳过且未训练；实际彩排/评审尚未举行，9/13 冻结与 9/15 汇报仍待确认。GitHub Release：`m09-s5-delivery-freeze-v1-20260906`（候选）。
+
 2026-09-05 已完成 R-02、J-02A 和服务器 J-02B 四配置三 seed 实验。J-02B 开发门槛失败，完整训练文件已发布至 [GitHub Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/j02b-server-archive-20260905)。原始 GPPO-History 对照和稳定策略增益仍未完成；原始 R-02 大文件尚待独立 Release。
 
 ## 9 月中旬汇报准备度
