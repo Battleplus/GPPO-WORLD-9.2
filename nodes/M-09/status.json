@@ -2,7 +2,7 @@
   "version": "m09-staged-plan/1.0.0",
   "updated": "2026-09-06",
   "status": "in_progress",
-  "next_stage": "S1",
+  "next_stage": "S2",
   "target_review_date": "2026-09-15",
   "review_date_confirmed": false,
   "target_freeze_date": "2026-09-13",
@@ -29,7 +29,7 @@
       ],
       "decision": "Use verified three-node-type GPPO baseline; five-node-type meeting version remains missing."
     },
-    {"id":"S1","name":"基础功能","status":"in_progress","depends_on":["S0"],"evidence":["nodes/M-09/S1/README.md","nodes/M-09/S1/protocol.md","nodes/M-09/S1/implementation.md","nodes/M-09/S1/compatibility.md","nodes/M-09/S1/scenario-manifest.json","nodes/M-09/S1/trace-manifest.json","nodes/M-09/S1/failed-records.md","nodes/M-09/S1/final-report.md","tools/run_s1_functional_acceptance.py"],"decision":"S1 protocol frozen; baseline reproduction is being executed in an isolated server environment. No S1 pass claim until the six-scenario run completes."},
+    {"id":"S1","name":"基础功能","status":"passed","depends_on":["S0"],"evidence":["nodes/M-09/S1/README.md","nodes/M-09/S1/protocol.md","nodes/M-09/S1/implementation.md","nodes/M-09/S1/compatibility.md","nodes/M-09/S1/scenario-manifest.json","nodes/M-09/S1/trace-manifest.json","nodes/M-09/S1/scenario-summary.json","nodes/M-09/S1/server-evidence.json","nodes/M-09/S1/m09-s1-server-artifacts-20260906.tar.gz","nodes/M-09/S1/failed-records.md","nodes/M-09/S1/final-report.md","tools/run_s1_functional_acceptance.py"],"decision":"S1-A baseline reproduction, S1-B execution-layer semantics, and S1-C fixed 60-tape acceptance passed; no training or S2 work started."},
     {"id":"S2","name":"延迟定位与优化","status":"planned","depends_on":["S1"],"evidence":[]},
     {"id":"S3","name":"必要训练与对照","status":"planned","depends_on":["S2"],"evidence":[]},
     {"id":"S4","name":"世界模型接入展示","status":"planned","depends_on":["S1","S3"],"evidence":[]},
@@ -42,13 +42,10 @@
     "会议所称GPO的实现来源"
   ],
   "implementation_gaps_for_s1": [
-    "通用紧急Task和deadline",
-    "能量状态与合法性约束",
-    "返航与换电/充电能力",
-    "冻结的通信中断场景",
-    "三因素复合扰动可控注入"
+    "返航与换电/充电能力（S1 明确不在范围）",
+    "五类型图版本及会议 GPO 来源仍未提供"
   ],
-  "completed_stages": 1,
+  "completed_stages": 2,
   "new_training_started": false,
-  "s1_start_condition": "ready_to_start_implementation_on_three_type_baseline_not_ready_to_pass"
+  "s1_start_condition": "passed_2026-09-06_on_three_type_baseline_with_execution_layer_constraints"
 }
