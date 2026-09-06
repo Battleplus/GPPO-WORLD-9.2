@@ -41,7 +41,16 @@
     "independent_extract_verified": true
   },
   "github": {
-    "pending": true,
-    "note": "S2 Release is created after this commit is pushed; CDN/API verification will be recorded separately."
+    "pending": false,
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m09-s2-latency-v1-20260906",
+    "tag": "m09-s2-latency-v1-20260906",
+    "target_commit": "ebe98e6",
+    "asset_name": "m09-s2-server-artifacts-20260906-v2.tar.gz",
+    "asset_api_state": "uploaded",
+    "asset_api_size": 6728077,
+    "asset_api_sha256": "36369ad2d6fb318f398b92d70c1c6218f8d2a136259abf6f668b543096366b7b",
+    "cdn_independent_download": "failed_connect_timeout",
+    "cdn_download_verified": false,
+    "note": "GitHub Release API reports an uploaded asset whose digest matches the server and independent SCP/local archive hash. A separate CDN direct-download attempt failed with a connect timeout; this is not reported as an independent CDN download verification."
   }
 }
