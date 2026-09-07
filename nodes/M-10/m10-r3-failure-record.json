@@ -1,0 +1,12 @@
+{
+  "stage": "M-10-R3",
+  "failures_and_negative_results": [
+    {"id": "prediction-event-quality", "status": "negative", "evidence": "final-test event PR-AUC damage/disconnect/reconnect 0.0771/0.1344/0.0614; precision and recall at 0.5 all zero"},
+    {"id": "prediction-done-quality", "status": "negative", "evidence": "done BCE 0.2658; never-done baseline Brier 0.0580"},
+    {"id": "risk-trigger-threshold-0.1", "status": "negative", "evidence": "risk condition active on all 259 evaluated steps; continuation zero"},
+    {"id": "rules-cost-quality-tradeoff", "status": "negative", "evidence": "rules reduce actor calls but return 6.552 versus periodic 19.500 on the same checkpoint/tape"},
+    {"id": "learning-sufficiency", "status": "open", "evidence": "8192-step ladder still changes History and World validation return; convergence not proved"},
+    {"id": "legacy-baseline", "status": "skipped", "evidence": "7 server tests require unavailable pinned GPPO baseline"}
+  ],
+  "preserved": ["M-09/M-10/M-10-R/M-10-R2 releases", "old checkpoints", "old reports", "threshold 0.5 zero-trigger result", "threshold 0.2 sensitivity result", "previous failures"]
+}

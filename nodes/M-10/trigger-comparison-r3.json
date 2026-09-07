@@ -1,0 +1,12 @@
+{
+  "protocol": "same_R2_graph5_world_checkpoint_same_final_test_tape",
+  "threshold": 0.1,
+  "max_replan_interval": 3,
+  "cpu_samples": {"periodic": 259, "rules": 272, "model-risk": 259},
+  "modes": {
+    "periodic": {"return_mean": 19.500, "completed_mean": 3.188, "actor_calls_mean": 16.188, "continuation_mean": 0.0, "world_calls_mean": 16.188, "latency_ms": {"mean": 2.226, "p95": 2.361, "p99": 2.407}, "condition_counts": {"initial": 16, "task_arrival": 76, "confirmed_fault": 32, "link_recovery": 16, "completion_or_invalidation": 41, "max_wait": 16}},
+    "rules": {"return_mean": 6.552, "completed_mean": 2.250, "actor_calls_mean": 9.125, "continuation_mean": 7.875, "world_calls_mean": 9.125, "latency_ms": {"mean": 1.943, "p95": 2.360, "p99": 2.406}, "condition_counts": {"initial": 16, "task_arrival": 76, "confirmed_fault": 32, "link_recovery": 16, "completion_or_invalidation": 44, "safety": 7, "max_wait": 30}},
+    "model-risk": {"return_mean": 19.500, "completed_mean": 3.188, "actor_calls_mean": 16.188, "continuation_mean": 0.0, "world_calls_mean": 16.188, "latency_ms": {"mean": 2.219, "p95": 2.350, "p99": 2.393}, "condition_counts": {"initial": 16, "task_arrival": 76, "confirmed_fault": 32, "link_recovery": 16, "completion_or_invalidation": 41, "max_wait": 16, "risk": 259}}
+  },
+  "interpretation": "risk is active on every step at 0.1; model-risk matches periodic and adds no continuation saving"
+}

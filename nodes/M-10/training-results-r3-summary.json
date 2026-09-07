@@ -1,0 +1,14 @@
+{
+  "protocol": "R3 frozen 8192 environment-step fair matrix",
+  "seeds": [1101, 2203, 3307],
+  "evaluation_tape": "new final-test tape, 16 episodes, 276 transitions",
+  "variants": {
+    "mlp-2-base": {"return_mean": 32.445, "return_seed_sd": 1.785, "completed_mean": 4.104, "expired_mean": 1.896, "throughput_mean_env_steps_per_second": 142.9, "optimizer_updates_per_seed": 128, "actor_decisions_per_seed": 8192},
+    "graph-2-base": {"return_mean": 32.424, "return_seed_sd": 1.777, "completed_mean": 4.104, "expired_mean": 1.896, "throughput_mean_env_steps_per_second": 78.0, "optimizer_updates_per_seed": 128, "actor_decisions_per_seed": 8192},
+    "graph-5-base": {"return_mean": 29.521, "return_seed_sd": 2.523, "completed_mean": 3.896, "expired_mean": 2.104, "throughput_mean_env_steps_per_second": 77.9, "optimizer_updates_per_seed": 128, "actor_decisions_per_seed": 8192},
+    "graph-history-5-base": {"return_mean": 30.988, "return_seed_sd": 1.884, "completed_mean": 4.000, "expired_mean": 2.000, "throughput_mean_env_steps_per_second": 68.4, "optimizer_updates_per_seed": 128, "actor_decisions_per_seed": 8192},
+    "graph-5-world": {"return_mean": 32.156, "return_seed_sd": 2.179, "completed_mean": 4.083, "expired_mean": 1.917, "throughput_mean_env_steps_per_second": 70.6, "optimizer_updates_per_seed": 128, "actor_decisions_per_seed": 8192}
+  },
+  "world_pretraining": "reused frozen R2 checkpoint; cost reported separately",
+  "interpretation": "Graph-5 World does not exceed MLP-2 or Graph-2 on this tape and seed set; descriptive evidence only"
+}

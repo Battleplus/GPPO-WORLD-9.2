@@ -1,0 +1,18 @@
+{
+  "server": "172.17.27.173",
+  "environment": "/home/user1/m10-test-venv",
+  "resource_preflight": "2x RTX 2080 Ti, 32 CPU cores, approximately 29 GiB available memory; existing TensorBoard processes preserved",
+  "targeted_pytest": "11 passed",
+  "full_pytest": "155 passed, 7 skipped",
+  "skips": "7 old pinned GPPO baseline tests because the dependency is unavailable",
+  "runs": {
+    "prediction": "20260907-r3-prediction-trigger-cost-v1/prediction-cuda",
+    "trigger": "20260907-r3-prediction-trigger-cost-v1/trigger-cuda",
+    "trigger_recheck": "20260907-r3-prediction-trigger-cost-v1/trigger-cpu-v2",
+    "ladder": "20260907-r3-prediction-trigger-cost-v1/learning-ladder-cuda",
+    "formal": "20260907-r3-prediction-trigger-cost-v1/formal-matrix-cuda"
+  },
+  "formal_matrix_sha256": "582c19e07992795423059cb7a21ba30cfb4fb1512718886b1265410b93eac0f1",
+  "source_archive_sha256": "6a4595857cac8e56c877fdd3b718fad64866c46b27839867cd6943a99fe75704",
+  "notes": ["all R3 training ran only on specified server", "no shared environment modified", "no other jobs stopped", "R2 checkpoint used for prediction/trigger audits and world pretraining cost was not mixed into PPO updates"]
+}

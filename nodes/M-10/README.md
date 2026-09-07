@@ -116,3 +116,13 @@ M-10-R 不改写上述历史结论或旧 Release。针对历史审查发现的 s
 本地受控全套测试 151 passed，Shadow 定向复核 6 passed；服务器回归 144 passed、7 skipped（既有 pinned GPPO baseline 未提供），新的全环境因果验收 10/10。完整决策链 100 samples 延迟为 CPU 2.872/3.081/3.091 ms（mean/P95/P99），CUDA 3.565/3.786/3.803 ms；测量只代表指定服务器归一化仿真，未知真实控制周期，不宣称竞赛实时达标。
 
 M-10-R 训练归档已下载并双端 SHA-256 校验：`m10-r-training-artifacts-20260907.tar.gz` 为 `bd5d01b52c09b793eb352854822f16e5690748292205ebb501d394afbb91eb4b`。归档同时保留先前失败矩阵目录和修复后的成功矩阵，源码、tape、checkpoint、optimizer/recovery state、日志、逐 seed 结果和服务器测试齐全。M-10-R 独立 GitHub Release 已发布：[m10-r-training-validity-fairness-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r-training-validity-fairness-v1-20260907)，三项资产已通过 GitHub API digest 与独立下载复核；不修改 `m10-meeting-research-v1-20260907`、main 或 force push。
+
+## 2026-09-07 M-10-R3：预测质量、触发成本与学习充分性评估
+
+R3 在不改写历史 Release 的前提下，新增了逐事件 PR-AUC、precision、recall、Brier、10-bin ECE、阳性率和 split 统计，并保存事件标签语义与持久性基线。新 final-test tape 为 16 个独立 episode、276 条 transition；damage、disconnect、reconnect 各 16 个阳性样本。固定 R2 world checkpoint 的 final-test event PR-AUC 为 0.077/0.134/0.061，0.5 阈值 precision/recall 均为 0；done BCE 0.266，永不 done baseline 更好。当前标签表示下一环境间隔中的 simulator event consequence，尚未证明等价于未来需要重规划。
+
+R3 新增 `_policy_input_bundle`，在同一 observation/version 上复用一次 world-model 推理得到的 context 和 risk；语义、安全、最大等待和 risk 触发的独立条件计数均保留。固定同一 Graph-5 World checkpoint 和 final-test tape 的 CPU 对照为：周期策略 return 19.500、actor 16.188 次/episode；规则触发 return 6.552、actor 9.125、continuation 7.875；model-risk 阈值 0.1 return 19.500、actor 16.188、continuation 0，risk 条件 259/259 步成立。规则省计算但损失任务效果，model-risk 未产生触发收益。
+
+服务器先完成 2048/4096/8192 单 seed budget ladder，再冻结 8192 步正式矩阵。正式矩阵为 MLP-2、Graph-2、Graph-5 Base、Graph-5 History、Graph-5 World × 3 seeds；每组每 seed 128 次实际 optimizer steps、8192 actor decisions。return 均值为 32.445、32.424、29.521、30.988、32.156，World 未超过 MLP-2 或 Graph-2。详细证据见 `m10-r3-report.md`、`m10-r3-limitations.md`、`prediction-audit-r3.json`、`trigger-comparison-r3.json`、`learning-budget-ladder-r3.json`、`training-results-r3-summary.json` 和独立制品 manifest。
+
+R3 运行标识为 `20260907-r3-prediction-trigger-cost-v1` 下的 prediction、trigger、learning-ladder 和 formal-matrix。服务器全套回归为 155 passed、7 skipped，skip 是旧 pinned GPPO baseline 缺失。R3 不值得无约束继续扩训；若继续，应先重定义未来重规划标签并扩大独立 tape，再做受约束阈值实验。返航/换电/充电范围、真实控制周期和汇报日期仍待确认；群发、彩排和导师评审仍是用户待办。

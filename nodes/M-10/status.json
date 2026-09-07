@@ -1,7 +1,7 @@
 {
   "version": "m10-r-training-validity/0.1.0",
   "status": "in_progress",
-  "current_stage": "M10-R2",
+  "current_stage": "M10-R3",
   "training_started": true,
   "training_location": "specified_server_only",
   "full_goal_complete": false,
@@ -13,7 +13,8 @@
     {"id":"R4","status":"passed"},
     {"id":"R5","status":"passed"},
     {"id":"M10-R","status":"passed_training_correction"},
-    {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"}
+    {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"},
+    {"id":"M10-R3","status":"passed_prediction_trigger_cost_and_learning_assessment"}
   ],
   "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
   "source_review": "m10-r-report.md",
@@ -69,8 +70,24 @@
     "m10_r2_release_archive_sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd",
     "m10_r2_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r2-ppo-trigger-correctness-v1-20260907",
     "m10_r2_release_asset": "m10-r2-release-20260907-v1.tar.gz",
-    "m10_r2_release_assets_verified": true
+    "m10_r2_release_assets_verified": true,
+    "m10_r3_report": "m10-r3-report.md",
+    "m10_r3_limitations": "m10-r3-limitations.md",
+    "m10_r3_reproduction": "m10-r3-reproduction-runbook.md",
+    "m10_r3_prediction_audit": "prediction-audit-r3.json",
+    "m10_r3_trigger_comparison": "trigger-comparison-r3.json",
+    "m10_r3_learning_ladder": "learning-budget-ladder-r3.json",
+    "m10_r3_training_results": "training-results-r3-summary.json",
+    "m10_r3_server_evidence": "server-evidence-r3.json",
+    "m10_r3_failure_record": "m10-r3-failure-record.json",
+    "m10_r3_source_commit": "b3a0b6d",
+    "m10_r3_remote_commit": "935ee5e4586cad79d2a72c4da864ce36a7f77893",
+    "m10_r3_formal_run": "20260907-r3-prediction-trigger-cost-v1/formal-matrix-cuda",
+    "m10_r3_formal_matrix_sha256": "582c19e07992795423059cb7a21ba30cfb4fb1512718886b1265410b93eac0f1",
+    "m10_r3_source_archive_sha256": "6a4595857cac8e56c877fdd3b718fad64866c46b27839867cd6943a99fe75704",
+    "m10_r3_negative_result": "event quality insufficient; model-risk threshold 0.1 triggers every step; rules save computation but lower task effect; World no gain over MLP-2 or Graph-2",
+    "m10_r3_release": "pending archive and independent Release verification"
   },
-  "completion_boundary": "M10-R2 PPO/trigger correctness and same-budget evidence completed; independent release/materials, user-confirmed return/charging scope, real control cycle, broader seeds, real-flight validation and human review remain open",
+  "completion_boundary": "M10-R3 prediction quality, trigger cost and 8192-step learning assessment completed; independent Release/materials, user-confirmed return/charging scope, real control cycle, broader training, real-flight validation and human review remain open",
   "review_status": "not_held"
 }
