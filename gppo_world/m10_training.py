@@ -24,6 +24,9 @@ from torch.distributions import Categorical
 from .m10_environment import M10Config, M10Environment, M10Scenario, default_scenario, scenario_tape, scenario_to_dict
 
 
+EVENT_NAMES = ("damage", "disconnect", "reconnect", "reserved_event_3")
+
+
 def seed_everything(seed: int) -> None:
     random.seed(seed)
     np.random.seed(seed)
@@ -284,6 +287,20 @@ def collect_world_dataset(*, episodes: int, seed: int, config: M10Config,
                 event_kind = event.get("kind")
                 if event_kind in names:
                     event_target[names[event_kind]] = 1.0
+            persistence_target = np.zeros(4, dtype=np.float32)
+            # This is a deliberately simple, public-information persistence
+            # baseline: repeat the most recently received semantic UAV state
+            # change.  It is recorded per row so it cannot be reconstructed
+            # after a split or silently tuned on the held-out tape.
+            for record in reversed(env._public_event_records):  # type: ignore[attr-defined]
+                field = record.get("field")
+                value = float(record.get("value", 0.0))
+                if field == "alive" and value < 0.5:
+                    persistence_target[0] = 1.0
+                    break
+                if field == "connected":
+                    persistence_target[1 if value < 0.5 else 2] = 1.0
+                    break
             rows.append({
                 "episode": episode,
                 "obs": obs["flat"].astype(np.float32),
@@ -291,10 +308,16 @@ def collect_world_dataset(*, episodes: int, seed: int, config: M10Config,
                 "reward": float(reward),
                 "next_obs": next_obs["flat"].astype(np.float32),
                 "event_target": event_target,
+                "persistence_event_target": persistence_target,
                 "done": float(done),
                 "context_target": np.concatenate((np.asarray([float(reward)], dtype=np.float32), event_target, np.asarray([float(done)], dtype=np.float32), next_obs["flat"][-2:].astype(np.float32))),
                 "split": split,
                 "tape_id": scenario.tape_id,
+                "label_semantics": {
+                    "horizon": "next_environment_step",
+                    "events": dict(zip(EVENT_NAMES, ("new_service_clock_event", "new_service_clock_event", "new_service_clock_event", "reserved"))),
+                    "done": "terminated_or_time_limit_after_step",
+                },
             })
             obs = next_obs
     return rows
@@ -323,6 +346,108 @@ def _world_metrics(output: dict[str, torch.Tensor], rewards: torch.Tensor, event
         "done_accuracy": float((done_pred == dones).float().mean().detach()),
         "context_rmse": float(losses["context_mse"].sqrt().detach()),
     }
+
+
+def _average_precision(scores: np.ndarray, targets: np.ndarray) -> float:
+    order = np.argsort(-scores, kind="stable")
+    ordered_targets = targets[order].astype(np.float64)
+    positives = float(ordered_targets.sum())
+    if positives <= 0:
+        return float("nan")
+    cumulative = np.cumsum(ordered_targets)
+    precision = cumulative / np.arange(1, len(ordered_targets) + 1, dtype=np.float64)
+    return float((precision * ordered_targets).sum() / positives)
+
+
+def _binary_metrics(scores: np.ndarray, targets: np.ndarray, threshold: float = 0.5) -> dict[str, float]:
+    scores = np.asarray(scores, dtype=np.float64).reshape(-1)
+    targets = np.asarray(targets, dtype=np.float64).reshape(-1)
+    predicted = scores >= threshold
+    actual = targets >= 0.5
+    tp = float(np.sum(predicted & actual))
+    fp = float(np.sum(predicted & ~actual))
+    fn = float(np.sum(~predicted & actual))
+    precision = tp / max(tp + fp, 1.0)
+    recall = tp / max(tp + fn, 1.0)
+    bins = np.linspace(0.0, 1.0, 11)
+    ece = 0.0
+    for left, right in zip(bins[:-1], bins[1:]):
+        in_bin = (scores >= left) & ((scores < right) if right < 1.0 else (scores <= right))
+        if np.any(in_bin):
+            ece += float(np.mean(in_bin)) * abs(float(np.mean(scores[in_bin])) - float(np.mean(actual[in_bin])))
+    return {
+        "precision": precision,
+        "recall": recall,
+        "pr_auc": _average_precision(scores, actual.astype(np.float64)),
+        "brier": float(np.mean((scores - actual) ** 2)),
+        "ece_10bin": ece,
+        "positive_count": float(np.sum(actual)),
+        "sample_count": float(len(actual)),
+    }
+
+
+@torch.no_grad()
+def evaluate_world_model_rows(model: M10WorldModel, rows: list[dict[str, Any]], *, device: str = "cpu",
+                              baseline_rows: list[dict[str, Any]] | None = None) -> dict[str, Any]:
+    """Report event- and done-aware metrics for a frozen row set.
+
+    The caller controls the split.  In particular, calibration and the
+    prevalence baseline must be built from train/validation rows before this
+    function is called on a final test tape.
+    """
+    if not rows:
+        raise ValueError("world-model evaluation rows are empty")
+    device_obj = torch.device(device)
+    model = model.to(device_obj).eval()
+    obs = torch.tensor(np.stack([row["obs"] for row in rows]), dtype=torch.float32, device=device_obj)
+    actions = torch.tensor([row["action"] for row in rows], dtype=torch.long, device=device_obj)
+    rewards = np.asarray([float(row["reward"]) for row in rows], dtype=np.float64)
+    events = np.stack([row["event_target"] for row in rows]).astype(np.float64)
+    dones = np.asarray([float(row["done"]) for row in rows], dtype=np.float64)
+    output = model(obs, actions)
+    reward_pred = output["reward"].detach().cpu().numpy()
+    event_pred = torch.sigmoid(output["event_logits"]).detach().cpu().numpy()
+    done_pred = torch.sigmoid(output["done_logit"]).detach().cpu().numpy()
+    event_metrics = {name: _binary_metrics(event_pred[:, index], events[:, index]) for index, name in enumerate(EVENT_NAMES)}
+    baseline_rows = baseline_rows or rows
+    base_rewards = np.asarray([float(row["reward"]) for row in baseline_rows], dtype=np.float64)
+    base_events = np.stack([row["event_target"] for row in baseline_rows]).astype(np.float64)
+    base_dones = np.asarray([float(row["done"]) for row in baseline_rows], dtype=np.float64)
+    event_rate = np.clip(base_events.mean(axis=0), 1e-5, 1.0 - 1e-5)
+    done_rate = float(np.clip(base_dones.mean(), 1e-5, 1.0 - 1e-5))
+    prevalence_event = np.repeat(event_rate[None, :], len(rows), axis=0)
+    persistence_available = all("persistence_event_target" in row for row in rows)
+    persistence_event = np.stack([row["persistence_event_target"] for row in rows]).astype(np.float64) if persistence_available else None
+    split_counts: dict[str, Any] = {}
+    for split in sorted({str(row.get("split", "unspecified")) for row in rows}):
+        selected = [row for row in rows if str(row.get("split", "unspecified")) == split]
+        split_events = np.stack([row["event_target"] for row in selected]).astype(np.float64)
+        split_counts[split] = {
+            "rows": len(selected), "episodes": len({row.get("tape_id") for row in selected}),
+            "event_positive_count": split_events.sum(axis=0).astype(int).tolist(),
+            "event_positive_rate": split_events.mean(axis=0).tolist(),
+            "done_count": int(sum(float(row["done"]) >= 0.5 for row in selected)),
+            "done_rate": float(np.mean([float(row["done"]) for row in selected])),
+        }
+    metrics = {
+        "rows": len(rows),
+        "reward_rmse": float(np.sqrt(np.mean((reward_pred - rewards) ** 2))),
+        "reward_mean_baseline_rmse": float(np.sqrt(np.mean((base_rewards.mean() - rewards) ** 2))),
+        "event": event_metrics,
+        "event_bce": float(np.mean(-(events * np.log(np.clip(event_pred, 1e-7, 1 - 1e-7)) + (1 - events) * np.log(np.clip(1 - event_pred, 1e-7, 1 - 1e-7))))),
+        "done": _binary_metrics(done_pred, dones),
+        "done_bce": float(np.mean(-(dones * np.log(np.clip(done_pred, 1e-7, 1 - 1e-7)) + (1 - dones) * np.log(np.clip(1 - done_pred, 1e-7, 1 - 1e-7))))),
+        "done_never_true_baseline": _binary_metrics(np.zeros_like(dones), dones),
+        "baselines": {
+            "train_prevalence_event": {name: _binary_metrics(np.full(len(rows), event_rate[index]), events[:, index]) for index, name in enumerate(EVENT_NAMES)},
+            "train_prevalence_done": _binary_metrics(np.full(len(rows), done_rate), dones),
+            "zero_event_rule": {name: _binary_metrics(np.zeros(len(rows)), events[:, index]) for index, name in enumerate(EVENT_NAMES)},
+        },
+        "split_counts": split_counts,
+    }
+    if persistence_event is not None:
+        metrics["baselines"]["persistence_event"] = {name: _binary_metrics(persistence_event[:, index], events[:, index]) for index, name in enumerate(EVENT_NAMES)}
+    return metrics
 
 
 def train_world_model(rows: list[dict[str, Any]], *, seed: int, action_count: int,
@@ -390,7 +515,7 @@ def train_world_model(rows: list[dict[str, Any]], *, seed: int, action_count: in
         "context_target": "[reward,event_0..3,done,time_fraction,event_signal]",
     }
     with torch.no_grad():
-        metadata["test_metrics"] = _world_metrics(model(obs[test_idx], actions[test_idx]), rewards[test_idx], events[test_idx], dones[test_idx], context_targets[test_idx])
+        metadata["test_metrics"] = (_world_metrics(model(obs[test_idx], actions[test_idx]), rewards[test_idx], events[test_idx], dones[test_idx], context_targets[test_idx]) if len(test_idx) else {})
         train_reward_mean = rewards[train_idx].mean()
         train_event_rate = events[train_idx].mean(dim=0).clamp(1e-5, 1 - 1e-5)
         train_done_rate = dones[train_idx].mean().clamp(1e-5, 1 - 1e-5)
@@ -413,15 +538,40 @@ def train_world_model(rows: list[dict[str, Any]], *, seed: int, action_count: in
 def _policy_input(env: M10Environment, obs: dict[str, Any], model: M10WorldModel | None,
                   *, fusion: str, device: torch.device, trigger_threshold: float,
                   force_context: bool = False) -> tuple[np.ndarray, bool, float]:
+    vector, active, risk, full_vector = _policy_input_bundle(
+        env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold,
+    )
+    if force_context and model is not None and fusion == "triggered" and not active:
+        # Kept for source compatibility with old callers.  New decision paths
+        # use the full vector returned by _policy_input_bundle, so this branch
+        # is never needed for a second inference on the same snapshot.
+        return full_vector, True, risk
+    return vector, active, risk
+
+
+def _policy_input_bundle(env: M10Environment, obs: dict[str, Any], model: M10WorldModel | None,
+                         *, fusion: str, device: torch.device, trigger_threshold: float
+                         ) -> tuple[np.ndarray, bool, float, np.ndarray]:
+    """Build gated and full policy vectors from one decision snapshot.
+
+    The full vector is used when a semantic/safety/max-wait trigger forces a
+    decision even if model risk is below threshold.  Returning both vectors
+    prevents the historical force_context path from running the world model a
+    second time on the same observation/version.
+    """
     if model is None or fusion == "base":
-        return _public_vector(obs), False, 0.0
+        vector = _public_vector(obs)
+        return vector, False, 0.0, vector
     with torch.no_grad():
-        context, active, risk = model.context_for(
+        context, _, risk = model.context_for(
             torch.tensor(obs["flat"], dtype=torch.float32, device=device)[None, :],
             action_mask=torch.tensor(obs["mask"], dtype=torch.bool, device=device),
-            triggered=fusion == "triggered" and not force_context, threshold=trigger_threshold,
+            triggered=False, threshold=trigger_threshold,
         )
-    return _public_vector(obs, context[0].detach().cpu().numpy()), active, risk
+    full_vector = _public_vector(obs, context[0].detach().cpu().numpy())
+    active = fusion != "triggered" or risk >= trigger_threshold
+    gated_vector = full_vector if active else _public_vector(obs)
+    return gated_vector, active, risk, full_vector
 
 
 def _act(policy: M10ActorCritic, vector: np.ndarray, mask: np.ndarray, hidden: torch.Tensor | None,
@@ -495,15 +645,17 @@ def collect_rollout(policy: M10ActorCritic, *, config: PPOConfig, env_config: M1
     last_action: int | None = None
     steps_since_replan = max_replan_interval
     for _ in range(config.rollout_steps):
-        vector, active_context, risk = _policy_input(env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
+        vector, active_context, risk, full_vector = _policy_input_bundle(
+            env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold,
+        )
         should_replan, replan_reason, trigger_conditions = _trigger_decision(
             obs, fusion=fusion, risk_active=active_context, last_action=last_action,
             steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
         )
-        if should_replan and fusion == "triggered":
-            vector, _, risk = _policy_input(env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold, force_context=True)
         if should_replan:
-            action, log_prob, value, hidden = _act(policy, vector, obs["mask"], hidden, device, deterministic=False)
+            decision_vector = full_vector if fusion == "triggered" else vector
+            action, log_prob, value, hidden = _act(policy, decision_vector, obs["mask"], hidden, device, deterministic=False)
+            vector = decision_vector
             actor_decision = True
         else:
             value_tensor, hidden = policy.value_only(
@@ -531,7 +683,7 @@ def collect_rollout(policy: M10ActorCritic, *, config: PPOConfig, env_config: M1
         if terminated:
             next_value = 0.0
         else:
-            next_vector, _, _ = _policy_input(
+            next_vector, _, _, _ = _policy_input_bundle(
                 env, next_obs, model, fusion=fusion, device=device,
                 trigger_threshold=trigger_threshold,
             )
@@ -703,15 +855,17 @@ def evaluate_policy(policy: M10ActorCritic, *, model: M10WorldModel | None, fusi
         last_action: int | None = None
         steps_since_replan = max_replan_interval
         while not done and steps < int(env_config.horizon / env_config.decision_interval) + 2:
-            vector, active, risk = _policy_input(env, obs, model, fusion=fusion, device=device_obj, trigger_threshold=trigger_threshold)
+            vector, active, risk, full_vector = _policy_input_bundle(
+                env, obs, model, fusion=fusion, device=device_obj, trigger_threshold=trigger_threshold,
+            )
             should_replan, reason, _ = _trigger_decision(
                 obs, fusion=fusion, risk_active=active, last_action=last_action,
                 steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
             )
-            if should_replan and fusion == "triggered":
-                vector, _, risk = _policy_input(env, obs, model, fusion=fusion, device=device_obj, trigger_threshold=trigger_threshold, force_context=True)
             if should_replan:
-                action, _, _, hidden = _act(policy, vector, obs["mask"], hidden, device_obj, deterministic=True)
+                decision_vector = full_vector if fusion == "triggered" else vector
+                action, _, _, hidden = _act(policy, decision_vector, obs["mask"], hidden, device_obj, deterministic=True)
+                vector = decision_vector
                 actor_calls += 1
             else:
                 _, hidden = policy.value_only(torch.tensor(vector, dtype=torch.float32, device=device_obj)[None, :], hidden)
@@ -769,5 +923,6 @@ def save_policy(path: Path, policy: M10ActorCritic, metadata: dict[str, Any]) ->
 
 __all__ = [
     "M10WorldModel", "M10ActorCritic", "M10Config", "PPOConfig",
-    "collect_world_dataset", "train_world_model", "calibrate_trigger_threshold", "train_policy", "evaluate_policy", "save_policy",
+    "EVENT_NAMES", "collect_world_dataset", "evaluate_world_model_rows", "train_world_model",
+    "calibrate_trigger_threshold", "train_policy", "evaluate_policy", "save_policy",
 ]

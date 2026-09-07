@@ -60,7 +60,7 @@ def variant_specs(mode: str) -> list[dict[str, Any]]:
 def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M10Config,
               fusion: str, device_name: str, trigger_threshold: float, max_replan_interval: int = 3) -> dict[str, float]:
     from gppo_world.m10_environment import M10Environment, scenario_tape
-    from gppo_world.m10_training import _act, _policy_input, _trigger_decision
+    from gppo_world.m10_training import _act, _policy_input_bundle, _trigger_decision
 
     device = torch.device(device_name)
     policy = policy.to(device).eval()
@@ -68,7 +68,7 @@ def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M
         world = world.to(device).eval()
     env = M10Environment(env_config, scenario_tape("test", count=1, base_seed=9901)[0])
     obs = env.reset()
-    vector, _, _ = _policy_input(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
+    vector, _, _, _ = _policy_input_bundle(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
     for _ in range(20):
         _act(policy, vector, obs["mask"], None, device, deterministic=True)
     if device.type == "cuda":
@@ -84,18 +84,18 @@ def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M
     for _ in range(100):
         start = time.perf_counter()
         obs = env._observation()
-        vector, active, risk = _policy_input(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
+        vector, active, risk, full_vector = _policy_input_bundle(
+            env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold,
+        )
         world_model_calls += int(world is not None and fusion != "base")
         should_replan, reason, _ = _trigger_decision(
             obs, fusion=fusion, risk_active=active, last_action=last_action,
             steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
         )
-        if should_replan and fusion == "triggered":
-            vector, _, _ = _policy_input(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold, force_context=True)
-            world_model_calls += int(world is not None)
         if should_replan:
             actor_start = time.perf_counter()
-            action, _, _, hidden = _act(policy, vector, obs["mask"], hidden, device, deterministic=True)
+            action_vector = full_vector if fusion == "triggered" else vector
+            action, _, _, hidden = _act(policy, action_vector, obs["mask"], hidden, device, deterministic=True)
             if device.type == "cuda":
                 torch.cuda.synchronize(device)
             policy_times.append((time.perf_counter() - actor_start) * 1000.0)
