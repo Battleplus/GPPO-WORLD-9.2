@@ -1,0 +1,99 @@
+{
+  "charging_return_scope": "not included pending explicit meeting acceptance; no silent exclusion claim",
+  "environment": {
+    "config": {
+      "ack_latency": 0.0,
+      "command_ttl": 0.5,
+      "decision_interval": 1.0,
+      "energy_cost_weight": 0.08,
+      "horizon": 18.0,
+      "idle_power": 0.05,
+      "initial_energy": 9.0,
+      "lease_ttl": 2.0,
+      "penalty_expired": 4.0,
+      "penalty_rejected": 0.25,
+      "reward_completion": 10.0,
+      "reward_priority_scale": 2.0,
+      "seed": 0,
+      "service_power": 1.0,
+      "service_rate": 1.0,
+      "task_capacity": 6,
+      "telemetry_max_age": 2.5,
+      "travel_power": 0.35,
+      "travel_speed": 1.0,
+      "uav_count": 4
+    },
+    "task_semantics": [
+      "arrival",
+      "service_progress",
+      "deadline",
+      "damage",
+      "energy",
+      "communication"
+    ]
+  },
+  "format": "m10-training-protocol/0.1.0",
+  "mode": "matrix",
+  "policy_seeds": [
+    1101,
+    2203,
+    3307
+  ],
+  "ppo": {
+    "clip_epsilon": 0.2,
+    "entropy_weight": 0.01,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "grad_clip": 0.5,
+    "learning_rate": 0.0003,
+    "minibatch_size": 128,
+    "rollout_steps": 256,
+    "update_epochs": 4,
+    "value_weight": 0.5
+  },
+  "shared_action_count": 25,
+  "shared_visible_observation": true,
+  "steps_per_seed": 1024,
+  "variants": [
+    {
+      "encoder": "mlp",
+      "fusion": "base",
+      "history": false,
+      "name": "mlp-2-base",
+      "type_count": 2
+    },
+    {
+      "encoder": "graph",
+      "fusion": "base",
+      "history": false,
+      "name": "graph-2-base",
+      "type_count": 2
+    },
+    {
+      "encoder": "graph",
+      "fusion": "base",
+      "history": true,
+      "name": "graph-history-5-base",
+      "type_count": 5
+    },
+    {
+      "encoder": "graph",
+      "fusion": "world",
+      "history": false,
+      "name": "graph-5-world",
+      "type_count": 5
+    },
+    {
+      "encoder": "graph",
+      "fusion": "triggered",
+      "history": false,
+      "name": "graph-5-triggered",
+      "type_count": 5
+    }
+  ],
+  "world_model": {
+    "episodes": 64,
+    "epochs": 30,
+    "split": "episode-disjoint"
+  }
+}

@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.5, pluggy-1.6.0 -- /home/user1/m10-test-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/user1/m10-runs/20260907-shadow-recheck/source
+configfile: pyproject.toml
+collecting ... collected 2 items
+
+tests/test_shadow.py::test_shadow_valid_inference_is_read_only PASSED
+tests/test_shadow.py::test_failed_step_forces_history_reset_on_recovery PASSED
+
+============================== 2 passed in 0.82s ===============================

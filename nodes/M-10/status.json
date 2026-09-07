@@ -1,0 +1,30 @@
+{
+  "version": "m10-meeting-research/0.1.0",
+  "status": "in_progress",
+  "current_stage": "R5",
+  "training_started": true,
+  "training_location": "specified_server_only",
+  "full_goal_complete": false,
+  "stages": [
+    {"id":"R0","status":"passed"},
+    {"id":"R1","status":"passed"},
+    {"id":"R2","status":"passed"},
+    {"id":"R3","status":"passed"},
+    {"id":"R4","status":"passed"},
+    {"id":"R5","status":"in_progress"}
+  ],
+  "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
+  "source_review": "README.md",
+  "evidence": {
+    "causal_acceptance": "causal-acceptance.json",
+    "training_protocol": "training-protocol.json",
+    "training_results": "training-results.json",
+    "negative_threshold_0_5_results": "training-results-threshold-0.5.json",
+    "world_model": "world-model-training.json",
+    "server_regression": "server-pytest-final.log",
+    "training_archive_sha256": "8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312",
+    "source_archive_sha256": "77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6"
+  },
+  "completion_boundary": "M10 environment, pilot, formal three-seed matrix, world-model fusion and initial trigger ablation completed; return/charging scope, broader fairness matrix and real-flight validation remain open",
+  "review_status": "not_held"
+}

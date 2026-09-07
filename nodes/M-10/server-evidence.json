@@ -1,0 +1,17 @@
+{
+  "format": "m10-server-evidence/0.1.0",
+  "date": "2026-09-07",
+  "host": "172.17.27.173",
+  "account": "user1",
+  "source_archive": {"name": "m10-source-20260907-v3.tar", "bytes": 81664000, "sha256": "77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6"},
+  "training_archive": {"name": "m10-training-artifacts-20260907-v2.tar.gz", "bytes": 59320363, "sha256_server": "8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312", "sha256_local": "8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312", "independent_extract_files": 77},
+  "environment": {"python": "3.10.12", "torch": "2.2.2+cu121", "gymnasium": "0.29.1", "gpus": ["NVIDIA GeForce RTX 2080 Ti", "NVIDIA GeForce RTX 2080 Ti"], "preflight_gpu_utilization": ["0%", "0%"], "shared_processes_preserved": true},
+  "directories": {"pilot": "/home/user1/m10-runs/20260907-pilot", "matrix_v1": "/home/user1/m10-runs/20260907-matrix", "matrix_v2": "/home/user1/m10-runs/20260907-matrix-v2"},
+  "pilot": {"exit_code": 0, "steps": 256, "world_episodes": 16, "world_epochs": 10, "variants": 3},
+  "formal_matrix": {"exit_code": 0, "variants": 5, "policy_seeds": [1101, 2203, 3307], "steps_per_seed": 1024, "evaluation_seeds": [4401, 4402, 4403, 4404, 4405], "world_dataset_rows": 1059, "world_split": {"train": 732, "validation": 165, "test": 162, "unit": "episode_disjoint"}, "trigger_threshold_v1": 0.5, "trigger_threshold_v2": 0.2},
+  "causal_acceptance": {"checks": 7, "passed": 7, "exit_code": 0},
+  "server_regression": {"passed": 139, "skipped": 7, "failed": 0, "exit_code": 0},
+  "shadow_recheck": {"tests": 2, "passed": 2, "failed": 0, "fixture_timeout_ms": 50.0, "threshold_changed": false},
+  "latency_ms": {"cpu_policy_mean": 0.483637354336679, "cpu_policy_p95": 0.49864209722727537, "cuda_policy_mean": 0.9491013223305345, "cuda_policy_p95": 0.9710223064775759, "environment_step_included": false},
+  "cdn_or_local_download": {"server_to_local_verified": true, "independent_release_download": "pending_m10_release"}
+}

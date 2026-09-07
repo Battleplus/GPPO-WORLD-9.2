@@ -1,0 +1,8 @@
+NVIDIA GeForce RTX 2080 Ti, 0 %, 6 MiB
+NVIDIA GeForce RTX 2080 Ti, 0 %, 20 MiB
+host=ru-server-MS-1
+python_env=/home/user1/s1-gppo-venv for Torch/numpy; /home/user1/m10-test-venv for pytest with read-only PYTHONPATH overlay
+source_archive_sha256=77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6
+matrix_output=/home/user1/m10-runs/20260907-matrix/output
+training_started=true
+shared_processes_preserved=true

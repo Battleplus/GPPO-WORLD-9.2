@@ -1,0 +1,231 @@
+{
+  "dataset_rows": 1059,
+  "epochs": 30,
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 12.537837982177734,
+      "validation_loss": 12.126382827758789
+    },
+    {
+      "epoch": 2,
+      "train_loss": 12.40296459197998,
+      "validation_loss": 12.10526180267334
+    },
+    {
+      "epoch": 3,
+      "train_loss": 12.344045639038086,
+      "validation_loss": 12.091643333435059
+    },
+    {
+      "epoch": 4,
+      "train_loss": 12.304227828979492,
+      "validation_loss": 12.06033706665039
+    },
+    {
+      "epoch": 5,
+      "train_loss": 12.257193565368652,
+      "validation_loss": 12.01673412322998
+    },
+    {
+      "epoch": 6,
+      "train_loss": 12.205312728881836,
+      "validation_loss": 11.972661972045898
+    },
+    {
+      "epoch": 7,
+      "train_loss": 12.157612800598145,
+      "validation_loss": 11.937326431274414
+    },
+    {
+      "epoch": 8,
+      "train_loss": 12.120035171508789,
+      "validation_loss": 11.91157341003418
+    },
+    {
+      "epoch": 9,
+      "train_loss": 12.089926719665527,
+      "validation_loss": 11.889999389648438
+    },
+    {
+      "epoch": 10,
+      "train_loss": 12.060704231262207,
+      "validation_loss": 11.869833946228027
+    },
+    {
+      "epoch": 11,
+      "train_loss": 12.03001594543457,
+      "validation_loss": 11.851990699768066
+    },
+    {
+      "epoch": 12,
+      "train_loss": 11.999813079833984,
+      "validation_loss": 11.837494850158691
+    },
+    {
+      "epoch": 13,
+      "train_loss": 11.972928047180176,
+      "validation_loss": 11.823513984680176
+    },
+    {
+      "epoch": 14,
+      "train_loss": 11.949287414550781,
+      "validation_loss": 11.805917739868164
+    },
+    {
+      "epoch": 15,
+      "train_loss": 11.926360130310059,
+      "validation_loss": 11.783863067626953
+    },
+    {
+      "epoch": 16,
+      "train_loss": 11.903185844421387,
+      "validation_loss": 11.759831428527832
+    },
+    {
+      "epoch": 17,
+      "train_loss": 11.881217956542969,
+      "validation_loss": 11.737808227539062
+    },
+    {
+      "epoch": 18,
+      "train_loss": 11.862265586853027,
+      "validation_loss": 11.719600677490234
+    },
+    {
+      "epoch": 19,
+      "train_loss": 11.84553337097168,
+      "validation_loss": 11.704740524291992
+    },
+    {
+      "epoch": 20,
+      "train_loss": 11.82906436920166,
+      "validation_loss": 11.693072319030762
+    },
+    {
+      "epoch": 21,
+      "train_loss": 11.81299877166748,
+      "validation_loss": 11.684364318847656
+    },
+    {
+      "epoch": 22,
+      "train_loss": 11.798640251159668,
+      "validation_loss": 11.67650032043457
+    },
+    {
+      "epoch": 23,
+      "train_loss": 11.785784721374512,
+      "validation_loss": 11.666735649108887
+    },
+    {
+      "epoch": 24,
+      "train_loss": 11.773006439208984,
+      "validation_loss": 11.654857635498047
+    },
+    {
+      "epoch": 25,
+      "train_loss": 11.760043144226074,
+      "validation_loss": 11.643081665039062
+    },
+    {
+      "epoch": 26,
+      "train_loss": 11.747840881347656,
+      "validation_loss": 11.633416175842285
+    },
+    {
+      "epoch": 27,
+      "train_loss": 11.736584663391113,
+      "validation_loss": 11.626355171203613
+    },
+    {
+      "epoch": 28,
+      "train_loss": 11.72541332244873,
+      "validation_loss": 11.621770858764648
+    },
+    {
+      "epoch": 29,
+      "train_loss": 11.714158058166504,
+      "validation_loss": 11.619174003601074
+    },
+    {
+      "epoch": 30,
+      "train_loss": 11.703570365905762,
+      "validation_loss": 11.616793632507324
+    }
+  ],
+  "seed": 7001,
+  "split_unit": "episode_disjoint",
+  "test_episodes": [
+    3,
+    6,
+    11,
+    12,
+    24,
+    29,
+    32,
+    41,
+    52,
+    54
+  ],
+  "test_rows": 162,
+  "train_episodes": [
+    1,
+    4,
+    5,
+    8,
+    9,
+    10,
+    13,
+    15,
+    16,
+    18,
+    20,
+    21,
+    22,
+    23,
+    25,
+    26,
+    27,
+    28,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    42,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    53,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "train_rows": 732,
+  "validation_episodes": [
+    0,
+    2,
+    7,
+    14,
+    17,
+    19,
+    30,
+    31,
+    43,
+    55
+  ],
+  "validation_rows": 165
+}

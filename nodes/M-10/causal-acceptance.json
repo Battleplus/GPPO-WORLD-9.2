@@ -1,0 +1,50 @@
+{
+  "all_passed": true,
+  "checks": [
+    {
+      "initial_snapshot_equal": true,
+      "name": "future_event_not_visible",
+      "passed": true
+    },
+    {
+      "after_delivery": true,
+      "before_delivery": false,
+      "name": "delayed_message_delivery",
+      "passed": true
+    },
+    {
+      "name": "stale_snapshot_rejected",
+      "passed": true,
+      "result": "stale_snapshot"
+    },
+    {
+      "ack_feedback": "accepted",
+      "after_lease": "pending",
+      "name": "ack_and_lease_progression",
+      "passed": true
+    },
+    {
+      "feedback": "energy",
+      "name": "execution_truth_rejection",
+      "passed": true,
+      "policy_mask_before_truth_change": true
+    },
+    {
+      "event_kinds": [
+        "disconnect",
+        "reconnect",
+        "damage"
+      ],
+      "name": "scheduled_event_dispatch",
+      "passed": true
+    },
+    {
+      "name": "completion_classification",
+      "passed": true,
+      "task_state": "completed"
+    }
+  ],
+  "format": "m10-causal-acceptance/0.1.0",
+  "passed": 7,
+  "total": 7
+}

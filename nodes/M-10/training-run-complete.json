@@ -1,0 +1,12 @@
+{
+  "mode": "matrix",
+  "seeds": [
+    1101,
+    2203,
+    3307
+  ],
+  "status": "completed",
+  "steps_per_seed": 1024,
+  "variants": 5,
+  "world_model_rows": 1059
+}

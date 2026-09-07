@@ -1,0 +1,9 @@
+............................................................sssssss..... [ 49%]
+........................................................................ [ 98%]
+..                                                                       [100%]
+=========================== short test summary info ============================
+SKIPPED [4] tests/test_phase_data.py:20: Pinned GPPO baseline not available
+SKIPPED [1] tests/test_phase_data.py:41: Pinned GPPO baseline not available
+SKIPPED [1] tests/test_phase_data.py:53: Pinned GPPO baseline not available
+SKIPPED [1] tests/test_phase_data.py:61: Pinned GPPO baseline not available
+139 passed, 7 skipped in 2.43s
