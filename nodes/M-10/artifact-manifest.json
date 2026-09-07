@@ -3,7 +3,7 @@
   "date": "2026-09-07",
   "manifest_excludes_self": true,
   "release": {
-    "status": "pending_m10_release",
+    "status": "published_and_cdn_verified",
     "tag": "m10-meeting-research-v1-20260907",
     "repository": "Battleplus/GPPO-WORLD-9.2",
     "branch": "execute-r02-20260905",
@@ -14,7 +14,9 @@
     "source_archive_sha256": "77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6",
     "world_model_sha256": "5543fdb8dcf8b28e5a3a9aad5fc28d55ce3bd9079708fe7d6cd6c1ec1bf3a5d9",
     "pptx": {"file": "nodes/M-10/slides/汇报-m10-final.pptx", "sha256": "02a1ce449359c80ac494a35f2ac5094430efab5e0a858763b7bc0ee119bd2b9d", "bytes": 57754},
-    "pdf": {"file": "nodes/M-10/slides/汇报-m10-final.pdf", "sha256": "b6fd60af30c2c62e7f089ba8792bb351ee63270926b2986e9e24041ada6aa90c", "bytes": 463761}
+    "pdf": {"file": "nodes/M-10/slides/汇报-m10-final.pdf", "sha256": "b6fd60af30c2c62e7f089ba8792bb351ee63270926b2986e9e24041ada6aa90c", "bytes": 463761},
+    "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-meeting-research-v1-20260907",
+    "cdn_verified": true
   },
   "training_archive_inventory": {
     "output": [

@@ -6,6 +6,8 @@
 
 ## 从 Release 恢复
 
+Release：[m10-meeting-research-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-meeting-research-v1-20260907)。下载训练包、PPT 和 PDF 后，先按 Release API digest 复核，再解包训练包。
+
 1. 下载 `m10-training-artifacts-20260907-v2.tar.gz`，核对 SHA-256：`8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312`。
 2. 解包到新的空目录，先核对归档内 `m10-source-20260907-v3.tar` 的 SHA-256：`77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6`。
 3. 解包源码归档，运行完整环境因果验收：

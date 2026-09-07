@@ -36,4 +36,4 @@ CI 使用三个 policy seed 的样本标准差，未把 5 个固定评估 episod
 
 ## 归档
 
-训练归档：`m10-training-artifacts-20260907-v2.tar.gz`，SHA-256 `8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312`。源码归档 SHA-256 `77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6`。汇报稿已通过 10 页结构/字体/渲染复核：PPTX SHA-256 `02a1ce449359c80ac494a35f2ac5094430efab5e0a858763b7bc0ee119bd2b9d`，PDF SHA-256 `b6fd60af30c2c62e7f089ba8792bb351ee63270926b2986e9e24041ada6aa90c`。GitHub Release tag 预定为 `m10-meeting-research-v1-20260907`，发布后以 Release API digest 和独立 CDN 下载结果为准。
+训练归档：`m10-training-artifacts-20260907-v2.tar.gz`，SHA-256 `8c883d7cc7213ed724dd86e2a99645f30e5a2fca084fc75df42ace5ea22d6312`。源码归档 SHA-256 `77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6`。汇报稿已通过 10 页结构/字体/渲染复核：PPTX SHA-256 `02a1ce449359c80ac494a35f2ac5094430efab5e0a858763b7bc0ee119bd2b9d`，PDF SHA-256 `b6fd60af30c2c62e7f089ba8792bb351ee63270926b2986e9e24041ada6aa90c`。GitHub Release：[M-10 meeting research delivery](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-meeting-research-v1-20260907) 已发布，Release API digest 与独立 CDN 下载的三项资产全部匹配。

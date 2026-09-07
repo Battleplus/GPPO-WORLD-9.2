@@ -21,7 +21,7 @@
 | R2 | 同环境MLP-PPO、图PPO、图PPO-History训练 | passed；服务器 pilot 与正式三 seed 矩阵 |
 | R3 | 监督世界模型与配套融合策略训练 | passed；episode-disjoint 数据划分与实际 context 消费 |
 | R4 | 表示、历史、世界模型与触发机制消融 | passed；5 变体、阈值 0.5 负结果和 0.2 敏感性补充 |
-| R5 | 下载、归档与更新汇报 | in_progress；Release/CDN 回读后收尾，不覆盖M-09 |
+| R5 | 下载、归档与更新汇报 | passed；Release 已发布并完成三项资产 CDN 回读校验，不覆盖M-09 |
 
 ## R0候选合同（尚未批准为竞赛事实）
 
@@ -99,4 +99,4 @@ ServiceClock现已支持二维直线移动、速度、移动功率、等待功�
 
 新增全环境因果验收 7/7；服务器全套回归 139 passed、7 skipped，跳过项均因旧 GPPO baseline 未安装。此前两个 Shadow timeout 在服务器受控环境重跑均 passed（0.85s），原 50ms fixture 门槛没有修改。
 
-训练归档在 GitHub Release 单独发布，仓库只保留协议、结果、证据和清单。完整复现命令见 `nodes/M-10/reproduction-runbook.md`；汇报稿见 `nodes/M-10/slides/汇报-m10-final.pptx` 与同名 PDF。
+训练归档在 [GitHub M-10 Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-meeting-research-v1-20260907) 单独发布，仓库只保留协议、结果、证据和清单。完整复现命令见 `nodes/M-10/reproduction-runbook.md`；汇报稿见 `nodes/M-10/slides/汇报-m10-final.pptx` 与同名 PDF。
