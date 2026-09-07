@@ -15,12 +15,16 @@
     "reward_mean_baseline_rmse": 3.0994,
     "event_bce": 0.2576,
     "done_bce": 0.2658,
+    "done_bce_train_prevalence_baseline": 0.2213515,
+    "done_bce_never_true_baseline": 0.9343825,
     "done_never_true_brier": 0.0580,
+    "done_positive_count": 16,
     "event": {
       "damage": {"positive_count": 16, "positive_rate": 0.0580, "precision_at_0.5": 0.0, "recall_at_0.5": 0.0, "pr_auc": 0.0771, "brier": 0.0706, "ece_10bin": 0.1269},
       "disconnect": {"positive_count": 16, "positive_rate": 0.0580, "precision_at_0.5": 0.0, "recall_at_0.5": 0.0, "pr_auc": 0.1344, "brier": 0.0725, "ece_10bin": 0.1398},
       "reconnect": {"positive_count": 16, "positive_rate": 0.0580, "precision_at_0.5": 0.0, "recall_at_0.5": 0.0, "pr_auc": 0.0614, "brier": 0.0679, "ece_10bin": 0.1140},
-      "reserved_event_3": {"positive_count": 0, "positive_rate": 0.0, "pr_auc": null}
+    "reserved_event_3": {"positive_count": 0, "positive_rate": 0.0, "pr_auc": null},
+    "same_metric_baseline_note": "On the same final-test rows, done BCE is 0.2658 versus 0.2214 for the train-prevalence constant baseline and 0.9344 for the all-zero constant baseline. The all-zero Brier 0.058 is not compared directly with BCE."
     },
     "split_policy": "train and validation describe baselines; historical test is regression only; final test was frozen before final evaluation and not used for selection"
   }

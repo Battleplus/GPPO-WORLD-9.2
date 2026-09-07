@@ -1,7 +1,7 @@
 {
   "version": "m10-r-training-validity/0.1.0",
   "status": "in_progress",
-  "current_stage": "M10-R3",
+  "current_stage": "M10-final-acceptance-candidate-freeze",
   "training_started": true,
   "training_location": "specified_server_only",
   "full_goal_complete": false,
@@ -90,8 +90,39 @@
     "m10_r3_release_archive_sha256": "785f2db6cd5303ae5a9f99e846327b62ebba44081349ef57ca3ae9087a74bfb9",
     "m10_r3_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r3-prediction-trigger-learning-v1-20260907",
     "m10_r3_release_asset": "m10-r3-prediction-trigger-learning-v1-20260907.tar.gz",
-    "m10_r3_release_assets_verified": true
+    "m10_r3_release_assets_verified": true,
+    "final_acceptance_matrix": "m10-final-acceptance-matrix.md",
+    "final_acceptance_artifact_index": "m10-final-acceptance-artifact-index.md",
+    "final_acceptance_reproduction": {
+      "training_performed": false,
+      "server_root": "/home/user1/m10-runs/20260907-final-acceptance-v1",
+      "basic_run": "basic-mlp2-seed1101",
+      "basic_reproduction_sha256": "c718ad0bbdae74d08bb883ecf791edf9629deb4bffd6fdcccbbdb61942f3befc",
+      "fusion_run": "fusion-graph5-world-seed1101",
+      "fusion_reproduction_sha256": "8288cf4bf0630c8ced80e1af2e0f0b4e407f5d1b1df686d55a07e5ccb49d5c95",
+      "server_environment_sha256": "78c009d048aca3c5b305889a4bc046ed590d88fdd726df35ce23dfe430b3319c",
+      "environment_note": "m10-test-venv was present but had no torch/numpy; read-only reproduction used existing s1-gppo-venv (Python 3.10.12, Torch 2.2.2+cu121, NumPy 1.24.4) without mutation"
+    },
+    "default_candidate": {
+      "variant": "MLP-2 Base",
+      "seed": 1101,
+      "checkpoint_source": "R3 formal matrix",
+      "selection_basis": "engineering demonstration choice from frozen matrix: highest descriptive return and throughput",
+      "scientific_selection_claim": false
+    },
+    "fusion_candidate": {
+      "variant": "Graph-5 World",
+      "seed": 1101,
+      "world_model_source": "R2 frozen trained checkpoint",
+      "purpose": "separate context-consumption demonstration; not default model-risk trigger"
+    },
+    "delivery_status": "verified_simulation_and_experiment_package",
+    "stable_algorithm_gain": "unproven",
+    "deployment_validation": "not_verified",
+    "user_scope_status": "pending",
+    "human_review_status": "not_held",
+    "new_training_this_stage": false
   },
-  "completion_boundary": "M10-R3 prediction quality, trigger cost and 8192-step learning assessment completed; independent Release/materials, user-confirmed return/charging scope, real control cycle, broader training, real-flight validation and human review remain open",
+  "completion_boundary": "M10-R3 evidence checked and final candidates frozen with a no-training server reproduction; independent final archive, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
   "review_status": "not_held"
 }

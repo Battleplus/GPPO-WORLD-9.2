@@ -1,0 +1,45 @@
+{
+  "schema": "m10-final-acceptance-artifact-manifest/1",
+  "project": "GPPO-WORLD-9.2",
+  "branch": "execute-r02-20260905",
+  "release_tag": "m10-final-acceptance-candidate-v1-20260907",
+  "training_performed_this_stage": false,
+  "source_archive": "generated from final acceptance commit; archive SHA is supplied beside the independently downloaded release asset and is not self-embedded",
+  "presentation": {
+    "path": "repo/nodes/M-10/slides/汇报-m10-final-acceptance-v1.pptx",
+    "bytes": 53327,
+    "sha256": "37b3047ecb16ca4bc7d90f4915181892135874caa6323cd2e7811dc3726ae5df",
+    "validation": "repo/nodes/M-10/presentation-validation-final-acceptance.json"
+  },
+  "server_final_reproduction": {
+    "root": "/home/user1/m10-runs/20260907-final-acceptance-v1",
+    "environment": "server-environment.txt",
+    "basic": {
+      "run": "basic-mlp2-seed1101",
+      "file": "server/basic-mlp2-seed1101-reproduction.json",
+      "sha256": "c718ad0bbdae74d08bb883ecf791edf9629deb4bffd6fdcccbbdb61942f3befc",
+      "summary": "5 episodes; 69 environment steps; 69 actor calls; 0 world-model calls; 0 rejected"
+    },
+    "fusion": {
+      "run": "fusion-graph5-world-seed1101",
+      "file": "server/fusion-graph5-world-seed1101-reproduction.json",
+      "sha256": "8288cf4bf0630c8ced80e1af2e0f0b4e407f5d1b1df686d55a07e5ccb49d5c95",
+      "summary": "5 episodes; 75 environment steps; 75 actor calls; 75 world-model calls; 0 rejected"
+    },
+    "environment_sha256": "78c009d048aca3c5b305889a4bc046ed590d88fdd726df35ce23dfe430b3319c",
+    "environment_note": "m10-test-venv lacked torch/numpy; existing s1-gppo-venv was used read-only, with no installation or mutation"
+  },
+  "historical_training": {
+    "r3_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r3-prediction-trigger-learning-v1-20260907",
+    "r3_release_archive_sha256": "785f2db6cd5303ae5a9f99e846327b62ebba44081349ef57ca3ae9087a74bfb9",
+    "formal_matrix_sha256": "582c19e07992795423059cb7a21ba30cfb4fb1512718886b1265410b93eac0f1",
+    "world_model": "R2 trained checkpoint, reused and frozen in R3; optimizer/recovery states remain in historical archive"
+  },
+  "contents": [
+    "repo/nodes/M-10/**",
+    "repo/tools/run_m10_final_repro.py",
+    "server/** final candidate reproduction and environment evidence",
+    "source/** final source archive",
+    "references/** historical R3 release and SHA index"
+  ]
+}

@@ -1,4 +1,6 @@
-# M-10 汇报讲稿
+# M-10 历史汇报讲稿（保留）
+
+> 当前约 10 分钟汇报请使用 `m10-final-acceptance-speaker-notes.md` 和 `slides/汇报-m10-final-acceptance-v1.pptx`。本文件保留早期阶段讲稿，不删除历史内容。
 
 ## 1. 目标
 

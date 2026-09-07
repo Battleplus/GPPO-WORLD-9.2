@@ -16,7 +16,7 @@ R3 因此支持一个受限负结论：当前标签、事件密度、策略规�
 
 新 final-test tape 是独立冻结的 16 个 episode、276 条 transition。三类事件各有 16 个阳性样本，阳性率约 5.8%；第四类没有阳性样本，不能用 PR-AUC 解释其能力。训练、validation、历史回归 test、OOD 和 final-test tape 使用不同 seed 地址；历史 test 只作回归，不再声称是新的盲测。
 
-固定 R2 world-model checkpoint 在 final-test 上的结果如下：reward RMSE **3.046**，训练均值 reward baseline RMSE **3.099**；event BCE **0.258**；done BCE **0.266**，而 done 的永不为真 baseline 的 Brier 为 **0.058**。damage/disconnect/reconnect 的 PR-AUC 分别为 **0.077/0.134/0.061**，0.5 阈值 precision 和 recall 均为 0。校准使用 10-bin ECE；对应 ECE 为 **0.127/0.140/0.114**。这些数值说明当前 event head 没有提供可依赖的事件触发信号，不能把 risk 0.1 门槛当作经过性能约束选择的阈值。
+固定 R2 world-model checkpoint 在 final-test 上的结果如下：reward RMSE **3.046**，训练均值 reward baseline RMSE **3.099**；event BCE **0.258**，训练阳性率常数 baseline 的同指标为 **0.166**；done BCE **0.266**，训练阳性率常数 baseline 的同指标为 **0.221**，全零常数 baseline 的同指标为 **0.934**。此前记录的 done 全零 Brier **0.058** 只与 Brier 比较，不能和 BCE 直接比较。damage/disconnect/reconnect 的 PR-AUC 分别为 **0.077/0.134/0.061**，0.5 阈值 precision 和 recall 均为 0。校准使用 10-bin ECE；对应 ECE 为 **0.127/0.140/0.114**。这些数值说明 event head 没有提供可依赖的事件触发信号；done 的 BCE 相对全零基线改善，但未超过训练阳性率基线，不能把 risk 0.1 门槛当作经过性能约束选择的阈值。
 
 训练均值、持久性和零事件规则均保存在 `prediction-audit-r3.json` 对应的 Release 制品中。持久性基线只重复最近一次公开 UAV 语义状态变化；它是适用的事件基线，不是对 done 的强行类比。所有基线、预处理和阈值选择只使用训练/validation 语义，final-test 在选择后才使用。
 
@@ -54,7 +54,7 @@ R3 因此支持一个受限负结论：当前标签、事件密度、策略规�
 
 R3 新增 `evaluate_world_model_rows`，按事件类别输出 precision、recall、PR-AUC、Brier、ECE、阳性数、样本数，并报告 reward/done 误差及训练均值、持久性、零事件/永不 done 基线。`collect_world_dataset` 保存标签语义、tape_id 和持久性基线，避免在 split 后重新推断。
 
-R3 新增 `_policy_input_bundle`。它在同一 observation/version 上返回门控向量、risk、完整 context 和完整向量；collect、evaluate 和 benchmark 的决策路径不再先算 risk 再用 `force_context` 二次调用 world model。continuation 复用控制器已有动作，只推进 value/history 和租约，不创建新的 TaskExecution 分配命令。策略、世界模型、触发判断、门禁、同步和环境推进都计入完整链路延迟。
+R3 新增 `_policy_input_bundle`。它在同一 observation/version 上返回门控向量、risk、完整 context 和完整向量；collect、evaluate 和 benchmark 的决策路径不再先算 risk 再用 `force_context` 二次调用 world model。R2 世界模型的 `context_head` 与 reward/event/done head 共享 backbone，并通过 `context_mse` 监督损失获得梯度；R3 没有重新训练它，而是冻结并审计该 R2 checkpoint。策略确实消费其 context，但这不等于 event 目标已证明适合触发。continuation 复用控制器已有动作，只推进 value/history 和租约，不创建新的 TaskExecution 分配命令。策略、世界模型、触发判断、门禁、同步和环境推进都计入完整链路延迟。
 
 训练和评估仍使用同一可见任务、mask、ACK、版本、lease、fencing 和安全合同。PPO 记账区分 environment steps、rollout updates、update epochs、optimizer updates、actor decisions 和 continuation。历史状态在 episode 边界清零，非终止 rollout 使用下一状态 bootstrap，真实 terminated 不 bootstrap。
 
@@ -63,7 +63,7 @@ R3 新增 `_policy_input_bundle`。它在同一 observation/version 上返回门
 - 事件标签是 one-step simulator event consequence，不是经过任务效果验证的未来重规划标签；应先建立真正的 horizon/event-to-replan 标注再研究模型触发。
 - final-test tape 是本轮新冻结的合成 tape，不代表真实任务分布；OOD 仍是合成 energy-insufficient tape，不是生产保障。
 - formal matrix 使用 3 个训练 seed、16 个评估 episode tape，结论是描述性，不是统计显著性结论；训练曲线仍可能未收敛。
-- 世界模型 checkpoint 没有在 R3 重新训练；R3 主要评估 R2 模型的预测质量、成本和策略消费路径。context 仍是固定 projection 输出，R3 证明策略实际消费它，但不把它升级为新的监督目标。
+- 世界模型 checkpoint 没有在 R3 重新训练；R3 主要评估 R2 模型的预测质量、成本和策略消费路径。context 是 R2 中经 `context_mse` 监督训练的 projection head，R3 将该已训练输出冻结后接入策略；R3 没有新增 context 预测目标。
 - 端到端延迟来自指定服务器的 CPU/CUDA 与归一化仿真，样本量 259/272；真实控制周期、网络、返航、换电、充电和实飞范围仍待用户确认。
 - 服务器旧 pinned GPPO baseline 仍缺失，7 个历史测试 skip 单列，不能冒充覆盖；R3 未改变共享环境。
 - M-09、M-10、M-10-R、M-10-R2 的历史 Release、失败记录、阈值 0.5 零触发结果和阈值 0.2 敏感性结果保持不变。

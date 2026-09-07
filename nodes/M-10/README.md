@@ -119,7 +119,7 @@ M-10-R 训练归档已下载并双端 SHA-256 校验：`m10-r-training-artifacts
 
 ## 2026-09-07 M-10-R3：预测质量、触发成本与学习充分性评估
 
-R3 在不改写历史 Release 的前提下，新增了逐事件 PR-AUC、precision、recall、Brier、10-bin ECE、阳性率和 split 统计，并保存事件标签语义与持久性基线。新 final-test tape 为 16 个独立 episode、276 条 transition；damage、disconnect、reconnect 各 16 个阳性样本。固定 R2 world checkpoint 的 final-test event PR-AUC 为 0.077/0.134/0.061，0.5 阈值 precision/recall 均为 0；done BCE 0.266，永不 done baseline 更好。当前标签表示下一环境间隔中的 simulator event consequence，尚未证明等价于未来需要重规划。
+R3 在不改写历史 Release 的前提下，新增了逐事件 PR-AUC、precision、recall、Brier、10-bin ECE、阳性率和 split 统计，并保存事件标签语义与持久性基线。新 final-test tape 为 16 个独立 episode、276 条 transition；damage、disconnect、reconnect 各 16 个阳性样本。固定 R2 world checkpoint 的 final-test event PR-AUC 为 0.077/0.134/0.061，0.5 阈值 precision/recall 均为 0；event BCE 0.258 高于训练阳性率基线 0.166。done BCE 0.266 高于同指标训练阳性率基线 0.221；此前全零 Brier 0.058 不与 BCE 直接比较。当前标签表示下一环境间隔中的 simulator event consequence，尚未证明等价于未来需要重规划。
 
 R3 新增 `_policy_input_bundle`，在同一 observation/version 上复用一次 world-model 推理得到的 context 和 risk；语义、安全、最大等待和 risk 触发的独立条件计数均保留。固定同一 Graph-5 World checkpoint 和 final-test tape 的 CPU 对照为：周期策略 return 19.500、actor 16.188 次/episode；规则触发 return 6.552、actor 9.125、continuation 7.875；model-risk 阈值 0.1 return 19.500、actor 16.188、continuation 0，risk 条件 259/259 步成立。规则省计算但损失任务效果，model-risk 未产生触发收益。
 
@@ -128,3 +128,13 @@ R3 新增 `_policy_input_bundle`，在同一 observation/version 上复用一次
 R3 运行标识为 `20260907-r3-prediction-trigger-cost-v1` 下的 prediction、trigger、learning-ladder 和 formal-matrix。服务器全套回归为 155 passed、7 skipped，skip 是旧 pinned GPPO baseline 缺失。R3 不值得无约束继续扩训；若继续，应先重定义未来重规划标签并扩大独立 tape，再做受约束阈值实验。返航/换电/充电范围、真实控制周期和汇报日期仍待确认；群发、彩排和导师评审仍是用户待办。
 
 R3 独立归档已发布：[m10-r3-prediction-trigger-learning-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r3-prediction-trigger-learning-v1-20260907)。归档 `m10-r3-prediction-trigger-learning-v1-20260907.tar.gz` 本地与 GitHub API digest 均为 `785f2db6cd5303ae5a9f99e846327b62ebba44081349ef57ca3ae9087a74bfb9`；不修改旧 Release、main 或 force push。
+
+## 2026-09-07 会议交付总验收与候选冻结
+
+本轮默认不新增训练。已建立 `m10-final-acceptance-matrix.md` 的“要求—实现—运行—制品—结论—限制”总表，更新统计口径、世界模型 context 训练事实、三因素复合扰动术语和状态分层。R2 的 world model 已实际训练 context head；R3 未重训 world model，但 R3 融合策略已训练并验证消费冻结 context。
+
+默认演示候选冻结为 R3 formal matrix 的 MLP-2 Base seed-1101；选择依据是固定矩阵中的描述性 return/吞吐，明确不是无偏科学最优。Graph-5 World seed-1101 加 R2 world checkpoint 作为独立融合演示，不默认启用 model-risk。R3 的负结果保留：风险阈值 0.1 每步触发，规则触发虽节省调用但降低任务效果，周期决策继续作为当前可用方案。
+
+服务器在全新目录 `/home/user1/m10-runs/20260907-final-acceptance-v1` 完成两候选只读复现，无训练：基础 5 场景、69 环境步/69 actor calls；融合 5 场景、75 环境步/75 actor calls/75 world calls。`m10-test-venv` 当前无 Torch/NumPy，未安装或修改；复现实际使用既有 `s1-gppo-venv`，环境偏差已写入 status 和制品索引。
+
+当前状态分别为：仿真研发与实验交付已验证；算法稳定收益未证明；真实部署未验证；返航/换电/充电、竞赛任务规模和真实控制周期待用户确认；群发、彩排、导师评审未举行。`full_goal_complete` 保持 `false`。材料、复现、归档入口见 `m10-final-acceptance-*` 文件。

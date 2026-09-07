@@ -1,4 +1,6 @@
-# M-10 3-5 分钟演示脚本
+# M-10 历史演示脚本（保留）
+
+> 当前总验收请使用 `m10-final-acceptance-demo-basic.md` 和 `m10-final-acceptance-demo-world-fusion.md`。本文件保留为历史 R/R2 演示底稿，旧指标和旧入口不代表当前最终候选口径。
 
 1. 展示 `causal-acceptance.json`，说明未来事件不进入策略输入，延迟消息要等送达，stale snapshot 会被拒绝。
 2. 运行：

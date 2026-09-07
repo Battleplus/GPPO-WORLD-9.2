@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "presentation-finalization.v1",
+  "presentation": "slides/汇报-m10-final-acceptance-v1.pptx",
+  "finalSha256": "37b3047ecb16ca4bc7d90f4915181892135874caa6323cd2e7811dc3726ae5df",
+  "byteCount": 53327,
+  "slideCount": 10,
+  "slideSizeIn": [13.3333, 7.5],
+  "packageIntegrity": "pass",
+  "presentationLayout": "pass",
+  "firstPartyImport": "pass",
+  "nativeTableArithmetic": "pass; no native tables",
+  "nativeChartValidation": "not applicable; no native charts",
+  "visualInspection": "all 10 rendered slides inspected; no blocking layout finding",
+  "claimBoundary": "Structural and rendered-slide validation; not native PowerPoint execution or independent source-data verification."
+}
