@@ -9,7 +9,7 @@ executor and simulator.
 
 from __future__ import annotations
 
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 import math
 from typing import Any, Iterable
 
@@ -21,6 +21,8 @@ from .task_execution import TaskCommand, TaskExecution
 from .task_lifecycle import TaskLifecycle, TaskState
 from .task_policy_view import TaskPolicySnapshot, TaskPolicyView
 from .telemetry import Telemetry
+from .m10_communication import CommunicationProfile
+from .m10_communication import weak_communication_profile
 
 
 @dataclass(frozen=True)
@@ -89,6 +91,7 @@ class M10Scenario:
     seed: int = 0
     split: str = "regression"
     tape_id: str = "regression-seed-0"
+    communication: CommunicationProfile = CommunicationProfile()
 
 
 def default_scenario(name: str = "mixed", seed: int = 0, *, split: str = "regression") -> M10Scenario:
@@ -177,6 +180,14 @@ def scenario_tape(split: str, *, count: int, base_seed: int = 7001, name: str = 
     return tuple(default_scenario(name, seed=base_seed + _TAPE_OFFSETS[split] + i, split=split) for i in range(count))
 
 
+def weak_communication_tape(split: str, *, count: int, base_seed: int = 7001,
+                           level: str = "composite", name: str = "mixed") -> tuple[M10Scenario, ...]:
+    """Return a distinct, serializable tape with one frozen link protocol."""
+    profile = weak_communication_profile(level)
+    return tuple(replace(scenario, communication=profile)
+                 for scenario in scenario_tape(split, count=count, base_seed=base_seed, name=name))
+
+
 def scenario_to_dict(scenario: M10Scenario) -> dict[str, Any]:
     return {
         "name": scenario.name,
@@ -185,6 +196,7 @@ def scenario_to_dict(scenario: M10Scenario) -> dict[str, Any]:
         "tape_id": scenario.tape_id,
         "tasks": [asdict(task) for task in scenario.tasks],
         "events": [asdict(event) for event in scenario.events],
+        "communication": scenario.communication.to_dict(),
     }
 
 
@@ -195,6 +207,7 @@ def scenario_from_dict(payload: dict[str, Any]) -> M10Scenario:
         events=tuple(ServiceEvent(**item) for item in payload.get("events", [])),
         seed=int(payload.get("seed", 0)), split=str(payload.get("split", "regression")),
         tape_id=str(payload.get("tape_id", "unknown")),
+        communication=CommunicationProfile.from_dict(payload.get("communication")),
     )
 
 
@@ -204,6 +217,7 @@ class M10Environment:
     def __init__(self, config: M10Config | None = None, scenario: M10Scenario | None = None):
         self.config = config or M10Config()
         self.scenario = scenario or default_scenario(seed=self.config.seed)
+        self.communication = self.scenario.communication
         if len(self.scenario.tasks) > self.config.task_capacity:
             raise ValueError("scenario exceeds public task capacity")
         self.uav_ids = tuple(f"uav-{i}" for i in range(self.config.uav_count))
@@ -258,6 +272,7 @@ class M10Environment:
         self._last_expired = 0
         self._feedback_log: list[dict[str, Any]] = []
         self._delivered_messages: list[dict[str, Any]] = []
+        self._communication_log: list[dict[str, Any]] = []
         self._pending_messages: list[tuple[str, Telemetry]] = []
         self._public_event_records: list[dict[str, Any]] = []
         self._last_public_event_values: dict[tuple[str, str], float] = {}
@@ -277,7 +292,13 @@ class M10Environment:
     def reset(self, *, seed: int | None = None) -> dict[str, Any]:
         if seed is not None and seed != self.config.seed:
             self.config = M10Config(**{**self.config.__dict__, "seed": seed})
-            self.scenario = default_scenario(self.scenario.name, seed=seed)
+            default = default_scenario(self.scenario.name, seed=seed)
+            self.scenario = M10Scenario(
+                name=default.name, tasks=default.tasks, events=default.events,
+                seed=default.seed, split=default.split, tape_id=default.tape_id,
+                communication=self.scenario.communication,
+            )
+            self.communication = self.scenario.communication
         self._reset_state()
         return self._observation(clear_trigger=True)
 
@@ -288,16 +309,35 @@ class M10Environment:
 
     def _send(self, kind: str, entity: str, field: str, value: float) -> None:
         now = self.clock.time
-        message = Telemetry(entity, field, float(value), now, now + self.config.telemetry_delay, self._next_sequence(entity, field))
+        sequence = self._next_sequence(entity, field)
+        identity = f"{kind}|{entity}|{field}|{sequence}|{now:.9f}"
+        impairment = self.communication.telemetry(seed=self.scenario.seed, identity=identity, now=now)
+        if impairment["dropped"]:
+            self._communication_log.append({"link": "telemetry", "status": "dropped", "identity": identity,
+                                            "time": now, "reason": "outage" if impairment["outage"] else "random_loss"})
+            return
+        received_at = now + self.config.telemetry_delay + self.communication.telemetry_extra_delay + impairment["jitter"]
+        message = Telemetry(entity, field, float(value), now, received_at, sequence)
+        self._communication_log.append({"link": "telemetry", "status": "sent", "identity": identity,
+                                        "time": now, "received_at": received_at})
         if message.received_at > now:
             self._pending_messages.append((kind, message))
+            if impairment["duplicate"]:
+                self._pending_messages.append((kind, message))
             return
         self._accept_message(kind, message, now)
 
     def _accept_message(self, kind: str, message: Telemetry, now: float) -> bool:
         accepted = self.view.receive(kind, message, now)
         if not accepted:
+            self._communication_log.append({"link": "telemetry", "status": "stale_or_duplicate",
+                                            "entity": message.entity, "field": message.field,
+                                            "sequence": message.sequence, "time": now})
             return False
+        self._communication_log.append({"link": "telemetry", "status": "received",
+                                        "entity": message.entity, "field": message.field,
+                                        "sequence": message.sequence, "time": now,
+                                        "measured_at": message.measured_at})
         self._delivered_messages.append({"kind": kind, "entity": message.entity, "field": message.field, "time": now, "measured_at": message.measured_at})
         if kind == "task" and message.entity not in self._public_task_entities:
             self._public_task_entities.add(message.entity)
@@ -456,18 +496,29 @@ class M10Environment:
         if type(action) is not int or not 0 <= action < self.config.action_count:
             raise ValueError("action outside fixed M10 action space")
         obs = self._observation()
+        communication_start = len(self._communication_log)
         event_log_before = len(self.clock.log)
         command_id: str | None = None
         lease_renewal = "not_applicable"
         if submit_command:
             self._command_index += 1
             command_id = f"{self._episode_id}-cmd-{self._command_index:05d}"
-            feedback = self.bridge.submit(action, version=obs["version"], command_id=command_id)
+            command_identity = f"{command_id}|{obs['version']}|{action}"
+            command_delivered = self.communication.command_delivered(seed=self.scenario.seed, identity=command_identity)
+            self._communication_log.append({"link": "command", "status": "sent" if command_delivered else "dropped",
+                                            "command_id": command_id, "time": self.clock.time})
+            feedback = (self.bridge.submit(action, version=obs["version"], command_id=command_id)
+                        if command_delivered else "command_lost")
             if isinstance(feedback, TaskCommand):
                 ack_result = self.execution.acknowledge(feedback.command_id, feedback.uav_id, feedback.token)
                 if ack_result == "accepted":
                     self._active_command = feedback
                     self._active_action = action
+                    ack_delivered = self.communication.ack_delivered(seed=self.scenario.seed, identity=command_identity)
+                    self._communication_log.append({"link": "ack", "status": "received" if ack_delivered else "dropped",
+                                                    "command_id": command_id, "time": self.clock.time})
+                    if not ack_delivered:
+                        feedback = "ack_lost_after_accept"
                 else:
                     self._active_command = None
                     self._active_action = None
@@ -524,6 +575,8 @@ class M10Environment:
             "event_log": list(self.clock.log),
             "new_events": list(self.clock.log[event_log_before:]),
             "feedback_log": list(self._feedback_log),
+            "communication_log": list(self._communication_log),
+            "communication_delta": list(self._communication_log[communication_start:]),
             "delivered_message_count": len(self._delivered_messages),
             "policy_version": next_obs["version"],
             "trigger_flags": dict(next_obs["trigger_flags"]),
@@ -541,4 +594,4 @@ class M10Environment:
         return int(obs["version"]), tuple(float(x) for x in obs["flat"]), tuple(bool(x) for x in obs["mask"])
 
 
-__all__ = ["M10Config", "M10TaskSpec", "M10Scenario", "M10Environment", "default_scenario", "scenario_tape", "scenario_to_dict", "scenario_from_dict"]
+__all__ = ["M10Config", "M10TaskSpec", "M10Scenario", "M10Environment", "default_scenario", "scenario_tape", "weak_communication_tape", "scenario_to_dict", "scenario_from_dict"]
