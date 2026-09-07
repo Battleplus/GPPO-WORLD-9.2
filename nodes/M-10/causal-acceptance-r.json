@@ -1,0 +1,8 @@
+{
+  "format": "m10-causal-acceptance/0.2.0",
+  "run_id": "20260907-r-corrected-matrix-v2",
+  "passed": 10,
+  "total": 10,
+  "checks": ["future_event_not_visible", "seeded_tape_is_distinct", "delayed_message_delivery", "stale_snapshot_rejected", "ack_and_lease_progression", "execution_truth_rejection", "scheduled_event_dispatch", "completion_classification", "candidate_identity_permutation", "world_context_action_and_ood_fallback"],
+  "full_record": "training-archive/20260907-r-corrected-matrix-v2/causal-acceptance.json"
+}

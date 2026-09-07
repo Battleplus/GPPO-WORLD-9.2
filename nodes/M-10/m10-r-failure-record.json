@@ -1,0 +1,13 @@
+{
+  "format": "m10-r-failure-record/0.1.0",
+  "attempt_id": "20260907-r-corrected-matrix",
+  "status": "failed_not_counted",
+  "stage": "formal_matrix",
+  "observed_error": "RuntimeError: Non-advancing service boundary",
+  "observed_boundary": {"clock_time": 16.000437, "next_boundary": 17.0, "near_distance": 8.881784197001252e-16},
+  "cause_classification": "confirmed floating-point near-coincident position created a zero-duration travel calculation; not attributed to machine load",
+  "remediation": "use 1e-12 distance tolerance for moving/service classification and add near-coincident regression test",
+  "replacement_attempt": "20260907-r-corrected-matrix-v2",
+  "replacement_status": "completed",
+  "preserved_in_training_archive": "20260907-r-corrected-matrix"
+}

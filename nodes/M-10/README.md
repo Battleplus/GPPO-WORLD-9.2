@@ -100,3 +100,13 @@ ServiceClock现已支持二维直线移动、速度、移动功率、等待功�
 新增全环境因果验收 7/7；服务器全套回归 139 passed、7 skipped，跳过项均因旧 GPPO baseline 未安装。此前两个 Shadow timeout 在服务器受控环境重跑均 passed（0.85s），原 50ms fixture 门槛没有修改。
 
 训练归档在 [GitHub M-10 Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-meeting-research-v1-20260907) 单独发布，仓库只保留协议、结果、证据和清单。完整复现命令见 `nodes/M-10/reproduction-runbook.md`；汇报稿见 `nodes/M-10/slides/汇报-m10-final.pptx` 与同名 PDF。
+
+## 2026-09-07 M-10-R：训练有效性与公平性修正
+
+M-10-R 不改写上述历史结论或旧 Release。针对历史审查发现的 seed 场景不变、缺少 Graph-5 Base、五类型占位 token、世界模型 test_rows 冒充测试评估、context head 未入损失、以及 context gating 触发次数误称重规划等问题，已完成代码修正和新的服务器闭环。详细缺陷分类、结果、限制和待确认事项见 `m10-r-report.md` 与 `m10-r-limitations.md`。
+
+正式服务器运行标识为 `20260907-r-corrected-matrix-v2`：6 变体（MLP-2 Base、Graph-2 Base、Graph-5 Base、Graph-5 History、Graph-5 World、Graph-5 Triggered-Replan）× 3 seed × 2048 steps；每组实际 8 次 PPO optimizer update，18 个 checkpoint。train/validation/test/OOD tape 分别冻结为 64/16/16/16 episodes；验证集选择阈值 0.2，测试集未用于校准或选择。Graph-5 World 与 Triggered-Replan 本轮均值 return 为 30.981，触发组 217 次评估触发全为 `public_event`，不作稳定收益或生产重规划结论。
+
+本地受控全套测试 151 passed，Shadow 定向复核 6 passed；服务器回归 144 passed、7 skipped（既有 pinned GPPO baseline 未提供），新的全环境因果验收 10/10。完整决策链 100 samples 延迟为 CPU 2.872/3.081/3.091 ms（mean/P95/P99），CUDA 3.565/3.786/3.803 ms；测量只代表指定服务器归一化仿真，未知真实控制周期，不宣称竞赛实时达标。
+
+M-10-R 训练归档已下载并双端 SHA-256 校验：`m10-r-training-artifacts-20260907.tar.gz` 为 `bd5d01b52c09b793eb352854822f16e5690748292205ebb501d394afbb91eb4b`。归档同时保留先前失败矩阵目录和修复后的成功矩阵，源码、tape、checkpoint、optimizer/recovery state、日志、逐 seed 结果和服务器测试齐全。独立 GitHub Release 仍待最终报告材料提交后创建；不修改 `m10-meeting-research-v1-20260907`、main 或 force push。

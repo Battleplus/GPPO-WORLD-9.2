@@ -1,0 +1,20 @@
+{
+  "format": "m10-r-training-results-summary/0.1.0",
+  "run_id": "20260907-r-corrected-matrix-v2",
+  "status": "completed",
+  "steps_per_seed": 2048,
+  "policy_seeds": [1101, 2203, 3307],
+  "variants": 6,
+  "records": 18,
+  "optimizer_updates_per_record": 8,
+  "evaluation_seeds": [4401, 4402, 4403, 4404, 4405],
+  "results_mean_across_training_seeds": {
+    "mlp-2-base": {"completed": 4.2, "expired": 1.8, "return": 33.8221771319, "energy_remaining": 23.7772141485, "seed_sd_return": 8.3369},
+    "graph-2-base": {"completed": 4.3333333333, "expired": 1.6666666667, "return": 35.5958198353, "energy_remaining": 22.6144146079, "seed_sd_return": 7.0286},
+    "graph-5-base": {"completed": 3.8, "expired": 2.2, "return": 28.1836589950, "energy_remaining": 23.2957374373, "seed_sd_return": 7.3986},
+    "graph-history-5-base": {"completed": 3.6, "expired": 2.4, "return": 25.4084430627, "energy_remaining": 23.6055382839, "seed_sd_return": 8.3552},
+    "graph-5-world": {"completed": 4.0, "expired": 2.0, "return": 30.9811678434, "energy_remaining": 23.2645980421, "seed_sd_return": 0.0464},
+    "graph-5-triggered-replan": {"completed": 4.0, "expired": 2.0, "return": 30.9811678434, "energy_remaining": 23.2645980421, "seed_sd_return": 0.0464, "trigger_total": 217, "trigger_reason": "public_event"}
+  },
+  "full_records": "training-archive/20260907-r-corrected-matrix-v2/formal/matrix-results.json"
+}

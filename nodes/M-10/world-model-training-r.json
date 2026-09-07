@@ -1,0 +1,14 @@
+{
+  "format": "m10-r-world-model/0.1.0",
+  "run_id": "20260907-r-corrected-matrix-v2",
+  "split_unit": "frozen_episode_tape",
+  "episodes": {"train": 64, "validation": 16, "test": 16, "ood": 16},
+  "rows": {"train": 1084, "validation": 268, "test": 272, "ood": 270},
+  "epochs": 30,
+  "context_target": "[reward,event_0..3,done,time_fraction,event_signal]",
+  "test_metrics": {"reward_rmse": 3.6319837570, "event_bce": 0.2618204057, "event_accuracy": 0.9558823705, "done_bce": 0.2669314742, "done_accuracy": 0.9411764741, "context_rmse": 1.3026098013},
+  "simple_baseline_metrics": {"reward_rmse": 3.6775646206, "event_bce": 0.1677913964, "done_bce": 0.2237185091},
+  "ood_metrics": {"reward_rmse": 3.4281058311, "event_bce": 0.2625548839, "event_accuracy": 0.9555555556, "done_bce": 0.2680568993, "done_accuracy": 0.9407407045, "context_rmse": 1.2337566614},
+  "threshold": {"selected": 0.2, "selection": "validation_rows_only", "test_used": false},
+  "full_record": "training-archive/20260907-r-corrected-matrix-v2/formal/world-model.json"
+}
