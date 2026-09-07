@@ -261,6 +261,16 @@ class M10Environment:
         self._pending_messages: list[tuple[str, Telemetry]] = []
         self._public_event_records: list[dict[str, Any]] = []
         self._last_public_event_values: dict[tuple[str, str], float] = {}
+        self._public_task_entities: set[str] = set()
+        self._trigger_flags: dict[str, bool] = {
+            "task_arrival": False,
+            "confirmed_fault": False,
+            "link_recovery": False,
+            "completion_or_invalidation": False,
+            "safety_forced": False,
+        }
+        self._active_command: TaskCommand | None = None
+        self._active_action: int | None = None
         self._deliver_observations()
         self._flush_messages()
 
@@ -269,7 +279,7 @@ class M10Environment:
             self.config = M10Config(**{**self.config.__dict__, "seed": seed})
             self.scenario = default_scenario(self.scenario.name, seed=seed)
         self._reset_state()
-        return self._observation()
+        return self._observation(clear_trigger=True)
 
     def _next_sequence(self, entity: str, field: str) -> int:
         key = (entity, field)
@@ -289,12 +299,19 @@ class M10Environment:
         if not accepted:
             return False
         self._delivered_messages.append({"kind": kind, "entity": message.entity, "field": message.field, "time": now, "measured_at": message.measured_at})
+        if kind == "task" and message.entity not in self._public_task_entities:
+            self._public_task_entities.add(message.entity)
+            self._trigger_flags["task_arrival"] = True
         if kind == "uav" and message.field in ("alive", "connected"):
             key = (message.entity, message.field)
             previous = self._last_public_event_values.get(key)
             current = float(message.value)
             self._last_public_event_values[key] = current
             if previous is not None and previous != current:
+                if current < previous:
+                    self._trigger_flags["confirmed_fault"] = True
+                elif current > previous and message.field == "connected":
+                    self._trigger_flags["link_recovery"] = True
                 self._public_event_records.append({
                     "entity": message.entity,
                     "field": message.field,
@@ -302,6 +319,14 @@ class M10Environment:
                     "measured_at": message.measured_at,
                     "received_at": now,
                 })
+        if kind == "task" and message.field == "pending":
+            key = (message.entity, message.field)
+            previous = self._last_public_event_values.get(key)
+            current = float(message.value)
+            self._last_public_event_values[key] = current
+            task = self.clock.tasks.get(message.entity)
+            if previous is not None and previous != current and task is not None and task.state in (TaskState.COMPLETED, TaskState.EXPIRED):
+                self._trigger_flags["completion_or_invalidation"] = True
         return True
 
     def _flush_messages(self) -> None:
@@ -334,7 +359,7 @@ class M10Environment:
             for field, value in values.items():
                 self._send("task", task_id, field, value)
 
-    def _observation(self) -> dict[str, Any]:
+    def _observation(self, *, clear_trigger: bool = False) -> dict[str, Any]:
         snapshot: TaskPolicySnapshot = self.bridge.observe()
         uavs = np.asarray(snapshot.uavs, dtype=np.float32)
         tasks = np.asarray(snapshot.tasks, dtype=np.float32)
@@ -382,11 +407,13 @@ class M10Environment:
                 visible = float(np.all(task[2::4] > 0.5))
                 distance = math.dist((ux, uy), (tx, ty)) / 10.0 if visible else 0.0
                 relations[uav_index, task_index] = (distance, visible, float(snapshot.mask[uav_index * self.config.task_capacity + task_index]), float(task[24]) if visible else 0.0)
-        # A compact public event signal is derived only from fields that have
-        # arrived in the view. It is not read from the event schedule.
-        event_signal = float(sum(1 for item in self._delivered_messages if item["time"] == self.clock.time) > 0)
+        # Ordinary telemetry is deliberately not an event trigger.  These
+        # flags are raised only by a newly visible semantic change or by a
+        # safety gate; the policy never reads the private event schedule.
+        trigger_flags = dict(self._trigger_flags)
+        event_signal = float(any(trigger_flags.values()))
         flat = np.concatenate((uav_nodes.reshape(-1), regions.reshape(-1), targets.reshape(-1), task_nodes.reshape(-1), events.reshape(-1), relations.reshape(-1), np.asarray([self.clock.time / self.config.horizon, event_signal], dtype=np.float32)))
-        return {
+        result = {
             "flat": flat,
             "uavs": uavs,
             "tasks": tasks,
@@ -395,7 +422,17 @@ class M10Environment:
             "time": float(self.clock.time),
             "version": int(snapshot.version),
             "types": ("UAV", "Region", "Target", "Task", "Event"),
+            "trigger_flags": trigger_flags,
+            "event_signal": event_signal,
+            # This is an ACKed continuation handle, not a candidate mask.  It
+            # lets the controller distinguish a running lease from an unsafe
+            # stale allocation candidate without exposing execution truth in
+            # the learned feature vector.
+            "continuation_action": self._active_action,
         }
+        if clear_trigger:
+            self._trigger_flags = {key: False for key in self._trigger_flags}
+        return result
 
     def _all_terminal_or_future_empty(self) -> bool:
         return all(task.state in (TaskState.COMPLETED, TaskState.EXPIRED) for task in self.clock.tasks.values()) and self.clock.cursor >= len(self.clock.events)
@@ -403,45 +440,81 @@ class M10Environment:
     def _reward_and_counts(self, feedback: str | TaskCommand) -> tuple[float, dict[str, int]]:
         completed = sum(task.state == TaskState.COMPLETED for task in self.clock.tasks.values())
         expired = sum(task.state == TaskState.EXPIRED for task in self.clock.tasks.values())
-        rejected = sum(item.get("result") not in ("accepted", "awaiting_ack", "noop") for item in self._feedback_log)
+        rejected = sum(item.get("result") not in ("accepted", "awaiting_ack", "noop", "reuse_existing") for item in self._feedback_log)
         energy_now = sum(resource.energy for resource in self.clock.resources.values())
         energy_used = max(0.0, self._last_energy - energy_now)
         self._last_energy = energy_now
         reward = -self.config.energy_cost_weight * energy_used
-        if feedback not in ("noop",) and not isinstance(feedback, TaskCommand):
+        if feedback not in ("noop", "reuse_existing") and not isinstance(feedback, TaskCommand):
             reward -= self.config.penalty_rejected
         reward += self.config.reward_completion * (completed - self._last_completed)
         reward -= self.config.penalty_expired * (expired - self._last_expired)
         self._last_completed, self._last_expired = completed, expired
         return reward, {"completed": int(completed), "expired": int(expired), "rejected": int(rejected)}
 
-    def step(self, action: int) -> tuple[dict[str, Any], float, bool, dict[str, Any]]:
+    def step(self, action: int, *, submit_command: bool = True) -> tuple[dict[str, Any], float, bool, dict[str, Any]]:
         if type(action) is not int or not 0 <= action < self.config.action_count:
             raise ValueError("action outside fixed M10 action space")
         obs = self._observation()
-        self._command_index += 1
-        command_id = f"{self._episode_id}-cmd-{self._command_index:05d}"
         event_log_before = len(self.clock.log)
-        feedback = self.bridge.submit(action, version=obs["version"], command_id=command_id)
-        if isinstance(feedback, TaskCommand):
-            ack_result = self.execution.acknowledge(feedback.command_id, feedback.uav_id, feedback.token)
-            if ack_result != "accepted":
-                feedback = ack_result
-        elif feedback == "noop":
-            ack_result = "noop"
+        command_id: str | None = None
+        lease_renewal = "not_applicable"
+        if submit_command:
+            self._command_index += 1
+            command_id = f"{self._episode_id}-cmd-{self._command_index:05d}"
+            feedback = self.bridge.submit(action, version=obs["version"], command_id=command_id)
+            if isinstance(feedback, TaskCommand):
+                ack_result = self.execution.acknowledge(feedback.command_id, feedback.uav_id, feedback.token)
+                if ack_result == "accepted":
+                    self._active_command = feedback
+                    self._active_action = action
+                else:
+                    self._active_command = None
+                    self._active_action = None
+                    feedback = ack_result
+            elif feedback == "noop":
+                ack_result = "noop"
+                self._active_command = None
+                self._active_action = None
+            else:
+                ack_result = str(feedback)
+                self._active_command = None
+                self._active_action = None
         else:
-            ack_result = str(feedback)
+            # A non-replanning interval is continuation of the already ACKed
+            # lease.  It never creates a new allocation command or bypasses
+            # TaskExecution: the executor renews the same fenced lease.
+            feedback = "reuse_existing"
+            ack_result = "reuse_existing"
+            if self._active_command is not None:
+                lease_renewal = self.execution.renew(
+                    self._active_command.command_id,
+                    self._active_command.uav_id,
+                    self._active_command.token,
+                )
+                if lease_renewal != "renewed":
+                    self._active_command = None
+                    self._active_action = None
         self._feedback_log.append({"command_id": command_id, "result": str(ack_result), "time": self.clock.time})
         target_time = min(self.config.horizon, self.clock.time + self.config.decision_interval)
         self.execution.advance(target_time)
         self._deliver_observations()
         self._flush_messages()
         self._step_index += 1
-        next_obs = self._observation()
+        next_obs = self._observation(clear_trigger=True)
+        if self._active_command is not None and self._active_command.command_id not in self.execution.leases:
+            self._active_command = None
+            self._active_action = None
         reward, counts = self._reward_and_counts(feedback)
-        terminated = self.clock.time >= self.config.horizon or self._all_terminal_or_future_empty()
+        task_terminal = self._all_terminal_or_future_empty()
+        time_limit = self.clock.time >= self.config.horizon
+        terminated = bool(task_terminal)
+        truncated = bool(time_limit and not terminated)
         info = {
             "feedback": str(ack_result),
+            "command_submitted": bool(submit_command),
+            "command_id": command_id,
+            "lease_renewal": lease_renewal,
             "step": self._step_index,
             "time": self.clock.time,
             "counts": counts,
@@ -453,8 +526,12 @@ class M10Environment:
             "feedback_log": list(self._feedback_log),
             "delivered_message_count": len(self._delivered_messages),
             "policy_version": next_obs["version"],
+            "trigger_flags": dict(next_obs["trigger_flags"]),
+            "terminated": terminated,
+            "truncated": truncated,
+            "episode_end_reason": "terminated" if terminated else "time_limit" if truncated else None,
         }
-        return next_obs, float(reward), bool(terminated), info
+        return next_obs, float(reward), bool(terminated or truncated), info
 
     def action_mask(self) -> np.ndarray:
         return self._observation()["mask"].copy()

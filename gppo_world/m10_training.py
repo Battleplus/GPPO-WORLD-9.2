@@ -187,7 +187,7 @@ class M10ActorCritic(nn.Module):
         features, _ = self._graph_representation(base, context)
         return features
 
-    def forward(self, obs: torch.Tensor, hidden: torch.Tensor | None = None):
+    def _features(self, obs: torch.Tensor, hidden: torch.Tensor | None = None):
         base = obs[:, :self.base_obs_dim]
         context = obs[:, self.base_obs_dim:]
         if self.encoder_name == "mlp":
@@ -199,12 +199,26 @@ class M10ActorCritic(nn.Module):
         if self.gru is not None:
             features, next_hidden = self.gru(features[:, None, :], hidden)
             features = features[:, 0, :]
+        return features, pair_messages, next_hidden
+
+    def forward(self, obs: torch.Tensor, hidden: torch.Tensor | None = None):
+        features, pair_messages, next_hidden = self._features(obs, hidden)
         if pair_messages is None:
             logits = self.actor(features)
         else:
             pair_logits = self.pair_actor(torch.cat((pair_messages, features[:, None, None, :].expand(-1, self.uav_count, self.task_capacity, -1)), dim=-1)).squeeze(-1)
             logits = torch.cat((pair_logits.reshape(-1, self.uav_count * self.task_capacity), self.noop_actor(features)), dim=-1)
         return logits, self.critic(features).squeeze(-1), next_hidden
+
+    def value_only(self, obs: torch.Tensor, hidden: torch.Tensor | None = None):
+        """Advance the encoder/critic without evaluating the actor head.
+
+        This is the execution path for a continuation interval.  The value
+        estimate remains available for GAE, but no actor logits or action
+        distribution are computed when no new policy decision is requested.
+        """
+        features, _, next_hidden = self._features(obs, hidden)
+        return self.critic(features).squeeze(-1), next_hidden
 
 
 def masked_distribution(logits: torch.Tensor, mask: torch.Tensor) -> Categorical:
@@ -227,6 +241,10 @@ class Transition:
     done: bool
     episode_start: bool
     info: dict[str, Any]
+    terminated: bool = False
+    truncated: bool = False
+    next_value: float = 0.0
+    actor_decision: bool = True
 
 
 def _public_vector(obs: dict[str, Any], context: np.ndarray | None = None) -> np.ndarray:
@@ -420,6 +438,48 @@ def _act(policy: M10ActorCritic, vector: np.ndarray, mask: np.ndarray, hidden: t
     return int(action.item()), float(dist.log_prob(action).item()), float(value.item()), hidden
 
 
+_TRIGGER_PRIORITY = (
+    "initial",
+    "safety",
+    "confirmed_fault",
+    "link_recovery",
+    "task_arrival",
+    "completion_or_invalidation",
+    "risk",
+    "max_wait",
+)
+
+
+def _trigger_decision(obs: dict[str, Any], *, fusion: str, risk_active: bool,
+                      last_action: int | None, steps_since_replan: int,
+                      max_replan_interval: int) -> tuple[bool, str, dict[str, bool]]:
+    """Apply the frozen trigger contract before mutating interval state."""
+    flags = {key: bool(value) for key, value in obs.get("trigger_flags", {}).items()}
+    flags.setdefault("safety_forced", False)
+    flags["initial"] = last_action is None
+    continuation_action = obs.get("continuation_action")
+    flags["safety"] = bool(
+        last_action is not None and not bool(obs["mask"][last_action])
+        and continuation_action != last_action
+    )
+    conditions = {
+        "initial": flags["initial"],
+        "safety": flags["safety"] or flags.get("safety_forced", False),
+        "confirmed_fault": flags.get("confirmed_fault", False),
+        "link_recovery": flags.get("link_recovery", False),
+        "task_arrival": flags.get("task_arrival", False),
+        "completion_or_invalidation": flags.get("completion_or_invalidation", False),
+        "risk": bool(risk_active),
+        "max_wait": steps_since_replan >= max_replan_interval,
+    }
+    if fusion != "triggered":
+        return True, "periodic_policy", conditions
+    for reason in _TRIGGER_PRIORITY:
+        if conditions[reason]:
+            return True, reason, conditions
+    return False, "none", conditions
+
+
 def collect_rollout(policy: M10ActorCritic, *, config: PPOConfig, env_config: M10Config,
                     seed: int, device: torch.device, model: M10WorldModel | None,
                     fusion: str, trigger_threshold: float,
@@ -436,20 +496,57 @@ def collect_rollout(policy: M10ActorCritic, *, config: PPOConfig, env_config: M1
     steps_since_replan = max_replan_interval
     for _ in range(config.rollout_steps):
         vector, active_context, risk = _policy_input(env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
-        event_visible = bool(obs["flat"][-1] > 0.5)
-        previous_legal = last_action is not None and bool(obs["mask"][last_action])
-        should_replan = fusion != "triggered" or active_context or event_visible or not previous_legal or steps_since_replan >= max_replan_interval
+        should_replan, replan_reason, trigger_conditions = _trigger_decision(
+            obs, fusion=fusion, risk_active=active_context, last_action=last_action,
+            steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
+        )
         if should_replan and fusion == "triggered":
             vector, _, risk = _policy_input(env, obs, model, fusion=fusion, device=device, trigger_threshold=trigger_threshold, force_context=True)
-        action, log_prob, value, hidden = _act(policy, vector, obs["mask"], hidden, device, deterministic=False, forced_action=None if should_replan else last_action)
+        if should_replan:
+            action, log_prob, value, hidden = _act(policy, vector, obs["mask"], hidden, device, deterministic=False)
+            actor_decision = True
+        else:
+            value_tensor, hidden = policy.value_only(
+                torch.tensor(vector, dtype=torch.float32, device=device)[None, :], hidden,
+            )
+            action = int(last_action)  # guarded by _trigger_decision's safety condition
+            log_prob = 0.0
+            value = float(value_tensor.item())
+            actor_decision = False
         last_action = action
         steps_since_replan = 0 if should_replan else steps_since_replan + 1
-        next_obs, reward, done, info = env.step(action)
+        next_obs, reward, done, info = env.step(action, submit_command=should_replan)
         info = dict(info)
         info["replan"] = bool(should_replan)
-        info["replan_reason"] = "policy_or_forced_event" if should_replan else "reuse_previous_action"
+        info["replan_reason"] = replan_reason
+        info["trigger_conditions"] = trigger_conditions
+        info["actor_decision"] = actor_decision
         info["risk"] = float(risk)
-        transitions.append(Transition(vector, vector[policy.base_obs_dim:] if policy.context_dim else np.zeros(0, dtype=np.float32), obs["mask"].copy(), action, log_prob, value, reward, done, episode_start, info))
+        terminated = bool(info.get("terminated", done))
+        truncated = bool(info.get("truncated", False))
+        if not done and _ == config.rollout_steps - 1:
+            # A rollout boundary is a bootstrap boundary, not an episode
+            # termination.  The next-state value is retained for GAE.
+            truncated = True
+        if terminated:
+            next_value = 0.0
+        else:
+            next_vector, _, _ = _policy_input(
+                env, next_obs, model, fusion=fusion, device=device,
+                trigger_threshold=trigger_threshold,
+            )
+            next_value_tensor, _ = policy.value_only(
+                torch.tensor(next_vector, dtype=torch.float32, device=device)[None, :], hidden,
+            )
+            next_value = float(next_value_tensor.item())
+        transitions.append(Transition(
+            obs=vector,
+            context=vector[policy.base_obs_dim:] if policy.context_dim else np.zeros(0, dtype=np.float32),
+            mask=obs["mask"].copy(), action=action, log_prob=log_prob, value=value,
+            reward=reward, done=bool(terminated or truncated), episode_start=episode_start,
+            info=info, terminated=terminated, truncated=truncated, next_value=next_value,
+            actor_decision=actor_decision,
+        ))
         if done:
             scenario_index = (scenario_index + 1) % len(scenario_list)
             env = _make_env(scenario_list[scenario_index].seed, "mixed", env_config, scenario=scenario_list[scenario_index])
@@ -467,13 +564,15 @@ def collect_rollout(policy: M10ActorCritic, *, config: PPOConfig, env_config: M1
 def _gae(transitions: list[Transition], gamma: float, gae_lambda: float) -> tuple[torch.Tensor, torch.Tensor]:
     rewards = np.asarray([t.reward for t in transitions], dtype=np.float32)
     values = np.asarray([t.value for t in transitions], dtype=np.float32)
-    dones = np.asarray([t.done for t in transitions], dtype=np.float32)
+    terminated = np.asarray([t.terminated for t in transitions], dtype=np.float32)
+    boundaries = np.asarray([t.terminated or t.truncated for t in transitions], dtype=np.float32)
+    next_values = np.asarray([t.next_value for t in transitions], dtype=np.float32)
     advantages = np.zeros_like(rewards)
     running = 0.0
     for index in range(len(transitions) - 1, -1, -1):
-        next_value = 0.0 if index == len(transitions) - 1 else values[index + 1]
-        delta = rewards[index] + gamma * next_value * (1.0 - dones[index]) - values[index]
-        running = delta + gamma * gae_lambda * (1.0 - dones[index]) * running
+        next_value = next_values[index]
+        delta = rewards[index] + gamma * next_value * (1.0 - terminated[index]) - values[index]
+        running = delta + gamma * gae_lambda * (1.0 - boundaries[index]) * running
         advantages[index] = running
     returns = advantages + values
     advantage_tensor = torch.tensor(advantages, dtype=torch.float32)
@@ -503,22 +602,29 @@ def update_policy(policy: M10ActorCritic, transitions: list[Transition], *, ppo:
         raise ValueError("empty PPO rollout")
     advantages, returns = _gae(transitions, ppo.gamma, ppo.gae_lambda)
     advantages = (advantages - advantages.mean()) / advantages.std(unbiased=False).clamp_min(1e-6)
-    old_log_probs = torch.tensor([t.log_prob for t in transitions], dtype=torch.float32, device=device)
+    decision_indices = [index for index, transition in enumerate(transitions) if transition.actor_decision]
+    if not decision_indices:
+        raise ValueError("PPO rollout contains no actor decisions")
+    decision_index_tensor = torch.tensor(decision_indices, dtype=torch.long, device=device)
+    old_log_probs = torch.tensor([transitions[index].log_prob for index in decision_indices], dtype=torch.float32, device=device)
     advantages, returns = advantages.to(device), returns.to(device)
     last = {}
     for _ in range(ppo.update_epochs):
         new_log_probs, values, entropy = _evaluate_sequence(policy, transitions, device)
-        ratio = (new_log_probs - old_log_probs).exp()
+        decision_log_probs = new_log_probs[decision_index_tensor]
+        decision_advantages = advantages[decision_index_tensor]
+        ratio = (decision_log_probs - old_log_probs).exp()
         clipped = torch.clamp(ratio, 1.0 - ppo.clip_epsilon, 1.0 + ppo.clip_epsilon)
-        policy_loss = -torch.min(ratio * advantages, clipped * advantages).mean()
+        policy_loss = -torch.min(ratio * decision_advantages, clipped * decision_advantages).mean()
         value_loss = torch.nn.functional.mse_loss(values, returns)
-        entropy_mean = entropy.mean()
+        entropy_mean = entropy[decision_index_tensor].mean()
         loss = policy_loss + ppo.value_weight * value_loss - ppo.entropy_weight * entropy_mean
         policy.optimizer.zero_grad(set_to_none=True)  # type: ignore[attr-defined]
         loss.backward()
         torch.nn.utils.clip_grad_norm_(policy.parameters(), ppo.grad_clip)
         policy.optimizer.step()  # type: ignore[attr-defined]
-        last = {"loss": float(loss.detach()), "policy_loss": float(policy_loss.detach()), "value_loss": float(value_loss.detach()), "entropy": float(entropy_mean.detach()), "approx_kl": float((old_log_probs - new_log_probs).mean().detach())}
+        last = {"loss": float(loss.detach()), "policy_loss": float(policy_loss.detach()), "value_loss": float(value_loss.detach()), "entropy": float(entropy_mean.detach()), "approx_kl": float((old_log_probs - decision_log_probs).mean().detach()), "optimizer_steps": 1}
+    last["optimizer_steps"] = ppo.update_epochs
     return last
 
 
@@ -543,21 +649,33 @@ def train_policy(*, variant: str, encoder: str, type_count: int, history: bool,
     policy.optimizer = torch.optim.Adam(policy.parameters(), lr=ppo_config.learning_rate)  # type: ignore[attr-defined]
     effective = PPOConfig(**{**asdict(ppo_config), "rollout_steps": min(ppo_config.rollout_steps, steps)})
     updates = []
+    all_transitions: list[Transition] = []
     total_steps = 0
     started = time.perf_counter()
     while total_steps < steps:
         effective = PPOConfig(**{**asdict(effective), "rollout_steps": min(effective.rollout_steps, steps - total_steps)})
         transitions = collect_rollout(policy, config=effective, env_config=env_config, seed=seed + total_steps, device=device_obj, model=model, fusion=fusion, trigger_threshold=trigger_threshold, scenarios=scenarios, max_replan_interval=max_replan_interval)
         updates.append(update_policy(policy, transitions, ppo=effective, device=device_obj))
+        all_transitions.extend(transitions)
         total_steps += len(transitions)
     elapsed = time.perf_counter() - started
     metadata = {
         "variant": variant, "encoder": encoder, "type_count": type_count, "history": history,
-        "fusion": fusion, "seed": seed, "steps": total_steps, "optimizer_updates": len(updates),
+        "fusion": fusion, "seed": seed, "steps": total_steps,
+        "rollout_updates": len(updates),
+        "update_epochs": ppo_config.update_epochs,
+        "optimizer_updates": int(sum(item.get("optimizer_steps", 0) for item in updates)),
+        "actor_decisions": int(sum(t.actor_decision for t in all_transitions)),
+        "continuation_steps": int(sum(not t.actor_decision for t in all_transitions)),
+        "environment_steps": len(all_transitions),
         "elapsed_seconds": elapsed, "steps_per_second": total_steps / max(elapsed, 1e-9),
         "updates": updates, "device": str(device_obj), "env_config": asdict(env_config), "ppo_config": asdict(ppo_config),
         "trigger_threshold": trigger_threshold, "max_replan_interval": max_replan_interval,
-        "replans": int(sum(bool(t.info.get("replan")) for t in transitions)) if transitions else 0,
+        "replans": int(sum(bool(t.info.get("replan")) for t in all_transitions)) if all_transitions else 0,
+        "replan_reasons": {
+            reason: sum(1 for t in all_transitions if t.info.get("replan_reason") == reason)
+            for reason in sorted({str(t.info.get("replan_reason")) for t in all_transitions})
+        },
     }
     return policy, metadata
 
@@ -579,28 +697,36 @@ def evaluate_policy(policy: M10ActorCritic, *, model: M10WorldModel | None, fusi
         total_reward = 0.0
         steps = 0
         trigger_count = 0
+        actor_calls = 0
+        continuation_steps = 0
         replan_reasons: dict[str, int] = {}
         last_action: int | None = None
         steps_since_replan = max_replan_interval
         while not done and steps < int(env_config.horizon / env_config.decision_interval) + 2:
             vector, active, risk = _policy_input(env, obs, model, fusion=fusion, device=device_obj, trigger_threshold=trigger_threshold)
-            event_visible = bool(obs["flat"][-1] > 0.5)
-            previous_legal = last_action is not None and bool(obs["mask"][last_action])
-            should_replan = fusion != "triggered" or active or event_visible or not previous_legal or steps_since_replan >= max_replan_interval
+            should_replan, reason, _ = _trigger_decision(
+                obs, fusion=fusion, risk_active=active, last_action=last_action,
+                steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
+            )
             if should_replan and fusion == "triggered":
                 vector, _, risk = _policy_input(env, obs, model, fusion=fusion, device=device_obj, trigger_threshold=trigger_threshold, force_context=True)
-            action, _, _, hidden = _act(policy, vector, obs["mask"], hidden, device_obj, deterministic=True, forced_action=None if should_replan else last_action)
+            if should_replan:
+                action, _, _, hidden = _act(policy, vector, obs["mask"], hidden, device_obj, deterministic=True)
+                actor_calls += 1
+            else:
+                _, hidden = policy.value_only(torch.tensor(vector, dtype=torch.float32, device=device_obj)[None, :], hidden)
+                action = int(last_action)
+                continuation_steps += 1
             last_action = action
             steps_since_replan = 0 if should_replan else steps_since_replan + 1
             if should_replan and fusion == "triggered":
                 trigger_count += 1
-                reason = "public_event" if event_visible else "risk_or_max_wait" if active or steps_since_replan == 0 else "safety_or_initial"
                 replan_reasons[reason] = replan_reasons.get(reason, 0) + 1
-            obs, reward, done, info = env.step(action)
+            obs, reward, done, info = env.step(action, submit_command=should_replan)
             total_reward += reward
             steps += 1
         counts = info["counts"]
-        records.append({"seed": seed, "return": total_reward, "steps": steps, "completed": counts["completed"], "expired": counts["expired"], "rejected": counts["rejected"], "trigger_count": trigger_count, "replan_reasons": replan_reasons, "energy_remaining": float(sum(info["energy"].values())), "task_states": info["tasks"]})
+        records.append({"seed": seed, "return": total_reward, "steps": steps, "completed": counts["completed"], "expired": counts["expired"], "rejected": counts["rejected"], "trigger_count": trigger_count, "actor_calls": actor_calls, "continuation_steps": continuation_steps, "replan_reasons": replan_reasons, "energy_remaining": float(sum(info["energy"].values())), "task_states": info["tasks"]})
     keys = ("return", "completed", "expired", "rejected", "energy_remaining")
     summary = {key: {"mean": float(np.mean([row[key] for row in records])), "std": float(np.std([row[key] for row in records]))} for key in keys}
     return {"episodes": records, "summary": summary, "fusion": fusion}
