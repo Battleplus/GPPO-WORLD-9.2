@@ -45,6 +45,7 @@ def variant_specs(mode: str) -> list[dict[str, Any]]:
             {"name": "graph-5-base", "encoder": "graph", "type_count": 5, "history": False, "fusion": "base"},
             {"name": "graph-history-5-base", "encoder": "graph", "type_count": 5, "history": True, "fusion": "base"},
             {"name": "graph-5-world", "encoder": "graph", "type_count": 5, "history": False, "fusion": "world"},
+            {"name": "graph-5-triggered-replan", "encoder": "graph", "type_count": 5, "history": False, "fusion": "triggered"},
         ]
     return [
         {"name": "mlp-2-base", "encoder": "mlp", "type_count": 2, "history": False, "fusion": "base"},
