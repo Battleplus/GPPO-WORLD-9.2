@@ -1,0 +1,20 @@
+{
+  "format": "m10-r2-artifact-manifest/1.0",
+  "run_id": "20260907-r2-correctness-v1",
+  "source_commit_local": "dc054d4",
+  "source_commit_remote": "b73bcbc3ce78cdc17cc5e365fa259a45e309ec2e",
+  "source_archive": "m10-r2-source-20260907-dc054d4-v1.tar",
+  "source_archive_sha256": "298cc57e9fc3f465eefea131027c92e64002446d1ea2ab1fa30b5e801b44dd67",
+  "server_tests": {"path": "server-pytest.txt", "sha256": "5898a9d9da6a7e34246a0c3b73643af5fda44101d5ace46d40b634763949774d"},
+  "formal": {
+    "path": "formal-v1/",
+    "required": ["protocol.json", "tapes/train.json", "tapes/validation.json", "tapes/test.json", "tapes/ood.json", "world-model.pt", "world-model.json", "checkpoints/*/*.pt", "records/*/*.json", "matrix-results.json", "run-complete.json"],
+    "downloaded_bytes": 17636508
+  },
+  "pilot": {"path": "pilot-v3/", "required": ["protocol.json", "tapes/*.json", "world-model.pt", "world-model.json", "checkpoints/*/*.pt", "records/*/*.json", "matrix-results.json", "run-complete.json"]},
+  "checkpoint_payload": ["state_dict", "optimizer_state_dict", "metadata", "recovery_state"],
+  "test_split_isolated": true,
+  "old_results_preserved": true,
+  "sha256_verified_before_release": true
+  ,"release_asset": {"name": "m10-r2-complete-artifacts-20260907-v1.tar.gz", "sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd", "bytes": 73031394}
+}

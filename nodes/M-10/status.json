@@ -1,7 +1,7 @@
 {
   "version": "m10-r-training-validity/0.1.0",
   "status": "in_progress",
-  "current_stage": "M10-R",
+  "current_stage": "M10-R2",
   "training_started": true,
   "training_location": "specified_server_only",
   "full_goal_complete": false,
@@ -12,7 +12,8 @@
     {"id":"R3","status":"passed"},
     {"id":"R4","status":"passed"},
     {"id":"R5","status":"passed"},
-    {"id":"M10-R","status":"passed_training_correction"}
+    {"id":"M10-R","status":"passed_training_correction"},
+    {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"}
   ],
   "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
   "source_review": "m10-r-report.md",
@@ -45,8 +46,29 @@
     "m10_r_causal_passed": "10/10",
     "m10_r_server_pytest": "144 passed, 7 skipped",
     "m10_r_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r-training-validity-fairness-v1-20260907",
-    "m10_r_release_assets_verified": true
+    "m10_r_release_assets_verified": true,
+    "m10_r2_report": "m10-r2-report.md",
+    "m10_r2_limitations": "m10-r2-limitations.md",
+    "m10_r2_reproduction": "m10-r2-reproduction-runbook.md",
+    "m10_r2_results": "training-results-r2-summary.json",
+    "m10_r2_world_model": "world-model-training-r2.json",
+    "m10_r2_server_evidence": "server-evidence-r2.json",
+    "m10_r2_failure_record": "m10-r2-failure-record.json",
+    "m10_r2_artifact_manifest": "artifact-manifest-r2.json",
+    "m10_r2_source_commit": "b73bcbc3ce78cdc17cc5e365fa259a45e309ec2e",
+    "m10_r2_source_archive_sha256": "298cc57e9fc3f465eefea131027c92e64002446d1ea2ab1fa30b5e801b44dd67",
+    "m10_r2_formal_artifact_bytes": 17636508,
+    "m10_r2_server_pytest": "153 passed, 7 skipped",
+    "m10_r2_new_tests": "9 passed",
+    "m10_r2_formal_run": "20260907-r2-correctness-v1/formal-v1",
+    "m10_r2_pilot_run": "20260907-r2-correctness-v1/pilot-v3",
+    "m10_r2_threshold": 0.1,
+    "m10_r2_negative_result": "formal triggered gate active on every step; continuation saving not observed",
+    "m10_r2_pptx": "slides/汇报-m10-r2-final-v2.pptx",
+    "m10_r2_pptx_sha256": "e90306a11245c0d3e9e0857b4eae8b0418ee2556c5c49314c77071203880d0bc",
+    "m10_r2_release_archive_sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd",
+    "m10_r2_release_assets_verified": false
   },
-  "completion_boundary": "M10-R corrected training and fairness evidence completed; independent release/materials and user-confirmed return/charging scope, real control cycle, broader seeds, real-flight validation and human review remain open",
+  "completion_boundary": "M10-R2 PPO/trigger correctness and same-budget evidence completed; independent release/materials, user-confirmed return/charging scope, real control cycle, broader seeds, real-flight validation and human review remain open",
   "review_status": "not_held"
 }

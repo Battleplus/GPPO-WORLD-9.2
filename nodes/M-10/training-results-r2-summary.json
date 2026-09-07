@@ -1,0 +1,24 @@
+{
+  "run_id": "20260907-r2-correctness-v1/formal-v1",
+  "mode": "matrix",
+  "variants": 6,
+  "seeds": [1101, 2203, 3307],
+  "steps_per_seed": 2048,
+  "rollout_steps": 256,
+  "rollout_updates_per_seed": 8,
+  "update_epochs": 4,
+  "optimizer_steps_per_seed": 32,
+  "evaluation_tape": "test-0..15; five records per policy episode",
+  "threshold": 0.1,
+  "threshold_selection": "validation_rows_only",
+  "results": {
+    "mlp-2-base": {"return_mean": 33.768, "return_seed_sd": 8.342, "completed_mean": 4.2, "expired_mean": 1.8, "energy_remaining_mean": 23.102, "actor_decisions_mean": 2048, "continuation_mean": 0},
+    "graph-2-base": {"return_mean": 33.744, "return_seed_sd": 7.373, "completed_mean": 4.2, "expired_mean": 1.8, "energy_remaining_mean": 22.794, "actor_decisions_mean": 2048, "continuation_mean": 0},
+    "graph-5-base": {"return_mean": 28.175, "return_seed_sd": 7.408, "completed_mean": 3.8, "expired_mean": 2.2, "energy_remaining_mean": 23.193, "actor_decisions_mean": 2048, "continuation_mean": 0},
+    "graph-history-5-base": {"return_mean": 26.322, "return_seed_sd": 7.018, "completed_mean": 3.667, "expired_mean": 2.333, "energy_remaining_mean": 23.363, "actor_decisions_mean": 2048, "continuation_mean": 0},
+    "graph-5-world": {"return_mean": 32.845, "return_seed_sd": 5.836, "completed_mean": 4.133, "expired_mean": 1.867, "energy_remaining_mean": 23.235, "actor_decisions_mean": 2048, "continuation_mean": 0},
+    "graph-5-triggered-replan": {"return_mean": 32.845, "return_seed_sd": 5.836, "completed_mean": 4.133, "expired_mean": 1.867, "energy_remaining_mean": 23.235, "actor_decisions_mean": 2048, "continuation_mean": 0}
+  },
+  "negative_result": "validation threshold 0.1 activates risk gate on every formal triggered step; no actor-call saving observed",
+  "old_results_preserved": true
+}

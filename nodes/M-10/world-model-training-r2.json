@@ -1,0 +1,27 @@
+{
+  "run_id": "20260907-r2-correctness-v1/formal-v1",
+  "split_unit": "frozen_episode_tape",
+  "train_episodes": 64,
+  "validation_episodes": 16,
+  "test_episodes": 16,
+  "ood_episodes": 16,
+  "test_metrics": {
+    "reward_rmse": 3.63130259513855,
+    "event_bce": 0.25854623317718506,
+    "event_accuracy": 0.9558823704719543,
+    "done_bce": 0.2675252854824066,
+    "done_accuracy": 0.9411764740943909,
+    "context_rmse": 1.3140668869018555
+  },
+  "test_baseline_metrics": {
+    "reward_rmse": 3.6775646209716797,
+    "event_bce": 0.16779139637947083,
+    "done_bce": 0.22371850907802582
+  },
+  "threshold": 0.1,
+  "threshold_selection": "validation_rows_only",
+  "test_used_for_selection": false,
+  "ood_is_synthetic_only": true,
+  "context_path": "supervised context head -> concatenated policy input -> Graph-5 policy",
+  "action_conditioning": "uniform expectation over currently legal candidates; no implicit action-0 reference"
+}

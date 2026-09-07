@@ -1,0 +1,22 @@
+{
+  "run_id": "20260907-r2-correctness-v1",
+  "host": "172.17.27.173",
+  "python": "/home/user1/m10-test-venv/bin/python",
+  "server_test": "153 passed, 7 skipped",
+  "server_skip_reason": "pinned GPPO baseline not available",
+  "local_new_tests": "9 passed",
+  "local_full_suite": "160 passed",
+  "pilot_run": "pilot-v3: 5 variants x 1 seed x 128 steps; triggered 109 actor decisions + 19 continuations",
+  "formal_run": "formal-v1: 6 variants x 3 seeds x 2048 steps",
+  "gpu": "2x NVIDIA GeForce RTX 2080 Ti",
+  "source_archive_sha256": "298cc57e9fc3f465eefea131027c92e64002446d1ea2ab1fa30b5e801b44dd67",
+  "downloaded_artifacts": {
+    "matrix-results.json": "23c41c7c2c5f36fe5beb60b8c7c9e1148e425aa1dc1475b97b827c3e4256b820",
+    "world-model.pt": "1ee46bfad4bdfe717a7a1ddbaf0ef51c8a683c6184e84c33b9863f4b2563eb56",
+    "server-pytest.txt": "5898a9d9da6a7e34246a0c3b73643af5fda44101d5ace46d40b634763949774d"
+  },
+  "formal_artifact_bytes_downloaded": 17636508,
+  "old_releases_modified": false,
+  "force_push": false,
+  "shared_processes_stopped": false
+}

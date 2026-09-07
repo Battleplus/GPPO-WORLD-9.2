@@ -4,6 +4,12 @@
 
 ## 当前核查
 
+### M-10-R2（2026-09-07）
+
+R2 修正并验收了 PPO 非终止 bootstrap、历史状态边界、非重规划 continuation、事件触发语义和 optimizer 记账。新增测试 9 passed；本地全套 160 passed；服务器 153 passed、7 skipped（服务器缺少 pinned GPPO baseline）。服务器 pilot `20260907-r2-correctness-v1/pilot-v3` 证明 triggered 路径有 109 次 actor 决策和 19 次 continuation；同预算正式矩阵 `formal-v1` 为 6 变体×3 seed×2048 steps，每 seed 32 次实际 optimizer steps。
+
+正式 validation-only 触发阈值为 0.1，导致风险门每步成立，triggered 正式测试 continuation 为 0，且与 Graph-5 World 结果相同；这是保留的负结果，不是触发优化收益。世界模型 test 的 event/done BCE 也未优于简单均值基线。详细记录见 `m10-r2-report.md`、`m10-r2-limitations.md`、`training-results-r2-summary.json` 和独立制品 manifest。旧 M-09、M-10、M-10-R Release、训练和失败记录不改写。
+
 本轮实际执行分支为 `execute-r02-20260905`；M-10 本地实现已提交，服务器源码归档 SHA-256 为 `77321bb99bc400f238b7ad505c603f87267f9632ea810a319eee684eaa828ba6`。M-09 S5 冻结 `7a7ab55149cb7da56ee9447799279597ec293477` 与历史归档保持不变；本节点只记录 M-10 新环境、训练和证据。
 
 已完成指定服务器上的 pilot、正式矩阵、世界模型/融合策略和触发敏感性补充；GitHub 独立 Release 在 R5 收尾后记录。训练结果不替代待确认的返航/换电/充电范围、真实五类型资产或真实飞行验收。
