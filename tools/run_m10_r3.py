@@ -259,9 +259,52 @@ def ladder(args: argparse.Namespace, env_config: M10Config, out: Path) -> None:
     dump(out / "learning-budget-ladder.json", {"budgets": budgets, "seed": args.seed, "results": results, "world_pretraining_cost": "reused frozen R2 checkpoint; no new world-model training in ladder"})
 
 
+def formal_matrix(args: argparse.Namespace, env_config: M10Config, out: Path) -> None:
+    train_tape = list(scenario_tape("train", count=32, base_seed=7001))
+    final_tape = {item.seed: item for item in scenario_tape("test", count=16, base_seed=91001)}
+    world_payload = load_payload(Path(args.world_checkpoint), args.device)
+    world_state = world_payload.get("state_dict", world_payload)
+    world_obs_dim = int(world_state["backbone.0.weight"].shape[1] - env_config.action_count)
+    world = load_world(Path(args.world_checkpoint), world_obs_dim, env_config.action_count, args.device)
+    specs = [
+        ("mlp-2-base", "mlp", 2, False, "base"),
+        ("graph-2-base", "graph", 2, False, "base"),
+        ("graph-5-base", "graph", 5, False, "base"),
+        ("graph-history-5-base", "graph", 5, True, "base"),
+        ("graph-5-world", "graph", 5, False, "world"),
+    ]
+    seeds = [int(item) for item in args.seeds.split(",")]
+    results = []
+    for name, encoder, type_count, history, fusion in specs:
+        for seed in seeds:
+            model = world if fusion == "world" else None
+            policy, metadata = train_policy(
+                variant=name, encoder=encoder, type_count=type_count, history=history,
+                fusion=fusion, model=model, seed=seed, steps=args.formal_steps,
+                env_config=env_config, ppo_config=PPOConfig(rollout_steps=256, update_epochs=4),
+                device=args.device, trigger_threshold=args.threshold, scenarios=train_tape,
+            )
+            evaluation = evaluate_policy(
+                policy, model=model, fusion=fusion, env_config=env_config,
+                seeds=[item.seed for item in final_tape.values()], device=args.device,
+                trigger_threshold=args.threshold, scenarios=final_tape,
+            )
+            checkpoint = out / "checkpoints" / name / f"seed-{seed}.pt"
+            save_policy(checkpoint, policy, metadata)
+            record = {"variant": name, "seed": seed, "metadata": metadata, "evaluation": evaluation, "checkpoint": str(checkpoint)}
+            results.append(record)
+            dump(out / "records" / name / f"seed-{seed}.json", record)
+    dump(out / "formal-matrix.json", {
+        "protocol": "R3_frozen_8192_env_steps_same_train_and_final_test_tape",
+        "formal_steps": args.formal_steps, "seeds": seeds,
+        "variants": [item[0] for item in specs], "world_pretraining_cost": "reused frozen R2 checkpoint and reported separately",
+        "results": results,
+    })
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--mode", choices=("prediction", "trigger", "ladder"), required=True)
+    parser.add_argument("--mode", choices=("prediction", "trigger", "ladder", "formal"), required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--world-checkpoint", type=Path, required=True)
     parser.add_argument("--policy-checkpoint", type=Path, default=None)
@@ -270,6 +313,8 @@ def main() -> None:
     parser.add_argument("--max-replan-interval", type=int, default=3)
     parser.add_argument("--budgets", default="2048,4096,8192")
     parser.add_argument("--seed", type=int, default=1101)
+    parser.add_argument("--seeds", default="1101,2203,3307")
+    parser.add_argument("--formal-steps", type=int, default=8192)
     args = parser.parse_args()
     out = args.output
     out.mkdir(parents=True, exist_ok=True)
@@ -280,8 +325,10 @@ def main() -> None:
         if args.policy_checkpoint is None:
             raise SystemExit("--policy-checkpoint is required for trigger mode")
         trigger_audit(args, env_config, out)
-    else:
+    elif args.mode == "ladder":
         ladder(args, env_config, out)
+    else:
+        formal_matrix(args, env_config, out)
     dump(out / "run-complete.json", {"mode": args.mode, "device": args.device, "completed_at": time.time()})
 
 
