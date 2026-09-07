@@ -374,6 +374,14 @@ class M10Environment:
         ready = [item for item in self._pending_messages if item[1].received_at <= now]
         self._pending_messages = [item for item in self._pending_messages if item[1].received_at > now]
         for kind, message in sorted(ready, key=lambda item: (item[1].received_at, item[1].entity, item[1].field)):
+            if now - message.measured_at > self.config.telemetry_max_age:
+                self._communication_log.append({
+                    "link": "telemetry", "status": "expired",
+                    "entity": message.entity, "field": message.field,
+                    "sequence": message.sequence, "time": now,
+                    "measured_at": message.measured_at,
+                })
+                continue
             self._accept_message(kind, message, now)
 
     def _deliver_observations(self) -> None:

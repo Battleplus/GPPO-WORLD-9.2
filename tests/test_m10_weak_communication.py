@@ -30,6 +30,15 @@ def test_telemetry_is_not_visible_before_delivery_and_audit_distinguishes_links(
     assert {item["link"] for item in env._communication_log} == {"telemetry", "command"}
 
 
+def test_overdue_telemetry_is_recorded_as_expired_and_not_exposed():
+    scenario = one_task(CommunicationProfile(name="expiry", telemetry_extra_delay=1.0))
+    env = M10Environment(M10Config(uav_count=1, task_capacity=1, telemetry_max_age=0.1), scenario)
+    env.step(1)
+    assert any(item["link"] == "telemetry" and item["status"] == "expired"
+               for item in env._communication_log)
+    assert not bool(env.action_mask()[0])
+
+
 def test_out_of_order_old_telemetry_cannot_overwrite_newer_sequence():
     scenario = one_task(CommunicationProfile(name="reorder-test", telemetry_reorder_window=2.0))
     env = M10Environment(M10Config(uav_count=1, task_capacity=1), scenario)

@@ -129,6 +129,18 @@ R3 运行标识为 `20260907-r3-prediction-trigger-cost-v1` 下的 prediction、
 
 R3 独立归档已发布：[m10-r3-prediction-trigger-learning-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r3-prediction-trigger-learning-v1-20260907)。归档 `m10-r3-prediction-trigger-learning-v1-20260907.tar.gz` 本地与 GitHub API digest 均为 `785f2db6cd5303ae5a9f99e846327b62ebba44081349ef57ca3ae9087a74bfb9`；不修改旧 Release、main 或 force push。
 
+## 2026-09-07 弱通信下的突发事件与 GPPO + 世界模型扩训
+
+本阶段在既有 Graph-5 实现上冻结了三组同协议对照：A 为每步 GPPO，B 为同一 GPPO 加同一 world model 每步输入，C 为同一 world model 的事件触发策略。三组共用任务、损毁、能量、断联中断执行、动作、奖励、门禁和通信 tape；没有把 MLP 或类型数差异混入本比较。实现位于 `gppo_world/m10_communication.py`、`gppo_world/m10_environment.py`，协议见 `m10-weak-communication-protocol.md`。
+
+composite tape 固定遥测额外延迟 0.5、随机丢包 0.15、重排窗口 0.75、outage `[3,5)`/`[10,12)`、命令丢失 0.05、ACK 丢失 0.10；语义 identity 地址化随机流使配对不因消息数量变化而错位。消息审计现在区分 sent/dropped/received/expired/stale_or_duplicate；不实现自动重传，物理字节不冒充真实网络测量。训练/验证/历史回归 test/最终 test/OOD tape 独立冻结，旧 test 不用于新选择。
+
+服务器先完成 pilot（2048 环境步、30 个 world epochs），再完成 3 组 × 3 seed × 12288 环境步正式矩阵。每 seed 为 12288 actor decision、0 continuation、48 rollout records × 4 epochs = 192 次实际 optimizer 更新。正式均值 return：A `-24.5201 ± 0.0637`、B `-23.9513 ± 0.7408`、C `-23.9513 ± 0.7408`；完成率均低，不能声称稳定收益。world model pilot reward RMSE `1.99665` 优于均值基线 `2.23626`，但 event BCE `0.28792`、done BCE `0.36961` 均差于同指标基线 `0.16449`、`0.21932`。
+
+验证集没有找到同时保持任务效果/安全并减少 actor 调用的 risk threshold；`0.1` 仅作为预设负结果回退。最终详细审计中 C 每步触发、没有 continuation，B rules 可将 actor 从 `17.5` 降到 `9.875` 次/episode 但任务效果不改善；因此周期决策仍是当前工程默认，C 不启用。seed-1101 final-test 的 280 个端到端样本、通信统计、恢复时间、执行安全和 mean/P95/P99 见 `m10-weak-communication-report.md` 与 `m10-weak-communication-artifact-index.md`。
+
+本阶段结论是“弱通信协议和训练闭环已验证，B 相对 A 的稳定改善未证明，C 当前不具成本收益”；不是完整会议目标完成。返航、换电、充电、长期失联自主执行、真实网络/实飞/生产认证、真实控制周期和人工汇报仍待确认或未验证。独立 Release 在完成下载校验后另行发布，不覆盖任何历史 Release。
+
 ## 2026-09-07 会议交付总验收与候选冻结
 
 本轮默认不新增训练。已建立 `m10-final-acceptance-matrix.md` 的“要求—实现—运行—制品—结论—限制”总表，更新统计口径、世界模型 context 训练事实、三因素复合扰动术语和状态分层。R2 的 world model 已实际训练 context head；R3 未重训 world model，但 R3 融合策略已训练并验证消费冻结 context。

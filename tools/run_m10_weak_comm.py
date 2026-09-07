@@ -144,7 +144,9 @@ def select_trigger_threshold(policy: torch.nn.Module, world: M10WorldModel, tape
 def run_formal(args: argparse.Namespace, config: M10Config, out: Path) -> None:
     tapes = make_tapes(args.level)
     freeze_tapes(tapes, out)
-    world = load_world(args.world_checkpoint, len(tapes["train"][0].tasks) * 0 + len(collect_world_dataset(episodes=1, seed=1, config=config, scenarios=tapes["train"][:1], split="train")[0]["obs"]), config.action_count, args.device)
+    sample_rows = collect_world_dataset(
+        episodes=1, seed=1, config=config, scenarios=tapes["train"][:1], split="train")
+    world = load_world(args.world_checkpoint, len(sample_rows[0]["obs"]), config.action_count, args.device)
     validation = {item.seed: item for item in tapes["validation"]}
     final = {item.seed: item for item in tapes["final_test"]}
     pilot_world_policy = load_policy_for_formal(args.world_policy_checkpoint, config, args.device) if args.world_policy_checkpoint else None

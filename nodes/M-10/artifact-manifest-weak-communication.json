@@ -1,0 +1,51 @@
+{
+  "schema": "m10-weak-communication-artifact-manifest/1",
+  "project": "GPPO-WORLD-9.2",
+  "branch": "execute-r02-20260905",
+  "training_performed_this_stage": true,
+  "server_root": "/home/user1/m10-runs/20260907-weak-comm-v1",
+  "environment": "s1-gppo-venv read-only; Python 3.10.12; Torch 2.2.2+cu121; NumPy 1.24.4; CUDA; 2x RTX 2080 Ti",
+  "pilot": {
+    "steps": 2048,
+    "rollout_steps": 256,
+    "world_epochs": 30,
+    "results": "m10-weak-comm-server-download/pilot/pilot-results.json",
+    "results_sha256": "D4EEBCF10AF620F808FF121AFDCFE81FE685543EA0D7B228DBF112F4BACF6983",
+    "world_checkpoint": "m10-weak-comm-server-download/pilot/world-model.pt",
+    "world_checkpoint_sha256": "AD356F648F85FC7D979AFF27FDAE8504EADB30F3CB666208108AE260697A734E"
+  },
+  "formal": {
+    "groups": ["A-graph5-base", "B-graph5-world", "C-graph5-triggered"],
+    "seeds": [1101, 2203, 3307],
+    "environment_steps_per_seed": 12288,
+    "actor_decisions_per_seed": 12288,
+    "continuation_per_seed": 0,
+    "optimizer_steps_per_seed": 192,
+    "results": "m10-weak-comm-server-download/formal/formal-results.json",
+    "results_sha256": "6394344659A5D3C5EE59FDC8D662F18A1FF5D37FD093A2C401C55AF16B0F8FF3",
+    "tapes": "m10-weak-comm-server-download/formal/tapes.json",
+    "tapes_sha256": "F746C487429ED00641421D0BD56E7AF9448FB9E5AFB0A135F2D8CC21EC9165D8",
+    "threshold_audit_sha256": "684346CA94123F1F71A8D851E31CE4DEF0F8F9A20A2B8109C1F7CFF7CDEAE2F1"
+  },
+  "audits": {
+    "contract": "m10-weak-comm-server-download/formal/weak-comm-contract-audit-r2.txt",
+    "contract_sha256": "D047B2AFD6361FF68EA6D930A1B40B872E145C80E918D3944B255444838E5D45",
+    "detailed_final_test": "m10-weak-comm-server-download/formal/detailed-eval.json",
+    "detailed_final_test_sha256": "EA169C3B6EE1588DA01151552F3C6B27580D9D9AB758EBD399E147C1C087E539"
+  },
+  "source": {
+    "protocol": "nodes/M-10/m10-weak-communication-protocol.md",
+    "runner": "tools/run_m10_weak_comm.py",
+    "detailed_evaluator": "tools/evaluate_m10_weak_comm_details.py",
+    "audit_runner": "tools/run_m10_weak_comm_audit.py"
+  },
+  "historical_releases_preserved": [
+    "m10-meeting-research-v1-20260907",
+    "m10-r-training-validity-fairness-v1-20260907",
+    "m10-r2-ppo-trigger-correctness-v1-20260907",
+    "m10-r3-prediction-trigger-learning-v1-20260907",
+    "m10-final-acceptance-candidate-v1-20260907"
+  ],
+  "conclusion": "B versus A stable improvement unproven; C threshold 0.1 triggers every step with no actor saving; rules save computation but do not improve task effect; retain periodic decision as current engineering default",
+  "full_goal_complete": false
+}

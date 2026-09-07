@@ -1,7 +1,7 @@
 {
   "version": "m10-r-training-validity/0.1.0",
   "status": "in_progress",
-  "current_stage": "M10-final-acceptance-candidate-freeze",
+  "current_stage": "M10-weak-communication-formal-training-and-delivery",
   "training_started": true,
   "training_location": "specified_server_only",
   "full_goal_complete": false,
@@ -14,7 +14,8 @@
     {"id":"R5","status":"passed"},
     {"id":"M10-R","status":"passed_training_correction"},
     {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"},
-    {"id":"M10-R3","status":"passed_prediction_trigger_cost_and_learning_assessment"}
+    {"id":"M10-R3","status":"passed_prediction_trigger_cost_and_learning_assessment"},
+    {"id":"M10-weak-communication","status":"passed_protocol_pilot_formal_matrix_with_negative_result"}
   ],
   "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
   "source_review": "m10-r-report.md",
@@ -121,8 +122,45 @@
     "deployment_validation": "not_verified",
     "user_scope_status": "pending",
     "human_review_status": "not_held",
-    "new_training_this_stage": false
+    "new_training_this_stage": true,
+    "weak_communication_protocol": "m10-weak-communication-protocol.md",
+    "weak_communication_report": "m10-weak-communication-report.md",
+    "weak_communication_limitations": "m10-weak-communication-limitations.md",
+    "weak_communication_reproduction": "m10-weak-communication-reproduction-runbook.md",
+    "weak_communication_artifact_index": "m10-weak-communication-artifact-index.md",
+    "weak_communication_server_root": "/home/user1/m10-runs/20260907-weak-comm-v1",
+    "weak_communication_pilot": {
+      "steps": 2048,
+      "rollout_steps": 256,
+      "world_epochs": 30,
+      "world_checkpoint_sha256": "AD356F648F85FC7D979AFF27FDAE8504EADB30F3CB666208108AE260697A734E",
+      "results_sha256": "D4EEBCF10AF620F808FF121AFDCFE81FE685543EA0D7B228DBF112F4BACF6983"
+    },
+    "weak_communication_formal": {
+      "groups": ["A-graph5-base", "B-graph5-world", "C-graph5-triggered"],
+      "seeds": [1101, 2203, 3307],
+      "environment_steps_per_seed": 12288,
+      "actor_decisions_per_seed": 12288,
+      "continuation_per_seed": 0,
+      "optimizer_steps_per_seed": 192,
+      "formal_results_sha256": "6394344659A5D3C5EE59FDC8D662F18A1FF5D37FD093A2C401C55AF16B0F8FF3",
+      "tape_sha256": "F746C487429ED00641421D0BD56E7AF9448FB9E5AFB0A135F2D8CC21EC9165D8",
+      "threshold_selection_sha256": "684346CA94123F1F71A8D851E31CE4DEF0F8F9A20A2B8109C1F7CFF7CDEAE2F1",
+      "threshold": 0.1,
+      "feasible_cost_saving_threshold_found": false
+    },
+    "weak_communication_detailed_audit": {
+      "tape": "final_test",
+      "episodes": 16,
+      "latency_samples": 280,
+      "sha256": "EA169C3B6EE1588DA01151552F3C6B27580D9D9AB758EBD399E147C1C087E539",
+      "contract_audit": "10/10 direct tests; server pytest unavailable",
+      "contract_audit_sha256": "D047B2AFD6361FF68EA6D930A1B40B872E145C80E918D3944B255444838E5D45"
+    },
+    "weak_communication_conclusion": "B versus A stable improvement unproven; C risk threshold 0.1 triggers every step and saves no actor calls; rules save computation but do not improve task effect; retain periodic decision as current engineering default",
+    "weak_communication_release": "pending_independent_archive",
+    "new_training_scope": "weak communication only; no old budget extension or historical artifact rewrite"
   },
-  "completion_boundary": "M10-R3 evidence checked and final candidates frozen with a no-training server reproduction; independent final archive, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
+  "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; independent archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
   "review_status": "not_held"
 }
