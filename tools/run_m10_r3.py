@@ -102,6 +102,7 @@ def evaluate_trigger_mode(policy: M10ActorCritic, world: M10WorldModel, *, mode:
         continuation = 0
         world_calls = 0
         replan_reasons: dict[str, int] = {}
+        trigger_condition_counts: dict[str, int] = {}
         latency: list[float] = []
         info: dict[str, Any] = {"counts": {"completed": 0, "expired": 0, "rejected": 0}, "energy": {}}
         while not done and steps < int(env_config.horizon / env_config.decision_interval) + 2:
@@ -137,6 +138,9 @@ def evaluate_trigger_mode(policy: M10ActorCritic, world: M10WorldModel, *, mode:
                     steps_since_replan=since, max_replan_interval=max_replan_interval,
                 )
                 decision_vector = full_vector if should_replan else vector
+            for condition, active in conditions.items():
+                if active:
+                    trigger_condition_counts[condition] = trigger_condition_counts.get(condition, 0) + 1
             if should_replan:
                 action, _, _, hidden = _act(policy, decision_vector, obs["mask"], hidden, device_obj, deterministic=True)
                 actor_calls += 1
@@ -165,6 +169,7 @@ def evaluate_trigger_mode(policy: M10ActorCritic, world: M10WorldModel, *, mode:
             "rejected": info["counts"]["rejected"], "energy_remaining": float(sum(info["energy"].values())),
             "actor_calls": actor_calls, "continuation_steps": continuation,
             "world_model_calls": world_calls, "replan_reasons": replan_reasons,
+            "trigger_condition_counts": trigger_condition_counts,
             "latency_ms": latency,
         })
     numeric = ("return", "completed", "expired", "rejected", "energy_remaining", "actor_calls", "continuation_steps", "world_model_calls")
