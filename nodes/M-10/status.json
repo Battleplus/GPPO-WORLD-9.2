@@ -158,7 +158,11 @@
       "contract_audit_sha256": "D047B2AFD6361FF68EA6D930A1B40B872E145C80E918D3944B255444838E5D45"
     },
     "weak_communication_conclusion": "B versus A stable improvement unproven; C risk threshold 0.1 triggers every step and saves no actor calls; rules save computation but do not improve task effect; retain periodic decision as current engineering default",
-    "weak_communication_release": "pending_independent_archive",
+    "weak_communication_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-gppo-world-v1-20260907",
+    "weak_communication_release_target": "106d2267ab397829ed8a437219f9b696b609f0cb",
+    "weak_communication_release_bundle_sha256": "D4416A1D9CF892B247AB50507A623DCD70A9022E8CB9993F79227537BB4A183C",
+    "weak_communication_release_source_sha256": "D705E30CD9D6EA84A655720FF2ADAF2B91CEE37BCE7EDA895EF217FBF7EC82F5",
+    "weak_communication_release_assets_verified": true,
     "new_training_scope": "weak communication only; no old budget extension or historical artifact rewrite"
   },
   "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; independent archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
