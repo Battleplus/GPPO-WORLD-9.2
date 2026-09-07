@@ -13,6 +13,6 @@
 - `formal/detailed-eval.json`：seed-1101 final-test 详细通信/恢复/执行/端到端时延审计；SHA-256 `EA169C3B6EE1588DA01151552F3C6B27580D9D9AB758EBD399E147C1C087E539`。
 - `formal/weak-comm-contract-audit-r2.txt`：服务器 10/10 直接合同审计；SHA-256 `D047B2AFD6361FF68EA6D930A1B40B872E145C80E918D3944B255444838E5D45`。
 
-`formal/checkpoints/{A-graph5-base,B-graph5-world,C-graph5-triggered}/seed-{1101,2203,3307}.pt` 和对应 `formal/records/` 保存全部 9 个 checkpoint、optimizer/recovery state、配置、逐 seed 评估与负结果。完整逐文件 SHA-256 清单随独立归档提供；历史 M-09/M-10/M-10-R/R2/R3 Release 通过状态文件索引，不重复覆盖或删除。
+`formal/formal/checkpoints/{A-graph5-base,B-graph5-world,C-graph5-triggered}/seed-{1101,2203,3307}.pt` 和对应 `formal/formal/records/` 保存全部 9 个 checkpoint、optimizer/recovery state、配置、逐 seed 评估与负结果。完整逐文件 SHA-256 清单随独立归档提供；历史 M-09/M-10/M-10-R/R2/R3 Release 通过状态文件索引，不重复覆盖或删除。
 
 独立 Release：[m10-weak-comm-gppo-world-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-gppo-world-v1-20260907)，发布目标提交为 `106d2267ab397829ed8a437219f9b696b609f0cb`。下载复核：bundle `D4416A1D9CF892B247AB50507A623DCD70A9022E8CB9993F79227537BB4A183C`，source `D705E30CD9D6EA84A655720FF2ADAF2B91CEE37BCE7EDA895EF217FBF7EC82F5`；GitHub API asset digest 与本地下载一致。
