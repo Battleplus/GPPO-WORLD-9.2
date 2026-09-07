@@ -2,8 +2,8 @@
   "schema": "m10-r3-artifact-manifest/1",
   "project": "GPPO-WORLD-9.2",
   "branch": "execute-r02-20260905",
-  "local_commit": "335af08",
-  "remote_commit_at_package": "d774fb152d7412386affcab966582350727b9e8a",
+  "local_commit": "9efad2a",
+  "remote_commit_at_package": "098082d13158c8a448aae6e7d85f4e9a2847a73f",
   "release_tag": "m10-r3-prediction-trigger-learning-v1-20260907",
   "release_archive_sha256": "not-self-embedded; verify beside downloaded archive",
   "source_archive": {
