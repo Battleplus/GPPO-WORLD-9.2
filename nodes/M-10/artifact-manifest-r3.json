@@ -1,0 +1,401 @@
+{
+  "schema": "m10-r3-artifact-manifest/1",
+  "project": "GPPO-WORLD-9.2",
+  "branch": "execute-r02-20260905",
+  "local_commit": "335af08",
+  "remote_commit_at_package": "d774fb152d7412386affcab966582350727b9e8a",
+  "release_tag": "m10-r3-prediction-trigger-learning-v1-20260907",
+  "release_archive_sha256": "not-self-embedded; verify beside downloaded archive",
+  "source_archive": {
+    "path": "source/m10-r3-source-b3a0b6d.tar",
+    "bytes": 83179520,
+    "sha256": "6a4595857cac8e56c877fdd3b718fad64866c46b27839867cd6943a99fe75704"
+  },
+  "presentation": {
+    "path": "repo/nodes/M-10/汇报-m10-r3-final-v1.pptx",
+    "bytes": 53263,
+    "sha256": "37282a7cec8a87e2dde81a340931982ca71d48d71e21e5540b63f2b90e627f09"
+  },
+  "formal_matrix": {
+    "path": "server/m10-r3-server-download/formal-matrix-cuda/formal-matrix.json",
+    "bytes": 333144,
+    "sha256": "582c19e07992795423059cb7a21ba30cfb4fb1512718886b1265410b93eac0f1"
+  },
+  "server_root": "server/m10-r3-server-download",
+  "contents": [
+    "source/m10-r3-source-b3a0b6d.tar",
+    "server/m10-r3-server-download/prediction-audit.json",
+    "server/m10-r3-server-download/trigger-cpu-v2.json",
+    "server/m10-r3-server-download/trigger-cpu.json",
+    "server/m10-r3-server-download/trigger-cuda.json",
+    "server/m10-r3-server-download/learning-ladder-cuda/**",
+    "server/m10-r3-server-download/formal-matrix-cuda/**",
+    "repo/nodes/M-10/**",
+    "tests/test_m10_r3_correctness.py",
+    "tests/run_m10_r3.py"
+  ],
+  "file_count": 72,
+  "total_bytes": 106819609,
+  "inventory": [
+    {
+      "path": "repo/nodes/M-10/learning-budget-ladder-r3.json",
+      "bytes": 691,
+      "sha256": "106d8069506cf28a3a19b0a52efa79a3174829782d8d801a5ea666a0d7011b1f"
+    },
+    {
+      "path": "repo/nodes/M-10/m10-r3-failure-record.json",
+      "bytes": 1165,
+      "sha256": "a76e237bc06941f20e9c46ac2a32e97b5c933e23468577cf79f6f9376db3d48a"
+    },
+    {
+      "path": "repo/nodes/M-10/m10-r3-limitations.md",
+      "bytes": 2302,
+      "sha256": "6a2d4d9aa3a88d72ebbde2da55435caaffeec360bd02abaedfef2ef7e244aa93"
+    },
+    {
+      "path": "repo/nodes/M-10/m10-r3-report.md",
+      "bytes": 10093,
+      "sha256": "2a69a1160c2f90bb3b4133483e7d478aceb2844df9ad5929f996b53f768c7752"
+    },
+    {
+      "path": "repo/nodes/M-10/m10-r3-reproduction-runbook.md",
+      "bytes": 3755,
+      "sha256": "d86192e34639f47f73d71ea1150673a60de27ef07dc5da39b36e57a65eefffc9"
+    },
+    {
+      "path": "repo/nodes/M-10/prediction-audit-r3.json",
+      "bytes": 1639,
+      "sha256": "f07742c9c71d4698a5ed1374ca4c521612d7c2cc69623db1e4e54d160dcc5a3c"
+    },
+    {
+      "path": "repo/nodes/M-10/presentation-validation-r3.json",
+      "bytes": 2824,
+      "sha256": "bbfa8d99e520f93c547244717e838b851ce2228d6d1f985e5e7f2818038a225f"
+    },
+    {
+      "path": "repo/nodes/M-10/README.md",
+      "bytes": 18483,
+      "sha256": "06dfbdd73fa8ee00403583e55f2921ee0134c4042f87cf05dcedcb369c53dba5"
+    },
+    {
+      "path": "repo/nodes/M-10/server-evidence-r3.json",
+      "bytes": 1189,
+      "sha256": "b8c35fc94c8468c2cb392e9e2d04656ddf782829e2903e252658ce50524b90c4"
+    },
+    {
+      "path": "repo/nodes/M-10/status.json",
+      "bytes": 5834,
+      "sha256": "bc543f17bb3c1f6e8012cd440cc1d86eef6ef2a2d16b73c5c915f144321ec420"
+    },
+    {
+      "path": "repo/nodes/M-10/training-results-r3-summary.json",
+      "bytes": 1565,
+      "sha256": "ff8831df9cfa95c6d7439e7d8a880befac7f96c22e963233f55312a87d7f9ac7"
+    },
+    {
+      "path": "repo/nodes/M-10/trigger-comparison-r3.json",
+      "bytes": 1425,
+      "sha256": "44463b590160f519bc82bde9c5a013c1847571598b4cff0aeb65514d6b92d4a2"
+    },
+    {
+      "path": "repo/nodes/M-10/汇报-m10-r3-final-v1.pptx",
+      "bytes": 53263,
+      "sha256": "37282a7cec8a87e2dde81a340931982ca71d48d71e21e5540b63f2b90e627f09"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-2-base/seed-1101.pt",
+      "bytes": 507794,
+      "sha256": "149055cd0b605760d69ca2a8907103156f0eb01b82cabb049a400c5dc6daf5e7"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-2-base/seed-2203.pt",
+      "bytes": 507794,
+      "sha256": "21e1104fd12eacdf74b9503137314d37bec8f409979085597264f588190b13da"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-2-base/seed-3307.pt",
+      "bytes": 507794,
+      "sha256": "83a09c7551fd94ee4bbea922451f06c4feaf8a7ad9f62e22aa0062b03696e137"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-base/seed-1101.pt",
+      "bytes": 510098,
+      "sha256": "af717b16a995660746431928af4f658e2ea5788cba21abdfeae7486550e1a048"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-base/seed-2203.pt",
+      "bytes": 510098,
+      "sha256": "6cb8e65588d2d26f6b9491682dd5894c5ac635fd138db3e1767bad0ca2174a61"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-base/seed-3307.pt",
+      "bytes": 510098,
+      "sha256": "78aac28f4d56ab26d823d58379bd76f7ecc1a1d7eb570ab07db61e01cda436bb"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-world/seed-1101.pt",
+      "bytes": 526858,
+      "sha256": "0794989b8c4e7684626410005a1940dc833d8d4824bf0acae5c9ed8ca40cfa5f"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-world/seed-2203.pt",
+      "bytes": 526858,
+      "sha256": "d8a40298e72522752eae5dde10638ca4f3c60e05c3fc0756342fb8b50d7f1231"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-5-world/seed-3307.pt",
+      "bytes": 526858,
+      "sha256": "76d7863ba0a299f29332e29969ab89cc9a614490b8734a577fdc16420a313a2b"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-history-5-base/seed-1101.pt",
+      "bytes": 1703557,
+      "sha256": "85002e370e038bb751da656e73255a483c84206fa5b524f25fb0a7327c5fcb71"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-history-5-base/seed-2203.pt",
+      "bytes": 1703557,
+      "sha256": "4d039b9feec147fad9719d4abde7ab595ae59a739309154cdf225fba07976c0a"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/graph-history-5-base/seed-3307.pt",
+      "bytes": 1703557,
+      "sha256": "60f9fab9252e77fb778bbafc7f58747771d6faa9d9b60cc4dac5739f137598a6"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/mlp-2-base/seed-1101.pt",
+      "bytes": 1436414,
+      "sha256": "c3d14ed50d157606dda27b1b5057ab051185b885c8aee3cff6634515c6144b83"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/mlp-2-base/seed-2203.pt",
+      "bytes": 1436414,
+      "sha256": "8afe8ef7288b25d02b675b319ef212d44a6389ee6886018f5dc8d9065bc3425c"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/checkpoints/mlp-2-base/seed-3307.pt",
+      "bytes": 1436414,
+      "sha256": "025a39c6a42e3bbf63141d20180f0db41837301b9f61630057fb39b9aac7cd7e"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/formal-matrix.json",
+      "bytes": 333144,
+      "sha256": "582c19e07992795423059cb7a21ba30cfb4fb1512718886b1265410b93eac0f1"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-2-base/seed-1101.json",
+      "bytes": 19420,
+      "sha256": "b83822778e681b2739a75890db0d36e0117f3c989664e6f581a6b7f88baa598f"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-2-base/seed-2203.json",
+      "bytes": 19443,
+      "sha256": "0bbe9d39c358a1a0430846b5e72c50ea2fc6581da7aa2d3aa9afca8108f36e94"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-2-base/seed-3307.json",
+      "bytes": 19415,
+      "sha256": "5f893b9ad992cfab6c4e5fad01dba5c2250cf155c5079e7ecbcbed5524aed118"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-base/seed-1101.json",
+      "bytes": 19441,
+      "sha256": "0d97be274e3c0f32943e52d5d3b028289e128fc0cfc33248acc16b1d1394b060"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-base/seed-2203.json",
+      "bytes": 19419,
+      "sha256": "1f99f01dbce8dc7f94563c26478a3352238a2a94fb836c9d0cdc768a4badc15e"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-base/seed-3307.json",
+      "bytes": 19415,
+      "sha256": "86864d6fe60e4823a136d9c584d55edd16d68ced21b42a666fd8317ff685f2ab"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-world/seed-1101.json",
+      "bytes": 19439,
+      "sha256": "419784d05004f4ffe19339f4404e9751777991903123fe566c70eb5cf162b0ff"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-world/seed-2203.json",
+      "bytes": 19439,
+      "sha256": "9f25db82f067270538ddb84c115013e9debba2160dc99b3a61ed062f3900f81f"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-5-world/seed-3307.json",
+      "bytes": 19440,
+      "sha256": "3fd5a89e529d25bea4a5c4f96e04525d210bc41081dc42ba23d14b1e680e733c"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-history-5-base/seed-1101.json",
+      "bytes": 19467,
+      "sha256": "a819034ee277478a91b24668708d316d75bfedc45b96609a94a5b06d5079f698"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-history-5-base/seed-2203.json",
+      "bytes": 19435,
+      "sha256": "fadd32bc46a42aea8d1d51dc9a426db7e3cf70792315a4732ffe24e3232eec7e"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/graph-history-5-base/seed-3307.json",
+      "bytes": 19457,
+      "sha256": "8caa191a7aea7404949d2c9a3ac0e6d8d744553946dba1786fed440a411e5442"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/mlp-2-base/seed-1101.json",
+      "bytes": 19397,
+      "sha256": "2329ab4ba8215699f1ab783c0b547b01efc74c8e70ae6fedb51dd86109b238bb"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/mlp-2-base/seed-2203.json",
+      "bytes": 19391,
+      "sha256": "9c0c08b08e33a464474ffa019b00f0f7c0202880447baf792e51a58f3a2c155d"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/records/mlp-2-base/seed-3307.json",
+      "bytes": 19381,
+      "sha256": "10c8b5d00d3860cdf08064d07b02e93c191b01ba15fe5b36f72761f5b3ac368c"
+    },
+    {
+      "path": "server/m10-r3-server-download/formal-matrix-cuda/run-complete.json",
+      "bytes": 80,
+      "sha256": "d87f1cbd4c12b72f31507fe55de235e31869d3cf218f69427379b01835836128"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-base/seed-1101-steps-2048.pt",
+      "bytes": 509378,
+      "sha256": "b430fd88e3aaa5ea9541a04763ef44fd79d3a0d8159d1823ad2912820851ac6b"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-base/seed-1101-steps-4096.pt",
+      "bytes": 509954,
+      "sha256": "333c16729adc7512b249bc34d94c83b8c46f3e9e768c55ed662801e336181725"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-base/seed-1101-steps-8192.pt",
+      "bytes": 511042,
+      "sha256": "dd9e8bc8fa2344884b201b272f53dde8ea270fa580e8e5c919067e4bc3c2bbbd"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-world/seed-1101-steps-2048.pt",
+      "bytes": 525778,
+      "sha256": "c6d3d54b0d536b7ca9f908294fbd0b66d3fd236f0a3bba0d7ffc1045a3bbfc63"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-world/seed-1101-steps-4096.pt",
+      "bytes": 526482,
+      "sha256": "cb3311da68b02bdef3e18bba7a54a076a780f33049af58a91fe95a77dee92060"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-5-world/seed-1101-steps-8192.pt",
+      "bytes": 527826,
+      "sha256": "937efc1b617477f25c16ca4c93532db1cb8a2f94da7e9efdbf3bd569284994af"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-history-5-base/seed-1101-steps-2048.pt",
+      "bytes": 1702596,
+      "sha256": "4bca4a9d07addc20311e7f07132534ca0d23d05210f2501945aa9b26cab16e4d"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-history-5-base/seed-1101-steps-4096.pt",
+      "bytes": 1703236,
+      "sha256": "801375e84c466bfbbaf06c9ed7e47e64662cbe87347e558fdb1657ce6b628064"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/checkpoints/graph-history-5-base/seed-1101-steps-8192.pt",
+      "bytes": 1704644,
+      "sha256": "79a30bc5c203aa42f3237a7d9285ffc51c240c67bd1d7d11df776b1dcb823b35"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/learning-budget-ladder.json",
+      "bytes": 166040,
+      "sha256": "803424ad31a1635fafede9eab339eb37452db6e1ea800efe44fb0a54efd269a2"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-base/seed-1101-steps-2048.json",
+      "bytes": 13403,
+      "sha256": "2c5d916161e5c961b6551196600e9924e6d83392ea77c6bbd9534ac5722493cf"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-base/seed-1101-steps-4096.json",
+      "bytes": 15422,
+      "sha256": "1b7bd0e45f5130b36f272dee0f5051003813067e11b14124349ddd1d5085f194"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-base/seed-1101-steps-8192.json",
+      "bytes": 19456,
+      "sha256": "dbe2b43e4fdd04f847675de49ab70a4a22f7335149d284069d691b09348fe0c5"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-world/seed-1101-steps-2048.json",
+      "bytes": 13381,
+      "sha256": "123f884f10ae28b4240e49216e028de03522f6ff22a3eda4d8b2a5195fbd356e"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-world/seed-1101-steps-4096.json",
+      "bytes": 15402,
+      "sha256": "b855895cdebda2ffa346f205a16d317ef766f63f394a0b2046f97f4325079bb4"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-5-world/seed-1101-steps-8192.json",
+      "bytes": 19479,
+      "sha256": "51a40bb462b9a21b48e5de435222fbb193c4e0fe592af9ce8b10b153d358d42a"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-history-5-base/seed-1101-steps-2048.json",
+      "bytes": 13405,
+      "sha256": "b9ef9b5e0b3c687497b9f6dadb859fe8f7ba2293dcb58f0fba19cc6ad6c98890"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-history-5-base/seed-1101-steps-4096.json",
+      "bytes": 15436,
+      "sha256": "fa1c061b735de9859e683f6a2f7ed76835e2b807b33bfceffd65a29ef7d169a1"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/records/graph-history-5-base/seed-1101-steps-8192.json",
+      "bytes": 19490,
+      "sha256": "0f71450a04e9e80dfea6d59d0a56c3d303150900cd819244686abfcdcf8540c4"
+    },
+    {
+      "path": "server/m10-r3-server-download/learning-ladder-cuda/run-complete.json",
+      "bytes": 80,
+      "sha256": "e319177906d1e42ed1a5b9d6305966f62f136012e725d31e5070991f88ee7a3f"
+    },
+    {
+      "path": "server/m10-r3-server-download/prediction-audit.json",
+      "bytes": 32233,
+      "sha256": "e4960e5bdc57d314188f10d27adebf7558a4ff29897940027a862e578cd563e4"
+    },
+    {
+      "path": "server/m10-r3-server-download/trigger-cpu-v2.json",
+      "bytes": 98578,
+      "sha256": "ab6f7d2b1a1ca469cfc06d8a554ed6fdd7e3d0c7114efe8154af2ae436cbd58d"
+    },
+    {
+      "path": "server/m10-r3-server-download/trigger-cpu.json",
+      "bytes": 86243,
+      "sha256": "680f06353298d972f0b6b4e1a274847fc3543ecc9ff2bbaa0066a936c43390dd"
+    },
+    {
+      "path": "server/m10-r3-server-download/trigger-cuda.json",
+      "bytes": 86084,
+      "sha256": "c4aef3aa0b4317fb638d15c36901a994619f4c0526db8f0fd20534c1b9f7a409"
+    },
+    {
+      "path": "source/m10-r3-source-b3a0b6d.tar",
+      "bytes": 83179520,
+      "sha256": "6a4595857cac8e56c877fdd3b718fad64866c46b27839867cd6943a99fe75704"
+    },
+    {
+      "path": "tests/run_m10_r3.py",
+      "bytes": 19426,
+      "sha256": "644dbbf414254c62e7fc54ddf1c998b0017799eb37d38e24db6b91ad6af0b4a9"
+    },
+    {
+      "path": "tests/test_m10_r3_correctness.py",
+      "bytes": 2581,
+      "sha256": "f6e80f0370a48e7cd26bb29de8d1e24938854999a54161209bfaf3d343a1c612"
+    }
+  ]
+}
