@@ -12,7 +12,7 @@
     {"id":"R3","status":"passed"},
     {"id":"R4","status":"passed"},
     {"id":"R5","status":"passed"},
-    {"id":"M10-R","status":"in_progress"}
+    {"id":"M10-R","status":"passed_training_correction"}
   ],
   "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
   "source_review": "m10-r-report.md",
@@ -44,7 +44,8 @@
     "m10_r_training_archive_sha256": "bd5d01b52c09b793eb352854822f16e5690748292205ebb501d394afbb91eb4b",
     "m10_r_causal_passed": "10/10",
     "m10_r_server_pytest": "144 passed, 7 skipped",
-    "m10_r_release": "pending_final_materials"
+    "m10_r_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r-training-validity-fairness-v1-20260907",
+    "m10_r_release_assets_verified": true
   },
   "completion_boundary": "M10-R corrected training and fairness evidence completed; independent release/materials and user-confirmed return/charging scope, real control cycle, broader seeds, real-flight validation and human review remain open",
   "review_status": "not_held"

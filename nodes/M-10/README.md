@@ -109,4 +109,4 @@ M-10-R 不改写上述历史结论或旧 Release。针对历史审查发现的 s
 
 本地受控全套测试 151 passed，Shadow 定向复核 6 passed；服务器回归 144 passed、7 skipped（既有 pinned GPPO baseline 未提供），新的全环境因果验收 10/10。完整决策链 100 samples 延迟为 CPU 2.872/3.081/3.091 ms（mean/P95/P99），CUDA 3.565/3.786/3.803 ms；测量只代表指定服务器归一化仿真，未知真实控制周期，不宣称竞赛实时达标。
 
-M-10-R 训练归档已下载并双端 SHA-256 校验：`m10-r-training-artifacts-20260907.tar.gz` 为 `bd5d01b52c09b793eb352854822f16e5690748292205ebb501d394afbb91eb4b`。归档同时保留先前失败矩阵目录和修复后的成功矩阵，源码、tape、checkpoint、optimizer/recovery state、日志、逐 seed 结果和服务器测试齐全。独立 GitHub Release 仍待最终报告材料提交后创建；不修改 `m10-meeting-research-v1-20260907`、main 或 force push。
+M-10-R 训练归档已下载并双端 SHA-256 校验：`m10-r-training-artifacts-20260907.tar.gz` 为 `bd5d01b52c09b793eb352854822f16e5690748292205ebb501d394afbb91eb4b`。归档同时保留先前失败矩阵目录和修复后的成功矩阵，源码、tape、checkpoint、optimizer/recovery state、日志、逐 seed 结果和服务器测试齐全。M-10-R 独立 GitHub Release 已发布：[m10-r-training-validity-fairness-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r-training-validity-fairness-v1-20260907)，三项资产已通过 GitHub API digest 与独立下载复核；不修改 `m10-meeting-research-v1-20260907`、main 或 force push。

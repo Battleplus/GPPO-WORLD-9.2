@@ -6,5 +6,6 @@
   "repository_evidence": ["m10-r-report.md", "m10-r-limitations.md", "m10-r-reproduction-runbook.md", "training-results-r-summary.json", "world-model-training-r.json", "causal-acceptance-r.json", "server-evidence-r.json", "m10-r-failure-record.json"],
   "slides": {"pptx": "slides/汇报-m10-r-final.pptx", "pptx_sha256": "beacfb68e0317c0d860ec2a2aed5193c73d663a036676287ce26c5bbf3779450", "pdf": "slides/汇报-m10-r-final.pdf", "pdf_sha256": "5872822bc67cadea6e85ebff4b592173eebacd49f52f36e3ebad2a46f344a317", "slide_count": 10},
   "old_release_preserved": "m10-meeting-research-v1-20260907",
-  "new_release": "pending_final_git_sync_and_asset_cdn_readback"
+  "new_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r-training-validity-fairness-v1-20260907",
+  "release_assets_verified": true
 }
