@@ -202,17 +202,20 @@ def main() -> None:
             dump(args.output / "records" / safe_name / f"seed-{seed}.json", record)
             all_results.append(record)
     benchmark_results = []
-    representative = next(item for item in all_results if item["spec"]["name"] == "graph-5-world")
-    rep_spec = representative["spec"]
-    rep_model = world if rep_spec["fusion"] != "base" else None
-    rep_policy, _ = train_policy(
-        variant=rep_spec["name"], encoder=rep_spec["encoder"], type_count=rep_spec["type_count"], history=rep_spec["history"],
-        fusion=rep_spec["fusion"], model=rep_model, seed=seeds[0], steps=max(64, min(steps, 256)), env_config=env_config,
-        ppo_config=ppo_config, device=args.device, trigger_threshold=trigger_threshold,
-        scenarios=train_tape, max_replan_interval=args.trigger_max_interval,
-    )
-    for device_name in ("cpu", args.device) if args.device != "cpu" else ("cpu",):
-        benchmark_results.append(benchmark(rep_policy, rep_model, env_config, rep_spec["fusion"], device_name, trigger_threshold, args.trigger_max_interval))
+    for representative_name in ("graph-5-world", "graph-5-triggered-replan"):
+        representative = next(item for item in all_results if item["spec"]["name"] == representative_name)
+        rep_spec = representative["spec"]
+        rep_model = world if rep_spec["fusion"] != "base" else None
+        rep_policy, _ = train_policy(
+            variant=rep_spec["name"], encoder=rep_spec["encoder"], type_count=rep_spec["type_count"], history=rep_spec["history"],
+            fusion=rep_spec["fusion"], model=rep_model, seed=seeds[0], steps=max(64, min(steps, 256)), env_config=env_config,
+            ppo_config=ppo_config, device=args.device, trigger_threshold=trigger_threshold,
+            scenarios=train_tape, max_replan_interval=args.trigger_max_interval,
+        )
+        for device_name in ("cpu", args.device) if args.device != "cpu" else ("cpu",):
+            result = benchmark(rep_policy, rep_model, env_config, rep_spec["fusion"], device_name, trigger_threshold, args.trigger_max_interval)
+            result["variant"] = representative_name
+            benchmark_results.append(result)
     dump(args.output / "matrix-results.json", {"mode": args.mode, "records": all_results, "latency": benchmark_results, "world_model": world_meta, "world_model_test_metrics": world_meta.get("test_metrics"), "world_model_baseline_metrics": world_meta.get("test_baseline_metrics"), "trigger_calibration": calibration, "tape_counts": {"train": len(train_tape), "validation": len(validation_tape), "test": len(test_tape), "ood": len(ood_tape)}})
     dump(args.output / "run-complete.json", {"mode": args.mode, "variants": len(specs), "seeds": seeds, "steps_per_seed": steps, "world_model_rows": len(world_rows), "world_model_ood_rows": len(ood_rows), "trigger_threshold": trigger_threshold, "status": "completed"})
 
