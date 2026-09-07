@@ -59,7 +59,7 @@ def variant_specs(mode: str) -> list[dict[str, Any]]:
 def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M10Config,
               fusion: str, device_name: str, trigger_threshold: float, max_replan_interval: int = 3) -> dict[str, float]:
     from gppo_world.m10_environment import M10Environment, scenario_tape
-    from gppo_world.m10_training import _act, _policy_input
+    from gppo_world.m10_training import _act, _policy_input, _trigger_decision
 
     device = torch.device(device_name)
     policy = policy.to(device).eval()
@@ -74,25 +74,40 @@ def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M
         torch.cuda.synchronize(device)
     policy_times, chain_times, env_times = [], [], []
     last_action = None
+    hidden = None
     steps_since_replan = max_replan_interval
+    actor_calls = 0
+    continuation_steps = 0
+    world_model_calls = 0
+    replan_reasons: dict[str, int] = {}
     for _ in range(100):
-        start = time.perf_counter()
-        action, _, _, _ = _act(policy, vector, obs["mask"], None, device, deterministic=True)
-        if device.type == "cuda":
-            torch.cuda.synchronize(device)
-        policy_times.append((time.perf_counter() - start) * 1000.0)
         start = time.perf_counter()
         obs = env._observation()
         vector, active, risk = _policy_input(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold)
-        event_visible = bool(obs["flat"][-1] > 0.5)
-        should_replan = fusion != "triggered" or active or event_visible or last_action is None or not bool(obs["mask"][last_action]) or steps_since_replan >= max_replan_interval
+        world_model_calls += int(world is not None and fusion != "base")
+        should_replan, reason, _ = _trigger_decision(
+            obs, fusion=fusion, risk_active=active, last_action=last_action,
+            steps_since_replan=steps_since_replan, max_replan_interval=max_replan_interval,
+        )
         if should_replan and fusion == "triggered":
             vector, _, _ = _policy_input(env, obs, world, fusion=fusion, device=device, trigger_threshold=trigger_threshold, force_context=True)
-        action, _, _, _ = _act(policy, vector, obs["mask"], None, device, deterministic=True, forced_action=None if should_replan else last_action)
+            world_model_calls += int(world is not None)
+        if should_replan:
+            actor_start = time.perf_counter()
+            action, _, _, hidden = _act(policy, vector, obs["mask"], hidden, device, deterministic=True)
+            if device.type == "cuda":
+                torch.cuda.synchronize(device)
+            policy_times.append((time.perf_counter() - actor_start) * 1000.0)
+            actor_calls += 1
+            replan_reasons[reason] = replan_reasons.get(reason, 0) + 1
+        else:
+            _, hidden = policy.value_only(torch.tensor(vector, dtype=torch.float32, device=device)[None, :], hidden)
+            action = int(last_action)
+            continuation_steps += 1
         last_action = action
         steps_since_replan = 0 if should_replan else steps_since_replan + 1
         chain_policy_done = time.perf_counter()
-        obs, _, done, _ = env.step(action)
+        obs, _, done, _ = env.step(action, submit_command=should_replan)
         if device.type == "cuda":
             torch.cuda.synchronize(device)
         chain_times.append((time.perf_counter() - start) * 1000.0)
@@ -100,6 +115,9 @@ def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M
         if done:
             env = M10Environment(env_config, scenario_tape("test", count=1, base_seed=9901)[0])
             obs = env.reset()
+            last_action = None
+            hidden = None
+            steps_since_replan = max_replan_interval
     return {
         "device": device_name,
         "policy_mean_ms": float(np.mean(policy_times)),
@@ -110,7 +128,11 @@ def benchmark(policy: M10ActorCritic, world: M10WorldModel | None, env_config: M
         "decision_chain_p99_ms": float(np.percentile(chain_times, 99)),
         "env_step_mean_ms": float(np.mean(env_times)),
         "env_step_p95_ms": float(np.percentile(env_times, 95)),
-        "samples": len(policy_times),
+        "actor_calls": actor_calls,
+        "continuation_steps": continuation_steps,
+        "world_model_calls": world_model_calls,
+        "replan_reasons": replan_reasons,
+        "samples": len(chain_times),
     }
 
 
@@ -149,7 +171,7 @@ def main() -> None:
         "shared_action_count": env_config.action_count, "shared_visible_observation": True, "node_types": ["UAV", "Region", "Target", "Task", "Event"], "relation_encoding": "explicit_uav_task_edges_with_distance_visibility_mask_region",
         "variants": specs, "policy_seeds": seeds, "steps_per_seed": steps,
         "ppo": ppo_config.__dict__, "world_model": {"episodes": args.world_episodes, "epochs": args.world_epochs, "split": "frozen_train_validation_test_tapes", "ood_episodes": len(ood_tape)},
-        "trigger": {"threshold_source": "validation_f1" if args.trigger_threshold is None else "cli_override", "requested_threshold": args.trigger_threshold, "max_replan_interval": args.trigger_max_interval, "forced_events": ["new_public_delivery", "risk_above_threshold", "safety_or_invalid_previous_action"], "fallback_action": "reuse_previous_legal_action", "no_trigger_policy": "reuse_previous_action"},
+        "trigger": {"threshold_source": "validation_f1" if args.trigger_threshold is None else "cli_override", "requested_threshold": args.trigger_threshold, "max_replan_interval": args.trigger_max_interval, "forced_events": ["task_arrival", "confirmed_fault", "link_recovery", "completion_or_invalidation", "safety"], "optional_conditions": ["risk_above_threshold", "max_wait"], "priority": ["initial", "safety", "confirmed_fault", "link_recovery", "task_arrival", "completion_or_invalidation", "risk", "max_wait"], "continuation": "renew_existing_acked_lease_without_resubmission", "no_trigger_policy": "continue_existing_task_or_hold_control"},
         "charging_return_scope": "not included pending explicit meeting acceptance; no silent exclusion claim",
     })
     world, world_meta = train_world_model(world_rows, seed=7001, action_count=env_config.action_count, epochs=args.world_epochs, device=args.device, ood_rows=ood_rows)
