@@ -84,4 +84,6 @@ R2 新增测试覆盖手算 GAE、终止/截断、历史隐藏状态边界、首
 
 旧 M-09、M-10 和 M-10-R Release、原始训练、失败记录和负结果保留不变；R2 使用独立 Release，不覆盖 main 或旧 Release。
 
+R2 Release：<https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r2-ppo-trigger-correctness-v1-20260907>。Release asset 已回读确认 `state=uploaded`、大小 73,031,394 bytes，GitHub digest 与本地 SHA-256 一致。
+
 仍未闭合：返航/换电/充电最低验收范围、真实任务规模、真实控制周期、更多 seed/更长预算、真实五类型任务资产、网络实测、实际飞行验收、群发/彩排/导师评审和最终汇报日期。故本报告不能作为完整会议目标完成声明。

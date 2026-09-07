@@ -67,7 +67,9 @@
     "m10_r2_pptx": "slides/汇报-m10-r2-final-v2.pptx",
     "m10_r2_pptx_sha256": "e90306a11245c0d3e9e0857b4eae8b0418ee2556c5c49314c77071203880d0bc",
     "m10_r2_release_archive_sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd",
-    "m10_r2_release_assets_verified": false
+    "m10_r2_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r2-ppo-trigger-correctness-v1-20260907",
+    "m10_r2_release_asset": "m10-r2-release-20260907-v1.tar.gz",
+    "m10_r2_release_assets_verified": true
   },
   "completion_boundary": "M10-R2 PPO/trigger correctness and same-budget evidence completed; independent release/materials, user-confirmed return/charging scope, real control cycle, broader seeds, real-flight validation and human review remain open",
   "review_status": "not_held"

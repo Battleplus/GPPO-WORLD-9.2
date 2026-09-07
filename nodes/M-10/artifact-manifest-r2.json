@@ -15,6 +15,6 @@
   "checkpoint_payload": ["state_dict", "optimizer_state_dict", "metadata", "recovery_state"],
   "test_split_isolated": true,
   "old_results_preserved": true,
-  "sha256_verified_before_release": true
-  ,"release_asset": {"name": "m10-r2-complete-artifacts-20260907-v1.tar.gz", "sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd", "bytes": 73031394}
+  "sha256_verified_before_release": true,
+  "release_asset": {"name": "m10-r2-release-20260907-v1.tar.gz", "sha256": "8bea444c9ac61c3475b4b8d029a70e55586e24726ff96116f10f502f2ebaa6cd", "bytes": 73031394, "url": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/download/m10-r2-ppo-trigger-correctness-v1-20260907/m10-r2-release-20260907-v1.tar.gz", "cdn_digest_verified": true}
 }
