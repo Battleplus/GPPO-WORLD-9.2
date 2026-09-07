@@ -126,3 +126,5 @@ R3 新增 `_policy_input_bundle`，在同一 observation/version 上复用一次
 服务器先完成 2048/4096/8192 单 seed budget ladder，再冻结 8192 步正式矩阵。正式矩阵为 MLP-2、Graph-2、Graph-5 Base、Graph-5 History、Graph-5 World × 3 seeds；每组每 seed 128 次实际 optimizer steps、8192 actor decisions。return 均值为 32.445、32.424、29.521、30.988、32.156，World 未超过 MLP-2 或 Graph-2。详细证据见 `m10-r3-report.md`、`m10-r3-limitations.md`、`prediction-audit-r3.json`、`trigger-comparison-r3.json`、`learning-budget-ladder-r3.json`、`training-results-r3-summary.json` 和独立制品 manifest。
 
 R3 运行标识为 `20260907-r3-prediction-trigger-cost-v1` 下的 prediction、trigger、learning-ladder 和 formal-matrix。服务器全套回归为 155 passed、7 skipped，skip 是旧 pinned GPPO baseline 缺失。R3 不值得无约束继续扩训；若继续，应先重定义未来重规划标签并扩大独立 tape，再做受约束阈值实验。返航/换电/充电范围、真实控制周期和汇报日期仍待确认；群发、彩排和导师评审仍是用户待办。
+
+R3 独立归档已发布：[m10-r3-prediction-trigger-learning-v1-20260907](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-r3-prediction-trigger-learning-v1-20260907)。归档 `m10-r3-prediction-trigger-learning-v1-20260907.tar.gz` 本地与 GitHub API digest 均为 `785f2db6cd5303ae5a9f99e846327b62ebba44081349ef57ca3ae9087a74bfb9`；不修改旧 Release、main 或 force push。
