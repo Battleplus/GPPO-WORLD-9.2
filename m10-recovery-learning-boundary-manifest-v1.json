@@ -1,0 +1,37 @@
+{
+  "format": "m10-recovery-learning-boundary-manifest/1.0.0",
+  "scope": {
+    "training_started": false,
+    "B_started": false,
+    "C_started": false,
+    "full_course_rerun": false,
+    "old_pressure_tape_modified": false,
+    "historical_releases_overwritten": false,
+    "force_push": false
+  },
+  "remote_branch": "c653d669a81e5d331300d4bfe8a5cfae373741f4",
+  "release_preserved": "m10-recovery-observability-v1-20260908",
+  "server_root": "/home/user1/m10-runs/20260908-recovery-boundary-v3",
+  "server_authoritative_audit_sha256": "fddf511dc182cc86c881779d060eb08a70e4e838816b415de60473b4df0793cd",
+  "server_boundary_tapes_sha256": "d81a6c90abeff713689982b483c33ef4b7057275e8c39a07439637c592a0fc37",
+  "files": {
+    "tools/audit_m10_recovery_boundary.py": "26143b701aea3f5d25c3dace500972d05404b7f263af51f45a112db2f7777049",
+    "tests/test_m10_recovery_boundary.py": "8db94bd0a2f0b5f9115fa1c12cd42eb333999dd39a250d976a76042243070c5a",
+    "nodes/M-10/m10-recovery-learning-boundary-report.md": "093ca0afaf0112a5201e421dcd155b37ea56c64a0ee89966b37669b55bb1eb3d",
+    "nodes/M-10/status.json": "7726a47f3dfbb4a02f70bb9f3c20322dcb078026aeee644ba4e2d1b7e2b33548",
+    "local-audit/recovery-boundary-audit.json": "0cd50c4f7844437e66da2a968c2d6f447be28074a3b91b7085b083da9e945db6",
+    "server-audit/m10-recovery-boundary-server-v3.json": "fddf511dc182cc86c881779d060eb08a70e4e838816b415de60473b4df0793cd",
+    "server-audit/m10-recovery-boundary-tapes-server-v3.json": "d81a6c90abeff713689982b483c33ef4b7057275e8c39a07439637c592a0fc37"
+  },
+  "tests": {
+    "local_targeted": "13 passed",
+    "local_full": "158 passed in 9.32s",
+    "server_targeted": "4 passed",
+    "server_repeat": "same server runtime audit SHA-256 repeated exactly before final metadata extension"
+  },
+  "decision": {
+    "strict_selected_recovery": "26/32",
+    "candidate_visible_old_policy_failures": 0,
+    "a_only_training": "not started; current development evidence does not isolate a recovery action-selection failure"
+  }
+}
