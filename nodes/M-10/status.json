@@ -203,7 +203,11 @@
       "B_started_this_stage": false,
       "C_started_this_stage": false,
       "availability_gate": "failed",
-      "archive_status": "ready_for_independent_archive"
+      "archive_status": "published",
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-recovery-attribution-v1-20260908",
+      "release_asset": "m10-weak-communication-recovery-attribution-v1-final2.tar.gz",
+      "release_target": "04b53ff443f7457dbe205c1e9e71a47112a2ce92",
+      "release_assets_verified": true
     }
   },
   "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; availability diagnosis found current frozen policy unusable on the traced tape and the full weak-communication availability gate is not passed; independent diagnostic archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",

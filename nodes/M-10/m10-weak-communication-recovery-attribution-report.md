@@ -126,6 +126,8 @@ python tools/diagnose_m10_recovery_attribution.py \
 
 诊断 JSON 包含：三 seed 的 checkpoint/tape provenance、96/84 分支事件卡、每步 public snapshot/candidate/action、offline-only truth marker、command/ACK/lease/execution/clock/telemetry ledger、episode-start 分支比较和固定状态参考接管摘要。offline truth 只用于归因，不进入 actor 或调度器。
 
+独立诊断归档： [m10-weak-comm-recovery-attribution-v1-20260908](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-recovery-attribution-v1-20260908)。最终资产为 `m10-weak-communication-recovery-attribution-v1-final2.tar.gz`，其 GitHub SHA-256 digest 在上传后核验；Release 目标提交为 `04b53ff443f7457dbe205c1e9e71a47112a2ce92`。
+
 ## 状态与下一步
 
 * 仿真研发/阶段二训练交付：已执行并保留；本轮归因：已完成。

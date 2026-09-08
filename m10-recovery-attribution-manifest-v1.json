@@ -5,11 +5,14 @@
   "server_root": "/home/user1/m10-runs/20260908-recovery-attribution-v1",
   "server_output": "output/recovery-attribution-v4.json",
   "server_output_sha256": "ffcddd44d5ac4c6d09845e28b32b92814f2ec836facc19528adaf2f9b8d1eb1f",
+  "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-recovery-attribution-v1-20260908",
+  "release_asset": "m10-weak-communication-recovery-attribution-v1-final2.tar.gz",
+  "release_target": "04b53ff443f7457dbe205c1e9e71a47112a2ce92",
   "files": {
     "tools/diagnose_m10_recovery_attribution.py": "a6dc8f2d5d70caa56ab6e86f21564dad621817a39f67166a43c63d591d07531a",
     "tests/test_m10_recovery_attribution.py": "75bb683e3706dc1f26bd3a49b5808177cc966a4ed59c3ea0bc3cbd2158663856",
-    "nodes/M-10/m10-weak-communication-recovery-attribution-report.md": "e346ade846adc82c16d0daef21196601bc35571e9e6c2ce48868d0eb0b81d8d5",
-    "nodes/M-10/status.json": "1b1ea3efac9662028c6bc1cb36f52c5322d137444285824723e9abc94ec57479",
+    "nodes/M-10/m10-weak-communication-recovery-attribution-report.md": "9b43205d1f2658b42ac4b1d9429e87db49ce0c1da6bdface4e7552a5dd878356",
+    "nodes/M-10/status.json": "61d971a6db732376085f90b63bfa41b89aca5d3092795f8378f174a2a6ef1779",
     "m10-recovery-attribution-server-v4.json": "ffcddd44d5ac4c6d09845e28b32b92814f2ec836facc19528adaf2f9b8d1eb1f"
   },
   "scope": {
