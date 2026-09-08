@@ -87,7 +87,7 @@
 
 本地下载后与服务器 SHA-256 一致。复现命令、逐条 full-pool 轨迹、strict selected tape、边界扫描、旧 checkpoint provenance 和服务器 pytest 输出随本轮独立诊断包保存；没有覆盖旧 Release。本轮不创建训练归档，不启动 B/C。
 
-独立归档：[m10-recovery-learning-boundary-v1-20260908](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-learning-boundary-v1-20260908)。最终 `final2` 资产在上传后按 GitHub API digest 复核；该 Release 只包含本轮审计和协议，不包含新训练。
+独立归档：[m10-recovery-learning-boundary-v1-20260908](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-learning-boundary-v1-20260908)。最终 `final4` 资产在上传后按 GitHub API digest 复核；该 Release 只包含本轮审计和协议，不包含新训练。
 
 ## 状态
 
