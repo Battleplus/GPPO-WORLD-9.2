@@ -1,0 +1,47 @@
+{
+  "protocol": "M-10 recovery observability and conditional opportunity curriculum; no training",
+  "local_source_base": "3fd10e06c67cac708232d01ed60290309928d9e8",
+  "reported_remote_base": "bf1aa1a8cc708e94c2a3b3baa14eb4cc703a9017",
+  "server_root": "/home/user1/m10-runs/20260908-recovery-observability-v2",
+  "server_run": "output/run-v2/opportunity-audit.json",
+  "server_run_sha256": "3e256bcbb7a15d4c1986ac84fbca8c6f896ab20aba5608337d7bc339da3ce36b",
+  "server_detail": "output/observability-detail-v3.json",
+  "server_detail_sha256": "35883315890fc4550574bce764a04ea44f79da5664a9ef7b19775c4053f3cf28",
+  "server_targeted_tests": "4 passed",
+  "local_targeted_tests": "21 passed",
+  "local_opportunity_audit": {
+    "protocol": "m10-recovery-observability-v1/protocol.json",
+    "audit": "m10-recovery-observability-v3/opportunity-audit.json",
+    "audit_sha256": "f98ebca5f846b25d032f0f391d69b3016b8ea2d49fe91a4db2154fca20e6be32",
+    "detail": "m10-recovery-observability-detail-v3.json",
+    "detail_sha256": "b384cfb8c8f05a41e972e00cb3884eb74563fcf889224d365e4cd3b56c975bd4"
+  },
+  "files": {
+    "gppo_world/m10_environment.py": "a016f36f5a24c08cbaba76e98ddac0bc411f17f11c92f6db5e21669057a06bf5",
+    "tools/audit_m10_recovery_observability.py": "58ef9e74c4d8195e2b3fcd37791855c4a79fe9f8e973a7045d382472245fb908",
+    "tools/audit_m10_recovery_observability_detail.py": "02622a8f10b3b5e2b894206f8720cee36feea36bb762615b3c6fb72b50c24164",
+    "tests/test_m10_recovery_observability.py": "cd708bbe1fecef3f40be154395ce539ed90c11a95156d618e027e4c52bdd13df",
+    "nodes/M-10/m10-recovery-observability-opportunity-report.md": "e370d33940f80b8a6bcafad8cde63ecaf86f3badd0229587910f47fd7a6a2650",
+    "nodes/M-10/status.json": "0306da1e8a5894122bba30c12c63cbf7bce582e658b32599ebf13d455251a9cf",
+    "m10-recovery-observability-server-v2.json": "3e256bcbb7a15d4c1986ac84fbca8c6f896ab20aba5608337d7bc339da3ce36b",
+    "m10-recovery-observability-detail-server-v3.json": "35883315890fc4550574bce764a04ea44f79da5664a9ef7b19775c4053f3cf28"
+  },
+  "scope": {
+    "training_started": false,
+    "B_started": false,
+    "C_started": false,
+    "old_pressure_tape_modified": false,
+    "final_test_used_for_selection": false,
+    "shared_environment_modified": false,
+    "other_processes_stopped": false,
+    "force_push": false
+  },
+  "conclusion": {
+    "training_recovery_samples": "unknown; training rollout/event ledger not exported",
+    "stale_task_cases": "37/37; static missing 0; dynamic stale 25/37",
+    "conditional_opportunity_selected": "32 total, 8 per split, 4 recovery + 4 composite",
+    "reference_and_old_checkpoint_on_selected": "32/32",
+    "pressure_availability": "not passed",
+    "next_step": "propose bounded A-only learning experiment; do not start automatically"
+  }
+}

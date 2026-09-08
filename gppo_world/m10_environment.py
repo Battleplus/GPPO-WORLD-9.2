@@ -427,8 +427,13 @@ class M10Environment:
         identity = f"{kind}|{entity}|{field}|{sequence}|{now:.9f}"
         impairment = self.communication.telemetry(seed=self.scenario.seed, identity=identity, now=now)
         if impairment["dropped"]:
+            # Keep a dropped packet addressable by the same semantic fields as
+            # sent/received packets.  This is audit metadata only: dropping
+            # remains a link decision and never changes the policy view.
             self._communication_log.append({"link": "telemetry", "status": "dropped", "identity": identity,
                                             "message_id": identity, "delivery_ordinal": 0,
+                                            "entity": entity, "field": field, "sequence": sequence,
+                                            "measured_at": now, "received_at": None,
                                             "time": now, "reason": "outage" if impairment["outage"] else "random_loss"})
             return
         received_at = now + self.config.telemetry_delay + self.communication.telemetry_extra_delay + impairment["jitter"]
