@@ -13,7 +13,7 @@
 
 ## 版本与证据保护
 
-- 远端分支 `execute-r02-20260905` 已核实为 `c653d669a81e5d331300d4bfe8a5cfae373741f4`；历史 `m10-recovery-observability-v1-20260908` tag 仍指向 `74078b53e4b566ad08780d79221b93f6e83373bf`。
+- 本轮起始远端分支为 `c653d669a81e5d331300d4bfe8a5cfae373741f4`；本轮提交依次为 `932b9bb4d1511888864cf32a500fbaeaba7da761`、最终元数据提交 `a36f664f290909ce256f9d2cc38cfbcb6c23c1aa`。历史 `m10-recovery-observability-v1-20260908` tag 仍指向 `74078b53e4b566ad08780d79221b93f6e83373bf`。
 - 隔离工作区本地 HEAD 为 `3fd10e06c67cac708232d01ed60290309928d9e8`；主工作树的 staged/修改/未跟踪文件、并发提交记录均未触碰。
 - 旧 M-09/M-10/M-10-R/R2/R3、弱通信、归因、可观测性和有界课程 Release、checkpoint、失败记录保持原样。
 - 本轮本地测试最终为 `158 passed in 9.32s`（隔离 basetemp），边界针对性测试为 `13 passed`；服务器专用环境针对性测试为 `4 passed`。
