@@ -16,7 +16,8 @@
     {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"},
     {"id":"M10-R3","status":"passed_prediction_trigger_cost_and_learning_assessment"},
     {"id":"M10-weak-communication","status":"passed_protocol_pilot_formal_matrix_with_negative_result"},
-    {"id":"M10-weak-communication-diagnosis","status":"passed_chain_diagnosis_failed_availability_gate"}
+    {"id":"M10-weak-communication-diagnosis","status":"passed_chain_diagnosis_failed_availability_gate"},
+    {"id":"M10-weak-communication-recovery-attribution","status":"completed_metric_corrected_availability_still_failed"}
   ],
   "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
   "source_review": "m10-r-report.md",
@@ -184,6 +185,25 @@
       ,"release_asset_bytes": 8349041
       ,"release_asset_api_digest_verified": true
       ,"remote_commit": "00f1aec31a15cbbfad3049860aef4ae2631e6c48"
+    },
+    "weak_communication_recovery_attribution": {
+      "report": "m10-weak-communication-recovery-attribution-report.md",
+      "tool": "tools/diagnose_m10_recovery_attribution.py",
+      "server_root": "/home/user1/m10-runs/20260908-recovery-attribution-v1",
+      "server_output": "output/recovery-attribution-v4.json",
+      "downloaded_output": "m10-recovery-attribution-server-v4.json",
+      "server_output_sha256": "ffcddd44d5ac4c6d09845e28b32b92814f2ec836facc19528adaf2f9b8d1eb1f",
+      "local_full_test": "150 passed in 13.83s (isolated basetemp)",
+      "policy_recovery_corrected": "1/96",
+      "reference_recovery_corrected": "0/84",
+      "original_stage2_recovery_preserved": ["1/8", "0/11", "3/12"],
+      "same_state_reference_completed": 4,
+      "same_state_incremental_rescues": 0,
+      "training_started_this_stage": false,
+      "B_started_this_stage": false,
+      "C_started_this_stage": false,
+      "availability_gate": "failed",
+      "archive_status": "ready_for_independent_archive"
     }
   },
   "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; availability diagnosis found current frozen policy unusable on the traced tape and the full weak-communication availability gate is not passed; independent diagnostic archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
