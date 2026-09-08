@@ -232,7 +232,11 @@
       "B_started_this_stage": false,
       "C_started_this_stage": false,
       "weak_communication_availability": "pressure_gate_still_failed",
-      "archive_status": "pending_independent_archive"
+      "archive_status": "published",
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-observability-v1-20260908",
+      "release_asset": "m10-recovery-observability-v1-final2.tar.gz",
+      "release_target": "74078b53e4b566ad08780d79221b93f6e83373bf",
+      "release_assets_verified": true
     }
   },
   "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; availability diagnosis found current frozen policy unusable on the traced tape and the full weak-communication availability gate is not passed; independent diagnostic archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",

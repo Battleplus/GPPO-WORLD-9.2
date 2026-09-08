@@ -7,6 +7,9 @@
   "server_run_sha256": "3e256bcbb7a15d4c1986ac84fbca8c6f896ab20aba5608337d7bc339da3ce36b",
   "server_detail": "output/observability-detail-v3.json",
   "server_detail_sha256": "35883315890fc4550574bce764a04ea44f79da5664a9ef7b19775c4053f3cf28",
+  "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-observability-v1-20260908",
+  "release_asset": "m10-recovery-observability-v1-final2.tar.gz",
+  "release_target": "74078b53e4b566ad08780d79221b93f6e83373bf",
   "server_targeted_tests": "4 passed",
   "local_targeted_tests": "21 passed",
   "local_opportunity_audit": {
@@ -21,8 +24,8 @@
     "tools/audit_m10_recovery_observability.py": "58ef9e74c4d8195e2b3fcd37791855c4a79fe9f8e973a7045d382472245fb908",
     "tools/audit_m10_recovery_observability_detail.py": "02622a8f10b3b5e2b894206f8720cee36feea36bb762615b3c6fb72b50c24164",
     "tests/test_m10_recovery_observability.py": "cd708bbe1fecef3f40be154395ce539ed90c11a95156d618e027e4c52bdd13df",
-    "nodes/M-10/m10-recovery-observability-opportunity-report.md": "e370d33940f80b8a6bcafad8cde63ecaf86f3badd0229587910f47fd7a6a2650",
-    "nodes/M-10/status.json": "0306da1e8a5894122bba30c12c63cbf7bce582e658b32599ebf13d455251a9cf",
+    "nodes/M-10/m10-recovery-observability-opportunity-report.md": "f8f67c662730c5d01e1c79280c49969b93a987a3d24d666b3a6592dbb2c01954",
+    "nodes/M-10/status.json": "5635550923460342d8841315c1bee542188e6088425d610f610e7534850d578b",
     "m10-recovery-observability-server-v2.json": "3e256bcbb7a15d4c1986ac84fbca8c6f896ab20aba5608337d7bc339da3ce36b",
     "m10-recovery-observability-detail-server-v3.json": "35883315890fc4550574bce764a04ea44f79da5664a9ef7b19775c4053f3cf28"
   },
