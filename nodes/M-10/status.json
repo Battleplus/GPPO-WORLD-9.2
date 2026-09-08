@@ -275,6 +275,51 @@
       "release_asset_sha256": "verified_in_release_api_not_embedded_to_avoid_self_hash_cycle",
       "release_target": "932b9bb4d1511888864cf32a500fbaeaba7da761",
       "full_weak_communication_availability": "not_passed"
+    },
+    "weak_communication_scope_closure": {
+      "report": "m10-weak-communication-scope-closure-report.md",
+      "summary": "m10-weak-communication-scope-summary-v1.json",
+      "source_server_audit": "m10-recovery-boundary-server-v3.json",
+      "source_server_audit_sha256": "fddf511dc182cc86c881779d060eb08a70e4e838816b415de60473b4df0793cd",
+      "source_server_tapes_sha256": "d81a6c90abeff713689982b483c33ef4b7057275e8c39a07439637c592a0fc37",
+      "reran_old_diagnostic": false,
+      "new_boundary_scan": false,
+      "training_started": false,
+      "A_only_started": false,
+      "B_started": false,
+      "C_started": false,
+      "full_pool_event_metrics": {
+        "interrupted": 187,
+        "legal_knowledge": 187,
+        "public_candidate": 172,
+        "service_recovered": 170,
+        "deadline_completed": 166,
+        "security_rejection_rows": 0
+      },
+      "full_pool_scope_classes": {
+        "information_and_execution_sufficient": 166,
+        "information_missing_or_stale": 15,
+        "time_or_physical_budget_insufficient_after_knowledge": 5,
+        "information_present_but_execution_or_resource_not_successful": 1,
+        "knowledge_time_zero_slack": 0,
+        "other_or_insufficient_evidence": 0
+      },
+      "boundary_scan": {
+        "rows": 34,
+        "interrupted": 29,
+        "strict_recovery": 27,
+        "information_missing_or_stale": 1,
+        "time_or_execution_failure": 1
+      },
+      "candidate_visible_old_policy_failures": 0,
+      "training_recovery_samples": "unknown_training_rollout_not_exported",
+      "communication_fix": "not_supported_by_current_evidence; no protocol change implemented",
+      "recovery_action_selection_route": "stopped_start_condition_unmet",
+      "weak_communication_availability": "not_passed",
+      "archive_status": "small closure package published; reuses existing large audit assets",
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-communication-scope-closure-v1-20260908",
+      "release_asset": "m10-weak-communication-scope-closure-v1-20260908-final2.zip",
+      "release_asset_sha256": "verified_after_upload_via_release_api"
     }
   },
   "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; availability diagnosis found current frozen policy unusable on the traced tape and the full weak-communication availability gate is not passed; independent diagnostic archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
