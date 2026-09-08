@@ -269,7 +269,11 @@
       "B_started_this_stage": false,
       "C_started_this_stage": false,
       "old_pressure_tape_modified": false,
-      "archive_status": "local/server evidence prepared; no new training archive or release created",
+      "archive_status": "published; no training archive created",
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-learning-boundary-v1-20260908",
+      "release_asset": "m10-recovery-learning-boundary-v1-final2.zip",
+      "release_asset_sha256": "verified_in_release_api_not_embedded_to_avoid_self_hash_cycle",
+      "release_target": "932b9bb4d1511888864cf32a500fbaeaba7da761",
       "full_weak_communication_availability": "not_passed"
     }
   },
