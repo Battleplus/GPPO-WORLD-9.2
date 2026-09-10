@@ -1,0 +1,209 @@
+{
+  "schema": "m10-frozen-scenario-explanation-v1",
+  "date": "2026-09-10",
+  "scope": "read-only extraction of frozen inputs; no new experiment",
+  "migration_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-metrics-replay-migration-v1-20260909",
+  "archive_sha256": "8eeb90691a3d5c4cfb18fbf08adef58ec06f2bced7398a51405e6d48c316e61d",
+  "archive_members": {
+    "m10-metrics-replay-migration-v1/inputs/formal-fix-v1/formal-results.json": "b3502ac0da90c3b80ad8b41239c7b4d50c41297986d3a3ab8c5441de831ac35b",
+    "m10-metrics-replay-migration-v1/inputs/formal-fix-v1/tapes.json": "be49ca68b73c835da00b3a219f1b9074cbd2e0cc5027e33cdcb0e65c4bf0c440",
+    "m10-metrics-replay-migration-v1/source/gppo_world/m10_environment.py": "5ed24f81f380ca67d3e0892bfa6cc040f263c18760f0e40636c47a1da28aee54",
+    "m10-metrics-replay-migration-v1/source/gppo_world/m10_communication.py": "af1772d2352b4688835f0a8295563dc5583dadf2da09df1f15c6a8bab294ad60"
+  },
+  "env_config": {
+    "ack_latency": 0.0,
+    "command_ttl": 0.5,
+    "decision_interval": 1.0,
+    "energy_cost_weight": 0.08,
+    "event_capacity": 4,
+    "horizon": 18.0,
+    "idle_power": 0.05,
+    "initial_energy": 9.0,
+    "lease_ttl": 2.0,
+    "penalty_expired": 4.0,
+    "penalty_rejected": 0.25,
+    "region_count": 3,
+    "relation_width": 4,
+    "reward_completion": 10.0,
+    "reward_priority_scale": 2.0,
+    "seed": 0,
+    "service_power": 1.0,
+    "service_rate": 1.0,
+    "target_count": 4,
+    "task_capacity": 6,
+    "telemetry_delay": 0.0,
+    "telemetry_max_age": 2.5,
+    "travel_power": 0.35,
+    "travel_speed": 1.0,
+    "uav_count": 4
+  },
+  "communication_profile": {
+    "ack_loss_probability": 0.1,
+    "command_loss_probability": 0.05,
+    "name": "composite",
+    "renewal_duplicate_probability": 0.0,
+    "renewal_extra_delay": 0.0,
+    "renewal_reorder_window": 0.0,
+    "telemetry_duplicate_probability": 0.0,
+    "telemetry_extra_delay": 0.5,
+    "telemetry_loss_probability": 0.15,
+    "telemetry_outage_intervals": [
+      [
+        3.0,
+        5.0
+      ],
+      [
+        10.0,
+        12.0
+      ]
+    ],
+    "telemetry_reorder_window": 0.75
+  },
+  "formal_settings": {
+    "formal_steps": 12288,
+    "seeds": [
+      1101,
+      2203,
+      3307
+    ],
+    "threshold": 0.45,
+    "max_replan_interval": 3
+  },
+  "ppo_config": {
+    "clip_epsilon": 0.2,
+    "entropy_weight": 0.01,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "grad_clip": 0.5,
+    "learning_rate": 0.0003,
+    "minibatch_size": 128,
+    "rollout_steps": 256,
+    "update_epochs": 4,
+    "value_weight": 0.5
+  },
+  "split_episode_counts": {
+    "final_test": 16,
+    "historical_test": 16,
+    "ood": 16,
+    "train": 32,
+    "validation": 16
+  },
+  "example_final_test": {
+    "communication": {
+      "ack_loss_probability": 0.1,
+      "command_loss_probability": 0.05,
+      "name": "composite",
+      "renewal_duplicate_probability": 0.0,
+      "renewal_extra_delay": 0.0,
+      "renewal_reorder_window": 0.0,
+      "telemetry_duplicate_probability": 0.0,
+      "telemetry_extra_delay": 0.5,
+      "telemetry_loss_probability": 0.15,
+      "telemetry_outage_intervals": [
+        [
+          3.0,
+          5.0
+        ],
+        [
+          10.0,
+          12.0
+        ]
+      ],
+      "telemetry_reorder_window": 0.75
+    },
+    "events": [
+      {
+        "kind": "disconnect",
+        "resource": "uav-0",
+        "time": 3.8240646127515405
+      },
+      {
+        "kind": "reconnect",
+        "resource": "uav-0",
+        "time": 6.799088190293968
+      },
+      {
+        "kind": "damage",
+        "resource": "uav-0",
+        "time": 7.288316511917098
+      }
+    ],
+    "name": "mixed",
+    "seed": 2107101,
+    "split": "test",
+    "tape_id": "test-mixed-seed-2107101",
+    "tasks": [
+      {
+        "arrival": 0.0,
+        "deadline": 6.717550586369773,
+        "priority": 1.1288383289405834,
+        "region_id": 0,
+        "service": 1.3732966287283983,
+        "target_id": 0,
+        "task_id": "task-0",
+        "x": 1.5746396290844995,
+        "y": 0.5434975708125717
+      },
+      {
+        "arrival": 0.0,
+        "deadline": 8.305537068905323,
+        "priority": 1.5468322328169632,
+        "region_id": 0,
+        "service": 1.4794790646901907,
+        "target_id": 3,
+        "task_id": "task-1",
+        "x": 2.3265958128538977,
+        "y": 1.8011673610178347
+      },
+      {
+        "arrival": 1.866806539211282,
+        "deadline": 11.084399278119026,
+        "priority": 1.28668434114532,
+        "region_id": 1,
+        "service": 1.07029172553256,
+        "target_id": 3,
+        "task_id": "task-2",
+        "x": 0.6162976240725271,
+        "y": 2.6856585815724845
+      },
+      {
+        "arrival": 3.3753864334801005,
+        "deadline": 11.914623240081834,
+        "priority": 2.2848880118717325,
+        "region_id": 1,
+        "service": 2.3948152614263467,
+        "target_id": 3,
+        "task_id": "task-3",
+        "x": 3.1526296486598175,
+        "y": 0.05
+      },
+      {
+        "arrival": 5.302796341478989,
+        "deadline": 14.813003476578052,
+        "priority": 0.9673570879479427,
+        "region_id": 1,
+        "service": 1.4030249970471709,
+        "target_id": 2,
+        "task_id": "task-4",
+        "x": 0.8852342541322913,
+        "y": 2.772521072575868
+      },
+      {
+        "arrival": 6.645887843704541,
+        "deadline": 16.6212044303568,
+        "priority": 1.94906219993375,
+        "region_id": 2,
+        "service": 1.6263802079836513,
+        "target_id": 1,
+        "task_id": "task-5",
+        "x": 3.077658618871515,
+        "y": 2.748631396154148
+      }
+    ]
+  },
+  "all_nine_formal_env_configs_equal": true,
+  "all_frozen_tapes_share_profile": true,
+  "reward_priority_scale_used_in_reward_function": false,
+  "real_network_measurement": false,
+  "training_or_replay_performed_this_update": false
+}

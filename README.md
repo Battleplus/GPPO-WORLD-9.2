@@ -1,5 +1,7 @@
 # GPPO-WORLD-9.2
 
+详细设置：[弱通信是什么、任务如何设定、A/B/C如何比较](docs/12-weak-communication-scenario-explained-20260910.md)。
+
 无人机任务分配的GPPO＋世界模型仿真研究。
 
 ## 当前进度（2026-09-10）
