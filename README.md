@@ -1,295 +1,242 @@
-# GPPO-WORLD-9.2
+# GPPO-WORLD：弱通信下的无人机集群任务分配
 
-详细设置：[弱通信是什么、任务如何设定、A/B/C如何比较](docs/12-weak-communication-scenario-explained-20260910.md)。
+> 研究问题：当无人机状态更新不及时，又发生紧急任务、损毁或能量不足时，如何分配和接管任务？世界模型提供的预测能否帮助 GPPO 做出更好的决策？事件触发能否在保持任务效果的前提下减少计算？
 
-无人机任务分配的GPPO＋世界模型仿真研究。
+本项目实现的是**任务分配与执行过程的仿真研究系统**，不是飞控软件。本文以当前 **M-10 五类型表示及弱通信实现**为主线，说明问题、设计、代码和研究规划；早期三类型基线、训练记录及历史验收通过文末链接查阅，不与当前实现混用。
 
-## 当前进度（2026-09-10）
+**阅读导航：** [情景与术语](#1-用一个场景理解项目) · [系统设计](#3-系统如何实现) · [世界模型融合](#4-世界模型与-gppo-到底怎样融合) · [实验比较](#5-如何比较才回答得出研究问题) · [研究规划](#6-关键问题与后续研究规划) · [代码与资料](#8-实现与证据入口)
 
-**工程实验流程、真实训练和冻结模型复评已运行；世界模型稳定收益尚未建立，完整弱通信可用性仍未通过。** `full_goal_complete=false`。
+**分支说明：** `main` 是项目首页并保留早期源码；当前 M-10 实现请进入 [execute-r02-20260905 分支](https://github.com/Battleplus/GPPO-WORLD-9.2/tree/execute-r02-20260905)。下文 M-10 代码与材料链接已指向对应分支，运行时请使用报告指定的源码、模型和配置组合。
 
-最新A/B/C完成任务为84/288、82/288、49/288；CPU补测144/144个episode参考字段匹配。C减少actor调用，但任务效果下降。恢复指标以勘误为准，不沿用144个全部场景事件作为中断分母。
+## 1. 用一个场景理解项目
 
-- [当前统一进度与数值口径](docs/11-current-project-status-20260910.md)
-- [M-10执行分支](https://github.com/Battleplus/GPPO-WORLD-9.2/tree/execute-r02-20260905/nodes/M-10)与[机器可读状态](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/status.json)
-- [最新训练](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-authorized-resume-fix-v1-20260908)、[迁移包](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-metrics-replay-migration-v1-20260909)、[CPU补测及勘误](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1)
-- [当前6页汇报PPT](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/slides/m10-current-progress-20260910-v1.pptx)；旧9月7日PPT按历史阶段保留。
+无人机 A 正在执行巡检任务，B 正在处理另一项任务，C 可以接替。此时 A 断联，但控制端延迟收到消息，同时出现一个有截止时间的紧急任务。
 
-main保留早期源码；本次只更新文档导航，不合并实验算法。运行M-10应按执行分支与指定归档的源码/模型合同，不能直接套用下方旧17动作接口。
+系统需要回答：A 的任务是否真的中断？控制端现在知道什么？C 是否有足够电量和时间接管？应该先救原任务还是处理新任务？发出的接管命令是否被接受？接管后是否真的恢复了服务？
 
-## 历史研究路线与基础架构
+难点不只是“选哪架无人机”，还包括**信息是否有效、命令能否执行，以及剩余时间是否足够完成任务**。因此，策略网络、通信模型和执行规则必须组成一个闭环。
 
-以下T-00～T-05、三类型UAV–Region和17动作说明属于早期路线。阶段passed只指对应协议，不能替代M-10弱通信可用性验收。旧准备度、模型和报告可在Git历史及各阶段归档查阅。
+### 1.1 先认识这些词：沿着一次接管过程理解
 
-## 为什么需要世界模型
+下面继续使用“A 中断任务、C 尝试接管”的例子。例中的时间和数值仅帮助理解，不是实验参数或实测结果。**控制端**指汇总已收到的信息并作出分配决定的程序；**UAV**就是无人机。
 
-新增独立路线：[J-01 Graph-JEPA 实验](nodes/J-01/README.md)已完成三组 × 三 seed 离线训练，接入门槛未通过，未启动 JEPA-GPPO 训练。它与原 EAWM 并列，不替换 GPPO。[完整结果](nodes/J-01/evidence/final-report.md) / [下一版草案](nodes/J-02/README.md)。
+#### 第一步：控制端怎样知道现场发生了什么？
 
-当前 GPPO 能读取实时 belief 图，在 16 条 UAV–Region 候选边和一个 NOOP 中自主选择合法动作，并通过 graph/action version、ACK、lease 和 fencing 保证执行安全。
-
-它的主要局限是：决策以当前图为主，没有一个经过训练的内部模型显式表示“这个动作执行以后可能发生什么”。世界模型要补充的正是这一层能力：
-
-- 从多步可见历史中保留系统变化信息；
-- 区分不同 executed action 导致的不同后果；
-- 预测下一图/状态差分、reward、cost、continuation 和不确定度；
-- 通过自动事件监督，让 latent 更关注关键状态变化；
-- 在确认安全、校准和兼容性后，把冻结 latent 提供给 GPPO。
-
-世界模型不是新的动作控制器，也不直接向环境下达命令。
-
-## 最终系统是什么
-
-```text
-历史可见 belief 异构图 G_t
-+ decision_time 前已到达的 evidence/message
-+ 实际确认执行的动作 a_t
-+ 时间、版本和有效性 mask
-                 │
-                 ▼
-       动作条件异构图世界模型
-  Graph encoder + action encoder + dynamics
-                 │
-        temporal latent [h_t, z_t]
-      ┌──────────┼──────────┬──────────┬──────────┐
-      ▼          ▼          ▼          ▼          ▼
- 下一图/差分  自动事件   reward/cost continuation uncertainty
-                 │
-                 ▼
-         可关闭的 frozen latent adapter
-                 │
-                 ▼
-               GPPO
-                 │
-                 ▼
-  真实 action mask + version + ACK/lease/fencing
-```
-
-### 世界模型输入
-
-- 决策时刻可见的 UAV、Region、Target 异构图；
-- `decision_time` 前已经收到的证据和消息；
-- 实际执行并确认的 UAV–Region 动作或 NOOP；
-- graph/action version、当前 `decision_time` 和有效性/padding mask；动作后才知道的下一决策时间差禁止作为输入。
-
-### 世界模型输出
-
-- 时序 latent `[h_t, z_t]`；
-- 下一图或节点/边状态差分；
-- ordinal、nominal、structural、evidence 自动事件概率；
-- reward、cost vector 和 continuation 预测；
-- epistemic/aleatoric uncertainty；
-- model/input version 和 `valid` 状态。
-
-### GPPO 如何使用输出
-
-T-05 主实验只把冻结 latent 经过可选 adapter 加入 actor/critic。自动事件 logits 默认不直接进入 actor。模型异常、超时、版本不一致或不确定度过高时，系统使用 zero context，恢复原始 no-WM GPPO 路径。
-
-## GPPO 与世界模型的职责边界
-
-| 能力 | GPPO/现有安全链 | 世界模型 |
+| 名词 | 通俗解释 | 放进场景里理解 |
 |---|---|---|
-| 在合法候选动作中选择具体动作 | 唯一负责 | 禁止直接选择或提交 |
-| 定义 16 条候选边和 NOOP | 权威合同 | 只读取 |
-| 维护真实 action mask | 权威状态 | 禁止写入 |
-| 维护 belief 和 graph/action version | 权威状态 | 禁止写入 |
-| ACK、lease、fencing 和 stale 拦截 | 权威执行链 | 禁止绕过 |
-| 预测动作后的状态、事件和成本 | 不负责 | 负责 |
-| 输出预测 latent 和不确定度 | 不负责 | 负责 |
-| 模型故障时继续运行 | 原 GPPO 路径 | 必须允许无损关闭 |
+| 遥测（telemetry） | 从执行端传回的状态信息，如位置、电量和任务进展；不是下发命令 | A 发回“我在位置 P，剩余电量 40%”。控制端收到后，才拥有这条状态记录 |
+| 采样时间 / 接收时间 | 状态被测量的时刻 / 消息到达控制端的时刻 | 电量在第 10 秒测得，第 13 秒收到；收到时已经是 3 秒前的信息 |
+| 延迟 / 信息年龄 | 延迟是消息传送耗时；信息年龄是当前时间距测量时刻多久 | 上述消息的传输延迟是 3 秒；到第 15 秒再次使用时，信息年龄已是 5 秒 |
+| 丢包 / 连续断联 | 丢包是某条消息没送到；连续断联是一段时间内连接不可用 | 没收到一次电量上报，不足以断定 A 已损毁；持续断联则可能影响一段时间内的通信和执行 |
+| 乱序 / 重复投递 | 新消息先到、旧消息后到 / 同一消息到达多次 | 第 12 秒的状态先到了，第 10 秒的状态随后才到；不能用后来到达的旧状态覆盖新状态，也不能把重复消息当两次新事件 |
+| stale（信息陈旧） | 信息存在，但已经不满足当前新鲜度或版本要求 | 知道 C 过去有电，不代表现在仍可接管；旧电量可能不能用于本次候选判断 |
+| 公开观测 / 隐藏真值 | 控制端已合法收到的信息 / 仿真环境内部的实际状态 | A 实际在第 10 秒断联，消息第 13 秒才到；策略不能在第 11 秒偷读故障表，提前知道断联 |
 
-## T-00～T-06 每一步的意义
+“公开”是指**允许策略读取**，不是指数据公开上网。弱通信也不等于完全没有通信，而是信息可能来得慢、不完整或不连续。
 
-| 节点 | 要解决的问题 | 主要实现/产物 | 通过以后意味着什么 | 当前状态 |
-|---|---|---|---|---|
-| [T-00](nodes/T-00/README.md) | 模型到底能读取什么，怎样保证不偷看未来 | 因果 Transition schema、字段注册表、future/truth denylist、统一 recorder、基线测试 | 输入输出和安全边界已经冻结，可以可信采集数据 | **passed** |
-| [T-01](nodes/T-01/README.md) | 世界模型用什么真实轨迹训练，怎样防止 train/test 泄漏 | random legal、greedy、GPPO 三类轨迹；完整 episode/tape/seed split；数据/策略 checkpoint 和 SHA-256 | 已有可复现、可审计的数据，可以开始训练世界模型 | **passed** |
-| [T-02](nodes/T-02/README.md) | 不考虑事件监督时，模型能否学到“动作导致的后果” | Graph encoder、action encoder、temporal dynamics、next-state/reward/cost/continuation/uncertainty heads | 得到第一个真实 Graph-WM checkpoint，并用合法动作反事实证明模型使用动作 | **passed** |
-| [T-03](nodes/T-03/README.md) | 自动事件和 GES 是否让 latent 更关注关键变化 | 自动事件生成器、按模态 Event Heads、hard/smooth GES、WM/EA-noGES/EAWM 消融 | 得到事件感知世界模型，并能分离 Event Head 与 GES 的贡献 | **passed** |
-| [T-04](nodes/T-04/README.md) | 模型在线运行是否可信、校准、及时且不污染系统 | 只读 Shadow runtime、ID/OOD 校准、risk-coverage、延迟和安全回退报告 | 世界模型可以在线观察和预测，但仍不影响正式动作 | **passed** |
-| [T-05](nodes/T-05/README.md) | 世界模型 latent 对 GPPO 是否有真实增量价值 | frozen latent adapter、zero-context fallback、旧 checkpoint 兼容、四组公平实验 | 完成世界模型基础迁移，并以负结果严谨判断当前版本未带来稳定增益 | **passed** |
-| [T-06](nodes/T-06/README.md) | 短期 imagined rollout 是否有额外价值 | GPPO 合法候选动作的 1～3 步 rollout、不确定度截断、真实环境验证 | 可选的预测规划扩展；失败时保留 T-05，不影响基础迁移 | planned / optional |
+#### 第二步：怎样决定让谁接管？
 
-### T-00：冻结合同，而不是先写网络
+| 名词 | 通俗解释 | 放进场景里理解 |
+|---|---|---|
+| Task / Target / Region | 具体工作 / 工作对应的对象 / 对象所在区域 | “检查设备 X”是一项 Task，设备 X 是 Target，所在区域是 Region；同一目标可以关联多项任务 |
+| 图、节点与关系 | 把实体及它们之间的联系组织起来 | A、C 和任务各有自己的特征；“C 到任务有多远、能否分配”属于候选关系信息 |
+| 候选 / mask | 可以考虑的分配组合 / 标记哪些组合当前允许选择的布尔表 | C–原任务可能合法，能量不足的 B–原任务被排除；候选合法仍不保证命令到达时也合法 |
+| 策略（policy）/ actor | 根据输入给动作打分并选择动作的网络 | 在“C 接原任务”“C 接紧急任务”和“暂不新增分配”之间作出选择 |
+| PPO（近端策略优化） | 利用交互经验训练策略，并限制更新幅度的一种方法 | 根据过去分配后的完成、过期和能耗反馈，逐步调整候选选择倾向；不是写死“永远选最近无人机” |
+| critic / 奖励 / 回报 | critic 估计后续累计收益；奖励是一次交互的反馈；回报是多步奖励的累计 | 派出 C 后可能先消耗能量，再获得完成收益；不能只看眼前一步，也不能把回报直接当成完成率 |
+| 世界模型 / context（上下文） | 学习预测后续信号的模型 / 交给策略的一组预测特征 | 在选择接管前提供附加预测信息。当前实现把合法候选的预测上下文平均后融合，不能直接解释为“C 接管成功概率” |
+| 周期决策 / 事件触发 | 每个决策周期重新选动作 / 满足规定条件时才重新选动作 | 周期策略每次都检查分配；触发策略在获知故障、出现新任务等条件满足时重新选择，其他时候维护已有执行 |
+| NOOP / continuation | 不新增分配 / 继续维护已有合法执行 | 本周期没有新任务可派时，可以 NOOP；C 已经在服务时，continuation 维护其执行，不能重复提交同一分配 |
 
-意义是防止后面训练出一个“指标很好但偷看未来”的模型。本节点把在线可见字段、未来 target、proposal 与 executed action、版本语义和统一记录方式明确分开。
+#### 第三步：选中了 C，为什么还要检查命令？
 
-已验证：原 GPPO 核心/训练/并发/事件桥接 50 项测试通过；本仓库因果合同、动作合法性、版本和 recorder 测试通过。证据见 [T-00 节点](nodes/T-00/README.md)。
+| 名词 | 通俗解释 | 放进场景里理解 |
+|---|---|---|
+| 命令 / ACK（确认反馈） | 请求执行某个分配 / 对该命令接受情况的反馈 | “C 接管任务 T”是命令；ACK 表示对应命令被确认，不表示任务已经完成。ACK 丢失也不等于命令一定没执行 |
+| 版本（version） | 标识作出决定时依据的是哪一版状态 | 控制端按旧版本派 C，但任务已转交他人，执行端应拒绝过时分配 |
+| lease（租约）/ 续租 | 有期限的执行资格 / 按规则延长资格 | C 获得一段时间内的执行资格；要继续执行需保持有效租约，不能无限沿用旧许可 |
+| fencing token（执行代次标识） | 区分新旧执行资格，阻止旧持有者重新抢占 | 任务交给 C 后，A 的旧命令迟到，也不能凭旧资格重新夺回任务 |
+| 独占 / 并行执行 | 同一任务不能被冲突占用 / 不同合法任务可以同时推进 | C 接管 T 时不能和 A 重复执行 T，但 B 仍可继续自己的另一项任务 |
+| 安全门禁 / 正确拒绝 | 执行前检查 / 不满足规则时拦住命令 | 租约失效或能量不足时拒绝，是规则正常工作；重复或越权命令被接受才是安全问题 |
 
-### T-01：建立可训练、不可泄漏的数据
+#### 第四步：怎样才算“恢复了”？
 
-意义是让世界模型同时看到不同策略和不同压力场景，而不是只学习单一 GPPO 的窄分布。数据按完整 `scenario/tape/seed` 分组切分，同一个事件带绝不能跨 train/validation/test。
+| 名词 | 通俗解释 | 放进场景里理解 |
+|---|---|---|
+| deadline / 时间余量 | 最晚完成时刻 / 距该时刻还剩多久 | 任务第 30 秒截止，获知故障时已到第 25 秒，只剩 5 秒；C 还需移动 4 秒、服务 3 秒，就已来不及 |
+| 服务量 / 有效服务 | 任务还需要完成的工作量 / 执行端实际推进了任务 | 接受命令或飞向任务都不算服务；C 到达后真正推进剩余工作，才有有效服务证据 |
+| 接管 / 服务恢复 / 按时完成 | 替代命令被接受 / 替代资源开始有效服务 / 在 deadline 前做完 | C 接单后可能还没到达；到达并工作后也可能来不及做完，所以三项要分别统计 |
+| 恢复分母 | 被统计为恢复机会的事件集合 | A 空闲时断联不属于“正在执行的任务被中断”；任务中断却没恢复的事件不能从分母中删掉 |
+| 完整决策链延迟 | 从观测处理到预测、选动作和执行接口处理的总耗时，需注明计时边界 | 少调用 actor，但多算世界模型，整体可能仍更慢；它也不等于现场故障到任务恢复的总时间 |
 
-当前已封存：
+### 1.2 阅读实验设计时还会遇到的词
 
-- 126 个 episode、502 条 transition；
-- random legal、greedy、GPPO 三类行为策略；
-- normal、single、sequential、overlap、burst、long gap、weak communication；
-- 17 个动作全部覆盖；
-- split overlap 为 0；
-- 在线 truth-only 字段为 0。
+| 名词 | 在本项目中的含义与例子 |
+|---|---|
+| episode | 一次从场景开始到结束的完整仿真；一轮结束不代表任务全部完成 |
+| step / rollout | 一次环境交互 / 收集起来用于训练的一段交互；环境步数不等于网络参数更新次数 |
+| seed（随机种子） | 用来复现随机过程的起点；多个 seed 用于观察不同训练随机性下结果是否一致 |
+| tape（场景记录） | 冻结的任务、事件及通信条件记录；便于让不同策略面对可比较的外部条件 |
+| checkpoint | 保存的模型参数及可能包含的优化器、恢复状态；它是训练快照，不是能力通过证明 |
+| 训练 / 开发验证 / 最终测试 | 分别用于学习参数、选择配置和阈值、最后检验效果；不能看过最终测试后再调参并把它当盲测 |
+| OOD（分布外条件） | 与训练条件不同的测试情况，例如更长的断联或不同任务负载；通过某组 OOD 不代表所有陌生条件都能应对 |
+| 配对对照 / 消融 | 在相同场景上比较不同方法 / 去掉某个模块观察变化；如 B 对 A 检验世界模型输入的作用 |
+| 置信区间 | 表达有限样本下差异的不确定范围；点估计稍好，不一定足以证明稳定改善 |
+| ledger（逐条账本） | 保留消息、命令、ACK、租约与服务事件的记录；用来追查“C 究竟何时接单、何时真正工作” |
 
-数据和采集用 checkpoint 位于 [T-01 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0)。其中 512-step GPPO 只用于扩大数据覆盖，不是历史 50k 正式模型，也不是世界模型。
+## 2. 三个部分分别负责什么
 
-### T-02：先证明基础世界模型真的理解动作
+| 部分 | 作用 | 需要验证的问题 |
+|---|---|---|
+| GPPO：图表示与 PPO 策略学习 | 从无人机、任务及其关系中选择一个 UAV–Task 分配，或暂不新增分配 | 能否学会有效分配，而不是长期选择等待？ |
+| 世界模型 | 从公开观测和候选动作预测后续信号，形成策略的附加输入 | 预测是否有信息价值，接入后是否改善任务效果？ |
+| 事件触发 | 根据公开事件、安全条件、预测风险和最大等待间隔决定是否重新计算动作 | 能否减少总成本，同时保持完成率和恢复能力？ |
 
-第一版只训练动作条件 Graph-WM，不加入 Event Predictor/GES，也不修改 GPPO。核心验证不是单纯看 loss，而是进行：
+这里的 GPPO 指项目中的图表示 PPO 实现。PPO 是训练策略的方法，图表示负责组织输入，两者不是相互替代的算法。世界模型提供信息，最终分配仍由策略选择，并接受执行层检查。
 
-- 正确 action；
-- action shuffle；
-- no-action；
-- last-value/frequency；
-- summary-vector GRU；
-- Graph World Model。
+## 3. 系统如何实现
 
-当前 T-02 已通过并封存于 [Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0)。
-合法动作反事实的 state/reward/cost 均显著退化，checkpoint 可独立恢复；同时透明保留了 Flat-GRU
-状态误差更低、no-action state CI 跨 0 的负结果。T-02 只证明基础模型链路成立，不声称下游 GPPO 增益。
-
-### T-03：迁移 EAWM 的事件感知思想
-
-自动事件来自相邻可见图变化，而不是人工指定“发生 UAV_DAMAGE 就选某动作”。事件分为：
-
-- ordinal：连续量 DOWN/SAME/UP；
-- nominal：类别 SAME/CHANGED；
-- structural：节点、关系、候选边和合法 support 变化；
-- evidence：新证据、重复、冲突、确认和过期。
-
-Event Predictor 是世界模型辅助头，GES 用于调节高事件密度边界对训练的影响。它们服务于 latent 表示学习，不替代 GPPO，也不等同于人类偏好学习。
-
-当前 T-03 已完成三 seed 固定预算消融并封存于 [T-03 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0)。
-EAWM-hard 的 macro-F1 为 `0.4668±0.0050`、macro-AUPRC 为 `0.4320±0.0136`；基础 state/reward/cost
-预测的最大逐 seed 相对退化均低于冻结的 5% 上限。TTL 缺失、失败配置和测试集已查看的协议限制均已显式保留，
-详见 [T-03 节点证据](nodes/T-03/README.md)。
-
-### T-04：先 Shadow，再允许策略读取
-
-世界模型在线维护 latent、记录预测和实际结果，但不修改动作。只有以下门禁全部通过才进入 T-05：
-
-- belief/action mask/version 写入次数为 0；
-- stale hidden state 不提交；
-- 异常、超时、OOD 高风险能够回退；
-- ECE、Brier、risk-coverage 达到冻结标准；
-- P50/P95/P99 延迟满足预算。
-
-T-04 已通过并封存于 [T-04 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0)。
-真实基线环境的 belief、action mask、graph/action versions 及动作提交接口均保持零写入；完整 observe 的 P95/P99
-为 `6.99/8.05 ms`。合成 OOD 的范围和 8.59% ID 假阳性率已透明记录，不作生产级 OOD 泛化声明。
-
-### T-05：冻结 latent 接入 GPPO
-
-保持动作空间、mask、奖励、PPO 预算、场景和 seed 一致，至少比较：
-
-1. GPPO；
-2. WM-GPPO；
-3. EA-noGES-GPPO；
-4. EAWM-GPPO。
-
-必要时增加 GPPO-History，以排除“只是多看历史”的解释。只有真实 held-out 环境、多个 seed 和安全指标共同支持，才能声称世界模型对 GPPO 有增益。
-
-T-05 已完成：冻结 `[h,z]` residual adapter、post-action Shadow hook、逐 transition versioned latent sidecar、旧 checkpoint 无损回退，以及四组 × 3 seeds × 50k 的正式 GPU 训练。固定 50k checkpoints 全部在同一有序 100-tape Test bank 上评估；12/12 runs、24 checkpoints、12/12 evaluations 和 1,200 traces 均完成哈希复核。真实环境/belief/mask/version/动作提交写入为 0，世界模型冻结且延迟 Gate 全部通过。结果没有证明稳定性能增益，详见 [最终报告](nodes/T-05/evidence/final-report.md)。
-
-### T-06：可选想象规划
-
-T-06 不属于当前基础迁移完成条件。它只允许对 GPPO 提出的合法候选动作做 1～3 步短期 rollout，并根据不确定度截断。若只改善 predicted return、没有改善真实 held-out 结果，本节点应标记失败并回退 T-05。
-
-## 最终会交付什么
-
-完成 T-00～T-05 后，仓库应当包含：
-
-1. **可运行的世界模型代码**：图编码器、动作编码器、时序 dynamics、预测 heads、loss、训练和评估入口；
-2. **真实 checkpoint**：基础 Graph-WM、EA-noGES、EAWM+GES，附带不可变下载链接和 SHA-256；
-3. **自动事件系统**：事件生成、模态注册、Event Predictor、GES 和相应测试；
-4. **只读 Shadow runtime**：校准、OOD、延迟、版本一致性和故障回退；
-5. **GPPO latent adapter**：可配置关闭、zero-context parity、旧 GPPO checkpoint 兼容；
-6. **公平实验报告**：逐 seed 结果、置信区间、失败 run、业务指标、安全指标和资源成本；
-7. **完整证据链**：代码 commit、配置、数据 manifest、split hash、seed、checkpoint、日志、指标和节点结论。
-
-## 什么才算“迁移完成”
-
-以下条件必须全部满足：
-
-- 动作条件异构图世界模型与严格数据切分真实实现；
-- state/event/reward-cost/continuation/calibration 均有独立评估；
-- GPPO 可以读取冻结 latent，并能无损关闭世界模型；
-- belief、action mask、version、ACK/lease/fencing 不受污染；
-- 至少完成 GPPO、WM-GPPO、EA-noGES-GPPO、EAWM-GPPO 四组公平消融；
-- 每项结论都能追溯到真实 checkpoint、配置、seed、日志和源码提交。
-
-计划文件、未保存的本地模型、单个最佳 seed 或模型内部 predicted return 都不能作为“完成”的依据。
-
-## 明确不做什么
-
-- 不让世界模型取代 GPPO；
-- 不让预测图覆盖真实 belief；
-- 不绕过 action mask、版本、ACK、lease 或 fencing；
-- 不把 event logits 默认直接输入 actor；
-- 不声称能准确预测不可观测的外生随机事件；
-- 不在单步预测和校准未通过前开展长时域规划；
-- 不把自动事件监督包装成人类偏好学习；
-- 不在没有实际测量时声称降低延迟或计算量。
-
-## 仓库结构
-
-```text
-GPPO-WORLD-9.2/
-├── gppo_world/            # 合同、数据、世界模型与后续运行模块
-├── tools/                 # 采集、审计、训练和评估入口
-├── tests/                 # 因果性、模型、安全和兼容性测试
-├── docs/                  # 总体设计、架构、执行与验收规范
-├── nodes/T-00...T-06/    # 每个节点的状态、Gate 和真实证据
-├── nodes/status.json      # 机器可读的权威节点状态
-└── README.md              # 项目总入口
+```mermaid
+flowchart TD
+    E[仿真环境：任务、位置、能量、故障] --> T[通信：遥测延迟、丢包、断联、乱序与恢复]
+    T --> O[控制端已收到的有效观测]
+    O --> G[五类型表示与合法候选]
+    G --> P[GPPO：选择分配或 NOOP]
+    G --> W[可选世界模型：预测上下文]
+    W --> P
+    P --> C[命令传输与执行检查]
+    C --> X[移动、服务、并行续租与中断处理]
+    X --> E
+    C --> A[ACK：命令确认反馈]
+    A --> O
 ```
 
-## 文档阅读顺序
+### 3.1 用五类实体组织公开信息
 
-1. [范围、分工与安全边界](docs/00-scope-and-boundaries.md)
-2. [架构与数据合同](docs/01-architecture-and-contracts.md)
-3. [T-00～T-06 执行规划](docs/02-execution-plan.md)
-4. [节点、checkpoint 与证据保存规范](docs/03-checkpoint-and-evidence-policy.md)
-5. [实验矩阵与验收定义](docs/04-experiment-and-acceptance.md)
-6. [当前任务进度](docs/05-current-progress.md)
-7. [T-05 服务器训练 AI 接力说明](docs/06-server-ai-handoff.md)
-8. [T-05 正式服务器 Campaign 实时接力存档](docs/07-t05-live-server-campaign-handoff.md)
-9. [节点总索引](nodes/README.md)
-10. [T-05 封存后的诊断与下一步](docs/08-post-t05-diagnostics-and-next-plan.md)
+“五类型”是五种实体类别，不是只有五个节点，也不等于五架无人机。
 
-节点的权威当前状态以 [`nodes/status.json`](nodes/status.json) 为准。README 负责解释路线，节点证据负责证明结果；文档中的计划不能替代真实实验。
+| 类型 | 表示什么 | 当前实现方式 |
+|---|---|---|
+| UAV | 执行资源 | 位置、能量及可见状态等字段 |
+| Task | 待执行工作 | 位置、截止时间、剩余服务量及所属区域、目标等字段 |
+| Region | 任务所属区域 | 区域标识，以及从有效公开任务信息汇总的特征 |
+| Target | 任务对应目标 | 目标标识及其关联任务的公开汇总特征 |
+| Event | 已获知的状态变化 | 有限容量的公开事件记录，例如已收到的连接或存活状态变化 |
 
-## 快速验证
+策略对实体特征编码，加入类型标识，汇总全局特征；再结合 UAV–Task 的距离、可见性及候选有效性等关系，对每个分配候选打分。当前实现是**实体编码、全局汇总和候选关系评分**，不应描述成已经实现任意多跳图推理。
 
-在安装 PyTorch、NumPy 和 pytest 的 Python 环境中运行：
+观测同时保留字段是否已知、是否有效及信息年龄。策略看到的是控制端已经收到的信息，不能直接读取仿真器内部的未来故障表。Event 节点也不代表策略提前知道所有突发事件。
 
-```powershell
-python -m pytest -q
-```
+### 3.2 分配不等于完成
 
-T-01 数据、采集用 GPPO checkpoint 和原始 manifest：
+每个决策周期最多提交一个新分配；已有多个任务可以并行移动、服务和续租。NOOP 表示本周期不新增分配，不表示停止其他正在执行的任务。
 
-- [Release 页面](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t01-data-v0.1.0)
-- [T-01 节点证据](nodes/T-01/README.md)
+执行过程区分：**任务到达、命令接受、移动、实际服务、完成、过期和中断**。仿真时钟推进移动与服务、消耗能量，并在故障或 deadline 边界更新任务状态。奖励包含任务完成收益，以及过期、能耗和拒绝等成本；验收仍单独看完成与恢复，不能只看总回报。
 
-T-02 基础世界模型 checkpoint、训练日志与指标：
+| 执行机制 | 通俗解释 |
+|---|---|
+| 合法候选 mask | 决策时按公开信息排除不能选择的分配；发送后状态仍可能变化 |
+| 版本校验 | 防止拿旧状态下的决定覆盖当前状态 |
+| ACK | 确认对应命令是否被接受；消息丢失时，控制端和执行端可能知道得不一样 |
+| lease（执行租约） | 在有限有效期内持有执行资格，续租也必须经过通信与确认链路 |
+| fencing（执行代次校验） | 任务转交后，阻止旧命令重新夺回执行权 |
+| 独占与能量检查 | 防止冲突占用，以及不满足能量条件的执行 |
 
-- [T-02 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t02-base-wm-v0.1.0)
-- [T-02 节点证据](nodes/T-02/README.md)
+活动执行记录按命令、任务和 UAV 管理。一个任务完成、断联或租约到期，不应误清理其他任务。合法候选不保证命令最终被接受，正常的过期或资源不足拒绝也不等于安全违规。
 
-T-03 事件感知模型、逐 seed 消融、失败 run 与指标：
+### 3.3 弱通信与突发事件
 
-- [T-03 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t03-eawm-v0.1.0)
-- [T-03 节点证据](nodes/T-03/README.md)
+遥测、命令和 ACK 分为三条逻辑链路。实验逐步加入延迟、随机丢包、连续失联、乱序和恢复，再叠加紧急任务到达、UAV 损毁、能量不足。
 
-T-04 Shadow、校准、真实基线零写入审计与回退记录：
+必须区分**消息没有送到**和**环境中的 UAV 真实断联**。现有执行规则中，真实断联会中断该 UAV 的服务；控制端只有收到相应公开信息后才能据此决策。恢复连接不意味着旧命令自动重新有效，仍要满足版本、租约及资源约束。
 
-- [T-04 Release v0.1.0](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t04-shadow-v0.1.0)
-- [T-04 节点证据](nodes/T-04/README.md)
+通信随机性按消息语义身份组织，避免某组多发几个命令，就改变其他消息遭遇的随机故障。这里模拟的是通信行为；序列化消息字节数只是通信量代理，不是真实无线网络吞吐。
 
-## 方法来源
+## 4. 世界模型与 GPPO 到底怎样融合
 
-- [GPPO-8.29](https://github.com/Battleplus/GPPO-8.29)
-- [世界模型任务目标与改进目标](https://github.com/Battleplus/GPPO-8.29/blob/2a9bb9f87b9d543df144f4d108ba970c924151f9/docs/world-model/current/%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%E4%BB%BB%E5%8A%A1%E7%9B%AE%E6%A0%87%E4%B8%8E%E6%94%B9%E8%BF%9B%E7%9B%AE%E6%A0%87.md)
-- [EAWM 官方实现](https://github.com/MarquisDarwin/EAWM)
+当前 M-10 世界模型是一个动作条件前馈网络：输入公开观测与动作编码，监督学习**下一环境步的奖励、事件、episode 结束信号及一个 8 维上下文**。事件标签包括损毁、断联、恢复，另有保留槽位。
 
-## 当前能力声明
+在线决策时还没有选定动作，因此当前实现对合法候选进行预测，将候选预测上下文取均值，经投影后加入策略的全局特征，再由 GPPO 对具体 UAV–Task 候选评分。世界模型在策略训练期间保持冻结。它不是逐个候选执行多步搜索，也不是在线读取未来真值。
 
-T-00～T-05 已有封存证据，世界模型基础迁移完成。T-05 正式消融、checkpoint/日志/指标、兼容与安全 Gate 均已通过；仓库保留失败尝试和负结果。当前不支持“世界模型稳定提升 GPPO”的声明，T-06 仍是未开始的可选研究项。
+这意味着：
+
+- **已经实现**预测输入接入策略，以及有无预测输入的对照。
+- **尚不能直接声称**拥有专门的 deadline 风险、接管成功率或长期规划预测器；这些不是当前模型已经独立训练验证的目标。
+- 世界模型的预测误差和策略的任务收益必须分别验证。能输出上下文，不代表上下文有用。
+- 随机损毁和丢包可能缺乏可预测信息，不能要求模型准确预知其发生时刻。
+
+事件触发组还会读取预测风险及公开语义事件。未触发时不重新调用动作选择网络，而是维护已有合法执行；**世界模型仍可能被调用**，所以少算几次 actor 不等于整体计算更省。
+
+## 5. 如何比较，才回答得出研究问题
+
+主对照固定为以下三组。图表示、动作、奖励、通信和执行规则保持一致，并使用相同场景生成规则、环境交互预算和配对评估场景。
+
+| 组别 | 决策方式 | 比较目的 |
+|---|---|---|
+| A：GPPO | 每周期选择动作 | 基础任务分配能力 |
+| B：GPPO＋世界模型 | 每周期选择动作，增加预测上下文 | B 对 A：预测输入是否改善任务效果？ |
+| C：GPPO＋世界模型＋事件触发 | 满足触发条件时重新选择动作 | C 对 B：是否在保持效果时节省成本？同时报告 C 对 A |
+
+合法规则调度器作为执行与可行性参考，不包装成强化学习成果。训练、开发、最终测试和分布外场景分开；模型与阈值只根据训练、开发数据确定。旧测试反复使用后只能作为历史回归，不能继续称为新的盲测。
+
+核心指标是任务完成率、deadline 违约、有效服务恢复及其耗时、重复或越权执行。辅助记录能耗、正确拒绝、通信代理量，以及包含观测构建、世界模型、策略和执行接口的完整决策链延迟。
+
+恢复必须关联**确有任务被中断的事件**，再分别记录合法获知、候选形成、替代命令接受、替代资源服务和按时完成。不能拿所有故障数作恢复分母，也不能把事件发生前的命令接受算成接管。未恢复事件保留在结果中，不通过删除失败样本缩短平均恢复时间。
+
+## 6. 关键问题与后续研究规划
+
+以下是研究顺序和判断依据，不是训练进度表，也不表示这些目标已经通过。
+
+| 要解决的问题 | 设计与验证方式 | 推进依据 |
+|---|---|---|
+| 基础分配是否真正可用？ | 在明确可行的任务中验证分配、并行服务、能量和 deadline，再逐步增加通信压力 | 真实完成任务，而不只是 episode 结束或安全计数为零 |
+| 恢复失败到底卡在哪里？ | 沿“获知—候选—选择—传输—服务—完成”逐事件定位 | 区分信息过期、选择不足和物理上来不及，不能全部归因于训练不够 |
+| 世界模型究竟应预测什么？ | 核对现有目标与接管需求；新增预测目标时先定义窗口、标签和公开输入，与简单基线比较 | 开发数据支持目标具有可预测性，不预设随机故障必然可预测 |
+| 更多训练能否改善分配？ | 在冻结分布上做有预算上限的多 seed 对照，保留逐事件训练记录、验证曲线与恢复状态 | 以独立测试和配对差异判断，不按旧策略失败逐条筛选样本 |
+| 触发能否做到效果与成本兼顾？ | 先比较 A/B，再评价 C；同时计量 actor、世界模型、通信和完整延迟 | 减少调用时仍保持任务效果，不能用漏做任务换取“加速” |
+| 仿真结论能否用于实际系统？ | 明确任务规模、通信要求、控制周期和恢复时限，再开展真实链路适配 | 仿真时间与代理流量不能直接当作实网指标 |
+
+同状态接管比较可作为后续补充设计：用独立公开控制器生成共同前缀，在真实任务中断处复制环境，各策略从相同公开历史重建自己的内部状态，再比较后续接管。该设计用于减少“不同策略原本就在执行不同任务”的干扰，结论仍限定在共同前缀的条件分布，不能替代端到端任务评估。
+
+## 7. 当前应怎样理解项目结论
+
+**系统已经具备图策略、世界模型输入融合、事件触发及弱通信执行仿真的研究链路，但尚未证明世界模型带来稳定任务收益，也未证明触发策略能够兼顾任务效果与整体成本。完整弱通信可用性仍未通过。**
+
+当前证据支持继续围绕明确问题做受控研究，不支持将“训练完成”“模型调用减少”写成算法优势。返航、换电、充电、长期失联自主执行和真实飞行控制不属于当前已实现能力；是否纳入最低验收，仍需结合实际任务明确。
+
+## 8. 实现与证据入口
+
+### 目录怎么找
+
+| 位置 | 放什么 | 建议读法 |
+|---|---|---|
+| `README.md` | 面向老师与同学的项目介绍 | 先读场景、设计和研究问题 |
+| `gppo_world/` | 环境、模型、策略和执行逻辑 | 查看下方 M-10 精确源码入口 |
+| `tools/` / `tests/` | 运行工具 / 行为与合同测试 | 按对应实验报告选择入口，不混用历史脚本 |
+| `docs/` | 设计、解释与口径修订 | 优先读当前场景说明与勘误；早期设计保留作背景 |
+| `nodes/M-10/` | 当前研究线的协议、报告和证据索引 | 查看具体实验及其能力边界 |
+| `nodes/M-09/` 及其他阶段目录 | 历史规划与实验 | 按阶段阅读，不把历史通过状态当作当前结论 |
+| GitHub Releases | 冻结模型、数据与归档 | 通过报告对应版本下载，不按文件日期猜版本 |
+
+[弱通信场景与具体参数说明](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/main/docs/12-weak-communication-scenario-explained-20260910.md) · [统一进度与数值口径](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/main/docs/11-current-project-status-20260910.md)
+
+### 看代码：从哪里理解实现
+
+| 入口 | 内容 |
+|---|---|
+| [环境与观测构建](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/m10_environment.py) | 五类型输入、任务事件、通信接入和并行活动执行 |
+| [策略、世界模型与 PPO](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/m10_training.py) | 候选评分、预测上下文、触发判断、采样和更新 |
+| [策略可见信息](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/task_policy_view.py) | 控制端可读状态与候选构建 |
+| [命令桥接](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/task_decision_bridge.py) / [执行层](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/task_execution.py) | 分配命令、确认与执行门禁 |
+| [服务时钟](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/service_clock.py) / [任务生命周期](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/task_lifecycle.py) | 移动、服务、事件边界及任务状态 |
+| [遥测结构](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/gppo_world/telemetry.py) | 消息与信息有效性 |
+| [弱通信实验入口](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/tools/run_m10_weak_comm.py) / [冻结模型复评迁移包](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-metrics-replay-migration-v1-20260909) | 训练对照与不更新参数的复现评估 |
+
+### 看细节：协议、结果和历史记录
+
+- [弱通信实验协议](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/m10-weak-communication-protocol.md)：对应版本的链路、参数和边界；其中时间参数是仿真设定。
+- [并行执行与租约设计说明](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/m10-parallel-lease-continuation-fix.md)：单次新分配与持续并行服务的区别。
+- [正式训练技术报告](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/m10-authorized-resume-fix-v1-report.md)：实验配置、训练结果、失败与限制。
+- [CPU 复评口径勘误](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/docs/m10-local-cpu-replay-erratum-20260910-v2.md)：成本比较、接管事件和安全声明的更正；相关指标应与原报告合读。
+- [训练制品索引](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/m10-authorized-resume-fix-v1-artifact-index.md) / [复评与勘误 Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1)：模型、日志及校验资产。
+- [阶段状态](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/status.json) / [早期 M-09 规划](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-09/README.md) / [全部历史 Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases)：进度、归档和历史实验；各版本结论按对应协议解释。
