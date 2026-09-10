@@ -107,6 +107,14 @@
         "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/t05-gppo-ablation-v0.1.0"
       ]
     },
-    {"id": "T-06", "status": "planned", "blocked_by": [], "evidence": []}
-  ]
+    {
+      "id": "T-06",
+      "status": "planned",
+      "blocked_by": [],
+      "evidence": []
+    }
+  ],
+  "scope": "Historical T-00 through T-06 protocol status; not the current M-10 availability status",
+  "current_project_report": "docs/11-current-project-status-20260910.md",
+  "m10_status_url": "https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/status.json"
 }

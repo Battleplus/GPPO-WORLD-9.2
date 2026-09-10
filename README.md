@@ -1,14 +1,23 @@
 # GPPO-WORLD-9.2
 
-本仓库用于把“事件感知世界模型”迁移到 GPPO 动态任务分配系统，并保存从设计、数据、模型、联调到实验验收的完整证据。
+无人机任务分配的GPPO＋世界模型仿真研究。
 
-一句话概括最终目标：
+## 当前进度（2026-09-10）
 
-> 让世界模型学习“在当前 belief 图中实际执行某个动作后，系统可能怎样变化”，再把经过验证的预测 latent 提供给 GPPO；GPPO 仍然是唯一动作选择器，真实 action mask 和执行安全链始终拥有最终权威。
+**工程实验流程、真实训练和冻结模型复评已运行；世界模型稳定收益尚未建立，完整弱通信可用性仍未通过。** `full_goal_complete=false`。
 
-本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
+最新A/B/C完成任务为84/288、82/288、49/288；CPU补测144/144个episode参考字段匹配。C减少actor调用，但任务效果下降。恢复指标以勘误为准，不沿用144个全部场景事件作为中断分母。
 
-> 2026-09-05 重新分析：T-00～T-05 已按各自已执行协议验收，四组 × 三 seeds 消融已封存；原始目标要求的 GPPO-History 对照仍未完成，不能等同于原始完整验收全部满足。稳定策略增益尚未建立。阅读 [重新分析](docs/09-project-reassessment-20260905.md)、[修订规划](docs/10-revised-experiment-plan-20260905.md) 与 [原始要求覆盖表](nodes/requirements-status.json)。历史结果见 [T-05 报告](nodes/T-05/evidence/final-report.md)。
+- [当前统一进度与数值口径](docs/11-current-project-status-20260910.md)
+- [M-10执行分支](https://github.com/Battleplus/GPPO-WORLD-9.2/tree/execute-r02-20260905/nodes/M-10)与[机器可读状态](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/status.json)
+- [最新训练](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-authorized-resume-fix-v1-20260908)、[迁移包](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-metrics-replay-migration-v1-20260909)、[CPU补测及勘误](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1)
+- [当前6页汇报PPT](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/slides/m10-current-progress-20260910-v1.pptx)；旧9月7日PPT按历史阶段保留。
+
+main保留早期源码；本次只更新文档导航，不合并实验算法。运行M-10应按执行分支与指定归档的源码/模型合同，不能直接套用下方旧17动作接口。
+
+## 历史研究路线与基础架构
+
+以下T-00～T-05、三类型UAV–Region和17动作说明属于早期路线。阶段passed只指对应协议，不能替代M-10弱通信可用性验收。旧准备度、模型和报告可在Git历史及各阶段归档查阅。
 
 ## 为什么需要世界模型
 
