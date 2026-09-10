@@ -1,26 +1,78 @@
 {
-  "version": "m10-r-training-validity/0.1.0",
+  "version": "m10-current-evidence/2026-09-10",
   "status": "in_progress",
-  "current_stage": "M10-weak-communication-availability-diagnosis",
+  "current_stage": "M10-local-cpu-replay-and-erratum-completed",
   "training_started": true,
   "training_location": "specified_server_only",
   "full_goal_complete": false,
   "stages": [
-    {"id":"R0","status":"passed"},
-    {"id":"R1","status":"passed"},
-    {"id":"R2","status":"passed"},
-    {"id":"R3","status":"passed"},
-    {"id":"R4","status":"passed"},
-    {"id":"R5","status":"passed"},
-    {"id":"M10-R","status":"passed_training_correction"},
-    {"id":"M10-R2","status":"passed_correctness_and_same_budget_matrix"},
-    {"id":"M10-R3","status":"passed_prediction_trigger_cost_and_learning_assessment"},
-    {"id":"M10-weak-communication","status":"passed_protocol_pilot_formal_matrix_with_negative_result"},
-    {"id":"M10-weak-communication-diagnosis","status":"passed_chain_diagnosis_failed_availability_gate"},
-    {"id":"M10-weak-communication-recovery-attribution","status":"completed_metric_corrected_availability_still_failed"}
+    {
+      "id": "R0",
+      "status": "passed"
+    },
+    {
+      "id": "R1",
+      "status": "passed"
+    },
+    {
+      "id": "R2",
+      "status": "passed"
+    },
+    {
+      "id": "R3",
+      "status": "passed"
+    },
+    {
+      "id": "R4",
+      "status": "passed"
+    },
+    {
+      "id": "R5",
+      "status": "passed"
+    },
+    {
+      "id": "M10-R",
+      "status": "passed_training_correction"
+    },
+    {
+      "id": "M10-R2",
+      "status": "passed_correctness_and_same_budget_matrix"
+    },
+    {
+      "id": "M10-R3",
+      "status": "passed_prediction_trigger_cost_and_learning_assessment"
+    },
+    {
+      "id": "M10-weak-communication",
+      "status": "passed_protocol_pilot_formal_matrix_with_negative_result"
+    },
+    {
+      "id": "M10-weak-communication-diagnosis",
+      "status": "passed_chain_diagnosis_failed_availability_gate"
+    },
+    {
+      "id": "M10-weak-communication-recovery-attribution",
+      "status": "completed_metric_corrected_availability_still_failed"
+    },
+    {
+      "id": "M10-authorized-resume-fix-v1",
+      "status": "completed_training_with_negative_result"
+    },
+    {
+      "id": "M10-local-cpu-replay",
+      "status": "completed_144_episode_reference_match"
+    },
+    {
+      "id": "M10-local-cpu-replay-erratum",
+      "status": "completed_metric_correction_availability_not_passed"
+    }
   ],
-  "open_inputs": ["返航换电充电是否属于中旬最低验收", "竞赛控制周期和任务规模", "实际汇报日期"],
-  "source_review": "m10-r-report.md",
+  "open_inputs": [
+    "返航换电充电是否属于中旬最低验收",
+    "竞赛控制周期和任务规模",
+    "实际汇报日期"
+  ],
+  "source_review": "docs/11-current-project-status-20260910.md",
   "evidence": {
     "causal_acceptance": "causal-acceptance.json",
     "training_protocol": "training-protocol.json",
@@ -124,7 +176,7 @@
     "deployment_validation": "not_verified",
     "user_scope_status": "pending",
     "human_review_status": "not_held",
-    "new_training_this_stage": true,
+    "new_training_this_stage": false,
     "weak_communication_protocol": "m10-weak-communication-protocol.md",
     "weak_communication_report": "m10-weak-communication-report.md",
     "weak_communication_limitations": "m10-weak-communication-limitations.md",
@@ -139,8 +191,16 @@
       "results_sha256": "D4EEBCF10AF620F808FF121AFDCFE81FE685543EA0D7B228DBF112F4BACF6983"
     },
     "weak_communication_formal": {
-      "groups": ["A-graph5-base", "B-graph5-world", "C-graph5-triggered"],
-      "seeds": [1101, 2203, 3307],
+      "groups": [
+        "A-graph5-base",
+        "B-graph5-world",
+        "C-graph5-triggered"
+      ],
+      "seeds": [
+        1101,
+        2203,
+        3307
+      ],
       "environment_steps_per_seed": 12288,
       "actor_decisions_per_seed": 12288,
       "continuation_per_seed": 0,
@@ -149,7 +209,8 @@
       "tape_sha256": "F746C487429ED00641421D0BD56E7AF9448FB9E5AFB0A135F2D8CC21EC9165D8",
       "threshold_selection_sha256": "684346CA94123F1F71A8D851E31CE4DEF0F8F9A20A2B8109C1F7CFF7CDEAE2F1",
       "threshold": 0.1,
-      "feasible_cost_saving_threshold_found": false
+      "feasible_cost_saving_threshold_found": false,
+      "scope": "historical 20260907-weak-comm-v1; not authorized-resume-fix-v1"
     },
     "weak_communication_detailed_audit": {
       "tape": "final_test",
@@ -159,32 +220,40 @@
       "contract_audit": "10/10 direct tests; server pytest unavailable",
       "contract_audit_sha256": "D047B2AFD6361FF68EA6D930A1B40B872E145C80E918D3944B255444838E5D45"
     },
-    "weak_communication_conclusion": "B versus A stable improvement unproven; C risk threshold 0.1 triggers every step and saves no actor calls; rules save computation but do not improve task effect; retain periodic decision as current engineering default",
+    "weak_communication_conclusion": "Latest formal A/B/C completed 84/288,82/288,49/288; B gain unproven; C saves actor calls with worse task effect; CPU C mean lower than B and higher than A; full weak communication availability not passed.",
     "weak_communication_release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-gppo-world-v1-20260907",
     "weak_communication_release_target": "106d2267ab397829ed8a437219f9b696b609f0cb",
     "weak_communication_release_bundle_sha256": "D4416A1D9CF892B247AB50507A623DCD70A9022E8CB9993F79227537BB4A183C",
     "weak_communication_release_source_sha256": "D705E30CD9D6EA84A655720FF2ADAF2B91CEE37BCE7EDA895EF217FBF7EC82F5",
     "weak_communication_release_assets_verified": true,
-    "new_training_scope": "weak communication only; no old budget extension or historical artifact rewrite"
-    ,"weak_communication_diagnostic": {
+    "new_training_scope": "documentation and slide correction only; no training or replay rerun",
+    "weak_communication_diagnostic": {
       "report": "m10-weak-communication-availability-diagnostic.md",
       "server_root": "/home/user1/m10-runs/20260907-weak-comm-diagnostic-v1",
       "diagnostic_sha256": "2b068e9975823dafcba8c01cd9f83f12ea5850a0f77635f1d8974221824fec20",
       "contract_audit_sha256": "6ee1dc976a3352adb69d62ce1300816e418eb53504d050b204aaeb3e84518b70",
       "local_full_test": "171 passed with controlled basetemp",
       "frozen_gppo_trace": "Graph-5 Base seed-1101: 17/17 NOOP, 0 accepted proposals, 0 ACK, 0 service, 6 expired",
-      "legal_scheduler_full_tape_completed_tasks": {"ideal": "42/96", "telemetry-delay": "19/96", "random-loss": "30/96", "burst-loss": "29/96", "reorder": "22/96", "recovery": "29/96", "composite": "21/96"},
+      "legal_scheduler_full_tape_completed_tasks": {
+        "ideal": "42/96",
+        "telemetry-delay": "19/96",
+        "random-loss": "30/96",
+        "burst-loss": "29/96",
+        "reorder": "22/96",
+        "recovery": "29/96",
+        "composite": "21/96"
+      },
       "minimal_recovery": "two UAV/one task, disconnect at 1.0 and reconnect at 4.0: legal alternate-UAV service completed 1/1",
       "new_message_audit": "stable message_id plus delivery_ordinal; no semantic execution-gate relaxation",
       "new_direct_tests": "2 passed",
       "availability_gate": "failed",
-      "training_started_this_stage": false
-      ,"release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-availability-diagnostic-v1-20260907"
-      ,"release_asset": "m10-weak-communication-availability-diagnostic-v1.tar.gz"
-      ,"release_archive_sha256": "ffb4e453ea0c28567d06b52b7d1c70ff4b1662c6ea6989f63c8ffc0d31598cea"
-      ,"release_asset_bytes": 8349041
-      ,"release_asset_api_digest_verified": true
-      ,"remote_commit": "00f1aec31a15cbbfad3049860aef4ae2631e6c48"
+      "training_started_this_stage": false,
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-comm-availability-diagnostic-v1-20260907",
+      "release_asset": "m10-weak-communication-availability-diagnostic-v1.tar.gz",
+      "release_archive_sha256": "ffb4e453ea0c28567d06b52b7d1c70ff4b1662c6ea6989f63c8ffc0d31598cea",
+      "release_asset_bytes": 8349041,
+      "release_asset_api_digest_verified": true,
+      "remote_commit": "00f1aec31a15cbbfad3049860aef4ae2631e6c48"
     },
     "weak_communication_recovery_attribution": {
       "report": "m10-weak-communication-recovery-attribution-report.md",
@@ -196,7 +265,11 @@
       "local_full_test": "150 passed in 13.83s (isolated basetemp)",
       "policy_recovery_corrected": "1/96",
       "reference_recovery_corrected": "0/84",
-      "original_stage2_recovery_preserved": ["1/8", "0/11", "3/12"],
+      "original_stage2_recovery_preserved": [
+        "1/8",
+        "0/11",
+        "3/12"
+      ],
       "same_state_reference_completed": 4,
       "same_state_incremental_rescues": 0,
       "training_started_this_stage": false,
@@ -236,7 +309,8 @@
       "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-recovery-observability-v1-20260908",
       "release_asset": "m10-recovery-observability-v1-final2.tar.gz",
       "release_target": "74078b53e4b566ad08780d79221b93f6e83373bf",
-      "release_assets_verified": true
+      "release_assets_verified": true,
+      "new_opportunity_selected_scope": "historical non-strict result; strict reference recovery 26/32 supersedes recovery interpretation"
     },
     "weak_communication_recovery_learning_boundary": {
       "report": "m10-recovery-learning-boundary-report.md",
@@ -294,7 +368,8 @@
         "public_candidate": 172,
         "service_recovered": 170,
         "deadline_completed": 166,
-        "security_rejection_rows": 0
+        "security_rejection_rows": 0,
+        "subject": "reference_branch_events_not_gppo_policy"
       },
       "full_pool_scope_classes": {
         "information_and_execution_sufficient": 166,
@@ -320,8 +395,117 @@
       "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-weak-communication-scope-closure-v1-20260908",
       "release_asset": "m10-weak-communication-scope-closure-v1-20260908-final3.zip",
       "release_asset_sha256": "verified_after_upload_via_release_api"
+    },
+    "historical_stage_flags": {
+      "new_training_this_stage": true,
+      "new_training_scope": "weak communication only; no old budget extension or historical artifact rewrite",
+      "scope": "20260907-weak-comm-v1 only"
+    },
+    "weak_communication_conclusion_20260907": "B versus A stable improvement unproven; C risk threshold 0.1 triggers every step and saves no actor calls; rules save computation but do not improve task effect; retain periodic decision as current engineering default",
+    "latest_formal": {
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-authorized-resume-fix-v1-20260908",
+      "run": "20260908-authorized-resume-fix-v1/formal-fix-v1",
+      "groups": [
+        "A-graph5-base",
+        "B-graph5-world",
+        "C-graph5-triggered"
+      ],
+      "seeds": [
+        1101,
+        2203,
+        3307
+      ],
+      "environment_steps_per_variant_seed": 12288,
+      "rollouts_per_variant_seed": 48,
+      "optimizer_updates_per_variant_seed": 192,
+      "episodes_per_variant": 48,
+      "tasks_per_variant": 288,
+      "completed_tasks": {
+        "A": 84,
+        "B": 82,
+        "C": 49
+      },
+      "C_training_actor_calls_by_seed": [
+        7453,
+        7462,
+        7440
+      ],
+      "C_training_continuation_by_seed": [
+        4835,
+        4826,
+        4848
+      ],
+      "world_model_stable_gain": "unproven",
+      "trigger_effect_preserving_cost_gain": "not_demonstrated"
+    },
+    "latest_local_cpu_replay": {
+      "release": "https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1",
+      "run_id": "m10-replay-local-cpu-20260910-v1",
+      "episodes": 144,
+      "reference_fields_matched": 144,
+      "device": "local CPU",
+      "threads": 2,
+      "warmup": false,
+      "includes_result_persistence": false,
+      "mean_ms": {
+        "A": 1.8967,
+        "B": 2.3177,
+        "C": 2.1217
+      },
+      "actor_calls": {
+        "A": 814,
+        "B": 818,
+        "C": 504
+      },
+      "world_calls": {
+        "A": 0,
+        "B": 818,
+        "C": 826
+      },
+      "all_scenario_events": {
+        "A": 144,
+        "B": 144,
+        "C": 144
+      },
+      "task_interruption_events": {
+        "A": 12,
+        "B": 12,
+        "C": 7
+      },
+      "legally_known_events": {
+        "A": 12,
+        "B": 12,
+        "C": 7
+      },
+      "public_candidate_events": {
+        "A": 7,
+        "B": 6,
+        "C": 2
+      },
+      "takeover_accepted_events": {
+        "A": 3,
+        "B": 1,
+        "C": 0
+      },
+      "takeover_accepted_commands": {
+        "A": 3,
+        "B": 2,
+        "C": 0
+      },
+      "alternative_service_recovery_events": {
+        "A": 0,
+        "B": 0,
+        "C": 0
+      },
+      "safety_status": "no_observed_violation",
+      "safety_scope": "recorded replay checks only; not complete historical or production safety assurance",
+      "erratum_markdown": "m10-local-cpu-replay-erratum-20260910-v2.md"
     }
   },
-  "completion_boundary": "weak communication protocol, pilot, formal A/B/C matrix and detailed audit completed; availability diagnosis found current frozen policy unusable on the traced tape and the full weak-communication availability gate is not passed; independent diagnostic archive publication, user-confirmed return/charging scope, real control cycle, real deployment validation and human review remain open",
-  "review_status": "not_held"
+  "completion_boundary": "Training and frozen-model replay completed; world-model stable gain and full weak communication availability not established. Historical raw ledgers remain missing; original server interrupted process/output state unknown; real communication, mission scale/control period, return/charging scope, deployment and human review remain open.",
+  "review_status": "not_held",
+  "updated_at": "2026-09-10",
+  "current_documentation_update_training_started": false,
+  "training_started_scope": "historical_training_has_occurred; no new training in this documentation update",
+  "training_location_scope": "historical training used server; 2026-09-10 frozen replay used local CPU"
 }

@@ -25,4 +25,6 @@ Formal records include environment steps, rollout count, optimizer updates, acto
 
 ## Archive status
 
-The local archive is complete and hash-verified. GitHub push/release publication is a separate remote operation; if HTTPS remains unavailable, status must remain “remote pending” and no old release or `main` may be changed.
+Published and verified: [m10-authorized-resume-fix-v1-20260908](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-authorized-resume-fix-v1-20260908). Asset: `m10-authorized-resume-fix-v1-20260908.tar.gz`; SHA-256 `65a5cf9e4de40d27fc3b928273924396ae571b5b50f1edeefb203fe5fef2b8c2`.
+
+The previous network-pending note is historical; original records remain in Git history. Later [CPU replay and erratum](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1) supply post-hoc metrics only and do not replace missing original training ledgers. See [current status](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/docs/11-current-project-status-20260910.md).

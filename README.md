@@ -1,35 +1,23 @@
 # GPPO-WORLD-9.2
 
-本仓库用于把“事件感知世界模型”迁移到 GPPO 动态任务分配系统，并保存从设计、数据、模型、联调到实验验收的完整证据。
+无人机任务分配的GPPO＋世界模型仿真研究。
 
-一句话概括最终目标：
+## 当前进度（2026-09-10）
 
-> 让世界模型学习“在当前 belief 图中实际执行某个动作后，系统可能怎样变化”，再把经过验证的预测 latent 提供给 GPPO；GPPO 仍然是唯一动作选择器，真实 action mask 和执行安全链始终拥有最终权威。
+**工程实验流程、真实训练和冻结模型复评已运行；世界模型稳定收益尚未建立，完整弱通信可用性仍未通过。** `full_goal_complete=false`。
 
-本项目以 [`Battleplus/GPPO-8.29@2a9bb9f`](https://github.com/Battleplus/GPPO-8.29/commit/2a9bb9f87b9d543df144f4d108ba970c924151f9) 为固定设计基线，参考 EAWM 的自动事件、Event Predictor 和 GES 思想，但针对 UAV–Region–Target 异构图重新实现，不直接照搬 Atari 图像模型。
+最新A/B/C完成任务为84/288、82/288、49/288；CPU补测144/144个episode参考字段匹配。C减少actor调用，但任务效果下降。恢复指标以勘误为准，不沿用144个全部场景事件作为中断分母。
 
-> 2026-09-05 重新分析：T-00～T-05 已按各自已执行协议验收，四组 × 三 seeds 消融已封存；原始目标要求的 GPPO-History 对照仍未完成，不能等同于原始完整验收全部满足。稳定策略增益尚未建立。阅读 [重新分析](docs/09-project-reassessment-20260905.md)、[修订规划](docs/10-revised-experiment-plan-20260905.md) 与 [原始要求覆盖表](nodes/requirements-status.json)。历史结果见 [T-05 报告](nodes/T-05/evidence/final-report.md)。
+- [当前统一进度与数值口径](docs/11-current-project-status-20260910.md)
+- [M-10执行分支](https://github.com/Battleplus/GPPO-WORLD-9.2/tree/execute-r02-20260905/nodes/M-10)与[机器可读状态](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/status.json)
+- [最新训练](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-authorized-resume-fix-v1-20260908)、[迁移包](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-metrics-replay-migration-v1-20260909)、[CPU补测及勘误](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/m10-local-cpu-replay-20260910-v1)
+- [当前6页汇报PPT](https://github.com/Battleplus/GPPO-WORLD-9.2/blob/execute-r02-20260905/nodes/M-10/slides/m10-current-progress-20260910-v1.pptx)；旧9月7日PPT按历史阶段保留。
 
-当前执行入口：[9 月中旬分阶段交付计划](nodes/M-09/README.md)。按会议要求优先基础功能、延迟验证和汇报交付，再推进世界模型研究。
+main保留早期源码；本次只更新文档导航，不合并实验算法。运行M-10应按执行分支与指定归档的源码/模型合同，不能直接套用下方旧17动作接口。
 
-## 2026-09-06 最新交付
+## 历史研究路线与基础架构
 
-M-09 S5 已形成候选交付包并完成服务器独立复现、PPTX/PDF 渲染检查与归档校验：[S5 交付目录](nodes/M-09/S5/README.md)。默认 A 为纯 GPPO + 可关闭只读 Shadow；历史 B 为 EAWM-GPPO adapter 消费复现。S3 明确跳过且未训练；实际彩排/评审尚未举行，9/13 冻结与 9/15 汇报仍待确认。GitHub Release：`m09-s5-delivery-freeze-v1-20260906`（候选）。
-
-2026-09-05 已完成 R-02、J-02A 和服务器 J-02B 四配置三 seed 实验。J-02B 开发门槛失败，完整训练文件已发布至 [GitHub Release](https://github.com/Battleplus/GPPO-WORLD-9.2/releases/tag/j02b-server-archive-20260905)。原始 GPPO-History 对照和稳定策略增益仍未完成；原始 R-02 大文件尚待独立 Release。
-
-## 9 月中旬汇报准备度
-
-截至 2026-09-06，面向会议交付的累计准备度评估为 **40%～50%（当前加权检查点 46/100）**；M-09 的正式阶段验收为 **1/6**。两个数字回答不同问题：46/100 计入 T-05、R-02、J-02A/J-02B 的既有框架、服务器训练与归档；1/6 只统计按本轮会议标准重新验收通过的阶段。
-
-| 已形成的基础 | 为什么计入进度 | 为什么还不能算会议交付完成 |
-|---|---|---|
-| GPPO 基础任务分配、合法动作与执行安全链 | 已有可运行代码、checkpoint 和测试 | 尚未按本轮六场景 60 条轨迹重新验收 |
-| T-05 世界模型接入和四组服务器训练 | 证明训练链、Shadow、adapter 和回退可运行 | 没有证明稳定策略增益，也不是会议所述五类型版本 |
-| J-02A/J-02B 数据合同和服务器训练 | 证明防未来泄漏、合法分支和完整训练归档 | J-02B 开发门槛失败，不能直接进入后续策略扩展 |
-| S0 版本与术语核查 | 已锁定可复用三类型基线并明确缺口 | 五类型实现、四类扰动完整闭环仍未找到/未验收 |
-
-当前真正阻塞中旬演示的是：会议所述五类型源码与模型缺失；紧急任务、能量/换电和复合扰动没有完整可控实现；“慢 3～4 倍”缺少同硬件、同负载的公平复测；汇报稿和演示包尚未冻结。完整的计算方法、证据链、风险与后续顺序见 [会议准备度说明](nodes/M-09/readiness.md)，机器可读评估见 [readiness.json](nodes/M-09/readiness.json)。
+以下T-00～T-05、三类型UAV–Region和17动作说明属于早期路线。阶段passed只指对应协议，不能替代M-10弱通信可用性验收。旧准备度、模型和报告可在Git历史及各阶段归档查阅。
 
 ## 为什么需要世界模型
 
